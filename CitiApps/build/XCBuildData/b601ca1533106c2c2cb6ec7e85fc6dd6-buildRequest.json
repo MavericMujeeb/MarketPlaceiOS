@@ -1,0 +1,88 @@
+{
+  "_buildCommand2" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : false,
+    "targets" : null
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "65d2f63b18fddcd9285af5906982182970979c7aa4e497c04b00d4ccba5948ea"
+    },
+    {
+      "guid" : "65d2f63b18fddcd9285af5906982182972a0c4168b8e2be9e9a868dd5a73d449"
+    },
+    {
+      "guid" : "63b65d7be725729921e33218b796192417527d11b72c3de70a2dfaba48ea8e49"
+    },
+    {
+      "guid" : "63b65d7be725729921e33218b7961924236e207177d0096e5795fad60df0254a"
+    },
+    {
+      "guid" : "d6e951dfbab4e9b15e6bb21b7b27466e449280004eabe7109966a7fd483dfaa7"
+    },
+    {
+      "guid" : "08547305b078c823504172eb47457722806db8c50ee1c8be7c4d61d532572152"
+    },
+    {
+      "guid" : "08547305b078c823504172eb47457722a54e33da6ca5518870f9316ac31ea6c3"
+    },
+    {
+      "guid" : "08547305b078c823504172eb47457722e6be4835f136ff46d6e9196108277456"
+    }
+  ],
+  "containerPath" : "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps.xcworkspace",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos16.1",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64v8",
+        "arm64",
+        "armv8"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/mohamadmujeebu/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/mohamadmujeebu/Library/Developer/Xcode/DerivedData/CitiApps-hayylonneccgjugotlwfcijvqbef/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/mohamadmujeebu/Library/Developer/Xcode/DerivedData/CitiApps-hayylonneccgjugotlwfcijvqbef/Index.noindex/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ASSETCATALOG_FILTER_FOR_DEVICE_MODEL" : "iPhone14,5",
+          "ASSETCATALOG_FILTER_FOR_DEVICE_OS_VERSION" : "16.2",
+          "ASSETCATALOG_FILTER_FOR_THINNING_DEVICE_CONFIGURATION" : "iPhone14,5",
+          "BUILD_ACTIVE_RESOURCES_ONLY" : "YES",
+          "ENABLE_PREVIEWS" : "NO",
+          "TARGET_DEVICE_IDENTIFIER" : "00008110-0004341C0C6A401E",
+          "TARGET_DEVICE_MODEL" : "iPhone14,5",
+          "TARGET_DEVICE_OS_VERSION" : "16.2",
+          "TARGET_DEVICE_PLATFORM_NAME" : "iphoneos"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

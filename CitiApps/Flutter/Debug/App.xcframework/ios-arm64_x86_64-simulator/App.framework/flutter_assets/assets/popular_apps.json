@@ -1,0 +1,19 @@
+{
+  "popular_apps": [
+    {
+      "app_id":1,
+      "name": "Addepar",
+      "image_url": "",
+      "overview": "",
+      "description": "Addepar is wealth application",
+      "key_features": [
+        "Increase operational efficiency","..."
+      ],
+      "rank": [{"1": 1}],
+      "status": "Popular",
+      "category_id": [1],
+      "integration_status":"Not Installed",
+      "is_new": false
+    }
+  ]
+}

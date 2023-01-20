@@ -1,0 +1,18 @@
+Target dependency graph (8 targets)
+AzureCommunicationCommon in AzureCommunicationCommon, no dependencies
+AzureCommunicationCommonTests in AzureCommunicationCommon, depends on:
+AzureCommunicationCommon in AzureCommunicationCommon (explicit)
+FluentUIResources in FluentUI, no dependencies
+FluentUILib in FluentUI, depends on:
+FluentUIResources in FluentUI (explicit)
+AzureCommunicationUICalling in AzureCommunicationUICalling, depends on:
+AzureCommunicationCommon in AzureCommunicationCommon (implicit dependency via file 'AzureCommunicationCommon.framework' in build phase 'Link Binary')
+FluentUILib in FluentUI (implicit dependency via file 'libFluentUI.a' in build phase 'Link Binary')
+AzureCommunicationUICallingTests in AzureCommunicationUICalling, depends on:
+AzureCommunicationUICalling in AzureCommunicationUICalling (explicit)
+CitiApps in CitiApps, depends on:
+AzureCommunicationCommon in AzureCommunicationCommon (implicit dependency via file 'AzureCommunicationCommon.framework' in build phase 'Link Binary')
+AzureCommunicationUICalling in AzureCommunicationUICalling (implicit dependency via file 'AzureCommunicationUICalling.framework' in build phase 'Link Binary')
+FluentUILib in FluentUI (implicit dependency via file 'libFluentUI.a' in build phase 'Link Binary')
+FluentUITests in FluentUI, depends on:
+FluentUILib in FluentUI (implicit dependency via file 'libFluentUI.a' in build phase 'Link Binary')
