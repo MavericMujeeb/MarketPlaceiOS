@@ -85,7 +85,7 @@ class AppDelegate: FlutterAppDelegate {
     private func initializeDependencies() {
         appSettings = AppSettings()
         authHandler = AADAuthHandler(appSettings: appSettings)
-        tokenService = TokenService(communicationTokenFetchUrl: "https://login.microsoftonline.com/4c4985fe-ce8e-4c2f-97e6-b037850b777d/oauth2/v2.0/token", getAuthTokenFunction: { () -> String? in
+        tokenService = TokenService(communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
             return self.authHandler.authToken
         })
     }
