@@ -41,7 +41,7 @@ class ViewController : UIViewController {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.contentMode =  UIView.ContentMode.scaleAspectFit
     
-        logoImageView.image = UIImage.init(named: "citiLogo");
+//        logoImageView.image = UIImage.init(named: "citiLogo");
         
         let logoBarButtonItem = UIBarButtonItem.init(customView: logoImageView);
         
