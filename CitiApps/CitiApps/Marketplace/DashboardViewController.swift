@@ -154,7 +154,11 @@ class DashboardViewController : UIViewController {
         contactCenterViewController.title = "Appointments"
         contactCenterViewController.tabBarController?.hidesBottomBarWhenPushed = true
         
+//<<<<<<< HEAD
+//        tabController.viewControllers = [homeViewController, browseViewController, serviceViewController, flutterViewController];
+//=======
         tabController.viewControllers = [dashViewController, browseViewController, serviceViewController, flutterViewController];
+//>>>>>>> main
         
         tabController.tabBar.items?[0].image =  UIImage.init(named: "accounts");
         tabController.tabBar.items?[1].image =  UIImage.init(named: "payments");
@@ -164,6 +168,8 @@ class DashboardViewController : UIViewController {
         //tabController.tabBar.items?[4].image =  UIImage.init(systemName: "calendar");
 
         //Disable tabs, which dont have any content.
+//        tabController.tabBar.items?[1].isEnabled = true;
+//        tabController.tabBar.items?[2].isEnabled = true;
 //        tabController.tabBar.items?[1].isEnabled = true;
 //        tabController.tabBar.items?[2].isEnabled = false;
 //        tabController.tabBar.items?[4].isEnabled = false;
