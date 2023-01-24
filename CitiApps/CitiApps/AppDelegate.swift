@@ -24,7 +24,7 @@ class AppDelegate: FlutterAppDelegate {
         
         initializeDependencies()
 
-        flutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_marketplace_home")
+        flutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_contact_center")
         
         
         GeneratedPluginRegistrant.register(with: self.flutterEngine);
@@ -65,6 +65,17 @@ class AppDelegate: FlutterAppDelegate {
 //    }
 
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        
+        if let scheme = url.scheme,
+            scheme.localizedCaseInsensitiveCompare("com.citi.acsdemo") == .orderedSame,
+            let view = url.host {
+            
+            var parameters: [String: String] = [:]
+            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+                parameters[$0.name] = $0.value
+            }
+            print(parameters)
+        }
         // Required for AAD Authentication
         return MSALPublicClientApplication.handleMSALResponse(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String)
     }
@@ -73,7 +84,7 @@ class AppDelegate: FlutterAppDelegate {
     private func initializeDependencies() {
         appSettings = AppSettings()
         authHandler = AADAuthHandler(appSettings: appSettings)
-        tokenService = TokenService(communicationTokenFetchUrl: "http://10.189.42.213:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
+        tokenService = TokenService(communicationTokenFetchUrl: "http://10.189.42.11:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
             return self.authHandler.authToken
         })
     }
