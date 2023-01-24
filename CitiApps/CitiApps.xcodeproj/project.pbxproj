@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,9 @@
 		8DA82EA42978047400A79D3B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82EA32978047400A79D3B /* ProfileViewController.swift */; };
 		8DA82EA62978047900A79D3B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82EA52978047900A79D3B /* SearchViewController.swift */; };
 		8DA82EE52979178B00A79D3B /* FluentUIResources-ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8DFBD34B29757FA1006B0700 /* FluentUIResources-ios.bundle */; };
+		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
+		8DE0D51B297FC13800201043 /* DashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D51A297FC13800201043 /* DashViewController.swift */; };
+		8DE0D51D297FC16300201043 /* DashScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE0D51C297FC16300201043 /* DashScene.storyboard */; };
 		8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */; };
 		8DFBD2D029756DD6006B0700 /* SceneDelegate89.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2CF29756DD6006B0700 /* SceneDelegate89.swift */; };
 		8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D129756DD6006B0700 /* ViewController.swift */; };
@@ -38,7 +41,6 @@
 		8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD3412975791C006B0700 /* LayoutHelpers.swift */; };
 		8DFBD34429757924006B0700 /* PaddingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD34329757924006B0700 /* PaddingContainer.swift */; };
 		8DFBD34629757929006B0700 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD34529757929006B0700 /* ThemeColor.swift */; };
-		AEC9841A29798E5F0071A49D /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC9841929798E5F0071A49D /* AppSettings.swift */; };
 		AEC9842A2979B3D20071A49D /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841229798E0C0071A49D /* Flutter.xcframework */; };
 		AEC9842B2979B3D30071A49D /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841229798E0C0071A49D /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEC9842C2979B3D50071A49D /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841129798E0C0071A49D /* FlutterPluginRegistrant.xcframework */; };
@@ -133,6 +135,9 @@
 		8DA82E9F2978046A00A79D3B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8DA82EA32978047400A79D3B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8DA82EA52978047900A79D3B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		8DE0D51A297FC13800201043 /* DashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashViewController.swift; sourceTree = "<group>"; };
+		8DE0D51C297FC16300201043 /* DashScene.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashScene.storyboard; sourceTree = "<group>"; };
 		8DFBD2CA29756DD6006B0700 /* CitiApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFBD2CF29756DD6006B0700 /* SceneDelegate89.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate89.swift; sourceTree = "<group>"; };
@@ -169,7 +174,6 @@
 		AEC9841129798E0C0071A49D /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = Flutter/Debug/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
 		AEC9841229798E0C0071A49D /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Debug/Flutter.xcframework; sourceTree = "<group>"; };
 		AEC9841329798E0C0071A49D /* shared_preferences_ios.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared_preferences_ios.xcframework; path = Flutter/Debug/shared_preferences_ios.xcframework; sourceTree = "<group>"; };
-		AEC9841929798E5F0071A49D /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppSettings.swift; path = ../../../../../../Downloads/AppSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +224,7 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
-				AEC9841929798E5F0071A49D /* AppSettings.swift */,
+				8DE0D518297FB44E00201043 /* AppSettings.swift */,
 				8DFBD3592976AB93006B0700 /* Marketplace */,
 				8DFBD3532976A9E2006B0700 /* ACS */,
 				8DA82E99297803F600A79D3B /* SceneDelegate.swift */,
@@ -230,6 +234,7 @@
 				8DFBD2D629756DD8006B0700 /* Assets.xcassets */,
 				8DA82E972977FFD000A79D3B /* Main.storyboard */,
 				8DFBD2DB29756DD8006B0700 /* Info.plist */,
+				8DE0D51C297FC16300201043 /* DashScene.storyboard */,
 			);
 			path = CitiApps;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 				8DA82E9F2978046A00A79D3B /* LoginViewController.swift */,
 				8DA82E9D2978046500A79D3B /* HomeViewController.swift */,
 				8DA82E9B2978044B00A79D3B /* DashboardViewController.swift */,
+				8DE0D51A297FC13800201043 /* DashViewController.swift */,
 			);
 			path = Marketplace;
 			sourceTree = "<group>";
@@ -348,7 +354,7 @@
 				};
 			};
 			buildConfigurationList = 8DFBD2C529756DD6006B0700 /* Build configuration list for PBXProject "CitiApps" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -437,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DA82EE52979178B00A79D3B /* FluentUIResources-ios.bundle in Resources */,
+				8DE0D51D297FC16300201043 /* DashScene.storyboard in Resources */,
 				8DA82E982977FFD000A79D3B /* Main.storyboard in Resources */,
 				8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */,
 			);
@@ -451,7 +458,7 @@
 			files = (
 				8DA82EA62978047900A79D3B /* SearchViewController.swift in Sources */,
 				8DA82EA02978046A00A79D3B /* LoginViewController.swift in Sources */,
-				AEC9841A29798E5F0071A49D /* AppSettings.swift in Sources */,
+				8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */,
 				8DFBD338297578E6006B0700 /* StartCallViewController.swift in Sources */,
 				8DFBD33A297578F0006B0700 /* BusyOverlay.swift in Sources */,
 				8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */,
@@ -463,6 +470,7 @@
 				8DFBD332297578D3006B0700 /* IntroViewController.swift in Sources */,
 				8DA82EA42978047400A79D3B /* ProfileViewController.swift in Sources */,
 				8DA82E9E2978046500A79D3B /* HomeViewController.swift in Sources */,
+				8DE0D51B297FC13800201043 /* DashViewController.swift in Sources */,
 				8DFBD3282975788B006B0700 /* TokenService.swift in Sources */,
 				8DFBD32429757878006B0700 /* AADAuthHandler.swift in Sources */,
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,
@@ -618,7 +626,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -654,7 +662,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

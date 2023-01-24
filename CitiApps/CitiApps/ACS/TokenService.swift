@@ -28,7 +28,17 @@ class TokenService {
             return
         }
         var urlRequest = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
-        urlRequest.httpMethod = "GET"
+        print(url)
+        urlRequest.httpMethod = "POST"
+        
+        let req_body: [String: String] = ["client_id": "10114ce6-840d-419b-917e-49b90f3c1f2a",
+                                       "scope": "https://graph.microsoft.com/.default","client_secret":"IT98Q~LAiYb4COAtX7zwJDFYa2.g~iDTvMuoZaS-","grant_type":"client_credentials"]
+        
+        let jsonReqBody = try? JSONSerialization.data(withJSONObject: req_body)
+        urlRequest.httpBody = jsonReqBody
+
+        
+        
         if let authToken = getAuthTokenFunction() {
             urlRequest.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         }

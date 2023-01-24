@@ -46,7 +46,7 @@ class DashboardViewController : UIViewController {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.contentMode =  UIView.ContentMode.scaleAspectFit
     
-        logoImageView.image = UIImage.init(named: "citiLogo");
+//        logoImageView.image = UIImage.init(named: "citiLogo");
         
         let logoBarButtonItem = UIBarButtonItem.init(customView: logoImageView);
         
@@ -112,10 +112,21 @@ class DashboardViewController : UIViewController {
     
     
     func createTabs (){
+        
+    
         tabController.delegate = self;
+        tabController.tabBar.unselectedItemTintColor = .black
         
         let homeViewController = HomeViewController(nibName: nil, bundle: nil)
         homeViewController.title = "Accounts"
+        
+        // Create a reference to the the appropriate storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // Instantiate the desired view controller from the storyboard using the view controllers identifier
+        // Cast is as the custom view controller type you created in order to access it's properties and methods
+        let dashViewController = storyboard.instantiateViewController(withIdentifier: "DashView") as! DashViewController
+        dashViewController.title = "Accounts"
+        
         
         let browseViewController = SearchViewController(nibName: nil, bundle: nil)
         browseViewController.title = "Payments"
@@ -143,7 +154,7 @@ class DashboardViewController : UIViewController {
         contactCenterViewController.title = "Appointments"
         contactCenterViewController.tabBarController?.hidesBottomBarWhenPushed = true
         
-        tabController.viewControllers = [homeViewController, browseViewController, serviceViewController, flutterViewController];
+        tabController.viewControllers = [dashViewController, browseViewController, serviceViewController, flutterViewController];
         
         tabController.tabBar.items?[0].image =  UIImage.init(named: "accounts");
         tabController.tabBar.items?[1].image =  UIImage.init(named: "payments");
@@ -153,9 +164,12 @@ class DashboardViewController : UIViewController {
         //tabController.tabBar.items?[4].image =  UIImage.init(systemName: "calendar");
 
         //Disable tabs, which dont have any content.
-        tabController.tabBar.items?[1].isEnabled = true;
-        tabController.tabBar.items?[2].isEnabled = true;
+//        tabController.tabBar.items?[1].isEnabled = true;
+//        tabController.tabBar.items?[2].isEnabled = false;
 //        tabController.tabBar.items?[4].isEnabled = false;
+        
+//        UITabBar.appearance().unselectedItemTintColor = UIColor.black
+
         
         tabController.tabBar.backgroundColor = .white;
         tabController.tabBar.tintColor = UIColor.init(named: "theme-blue");
@@ -166,6 +180,13 @@ class DashboardViewController : UIViewController {
 extension DashboardViewController : UITabBarControllerDelegate{
     
     
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = tabBarController.viewControllers?.firstIndex(of: viewController)
+        if(index == 1 || index == 2){
+            return false
+        }
+        return true
+    }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if(tabBarController.selectedIndex == 2){

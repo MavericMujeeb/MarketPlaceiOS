@@ -48,6 +48,7 @@ class AppDelegate: FlutterAppDelegate {
         })
         
         UINavigationBar.appearance().tintColor = .white
+        UITabBar.appearance().tintColor = .white
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
@@ -84,7 +85,7 @@ class AppDelegate: FlutterAppDelegate {
     private func initializeDependencies() {
         appSettings = AppSettings()
         authHandler = AADAuthHandler(appSettings: appSettings)
-        tokenService = TokenService(communicationTokenFetchUrl: "http://10.189.42.11:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
+        tokenService = TokenService(communicationTokenFetchUrl: "https://login.microsoftonline.com/4c4985fe-ce8e-4c2f-97e6-b037850b777d/oauth2/v2.0/token", getAuthTokenFunction: { () -> String? in
             return self.authHandler.authToken
         })
     }
@@ -116,8 +117,6 @@ class AppDelegate: FlutterAppDelegate {
         fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
         
         let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
-        print(nav ?? "UN")
-        
         nav?.present(fluentNavVc, animated: true)
 
     }
