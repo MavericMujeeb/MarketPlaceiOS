@@ -126,7 +126,7 @@ class DashboardViewController : UIViewController {
         //Loading Market place tab from Flutter Module
         let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
         let flutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
-        flutterViewController.title = "Marketplace"
+        flutterViewController.title = "Appointments"
         flutterViewController.tabBarController?.hidesBottomBarWhenPushed = true
         
         let profileViewController = ProfileViewController(nibName: nil, bundle: nil)
@@ -143,18 +143,18 @@ class DashboardViewController : UIViewController {
         contactCenterViewController.title = "Appointments"
         contactCenterViewController.tabBarController?.hidesBottomBarWhenPushed = true
         
-        tabController.viewControllers = [homeViewController, browseViewController, serviceViewController, flutterViewController, contactCenterViewController];
+        tabController.viewControllers = [homeViewController, browseViewController, serviceViewController, flutterViewController];
         
         tabController.tabBar.items?[0].image =  UIImage.init(named: "accounts");
         tabController.tabBar.items?[1].image =  UIImage.init(named: "payments");
         
         tabController.tabBar.items?[2].image =  UIImage.init(named: "services");
-        tabController.tabBar.items?[3].image =  UIImage.init(named: "apps-icon");
-        tabController.tabBar.items?[4].image =  UIImage.init(systemName: "calendar");
+        tabController.tabBar.items?[3].image =  UIImage.init(systemName: "calendar");
+        //tabController.tabBar.items?[4].image =  UIImage.init(systemName: "calendar");
 
         //Disable tabs, which dont have any content.
-        tabController.tabBar.items?[1].isEnabled = false;
-        tabController.tabBar.items?[2].isEnabled = false;
+        tabController.tabBar.items?[1].isEnabled = true;
+        tabController.tabBar.items?[2].isEnabled = true;
 //        tabController.tabBar.items?[4].isEnabled = false;
         
         tabController.tabBar.backgroundColor = .white;
