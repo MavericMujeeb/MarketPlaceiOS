@@ -85,14 +85,17 @@ class AppDelegate: FlutterAppDelegate {
     private func initializeDependencies() {
         appSettings = AppSettings()
         authHandler = AADAuthHandler(appSettings: appSettings)
-        tokenService = TokenService(communicationTokenFetchUrl: "http://10.189.42.11:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
+        //communicationTokenFetchUrl - keep the communicationTokenFetchUrl
+        tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
 //        tokenService = TokenService(communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
             return self.authHandler.authToken
         })
     }
     
-    func initializeFlutterEngine() {
-        
+    func initializeFlutterEngine() {}
+    
+    override func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        return false
     }
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
