@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D7015F42981302F00FDEBFC /* AzureCommunicationCalling.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2EA297571EC006B0700 /* AzureCommunicationCalling.xcframework */; };
+		8D7015F52981302F00FDEBFC /* AzureCommunicationCalling.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2EA297571EC006B0700 /* AzureCommunicationCalling.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D7015F62981303100FDEBFC /* AzureCommunicationCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30129757263006B0700 /* AzureCommunicationCommon.framework */; };
+		8D7015F72981303100FDEBFC /* AzureCommunicationCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30129757263006B0700 /* AzureCommunicationCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D7015F82981303200FDEBFC /* AzureCommunicationUICalling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2E729757183006B0700 /* AzureCommunicationUICalling.framework */; };
+		8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2E729757183006B0700 /* AzureCommunicationUICalling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; };
+		8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DA82E982977FFD000A79D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DA82E972977FFD000A79D3B /* Main.storyboard */; };
 		8DA82E9A297803F600A79D3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82E99297803F600A79D3B /* SceneDelegate.swift */; };
 		8DA82E9C2978044B00A79D3B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82E9B2978044B00A79D3B /* DashboardViewController.swift */; };
@@ -44,17 +52,12 @@
 		AEC9842A2979B3D20071A49D /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841229798E0C0071A49D /* Flutter.xcframework */; };
 		AEC9842B2979B3D30071A49D /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841229798E0C0071A49D /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEC9842C2979B3D50071A49D /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841129798E0C0071A49D /* FlutterPluginRegistrant.xcframework */; };
-		AEC9842D2979B3D60071A49D /* FlutterPluginRegistrant.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841129798E0C0071A49D /* FlutterPluginRegistrant.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEC9842E2979B3E30071A49D /* path_provider_ios.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9840F29798E0C0071A49D /* path_provider_ios.xcframework */; };
 		AEC9842F2979B3E40071A49D /* path_provider_ios.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9840F29798E0C0071A49D /* path_provider_ios.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEC984302979B3E60071A49D /* shared_preferences_ios.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841329798E0C0071A49D /* shared_preferences_ios.xcframework */; };
 		AEC984312979B3E70071A49D /* shared_preferences_ios.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841329798E0C0071A49D /* shared_preferences_ios.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEC984342979B5830071A49D /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841029798E0C0071A49D /* App.xcframework */; };
 		AEC984352979B5840071A49D /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEC9841029798E0C0071A49D /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AEC984362979B5870071A49D /* AzureCommunicationCalling.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2EA297571EC006B0700 /* AzureCommunicationCalling.xcframework */; };
-		AEC984382979B58A0071A49D /* AzureCommunicationCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30129757263006B0700 /* AzureCommunicationCommon.framework */; };
-		AEC9843A2979B58F0071A49D /* AzureCommunicationUICalling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2E729757183006B0700 /* AzureCommunicationUICalling.framework */; };
-		AEC9843C2979B5960071A49D /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,8 +122,11 @@
 				AEC9842B2979B3D30071A49D /* Flutter.xcframework in Embed Frameworks */,
 				AEC9842F2979B3E40071A49D /* path_provider_ios.xcframework in Embed Frameworks */,
 				AEC984352979B5840071A49D /* App.xcframework in Embed Frameworks */,
-				AEC9842D2979B3D60071A49D /* FlutterPluginRegistrant.xcframework in Embed Frameworks */,
 				AEC984312979B3E70071A49D /* shared_preferences_ios.xcframework in Embed Frameworks */,
+				8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */,
+				8D7015F72981303100FDEBFC /* AzureCommunicationCommon.framework in Embed Frameworks */,
+				8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */,
+				8D7015F52981302F00FDEBFC /* AzureCommunicationCalling.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +144,7 @@
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		8DE0D51A297FC13800201043 /* DashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashViewController.swift; sourceTree = "<group>"; };
 		8DE0D51C297FC16300201043 /* DashScene.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashScene.storyboard; sourceTree = "<group>"; };
+		8DE0D53029804FA200201043 /* CitiApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CitiApps.entitlements; sourceTree = "<group>"; };
 		8DFBD2CA29756DD6006B0700 /* CitiApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFBD2CF29756DD6006B0700 /* SceneDelegate89.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate89.swift; sourceTree = "<group>"; };
@@ -182,11 +189,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEC9842A2979B3D20071A49D /* Flutter.xcframework in Frameworks */,
-				AEC984382979B58A0071A49D /* AzureCommunicationCommon.framework in Frameworks */,
-				AEC9843C2979B5960071A49D /* MSAL.xcframework in Frameworks */,
-				AEC9843A2979B58F0071A49D /* AzureCommunicationUICalling.framework in Frameworks */,
+				8D7015F82981303200FDEBFC /* AzureCommunicationUICalling.framework in Frameworks */,
+				8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */,
+				8D7015F62981303100FDEBFC /* AzureCommunicationCommon.framework in Frameworks */,
 				AEC984302979B3E60071A49D /* shared_preferences_ios.xcframework in Frameworks */,
-				AEC984362979B5870071A49D /* AzureCommunicationCalling.xcframework in Frameworks */,
+				8D7015F42981302F00FDEBFC /* AzureCommunicationCalling.xcframework in Frameworks */,
 				AEC9842E2979B3E30071A49D /* path_provider_ios.xcframework in Frameworks */,
 				AEC984342979B5830071A49D /* App.xcframework in Frameworks */,
 				AEC9842C2979B3D50071A49D /* FlutterPluginRegistrant.xcframework in Frameworks */,
@@ -224,6 +231,7 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
+				8DE0D53029804FA200201043 /* CitiApps.entitlements */,
 				8DE0D518297FB44E00201043 /* AppSettings.swift */,
 				8DFBD3592976AB93006B0700 /* Marketplace */,
 				8DFBD3532976A9E2006B0700 /* ACS */,
@@ -610,10 +618,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CitiApps/CitiApps.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R6345GPK28;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = R6345GPK28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CitiApps/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";
@@ -632,9 +643,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citidev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citiacsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = CitiNamACS;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -646,10 +658,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CitiApps/CitiApps.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R6345GPK28;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = R6345GPK28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CitiApps/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";
@@ -668,9 +683,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citidev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citiacsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = CitiNamACS;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

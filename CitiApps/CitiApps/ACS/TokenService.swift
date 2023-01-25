@@ -6,12 +6,17 @@
 import Foundation
 
 class TokenService {
+    
+    private var tokenString : String
     private var communicationTokenFetchUrl: String
     private var getAuthTokenFunction: () -> String?
 
-    init(communicationTokenFetchUrl: String, getAuthTokenFunction: @escaping () -> String?) {
+    init(tokenACS:String, communicationTokenFetchUrl: String, getAuthTokenFunction: @escaping () -> String?) {
         self.communicationTokenFetchUrl = communicationTokenFetchUrl
         self.getAuthTokenFunction = getAuthTokenFunction
+        self.tokenString = tokenACS
+        print("token String")
+        print(self.tokenString)
     }
 
     func getCommunicationToken(completionHandler: @escaping (String?, Error?) -> Void) {
@@ -28,7 +33,6 @@ class TokenService {
             return
         }
         var urlRequest = URLRequest(url: url)
-        print(url)
         urlRequest.httpMethod = "GET"
 //        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
@@ -50,32 +54,34 @@ class TokenService {
         if let authToken = getAuthTokenFunction() {
             urlRequest.setValue("Bearer \(authToken)", forHTTPHeaderField: "Authorization")
         }
+        
+        completionHandler(self.tokenString, nil)
 
-        URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
-            if let error = error {
-                print(error)
-                completionHandler(nil, error)
-            } else if let data = data {
-                do {
-                    let res = try JSONDecoder().decode(TokenResponse.self, from: data)
-                    completionHandler(res.token, nil)
-                } catch let error {
-                    if let parsedPayload = data.asPrettyJson {
-                        print("Payload:\n\(parsedPayload)")
-                    }
-                    assertionFailure(
-"""
-\n
-        JSON Parsing of the token response failed.
-        This code expects a top level key named 'token' with a string value
-        Please modify TokenResponse to match as necessary
-\n
-"""
-                    )
-                    completionHandler(nil, error)
-                }
-            }
-        }.resume()
+//        URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
+//            if let error = error {
+//                print(error)
+//                completionHandler(nil, error)
+//            } else if let data = data {
+//                do {
+//                    let res = try JSONDecoder().decode(TokenResponse.self, from: data)
+//                    completionHandler(res.token, nil)
+//                } catch let error {
+//                    if let parsedPayload = data.asPrettyJson {
+//                        print("Payload:\n\(parsedPayload)")
+//                    }
+//                    assertionFailure(
+//"""
+//\n
+//        JSON Parsing of the token response failed.
+//        This code expects a top level key named 'token' with a string value
+//        Please modify TokenResponse to match as necessary
+//\n
+//"""
+//                    )
+//                    completionHandler(nil, error)
+//                }
+//            }
+//        }.resume()
     }
 }
 
