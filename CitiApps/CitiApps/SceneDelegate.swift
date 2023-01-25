@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FluentUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -24,6 +25,52 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+    }
+    
+    
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        print(userActivity.webpageURL?.absoluteString ?? "NULL")
+        
+        guard let webPageUrl = userActivity.webpageURL?.absoluteString else { return }
+        
+        if let urlComponent = URLComponents(string: webPageUrl) {
+            // queryItems is an array of "key name" and "value"
+            guard var urlComponents = URLComponents(string: webPageUrl) else { return }
+
+            // Create array of existing query items
+            var queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
+            
+            if let meetingLink = queryItems.first(where: { $0.name == "teamsMeetingLink" })?.value{
+                print(meetingLink)
+                
+                let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+                
+                let introVC = IntroViewController();
+                introVC.authHandler = appDelegate.authHandler
+                introVC.createCallingContextFunction = { () -> CallingContext in
+                    return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
+                }
+                
+                introVC.teamsMeetingLink = meetingLink as? String
+                
+                let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
+                fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
+                fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
+                fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
+                
+                let appearance = UINavigationBarAppearance()
+                appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
+                appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+                appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+
+                fluentNavVc.navigationBar.standardAppearance = appearance
+                fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
+                
+                self.window?.rootViewController?.present(fluentNavVc, animated: true)
+            }
+
+        }
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {

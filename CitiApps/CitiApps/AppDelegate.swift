@@ -66,11 +66,9 @@ class AppDelegate: FlutterAppDelegate {
 //    }
 
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        
         if let scheme = url.scheme,
             scheme.localizedCaseInsensitiveCompare("com.citi.acsdemo") == .orderedSame,
             let view = url.host {
-            
             var parameters: [String: String] = [:]
             URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
                 parameters[$0.name] = $0.value
@@ -95,7 +93,12 @@ class AppDelegate: FlutterAppDelegate {
     func initializeFlutterEngine() {}
     
     override func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        return false
+        if(userActivity.activityType == NSUserActivityTypeBrowsingWeb){
+            let url = userActivity.webpageURL
+            let urlString = url?.absoluteString
+        }
+        
+        return true
     }
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
