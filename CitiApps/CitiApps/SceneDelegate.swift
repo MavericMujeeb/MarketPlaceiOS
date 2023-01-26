@@ -30,8 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        print(userActivity.webpageURL?.absoluteString ?? "NULL")
-        
         guard let webPageUrl = userActivity.webpageURL?.absoluteString else { return }
         
         if let urlComponent = URLComponents(string: webPageUrl) {
@@ -39,11 +37,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard var urlComponents = URLComponents(string: webPageUrl) else { return }
 
             // Create array of existing query items
-            var queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
+            let queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
             
             if let meetingLink = queryItems.first(where: { $0.name == "teamsMeetingLink" })?.value{
-                print(meetingLink)
-                
                 let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
                 
                 let introVC = IntroViewController();
@@ -67,7 +63,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 fluentNavVc.navigationBar.standardAppearance = appearance
                 fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
                 
-                self.window?.rootViewController?.present(fluentNavVc, animated: true)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+                vc.handleExternalLinks = true
+                vc.meetingLink = meetingLink
+                self.window?.rootViewController = UINavigationController.init(rootViewController: vc)
             }
 
         }
