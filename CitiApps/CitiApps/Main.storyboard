@@ -93,6 +93,10 @@
                                     <action selector="revealPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="akp-HN-B8V"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="vQq-Gr-Mic">
+                                <rect key="frame" x="0.0" y="94" width="393" height="256"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -131,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-576.27906976744191" y="-58.58369098712447"/>
+            <point key="canvasLocation" x="-576.33587786259545" y="-59.154929577464792"/>
         </scene>
         <!--Dash View Controller-->
         <scene sceneID="TbT-OX-jQI">
@@ -341,6 +345,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="banner" width="343" height="220"/>
         <image name="eye.slash.fill" catalog="system" width="128" height="85"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
