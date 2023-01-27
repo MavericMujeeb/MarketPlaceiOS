@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:msftacs.z13.web.core.windows.net</string>
+		<string>applinks:msftacsdemo.z13.web.core.windows.net</string>
 	</array>
 </dict>
 </plist>

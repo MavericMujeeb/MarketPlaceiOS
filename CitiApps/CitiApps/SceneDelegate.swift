@@ -30,7 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        print(userActivity.webpageURL?.absoluteString ?? "NULL")
         
         guard let webPageUrl = userActivity.webpageURL?.absoluteString else { return }
         
@@ -39,11 +38,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard var urlComponents = URLComponents(string: webPageUrl) else { return }
 
             // Create array of existing query items
-            var queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
+            let queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
             
-            if let meetingLink = queryItems.first(where: { $0.name == "teamsMeetingLink" })?.value{
-                print(meetingLink)
+            var meetingFinalLink = "";
+            if let meetingLink = queryItems.first(where: { $0.name == "meetingURL" })?.value{
                 
+                var joinWeburl = getQueryStringParameter(url: meetingLink, param: "JoinWebUrl")
+                let splitJoinUrl = joinWeburl?.split(separator: "&")
+            
+                print("JOINWEBURL")
+                print(joinWeburl)
+                print("splitJoinUrl")
+                print(splitJoinUrl?[0])
+
                 let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
                 
                 let introVC = IntroViewController();
@@ -52,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
                 }
                 
-                introVC.teamsMeetingLink = meetingLink as? String
+                introVC.teamsMeetingLink = "https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTkwMDI2YjItYWVhNC00MDdjLTkwZTMtZjIzNGE0YmQ3MzRm%40thread.v2/0?context=%7b%22Tid%22%3a%224c4985fe-ce8e-4c2f-97e6-b037850b777d%22%2c%22Oid%22%3a%22a8dc642c-0094-4b86-9181-ede5a8abc243%22%7d"
                 
                 let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
                 fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
@@ -67,12 +74,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 fluentNavVc.navigationBar.standardAppearance = appearance
                 fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
                 
-                self.window?.rootViewController?.present(fluentNavVc, animated: true)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+                vc.handleExternalLinks = true
+                vc.meetingLink = "https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTkwMDI2YjItYWVhNC00MDdjLTkwZTMtZjIzNGE0YmQ3MzRm%40thread.v2/0?context=%7b%22Tid%22%3a%224c4985fe-ce8e-4c2f-97e6-b037850b777d%22%2c%22Oid%22%3a%22a8dc642c-0094-4b86-9181-ede5a8abc243%22%7d"
+                self.window?.rootViewController = UINavigationController.init(rootViewController: vc)
             }
 
         }
     }
 
+    func getQueryStringParameter(url: String, param: String) -> String? {
+      guard let url = URLComponents(string: url) else { return nil }
+      return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+    
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.

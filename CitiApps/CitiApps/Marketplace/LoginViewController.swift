@@ -11,7 +11,7 @@ class LoginViewController: UIViewController {
     
     
     // MARK: - Stored Properties
-//    var loginViewModel: LoginViewModel!
+    var loginViewModel: LoginViewModel!
     
     
     //MARK: - IBOutlets
@@ -22,17 +22,16 @@ class LoginViewController: UIViewController {
     //MARK: - IBActions
     @IBAction func loginButtonPressed(_ sender: UIButton) {
 //        //Here we ask viewModel to update model with existing credentials from text fields
-//        loginViewModel.updateCredentials(username: usernameTextField.text!, password: passwordTextField.text!)
+        loginViewModel.updateCredentials(username: usernameTextField.text!, password: passwordTextField.text!)
 //
 //        //Here we check user's credentials input - if it's correct we call login()
-//        switch loginViewModel.credentialsInput() {
-//
-//        case .Correct:
-//            login()
-//        case .Incorrect:
-//            return
-//        }
-        login()
+        switch loginViewModel.validateInput() {
+
+        case true:
+            login()
+        case false:
+            return
+        }
     }
     
     func login() {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FluentUI
 
 class ViewController : UIViewController {
     
@@ -19,14 +20,47 @@ class ViewController : UIViewController {
         password.togglePasswordVisibility()
     }
     
+    var handleExternalLinks: Bool!
+    var meetingLink : String!
+    
     @IBAction func onLoginAction(_ sender: Any) {
         //Dont navigate to next screen if username or password field is empty
         if(self.username.text == "" || self.password.text == "") {
             return
         }
         
+        if(handleExternalLinks == true){
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+
+        let introVC = IntroViewController();
+        introVC.authHandler = appDelegate.authHandler
+        introVC.createCallingContextFunction = { () -> CallingContext in
+        return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
+        }
+
+            print("self.meetingLink")
+            print(self.meetingLink)
+        introVC.teamsMeetingLink = self.meetingLink
+
+        let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
+        fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
+        fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
+        fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
+
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
+        appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+        appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+
+        fluentNavVc.navigationBar.standardAppearance = appearance
+        fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
+
+        self.present(fluentNavVc, animated: true)
+        }
+        else{
         let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
         self.navigationController?.pushViewController(dashViewController, animated: false)
+        }
     }
     
     

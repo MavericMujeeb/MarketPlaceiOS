@@ -84,7 +84,7 @@ class AppDelegate: FlutterAppDelegate {
         appSettings = AppSettings()
         authHandler = AADAuthHandler(appSettings: appSettings)
         //communicationTokenFetchUrl - keep the communicationTokenFetchUrl
-        tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
+        tokenService = TokenService(tokenACS:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjdlOTRjMzVlLThjZGItNDhiOC04NDcyLTk2Njk4OWQ4NGZkMF8wMDAwMDAxNi04ZmM5LTcwZjItZDEwNy01NzQ4MjIwMGNhNzkiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzQ3NjcyMjQiLCJleHAiOjE2NzQ4NTM2MjQsInJnbiI6ImluIiwiYWNzU2NvcGUiOiJ2b2lwIiwicmVzb3VyY2VJZCI6IjdlOTRjMzVlLThjZGItNDhiOC04NDcyLTk2Njk4OWQ4NGZkMCIsInJlc291cmNlTG9jYXRpb24iOiJpbmRpYSIsImlhdCI6MTY3NDc2NzIyNH0.EKFA2GsfrDlpXg4ABux_GFCToMX44BuRyFFLybAT-yze2rlG526CWOKE2Tagdhoa4x0FeFRr3On5XFv0Z_h0BFU8S0cJ9W-_d4kPiHchCy8EyudXnqd-tlPmf4j4pTJJppf5Y587SgqwMRQhYqPZkClXaG71FJKBKvSe9yWWdAVXuR75DWjSjP12-cCDzxN-uZ8yMLkM37PPb_vPVJOt8RFvzk6m5ganwlraTHav1TShR0htmxaK-nF4mnMrZA15U7RIiOhrv74L2mWfhIruGX8lyCyNkFQc08V8JX-xN1StVfAiJ47KGmSuucZOmNS3BBULWNEEMUMuE56KhsOgmQ", communicationTokenFetchUrl: "http://10.189.86.98:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
 //        tokenService = TokenService(communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
             return self.authHandler.authToken
         })
@@ -103,6 +103,9 @@ class AppDelegate: FlutterAppDelegate {
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
         let mettingLink = args.value(forKey: "meeting_id")
+        
+        print("mettingLink")
+        print(mettingLink)
         let introVC = IntroViewController();
         introVC.authHandler = self.authHandler
         introVC.createCallingContextFunction = { () -> CallingContext in

@@ -137,7 +137,7 @@ class DashboardViewController : UIViewController {
         //Loading Market place tab from Flutter Module
         let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
         let flutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
-        flutterViewController.title = "Appointments"
+        flutterViewController.title = "Contact"
         flutterViewController.tabBarController?.hidesBottomBarWhenPushed = true
         
         let profileViewController = ProfileViewController(nibName: nil, bundle: nil)
