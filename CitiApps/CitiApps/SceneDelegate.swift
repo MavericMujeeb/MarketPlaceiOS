@@ -40,17 +40,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // Create array of existing query items
             let queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
             
-            var meetingFinalLink = "";
+            var meetingFinalLink: String? = "";
             if let meetingLink = queryItems.first(where: { $0.name == "meetingURL" })?.value{
                 
                 var joinWeburl = getQueryStringParameter(url: meetingLink, param: "JoinWebUrl")
-                let splitJoinUrl = joinWeburl?.split(separator: "&")
-            
-                print("JOINWEBURL")
-                print(joinWeburl)
-                print("splitJoinUrl")
-                print(splitJoinUrl?[0])
+                let splitJoinUrl = joinWeburl?.components(separatedBy: "&")
 
+                meetingFinalLink = splitJoinUrl?[0]
+               
                 let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
                 
                 let introVC = IntroViewController();
@@ -59,7 +56,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
                 }
                 
-                introVC.teamsMeetingLink = "https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTkwMDI2YjItYWVhNC00MDdjLTkwZTMtZjIzNGE0YmQ3MzRm%40thread.v2/0?context=%7b%22Tid%22%3a%224c4985fe-ce8e-4c2f-97e6-b037850b777d%22%2c%22Oid%22%3a%22a8dc642c-0094-4b86-9181-ede5a8abc243%22%7d"
+                introVC.teamsMeetingLink = meetingFinalLink
                 
                 let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
                 fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
@@ -77,7 +74,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
                 vc.handleExternalLinks = true
-                vc.meetingLink = "https://teams.microsoft.com/l/meetup-join/19%3ameeting_OTkwMDI2YjItYWVhNC00MDdjLTkwZTMtZjIzNGE0YmQ3MzRm%40thread.v2/0?context=%7b%22Tid%22%3a%224c4985fe-ce8e-4c2f-97e6-b037850b777d%22%2c%22Oid%22%3a%22a8dc642c-0094-4b86-9181-ede5a8abc243%22%7d"
+                vc.meetingLink = meetingFinalLink
                 self.window?.rootViewController = UINavigationController.init(rootViewController: vc)
             }
 
