@@ -50,17 +50,6 @@
 		8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD3412975791C006B0700 /* LayoutHelpers.swift */; };
 		8DFBD34429757924006B0700 /* PaddingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD34329757924006B0700 /* PaddingContainer.swift */; };
 		8DFBD34629757929006B0700 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD34529757929006B0700 /* ThemeColor.swift */; };
-		AECFF5A129832E6900F1A456 /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59B29832E6600F1A456 /* FlutterPluginRegistrant.xcframework */; };
-		AECFF5A529832E7500F1A456 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59A29832E6600F1A456 /* App.xcframework */; };
-		AECFF5A629832E7600F1A456 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59A29832E6600F1A456 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AECFF5A729832E8400F1A456 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59C29832E6700F1A456 /* Flutter.xcframework */; };
-		AECFF5A829832E8400F1A456 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59C29832E6700F1A456 /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AECFF5A929832E8700F1A456 /* path_provider_foundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59D29832E6700F1A456 /* path_provider_foundation.xcframework */; };
-		AECFF5AA29832E8700F1A456 /* path_provider_foundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59D29832E6700F1A456 /* path_provider_foundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AECFF5AB29832E8900F1A456 /* shared_preferences_foundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59929832E6500F1A456 /* shared_preferences_foundation.xcframework */; };
-		AECFF5AC29832E8A00F1A456 /* shared_preferences_foundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59929832E6500F1A456 /* shared_preferences_foundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AECFF5AD29832E8D00F1A456 /* webview_flutter_wkwebview.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59E29832E6800F1A456 /* webview_flutter_wkwebview.xcframework */; };
-		AECFF5AE29832E8D00F1A456 /* webview_flutter_wkwebview.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AECFF59E29832E6800F1A456 /* webview_flutter_wkwebview.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,15 +111,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AECFF5A829832E8400F1A456 /* Flutter.xcframework in Embed Frameworks */,
 				8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */,
 				8D7015F72981303100FDEBFC /* AzureCommunicationCommon.framework in Embed Frameworks */,
-				AECFF5AE29832E8D00F1A456 /* webview_flutter_wkwebview.xcframework in Embed Frameworks */,
-				AECFF5A629832E7600F1A456 /* App.xcframework in Embed Frameworks */,
 				8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */,
 				8D7015F52981302F00FDEBFC /* AzureCommunicationCalling.xcframework in Embed Frameworks */,
-				AECFF5AC29832E8A00F1A456 /* shared_preferences_foundation.xcframework in Embed Frameworks */,
-				AECFF5AA29832E8700F1A456 /* path_provider_foundation.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,12 +165,6 @@
 		8DFBD34529757929006B0700 /* ThemeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		8DFBD34729757A39006B0700 /* AppSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppSettings.xcconfig; sourceTree = "<group>"; };
 		8DFBD34B29757FA1006B0700 /* FluentUIResources-ios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "FluentUIResources-ios.bundle"; path = "SDK/FluentUIResources-ios.bundle"; sourceTree = "<group>"; };
-		AECFF59929832E6500F1A456 /* shared_preferences_foundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared_preferences_foundation.xcframework; path = Flutter/Debug/shared_preferences_foundation.xcframework; sourceTree = "<group>"; };
-		AECFF59A29832E6600F1A456 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/Debug/App.xcframework; sourceTree = "<group>"; };
-		AECFF59B29832E6600F1A456 /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = Flutter/Debug/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
-		AECFF59C29832E6700F1A456 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Debug/Flutter.xcframework; sourceTree = "<group>"; };
-		AECFF59D29832E6700F1A456 /* path_provider_foundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = path_provider_foundation.xcframework; path = Flutter/Debug/path_provider_foundation.xcframework; sourceTree = "<group>"; };
-		AECFF59E29832E6800F1A456 /* webview_flutter_wkwebview.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = webview_flutter_wkwebview.xcframework; path = Flutter/Debug/webview_flutter_wkwebview.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,12 +172,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AECFF5AD29832E8D00F1A456 /* webview_flutter_wkwebview.xcframework in Frameworks */,
-				AECFF5A729832E8400F1A456 /* Flutter.xcframework in Frameworks */,
-				AECFF5A929832E8700F1A456 /* path_provider_foundation.xcframework in Frameworks */,
-				AECFF5A129832E6900F1A456 /* FlutterPluginRegistrant.xcframework in Frameworks */,
-				AECFF5AB29832E8900F1A456 /* shared_preferences_foundation.xcframework in Frameworks */,
-				AECFF5A529832E7500F1A456 /* App.xcframework in Frameworks */,
 				8D7015F82981303200FDEBFC /* AzureCommunicationUICalling.framework in Frameworks */,
 				8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */,
 				8D7015F62981303100FDEBFC /* AzureCommunicationCommon.framework in Frameworks */,
@@ -286,12 +258,6 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AECFF59A29832E6600F1A456 /* App.xcframework */,
-				AECFF59C29832E6700F1A456 /* Flutter.xcframework */,
-				AECFF59B29832E6600F1A456 /* FlutterPluginRegistrant.xcframework */,
-				AECFF59D29832E6700F1A456 /* path_provider_foundation.xcframework */,
-				AECFF59929832E6500F1A456 /* shared_preferences_foundation.xcframework */,
-				AECFF59E29832E6800F1A456 /* webview_flutter_wkwebview.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
