@@ -53,6 +53,7 @@ struct CallingView: View {
         VStack(alignment: .center, spacing: 0) {
             containerView
             ControlBarView(viewModel: viewModel.controlBarViewModel)
+            
         }
     }
 

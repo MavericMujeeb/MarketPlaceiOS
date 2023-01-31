@@ -91,7 +91,7 @@ class JoinCallViewController: UIViewController {
         super.viewWillAppear(animated)
 
         if displayNameField.text?.isEmpty ?? true {
-            displayNameField.text = displayName ?? users[loggedInUser]
+            displayNameField.text = displayName ?? users[loggedInUser]?["name"]
         }
 
         // Set up any developer overrides from the AppConfig.xcconfig file

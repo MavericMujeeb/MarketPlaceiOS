@@ -31,12 +31,10 @@ class TeamsCallingViewController: UIViewController{
     }
     
     func joinCall() async {
-        let displayName =  users[loggedInUser]  ?? ""
+        let displayName =  users[loggedInUser]?["name"]  ?? ""
         let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting)
-//        busyOverlay.present()
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
         await self.callingContext.startCallComposite(callConfig)
-        self.dismiss(animated: true)
     }
 }
 let learnMoreURL = "https://aka.ms/acs"

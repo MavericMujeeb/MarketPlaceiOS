@@ -6,6 +6,7 @@
 import Foundation
 import Combine
 
+
 class ControlBarViewModel: ObservableObject {
     private let logger: Logger
     private let localizationProvider: LocalizationProviderProtocol
@@ -16,9 +17,13 @@ class ControlBarViewModel: ObservableObject {
     @Published var cameraPermission: AppPermission.Status = .unknown
     @Published var isAudioDeviceSelectionDisplayed: Bool = false
     @Published var isConfirmLeaveListDisplayed: Bool = false
+    
+    var chatActive: Bool = false
+
 
     let audioDevicesListViewModel: AudioDevicesListViewModel
 
+    var chatButtonViewModel: IconButtonViewModel!
     var micButtonViewModel: IconButtonViewModel!
     var audioDeviceButtonViewModel: IconButtonViewModel!
     var hangUpButtonViewModel: IconButtonViewModel!
@@ -57,6 +62,17 @@ class ControlBarViewModel: ObservableObject {
         }
         cameraButtonViewModel.accessibilityLabel = self.localizationProvider.getLocalizedString(
             .videoOffAccessibilityLabel)
+        
+        chatButtonViewModel = compositeViewModelFactory.makeIconButtonViewModel(
+            iconName: .chat,
+            buttonType: .controlButton,
+            isDisabled: false) { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.logger.debug("Chat button tapped")
+                self.chatButtonTapped()
+        }
 
         micButtonViewModel = compositeViewModelFactory.makeIconButtonViewModel(
             iconName: .micOff,
@@ -96,6 +112,10 @@ class ControlBarViewModel: ObservableObject {
         }
         hangUpButtonViewModel.accessibilityLabel = self.localizationProvider.getLocalizedString(
             .leaveCall)
+    }
+    
+    func chatButtonTapped () {
+        
     }
 
     func endCallButtonTapped() {

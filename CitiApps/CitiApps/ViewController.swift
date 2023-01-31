@@ -6,7 +6,8 @@
 //
 
 var users = [
-    "janet@gmail.com":"Janet Johnson"
+    "janetjohnsonfamily83@gmail.com": ["name":"Janet Johnson","email":"janetjohnsonfamily83@gmail.com","userid":"a2194b29-07bb-48bb-8607-6151334cf904"],
+    "johnwilliamsfamily9@gmail.com": ["name":"Smith Johnson","email":"johnwilliamsfamily9@gmail.com","userid":"8294e32a-d846-440d-b875-87b171b80787"],
 ]
 
 var loggedInUser : String!
@@ -43,7 +44,7 @@ class ViewController : UIViewController {
         if(self.username.text == "" || self.password.text == "") {
             return
         }
-        if(users[self.username.text!] == nil) {
+        if(users[self.username.text!]?["name"] == nil) {
             let alert = UIAlertController(title: "User not found", message: "Please enter valid user credentials", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
@@ -64,6 +65,8 @@ class ViewController : UIViewController {
         }
         
         loggedInUser = self.username.text
+        
+        
         if(handleExternalLinks == true){
 //            let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
 //

@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        
+        
 
         let acsChannel = FlutterMethodChannel(
             name: "com.citi.marketplace.host",
@@ -37,8 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
-        let mettingLink = args.value(forKey: "meeting_id") as! String
-        
+        let mettingLink = args.value(forKey: "meeting_id") as! String        
         let rootVC = self.window?.rootViewController
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink

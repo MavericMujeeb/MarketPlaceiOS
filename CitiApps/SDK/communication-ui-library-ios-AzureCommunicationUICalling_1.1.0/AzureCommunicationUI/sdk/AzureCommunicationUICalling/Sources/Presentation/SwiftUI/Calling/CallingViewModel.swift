@@ -31,6 +31,7 @@ class CallingViewModel: ObservableObject {
     var controlBarViewModel: ControlBarViewModel!
     var infoHeaderViewModel: InfoHeaderViewModel!
     var errorInfoViewModel: ErrorInfoViewModel!
+    var chatActive: Bool = false
 
     init(compositeViewModelFactory: CompositeViewModelFactoryProtocol,
          logger: Logger,
@@ -89,6 +90,10 @@ class CallingViewModel: ObservableObject {
     func endCall() {
         store.dispatch(action: .callingAction(.callEndRequested))
         dismissConfirmLeaveDrawerList()
+    }
+    
+    func startChat() {
+        //open chat view
     }
 
     func resumeOnHold() {
