@@ -5,7 +5,16 @@
 //  Created by Balaji Babu Modugumudi on 17/10/22.
 //
 
+var users = [
+    "janet@gmail.com":"Janet Johnson"
+]
+
+var loggedInUser : String!
+var loginDate : NSDate!
+
+
 import UIKit
+import FluentUI
 
 class ViewController : UIViewController {
     
@@ -19,14 +28,74 @@ class ViewController : UIViewController {
         password.togglePasswordVisibility()
     }
     
+    var handleExternalLinks: Bool!
+    var meetingLink : String!
+    
+    
     @IBAction func onLoginAction(_ sender: Any) {
+        
+        print(users)
+        
+//        let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
+//        self.navigationController?.pushViewController(dashViewController, animated: false)
+//        return
         //Dont navigate to next screen if username or password field is empty
         if(self.username.text == "" || self.password.text == "") {
             return
         }
+        if(users[self.username.text!] == nil) {
+            let alert = UIAlertController(title: "User not found", message: "Please enter valid user credentials", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    self.dismiss(animated: true)
+                    case .cancel:
+                    self.dismiss(animated: true)
+                    
+                    case .destructive:
+                    self.dismiss(animated: true)
+                    
+                @unknown default:
+                    self.dismiss(animated: true)
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         
-        let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
-        self.navigationController?.pushViewController(dashViewController, animated: false)
+        loggedInUser = self.username.text
+        if(handleExternalLinks == true){
+//            let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+//
+//            let introVC = IntroViewController();
+//            introVC.authHandler = appDelegate.authHandler
+//            introVC.createCallingContextFunction = { () -> CallingContext in
+//            return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
+//            }
+//
+//            introVC.teamsMeetingLink = self.meetingLink
+//
+//            let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
+//            fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
+//            fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
+//            fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
+//
+//            let appearance = UINavigationBarAppearance()
+//            appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
+//            appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+//            appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+//
+//            fluentNavVc.navigationBar.standardAppearance = appearance
+//            fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
+            
+            let teamsCallingViewController = TeamsCallingViewController()
+            teamsCallingViewController.teamsLink = self.meetingLink
+            self.present(teamsCallingViewController, animated: true)
+        }
+        else{
+            let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
+            self.navigationController?.pushViewController(dashViewController, animated: false)
+        }
     }
     
     

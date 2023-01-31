@@ -1,0 +1,48 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1662076998.806035,
+      "response" : {
+        "headers" : {
+          "x-cache" : "CONFIG_NOCACHE",
+          "api-supported-versions" : "2021-03-07, 2021-04-05-preview6, 2021-09-07, 2022-11-15-preview8",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "x-processing-time" : "383ms",
+          "x-azure-ref" : "0RUgRYwAAAADs\/hoqV0FsTJhaCt2vCfP5WVZSMzExMDAwMTE2MDI1ADlmYzdiNTE5LWE4Y2MtNGY4OS05MzVlLWM5MTQ4YWUwOWU4MQ==",
+          "Strict-Transport-Security" : "max-age=2592000",
+          "ms-cv" : "k4SY\/1aL10yhK3UEQ\/S6AQ.0",
+          "Location" : "https:\/\/acs-gnygqibv4wh32.communication.azure.com\/chat\/threads\/19%3A1tIKE0MfDosCx5ILEIrxkdJLwQVUiSWUhCB_yRLqBCU1@thread.v2"
+        },
+        "body" : {
+          "chatThread" : {
+            "id" : "19:1tIKE0MfDosCx5ILEIrxkdJLwQVUiSWUhCB_yRLqBCU1@thread.v2",
+            "createdOn" : "2022-09-02T00:03:18Z",
+            "topic" : "Test topic",
+            "createdByCommunicationIdentifier" : {
+              "rawId" : "8:acs:4f684fb6-abde-42f4-8c71-9385d2429b57_00000013-9aa1-b1df-570c-113a0d008c73",
+              "communicationUser" : {
+                "id" : "8:acs:4f684fb6-abde-42f4-8c71-9385d2429b57_00000013-9aa1-b1df-570c-113a0d008c73"
+              }
+            }
+          }
+        },
+        "status" : 201,
+        "url" : "https:\/\/acs-gnygqibv4wh32.communication.azure.com\/chat\/threads?api-version=2021-09-07"
+      },
+      "request" : {
+        "body" : {
+          "topic" : "Test topic"
+        },
+        "headers" : {
+          "Content-Type" : "application\/json",
+          "Accept" : "application\/json",
+          "repeatability-request-id" : "DC084E7D-6CA6-483B-9D05-FBA500117EE2",
+          "User-Agent" : "azsdk-ios-AzureCommunicationChatTests\/1.0 (MacBookPro16,1 - 21.6.0; xctest:13.4.1 -> iOS 9.0; en_US)"
+        },
+        "method" : "POST",
+        "url" : "https:\/\/endpoint\/chat\/threads?"
+      }
+    }
+  ],
+  "name" : "test_CreateThread_WithoutParticipants"
+}

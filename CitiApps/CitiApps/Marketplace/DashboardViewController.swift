@@ -136,8 +136,12 @@ class DashboardViewController : UIViewController {
         
         //Loading Market place tab from Flutter Module
         let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
+//        flutterEngine.viewController = nil
+//        let flutterViewController = (UIApplication.shared.delegate as! AppDelegate).controller
+        
         let flutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
-        flutterViewController.title = "Appointments"
+
+        flutterViewController.title = "Contact"
         flutterViewController.tabBarController?.hidesBottomBarWhenPushed = true
         
         let profileViewController = ProfileViewController(nibName: nil, bundle: nil)
@@ -147,12 +151,12 @@ class DashboardViewController : UIViewController {
 //        appointmentViewController.title = "Appointments"
         
         //Loading Market place tab from Flutter Module
-        let contactCenterFlutterEngine = FlutterEngine(name: "contact_center_flutter_engine")
-        contactCenterFlutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_contact_center")
+//        let contactCenterFlutterEngine = FlutterEngine(name: "contact_center_flutter_engine")
+//        flutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_contact_center")
         
-        let contactCenterViewController = FlutterViewController(engine: contactCenterFlutterEngine, nibName: nil, bundle: nil)
-        contactCenterViewController.title = "Appointments"
-        contactCenterViewController.tabBarController?.hidesBottomBarWhenPushed = true
+//        let contactCenterViewController = FlutterViewController(engine: contactCenterFlutterEngine, nibName: nil, bundle: nil)
+//        contactCenterViewController.title = "Appointments"
+//        contactCenterViewController.tabBarController?.hidesBottomBarWhenPushed = true
         
 //<<<<<<< HEAD
 //        tabController.viewControllers = [homeViewController, browseViewController, serviceViewController, flutterViewController];
@@ -164,7 +168,7 @@ class DashboardViewController : UIViewController {
         tabController.tabBar.items?[1].image =  UIImage.init(named: "payments");
         
         tabController.tabBar.items?[2].image =  UIImage.init(named: "services");
-        tabController.tabBar.items?[3].image =  UIImage.init(systemName: "calendar");
+        tabController.tabBar.items?[3].image =  UIImage.init(named: "chat");
         //tabController.tabBar.items?[4].image =  UIImage.init(systemName: "calendar");
 
         //Disable tabs, which dont have any content.

@@ -91,7 +91,7 @@ class JoinCallViewController: UIViewController {
         super.viewWillAppear(animated)
 
         if displayNameField.text?.isEmpty ?? true {
-            displayNameField.text = displayName ?? "Balaji"
+            displayNameField.text = displayName ?? users[loggedInUser]
         }
 
         // Set up any developer overrides from the AppConfig.xcconfig file
@@ -211,10 +211,12 @@ class JoinCallViewController: UIViewController {
 
     // MARK: Navigation
     func navigateToCall() async {
+        print("navigateToCall ---------------")
         guard let joinId = joinIdTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return
         }
         let callConfig = JoinCallConfig(joinId: joinId, displayName: displayName ?? "", callType: joinCallType)
+        self.dismiss(animated: true)
         busyOverlay.present()
         await self.callingContext.startCallComposite(callConfig)
         self.busyOverlay.hide()
@@ -222,7 +224,6 @@ class JoinCallViewController: UIViewController {
 
     // MARK: User interaction handling
     private func handleSegmentChanged(action: UIAction) {
-        print("handleSegmentChanged -----");
         if let callType = JoinCallType(rawValue: callTypeSelector.selectedSegmentIndex) {
             joinCallType = callType
             typeTitle.colorStyle = .secondary

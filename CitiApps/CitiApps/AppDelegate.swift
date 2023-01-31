@@ -19,51 +19,20 @@ class AppDelegate: FlutterAppDelegate {
     private (set) var tokenService: TokenService!
     
     lazy var flutterEngine = FlutterEngine()
+    var controller : FlutterViewController!
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         initializeDependencies()
-
         flutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_contact_center")
-        
-        
-        GeneratedPluginRegistrant.register(with: self.flutterEngine);
+        GeneratedPluginRegistrant.register(with: self.flutterEngine)
+        controller = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
 
-        
-        let controller : FlutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
-        
-        let acsChannel = FlutterMethodChannel(
-            name: "com.citi.marketplace.host",
-            binaryMessenger: controller.binaryMessenger
-        )
-        
-        acsChannel.setMethodCallHandler({
-          [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
-          guard call.method == "joinCallClick" else {
-            result(FlutterMethodNotImplemented)
-            return
-          }
-            self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
-            
-        })
-        
         UINavigationBar.appearance().tintColor = .white
         UITabBar.appearance().tintColor = .white
+        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
-//    // MARK: UISceneSession Lifecycle
-//    override func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-//        // Called when a new scene session is being created.
-//        // Use this method to select a configuration to create the new scene with.
-//        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-//    }
-
-//    override func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-//        // Called when the user discards a scene session.
-//        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-//        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-//    }
 
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if let scheme = url.scheme,
@@ -73,7 +42,6 @@ class AppDelegate: FlutterAppDelegate {
             URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
                 parameters[$0.name] = $0.value
             }
-            print(parameters)
         }
         // Required for AAD Authentication
         return MSALPublicClientApplication.handleMSALResponse(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String)
@@ -84,7 +52,7 @@ class AppDelegate: FlutterAppDelegate {
         appSettings = AppSettings()
         authHandler = AADAuthHandler(appSettings: appSettings)
         //communicationTokenFetchUrl - keep the communicationTokenFetchUrl
-        tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
+        tokenService = TokenService(tokenACS:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hMzhlLTc1ZGEtNWFhZC05MjNhMGQwMGUwNzkiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUwOTg5MDMiLCJleHAiOjE2NzUxODUzMDMsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MDk4OTAzfQ.jM2Q_dmzJOByg09Z3UD4SkAcifJoY95KzCoWsN3RuOc4nhcY3mnclg_IXOLC4mgp0pMJl7-MZzIE7OSxn1MVo6eD9Tm5qsbktWduOp_R14GcHAA99UJ3GsdoGOC1BU-HfrCPe3GOXy1s-sQHl-A1zQXrjBIoTY4hJlGQ2kfNNEMG80kJH2y6hlsa6NLM2JV4z1l34XpP_qSGmDkumQNh8ZUmONpFNU4mzyagMj-E8Nwn6HP0MCntZIHW-JUs-Cspxyzmwc5RPh2Qr0YdM3_ZUy2R5zgum-OE-N5hwTE8-8muiiVII7QkDMnH7ddQVLYPxiPT417fok6MDD920PBLbw", communicationTokenFetchUrl: "http://10.189.86.98:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
 //        tokenService = TokenService(communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
             return self.authHandler.authToken
         })
@@ -101,20 +69,11 @@ class AppDelegate: FlutterAppDelegate {
         return true
     }
     
-    private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
-        let mettingLink = args.value(forKey: "meeting_id")
-        let introVC = IntroViewController();
-        introVC.authHandler = self.authHandler
-        introVC.createCallingContextFunction = { () -> CallingContext in
-            return CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
-        }
-        introVC.teamsMeetingLink = mettingLink as? String
-        
-        let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
+    private func setupNavigationController() -> UIViewController {
+        let fluentNavVc = PortraitOnlyNavController(rootViewController: IntroViewController())
         fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
         fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
         fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
-        
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
         appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
@@ -122,11 +81,51 @@ class AppDelegate: FlutterAppDelegate {
 
         fluentNavVc.navigationBar.standardAppearance = appearance
         fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
-        
-        let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
-        nav?.present(fluentNavVc, animated: true)
-
+        return fluentNavVc
     }
+    
+    private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
+        print("start")
+        let mettingLink = args.value(forKey: "meeting_id")
+        print("end-1")
+//        let introVC = JoinCallViewController();
+//        print("end-2")
+//        introVC.authHandler = self.authHandler
+//        print("end-3")
+//        introVC.createCallingContextFunction = { () -> CallingContext in
+//            return CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
+//        }
+//        print("end-3")
+//        introVC.teamsMeetingLink = mettingLink as? String
+//        print("end-4")
+        
+//        let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
+//        fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
+//        fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
+//        fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
+//
+//        let appearance = UINavigationBarAppearance()
+//        appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
+//        appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+//        appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+//
+//        fluentNavVc.navigationBar.standardAppearance = appearance
+//        fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
+//
+        
+//        let nav = UIApplication
+//            .shared
+//            .connectedScenes
+//            .compactMap { ($0 as? UIWindowScene)?.keyWindow }
+//            .first?.rootViewController as? UINavigationController
+        
+    }
+    
+    private func startChat(result: FlutterResult, args: NSDictionary) {
+        
+    }
+    
+    
 }
 
 class PortraitOnlyNavController: UINavigationController {

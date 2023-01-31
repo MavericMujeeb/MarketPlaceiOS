@@ -7,17 +7,43 @@
 
 import UIKit
 import FluentUI
+import Flutter
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+
+        let acsChannel = FlutterMethodChannel(
+            name: "com.citi.marketplace.host",
+            binaryMessenger: appDelegate.controller.binaryMessenger
+        )
+        
+        acsChannel.setMethodCallHandler({
+          [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+            guard call.method == "joinCallClick" else {
+                result(FlutterMethodNotImplemented)
+                return
+            }
+            self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
+        })
+        
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
+        let mettingLink = args.value(forKey: "meeting_id") as! String
+        
+        let rootVC = self.window?.rootViewController
+        let teamsCallingViewController = TeamsCallingViewController()
+        teamsCallingViewController.teamsLink = mettingLink
+        
+        rootVC?.present(teamsCallingViewController, animated: true)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -30,7 +56,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        print(userActivity.webpageURL?.absoluteString ?? "NULL")
         
         guard let webPageUrl = userActivity.webpageURL?.absoluteString else { return }
         
@@ -39,40 +64,53 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard var urlComponents = URLComponents(string: webPageUrl) else { return }
 
             // Create array of existing query items
-            var queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
+            let queryItems: [URLQueryItem] = urlComponents.queryItems ??  []
             
-            if let meetingLink = queryItems.first(where: { $0.name == "teamsMeetingLink" })?.value{
-                print(meetingLink)
+            var meetingFinalLink: String? = "";
+            if let meetingLink = queryItems.first(where: { $0.name == "meetingURL" })?.value{
                 
-                let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+                let joinWeburl = getQueryStringParameter(url: meetingLink, param: "JoinWebUrl")
+                let splitJoinUrl = joinWeburl?.components(separatedBy: "&")
+                meetingFinalLink = splitJoinUrl?[0]
                 
-                let introVC = IntroViewController();
-                introVC.authHandler = appDelegate.authHandler
-                introVC.createCallingContextFunction = { () -> CallingContext in
-                    return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
-                }
+//                let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
                 
-                introVC.teamsMeetingLink = meetingLink as? String
+//                let introVC = IntroViewController();
+//                introVC.authHandler = appDelegate.authHandler
+//                introVC.createCallingContextFunction = { () -> CallingContext in
+//                    return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
+//                }
+//
+//                introVC.teamsMeetingLink = meetingFinalLink
+//
+//                let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
+//                fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
+//                fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
+//                fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
+//
+//                let appearance = UINavigationBarAppearance()
+//                appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
+//                appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+//                appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
+//
+//                fluentNavVc.navigationBar.standardAppearance = appearance
+//                fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
                 
-                let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
-                fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
-                fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
-                fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
-                
-                let appearance = UINavigationBarAppearance()
-                appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
-                appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
-                appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
-
-                fluentNavVc.navigationBar.standardAppearance = appearance
-                fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
-                
-                self.window?.rootViewController?.present(fluentNavVc, animated: true)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+                vc.handleExternalLinks = true
+                vc.meetingLink = meetingFinalLink
+                self.window?.rootViewController = UINavigationController.init(rootViewController: vc)
             }
 
         }
     }
 
+    func getQueryStringParameter(url: String, param: String) -> String? {
+      guard let url = URLComponents(string: url) else { return nil }
+      return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+    
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
