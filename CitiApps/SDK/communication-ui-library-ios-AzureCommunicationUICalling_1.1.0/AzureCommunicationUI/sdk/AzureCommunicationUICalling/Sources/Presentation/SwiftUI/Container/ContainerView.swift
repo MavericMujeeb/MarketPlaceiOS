@@ -14,6 +14,7 @@ struct ContainerView: View {
     let setupViewOrientationMask: UIInterfaceOrientationMask =
         UIDevice.current.userInterfaceIdiom == .phone ? .portrait : .allButUpsideDown
     let isRightToLeft: Bool
+    let meetingLink: String
 
     var body: some View {
         Group {
@@ -38,6 +39,6 @@ struct ContainerView: View {
 
     var callingView: CallingView {
         logger.debug("Displaying view: callingView")
-        return viewFactory.makeCallingView()
+        return viewFactory.makeCallingView(teamsMeetingLink: meetingLink)
     }
 }

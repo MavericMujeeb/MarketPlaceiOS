@@ -7,7 +7,7 @@ import Foundation
 
 protocol CompositeViewFactoryProtocol {
     func makeSetupView() -> SetupView
-    func makeCallingView() -> CallingView
+    func makeCallingView(teamsMeetingLink: String) -> CallingView
 }
 
 struct CompositeViewFactory: CompositeViewFactoryProtocol {
@@ -32,8 +32,8 @@ struct CompositeViewFactory: CompositeViewFactoryProtocol {
                          avatarManager: avatarManager)
     }
 
-    func makeCallingView() -> CallingView {
-        return CallingView(viewModel: compositeViewModelFactory.getCallingViewModel(),
+    func makeCallingView(teamsMeetingLink: String) -> CallingView {
+        return CallingView(viewModel: compositeViewModelFactory.getCallingViewModel(teamsMeetingLink: teamsMeetingLink),
                            avatarManager: avatarManager,
                            viewManager: videoViewManager)
     }

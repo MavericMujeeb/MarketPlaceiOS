@@ -58,7 +58,8 @@ public class CallComposite {
         let toolkitHostingController = makeToolkitHostingController(router: dependencyContainer.resolve(),
                                                                     logger: dependencyContainer.resolve(),
                                                                     viewFactory: dependencyContainer.resolve(),
-                                                                    isRightToLeft: localizationProvider.isRightToLeft)
+                                                                    isRightToLeft: localizationProvider.isRightToLeft,
+                                                                    meetingLink: callConfiguration.meetingLink!)
         setupManagers(with: dependencyContainer)
         present(toolkitHostingController)
     }
@@ -115,11 +116,13 @@ public class CallComposite {
     private func makeToolkitHostingController(router: NavigationRouter,
                                               logger: Logger,
                                               viewFactory: CompositeViewFactoryProtocol,
-                                              isRightToLeft: Bool) -> ContainerUIHostingController {
+                                              isRightToLeft: Bool,
+                                              meetingLink: String) -> ContainerUIHostingController {
         let rootView = ContainerView(router: router,
                                      logger: logger,
                                      viewFactory: viewFactory,
-                                     isRightToLeft: isRightToLeft)
+                                     isRightToLeft: isRightToLeft,
+                                     meetingLink: meetingLink)
         let toolkitHostingController = ContainerUIHostingController(rootView: rootView,
                                                                     callComposite: self,
                                                                     isRightToLeft: isRightToLeft)

@@ -66,7 +66,8 @@ struct CompositeViewModelFactoryMocking: CompositeViewModelFactoryProtocol {
                                                     store: store,
                                                     localizationProvider: localizationProvider,
                                                     accessibilityProvider: accessibilityProvider,
-                                                    isIpadInterface: false)
+                                                    isIpadInterface: false,
+                                                    teamsMeetingLink: "")
     }
 
     func makeIconButtonViewModel(iconName: CompositeIcon,

@@ -15,19 +15,19 @@ class CompositeViewModelFactoryTests: XCTestCase {
         let setupViewModel2 = sut.getSetupViewModel()
         XCTAssertEqual(setupViewModel1.id, setupViewModel2.id)
 
-        _ = sut.getCallingViewModel()
+        _ = sut.getCallingViewModel(teamsMeetingLink: "")
         let setupViewModel3 = sut.getSetupViewModel()
         XCTAssertNotEqual(setupViewModel1.id, setupViewModel3.id)
     }
 
     func test_compositeViewModelFactory_getSetupViewModel_when_callingViewModelNotNil_then_getCallingViewModel_shouldReturnDifferentCallingViewModel() {
         let sut = makeSUT()
-        let callingViewModel1 = sut.getCallingViewModel()
-        let callingViewModel2 = sut.getCallingViewModel()
+        let callingViewModel1 = sut.getCallingViewModel(teamsMeetingLink: "")
+        let callingViewModel2 = sut.getCallingViewModel(teamsMeetingLink: "")
         XCTAssertEqual(callingViewModel1.id, callingViewModel2.id)
 
         _ = sut.getSetupViewModel()
-        let callingViewModel3 = sut.getCallingViewModel()
+        let callingViewModel3 = sut.getCallingViewModel(teamsMeetingLink: "")
         XCTAssertNotEqual(callingViewModel1.id, callingViewModel3.id)
     }
 }

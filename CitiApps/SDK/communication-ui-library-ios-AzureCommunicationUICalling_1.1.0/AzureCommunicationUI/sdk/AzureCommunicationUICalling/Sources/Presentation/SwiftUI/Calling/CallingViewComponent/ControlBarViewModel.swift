@@ -19,6 +19,8 @@ class ControlBarViewModel: ObservableObject {
     @Published var isConfirmLeaveListDisplayed: Bool = false
     
     var chatActive: Bool = false
+    
+    var teamsMeetingLink: String = ""
 
 
     let audioDevicesListViewModel: AudioDevicesListViewModel
@@ -40,11 +42,13 @@ class ControlBarViewModel: ObservableObject {
          localizationProvider: LocalizationProviderProtocol,
          dispatchAction: @escaping ActionDispatch,
          endCallConfirm: @escaping (() -> Void),
-         localUserState: LocalUserState) {
+         localUserState: LocalUserState,
+         teamsMeetingLink: String) {
         self.logger = logger
         self.localizationProvider = localizationProvider
         self.dispatch = dispatchAction
         self.displayEndCallConfirm = endCallConfirm
+        self.teamsMeetingLink = teamsMeetingLink
 
         audioDevicesListViewModel = compositeViewModelFactory.makeAudioDevicesListViewModel(
             dispatchAction: dispatch,

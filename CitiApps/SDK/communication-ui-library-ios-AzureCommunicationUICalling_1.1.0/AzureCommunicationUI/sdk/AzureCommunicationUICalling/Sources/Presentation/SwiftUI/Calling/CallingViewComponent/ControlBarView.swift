@@ -24,7 +24,11 @@ struct ChatView: View{
     let displayName: String = "Janet Johnson"
     
     var message : String = ""
-    var meetingLink: String!
+    var teamsMeetingLink : String = ""
+    
+    init(teamsMeetingLink: String){
+        self.teamsMeetingLink = teamsMeetingLink
+    }
     
     func sendMessage() {
         print("sendMessage -- trigger")
@@ -33,7 +37,8 @@ struct ChatView: View{
         
         let message = SendChatMessageRequest(
             content: self.chatMessage,
-            senderDisplayName: self.displayName
+            senderDisplayName: self.displayName,
+            type: .text
         )
         
         self.chatThreadClient?.send(message: message) { result, _ in
@@ -41,7 +46,7 @@ struct ChatView: View{
             print("result----------------")
             switch result {
             case .success:
-                print("Chat message sent")
+                print("Chat message sent- ")
             case .failure:
                 print("Failed to send chat message")
             }
@@ -49,24 +54,27 @@ struct ChatView: View{
             self.chatMessage = ""
         }
     }
-    func receiveMessage(response: Any, eventId: ChatEventId) {
-        let chatEvent: ChatMessageReceivedEvent = response as! ChatMessageReceivedEvent
-
-        let displayName: String = chatEvent.senderDisplayName ?? "Unknown User"
-        let content: String = chatEvent.message.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression)
-
-        self.meetingMessages.append(
-            MeetingMessage(
-                id: chatEvent.id,
-                content: content,
-                displayName: displayName
-            )
-        )
+    
+    func receiveMessage(eventId: TrouterEvent) {
+        print("Message Communication Starts")
+//        let chatEvent: ChatMessageReceivedEvent = eventId as! ChatMessageReceivedEvent
+//
+//        let displayName: String = chatEvent.senderDisplayName ?? "Unknown User"
+//        let content: String = chatEvent.message.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression)
+//
+//        self.meetingMessages.append(
+//            MeetingMessage(
+//                id: chatEvent.id,
+//                content: content,
+//                displayName: displayName
+//            )
+//        )
+        print("Message Communication End")
     }
     
     func getThreadId(from meetingLink: String) -> String? {
-        if let range = self.meetingLink.range(of: "meetup-join/") {
-            let thread = self.meetingLink[range.upperBound...]
+        if let range = meetingLink.range(of: "meetup-join/") {
+            let thread = meetingLink[range.upperBound...]
             if let endRange = thread.range(of: "/")?.lowerBound {
                 return String(thread.prefix(upTo: endRange))
             }
@@ -113,10 +121,16 @@ struct ChatView: View{
             Text("Send Message")
         }.onAppear{
             print("on appear")
+            print("teamsMeetingLink->"+self.teamsMeetingLink)
             // Initialize the ChatClient
             do {
-                let endpoint = "https://acschatcallingdemo.communication.azure.com"
-                let credential = try CommunicationTokenCredential(token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hNjE1LWNiMDUtMGQ4Yi0wODQ4MjIwMDdiMDgiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUxNDEzMjYiLCJleHAiOjE2NzUyMjc3MjYsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MTQxMzI2fQ.cW0C1-a3LYfpt3eKNp16HXUokR8Qk5XpWAlmUEhzHEJam37E-QDOx3wHnzVRsV1EavYTdjSrPrdJb572qVmWetVb2FtxBDhyOFoI3sHj7Tv9sExrYYw3s9kq2FGf0c2kE4pfDzswxj1vRBgXNm9JQvBT1eUi0kgADaTYXJyMpgyQXe_fc8yMcaM_lQJTQvi6RL_QRfZUNsK67Si8qWtK1md440f4C0MV1E3opL2izyarG2bqpz0AIT4oQlL3kvoKwATTddOQl2nPwJZyi3U1CngwSWF4R7m36x85Xd4_pBkE3Mdvhbt5jgyxSd-JFaPsuAJKGzu9WciWbObQ6e5PBQ")
+                var sdkVersion = "1.0.0"
+                    var applicationId = "Azure_Chat_POC"
+                    var sdkName = "azure-communication-com.azure.android.communication.chat"
+            
+//                var userPolicy = UserAgentPolicy(sdkName: sdkName, sdkVersion: sdkVersion, telemetryOptions: TelemetryOptions(applicationId: applicationId))
+                let endpoint = "https://acschatcallingdemo.communication.azure.com/"
+                let credential = try CommunicationTokenCredential(token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hOTI0LTU0NmMtZjBhNy05MjNhMGQwMGUyNjgiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUxOTI2MTAiLCJleHAiOjE2NzUyNzkwMTAsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MTkyNjEwfQ.aOMHf6QjvmVc5kyM4xOTNbF4QPc4eKQreRNer5n1x76bFvraKd6W1K6RDzWFumsQ-Ma2bmk8A4C0tbICXbjvwbTp69I4VEKZFGtpSBMAxFOn41l6E5KC2VKYtJ06qEFiK6ugzOE__sHYTaNseXyXQejqnv3BHM-eSFeBDQtbAfGkp-ltdxmICoeeloaAa-aYY4VZqCc0qoC2wXGDjLPRH8AMB0xK1qtJUEVvPGI2_9bEY8ZJAOOJZglnlNMmyOwTX6DGW-JzEUocUBuZEN6submY4r77Id7oKeB9z-vr4M_Am8NY9c-m_gitXXeUi1pf_jmP_4qm1kdj7VY8gDRN2g")
 
                 self.chatClient = try ChatClient(
                     endpoint: endpoint,
@@ -125,6 +139,21 @@ struct ChatView: View{
                 )
                 print("ChatClient successfully created")
 
+                // Initialize the ChatThreadClient
+                       do {
+                           guard let threadId = getThreadId(from: self.teamsMeetingLink) else {
+                               print("Failed to join meeting chat 3")
+                               return
+                           }
+                           print("threadId --> "+threadId)
+                           self.chatThreadClient = try self.chatClient?.createClient(forThread: threadId)
+                           print("Joined meeting chat successfully")
+                       } catch {
+                           print("Failed to create ChatThreadClient")
+                           print("Failed to join meeting chat 33")
+                           return
+                       }
+                
 //                self.message = "ChatClient successfully created"
 
                 // Start real-time notifications
@@ -135,6 +164,27 @@ struct ChatView: View{
                         // Receive chat messages
 //                        self.chatClient?.register(event: ChatEventId.chatMessageReceived, handler: receiveMessage)
 //                        self.chatClient?.register(event: ChatEventId.chatMessageReceived, handler: receiveMessage)
+                        
+                        self.chatClient?.register(event: .chatMessageReceived, handler: { response in
+                            switch response {
+                            case let .chatMessageReceivedEvent(event):
+                               
+                                let senderDisplayName: String = event.senderDisplayName ?? "Unknown User"
+                                let message: String = event.message.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression)
+                                
+                                print("Received a message: \(event.id) \(senderDisplayName) \(message)")
+                                
+                                self.meetingMessages.append(
+                                            MeetingMessage(
+                                                id: event.id,
+                                                content: message,
+                                                displayName: senderDisplayName
+                                            )
+                                        )
+                            default:
+                                return
+                            }
+                        })
 
                     case .failure:
                         print("Failed to start real-time notifications")
@@ -321,7 +371,7 @@ struct ControlBarView: View {
                                 .foregroundColor(.black)
             }
         }.sheet(isPresented: $shouldPresentChat, content: {
-            ChatView()
+            ChatView(teamsMeetingLink: self.viewModel.teamsMeetingLink)
         })
         
     }

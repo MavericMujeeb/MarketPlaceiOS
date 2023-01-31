@@ -10,7 +10,7 @@ import UIKit
 protocol CompositeViewModelFactoryProtocol {
     // MARK: CompositeViewModels
     func getSetupViewModel() -> SetupViewModel
-    func getCallingViewModel() -> CallingViewModel
+    func getCallingViewModel(teamsMeetingLink: String) -> CallingViewModel
 
     // MARK: ComponentViewModels
     func makeIconButtonViewModel(iconName: CompositeIcon,
@@ -43,7 +43,8 @@ protocol CompositeViewModelFactoryProtocol {
     func makeOnHoldOverlayViewModel(resumeAction: @escaping (() -> Void)) -> OnHoldOverlayViewModel
     func makeControlBarViewModel(dispatchAction: @escaping ActionDispatch,
                                  endCallConfirm: @escaping (() -> Void),
-                                 localUserState: LocalUserState) -> ControlBarViewModel
+                                 localUserState: LocalUserState,
+                                 teamsMeetingLink: String) -> ControlBarViewModel
     func makeInfoHeaderViewModel(localUserState: LocalUserState) -> InfoHeaderViewModel
     func makeParticipantCellViewModel(participantModel: ParticipantInfoModel) -> ParticipantGridCellViewModel
     func makeParticipantGridsViewModel(isIpadInterface: Bool) -> ParticipantGridViewModel
@@ -101,16 +102,20 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
         return viewModel
     }
 
-    func getCallingViewModel() -> CallingViewModel {
+    func getCallingViewModel(teamsMeetingLink: String) -> CallingViewModel {
         guard let viewModel = self.callingViewModel else {
             let viewModel = CallingViewModel(compositeViewModelFactory: self,
                                              logger: logger,
                                              store: store,
                                              localizationProvider: localizationProvider,
                                              accessibilityProvider: accessibilityProvider,
-                                             isIpadInterface: UIDevice.current.userInterfaceIdiom == .pad)
+                                             isIpadInterface: UIDevice.current.userInterfaceIdiom == .pad,
+                                             teamsMeetingLink: teamsMeetingLink)
+            print("teamsMeetingLinkViewModel->"+teamsMeetingLink)
+            viewModel.teamsMeetingLink = teamsMeetingLink
             self.setupViewModel = nil
             self.callingViewModel = viewModel
+            self.callingViewModel?.teamsMeetingLink = teamsMeetingLink
             return viewModel
         }
         return viewModel
@@ -195,13 +200,15 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
     }
     func makeControlBarViewModel(dispatchAction: @escaping ActionDispatch,
                                  endCallConfirm: @escaping (() -> Void),
-                                 localUserState: LocalUserState) -> ControlBarViewModel {
+                                 localUserState: LocalUserState,
+                                 teamsMeetingLink: String) -> ControlBarViewModel {
         ControlBarViewModel(compositeViewModelFactory: self,
                             logger: logger,
                             localizationProvider: localizationProvider,
                             dispatchAction: dispatchAction,
                             endCallConfirm: endCallConfirm,
-                            localUserState: localUserState)
+                            localUserState: localUserState,
+                            teamsMeetingLink: teamsMeetingLink)
     }
     func makeInfoHeaderViewModel(localUserState: LocalUserState) -> InfoHeaderViewModel {
         InfoHeaderViewModel(compositeViewModelFactory: self,

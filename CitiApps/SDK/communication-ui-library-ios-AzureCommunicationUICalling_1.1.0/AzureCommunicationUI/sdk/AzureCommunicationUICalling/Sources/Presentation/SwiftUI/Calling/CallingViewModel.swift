@@ -32,13 +32,15 @@ class CallingViewModel: ObservableObject {
     var infoHeaderViewModel: InfoHeaderViewModel!
     var errorInfoViewModel: ErrorInfoViewModel!
     var chatActive: Bool = false
+    var teamsMeetingLink: String = ""
 
     init(compositeViewModelFactory: CompositeViewModelFactoryProtocol,
          logger: Logger,
          store: Store<AppState>,
          localizationProvider: LocalizationProviderProtocol,
          accessibilityProvider: AccessibilityProviderProtocol,
-         isIpadInterface: Bool) {
+         isIpadInterface: Bool,
+         teamsMeetingLink: String) {
         self.logger = logger
         self.store = store
         self.compositeViewModelFactory = compositeViewModelFactory
@@ -56,6 +58,8 @@ class CallingViewModel: ObservableObject {
             .makeInfoHeaderViewModel(localUserState: store.state.localUserState)
         let isCallConnected = store.state.callingState.status == .connected
         let hasRemoteParticipants = store.state.remoteParticipantsState.participantInfoList.count > 0
+        self.teamsMeetingLink = teamsMeetingLink
+        print("teamsMeetingLink->"+teamsMeetingLink)
         isParticipantGridDisplayed = isCallConnected && hasRemoteParticipants
         controlBarViewModel = compositeViewModelFactory
             .makeControlBarViewModel(dispatchAction: actionDispatch, endCallConfirm: { [weak self] in
@@ -63,7 +67,7 @@ class CallingViewModel: ObservableObject {
                     return
                 }
                 self.endCall()
-            }, localUserState: store.state.localUserState)
+            }, localUserState: store.state.localUserState, teamsMeetingLink: self.teamsMeetingLink)
 
         onHoldOverlayViewModel = compositeViewModelFactory.makeOnHoldOverlayViewModel(resumeAction: { [weak self] in
             guard let self = self else {
