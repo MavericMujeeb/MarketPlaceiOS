@@ -4,6 +4,7 @@
 //
 
 import AzureCommunicationCommon
+import Foundation
 
 class TypingParticipantsViewModel: ObservableObject {
     private let logger: Logger

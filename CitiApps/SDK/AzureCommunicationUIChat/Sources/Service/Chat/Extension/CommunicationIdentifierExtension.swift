@@ -4,6 +4,7 @@
 //
 
 import AzureCommunicationCommon
+import UIKit
 
 extension CommunicationIdentifier {
     var stringValue: String {
