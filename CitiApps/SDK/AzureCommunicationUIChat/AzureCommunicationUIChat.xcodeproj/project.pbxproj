@@ -151,6 +151,7 @@
 		85D6F5E7707CE2A8E51E5451 /* Pods_AzureCommunicationUIChat_AzureCommunicationUIChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9C157344D512A9F069F9CC /* Pods_AzureCommunicationUIChat_AzureCommunicationUIChatTests.framework */; };
 		8D0A5F5A29883858002EBBC4 /* AzureCommunicationChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0A5F5929883858002EBBC4 /* AzureCommunicationChat.framework */; };
 		8D0A5FC029896A4A002EBBC4 /* libFluentUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0A5FBF29896A4A002EBBC4 /* libFluentUI.a */; };
+		8D0A5FFD298A7947002EBBC4 /* FluentUIResources-ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8D0A5FFC298A7947002EBBC4 /* FluentUIResources-ios.bundle */; };
 		A88000ED29070F790076B0E2 /* HtmlMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88000EC29070F790076B0E2 /* HtmlMessageView.swift */; };
 		A8BB978028F770FE008142DB /* SystemMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BB977F28F770FE008142DB /* SystemMessageView.swift */; };
 		BD1A6A3C28ECDEAE005E0B70 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A6A3B28ECDEAE005E0B70 /* MessageListView.swift */; };
@@ -329,6 +330,7 @@
 		8D0A5F5929883858002EBBC4 /* AzureCommunicationChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D0A5F5D298838F4002EBBC4 /* libFluentUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFluentUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D0A5FBF29896A4A002EBBC4 /* libFluentUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFluentUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0A5FFC298A7947002EBBC4 /* FluentUIResources-ios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "FluentUIResources-ios.bundle"; path = "../FluentUIResources-ios.bundle"; sourceTree = "<group>"; };
 		A63BF349E7BC31AD5300412A /* Pods_AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AzureCommunicationUIChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88000EC29070F790076B0E2 /* HtmlMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlMessageView.swift; sourceTree = "<group>"; };
 		A8BB977F28F770FE008142DB /* SystemMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageView.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 		50CB81B828C26E0B00680566 = {
 			isa = PBXGroup;
 			children = (
+				8D0A5FFC298A7947002EBBC4 /* FluentUIResources-ios.bundle */,
 				7584840C291D81AE006373B3 /* Shared Sources */,
 				50CB81C428C26E0C00680566 /* Sources */,
 				50CB81CE28C26E0C00680566 /* Tests */,
@@ -1112,6 +1115,7 @@
 			files = (
 				BDB1B8D628F8C8D30000300F /* Assets.xcassets in Resources */,
 				50CB81E728C2701C00680566 /* Localizable.strings in Resources */,
+				8D0A5FFD298A7947002EBBC4 /* FluentUIResources-ios.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

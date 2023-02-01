@@ -7,6 +7,103 @@ import SwiftUI
 import AzureCommunicationChat
 import AzureCommunicationCommon
 import Trouter
+import UIKit
+import AzureCommunicationUIChat
+
+class ChatViewController : UIViewController{
+    
+    var chatAdapter: ChatAdapter?
+    var threadId:String!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        startChatComposite()
+    }
+
+    @objc private func startChatComposite() {
+        let communicationIdentifier = CommunicationUserIdentifier("a2194b29-07bb-48bb-8607-6151334cf904")
+        guard let communicationTokenCredential = try? CommunicationTokenCredential(
+            token:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hOTI0LTU0NmMtZjBhNy05MjNhMGQwMGUyNjgiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUxOTI2MTAiLCJleHAiOjE2NzUyNzkwMTAsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MTkyNjEwfQ.aOMHf6QjvmVc5kyM4xOTNbF4QPc4eKQreRNer5n1x76bFvraKd6W1K6RDzWFumsQ-Ma2bmk8A4C0tbICXbjvwbTp69I4VEKZFGtpSBMAxFOn41l6E5KC2VKYtJ06qEFiK6ugzOE__sHYTaNseXyXQejqnv3BHM-eSFeBDQtbAfGkp-ltdxmICoeeloaAa-aYY4VZqCc0qoC2wXGDjLPRH8AMB0xK1qtJUEVvPGI2_9bEY8ZJAOOJZglnlNMmyOwTX6DGW-JzEUocUBuZEN6submY4r77Id7oKeB9z-vr4M_Am8NY9c-m_gitXXeUi1pf_jmP_4qm1kdj7VY8gDRN2g") else {
+            return
+        }
+
+        self.chatAdapter = ChatAdapter(
+            endpoint: "https://acschatcallingdemo.communication.azure.com/", identifier: communicationIdentifier,
+            credential: communicationTokenCredential,
+            threadId: threadId,
+            displayName: loggedInUserName)
+
+        Task { @MainActor in
+            guard let chatAdapter = self.chatAdapter else {
+                return
+            }
+            print(loggedInUserName)
+            
+            print("chatAdapter connect")
+            chatAdapter.connect(completionHandler: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.chatAdapter = nil
+                    print("success -- chatadapter")
+                case .failure(let error):
+                    print("disconnect error \(error)")
+                }
+            })
+            print("chatAdapter connect after")
+            let chatCompositeViewController = ChatCompositeViewController(
+                with: chatAdapter)
+            print("chatCompositeViewController with chatAdapter")
+
+            let closeItem = UIBarButtonItem(
+                barButtonSystemItem: .close,
+                target: nil,
+                action: #selector(self.onBackBtnPressed))
+            chatCompositeViewController.title = "Chat"
+            chatCompositeViewController.navigationItem.leftBarButtonItem = closeItem
+
+            let navController = UINavigationController(rootViewController: chatCompositeViewController)
+            navController.modalPresentationStyle = .fullScreen
+
+            print("navController")
+            self.present(navController, animated: true, completion: nil)
+        }
+    }
+
+    @objc func onBackBtnPressed() {
+        self.dismiss(animated: true, completion: nil)
+        Task { @MainActor in
+            self.chatAdapter?.disconnect(completionHandler: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.chatAdapter = nil
+                case .failure(let error):
+                    print("disconnect error \(error)")
+                }
+            })
+        }
+    }
+}
+
+struct ChatScreen: UIViewControllerRepresentable{
+    
+    var threadId : String!
+    
+    init(threadId: String!) {
+        self.threadId = threadId
+    }
+    typealias UIViewControllerType = ChatViewController
+    
+    func makeUIViewController(context: Context) -> ChatViewController {
+        let vc = ChatViewController()
+        vc.threadId = threadId;
+        // Do some configurations here if needed.
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: ChatViewController, context: Context) {
+        // Updates the state of the specified view controller with new information from SwiftUI.
+    }
+}
 
 struct MeetingMessage {
     let id: String
@@ -28,6 +125,116 @@ struct ChatView: View{
     
     init(teamsMeetingLink: String){
         self.teamsMeetingLink = teamsMeetingLink
+    }
+    
+    var bottomBar : some View {
+        HStack(alignment: .bottom, spacing: 10) {
+            TextField("Enter your message...", text: $chatMessage)
+            Button("Send"){
+                
+            }.onAppear(){
+                
+            }
+        }
+        .padding([.top], 10)
+        .padding([.leading, .trailing, .bottom], 10)
+    }
+    
+    var messageView : some View {
+        VStack(alignment: .leading) {
+            ForEach(meetingMessages, id: \.id) { message in
+                let currentUser: Bool = (message.displayName == self.displayName)
+                let foregroundColor = currentUser ? Color.white : Color.black
+                let background = currentUser ? Color.blue : Color(.systemGray6)
+                let alignment = currentUser ? HorizontalAlignment.trailing : HorizontalAlignment.leading
+                VStack {
+                    Text(message.displayName).font(Font.system(size: 10))
+                    Text(message.content)
+                }
+                .alignmentGuide(.leading) { d in d[alignment] }
+                .padding(10)
+                .foregroundColor(foregroundColor)
+                .background(background)
+                .cornerRadius(10)
+            }
+        }.frame(minWidth: 0, maxWidth: .infinity)
+    }
+    
+    var body: some View{
+        ZStack() {
+            ChatScreen(threadId: getThreadId(from: self.teamsMeetingLink))
+        }
+        .onAppear {
+            // Initialize the ChatClient
+            do {
+//                var sdkVersion = "1.0.0"
+//                    var applicationId = "Azure_Chat_POC"
+//                    var sdkName = "azure-communication-com.azure.android.communication.chat"
+//
+//    //                var userPolicy = UserAgentPolicy(sdkName: sdkName, sdkVersion: sdkVersion, telemetryOptions: TelemetryOptions(applicationId: applicationId))
+                let endpoint = "https://acschatcallingdemo.communication.azure.com/"
+                let credential = try CommunicationTokenCredential(token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hOTI0LTU0NmMtZjBhNy05MjNhMGQwMGUyNjgiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUxOTI2MTAiLCJleHAiOjE2NzUyNzkwMTAsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MTkyNjEwfQ.aOMHf6QjvmVc5kyM4xOTNbF4QPc4eKQreRNer5n1x76bFvraKd6W1K6RDzWFumsQ-Ma2bmk8A4C0tbICXbjvwbTp69I4VEKZFGtpSBMAxFOn41l6E5KC2VKYtJ06qEFiK6ugzOE__sHYTaNseXyXQejqnv3BHM-eSFeBDQtbAfGkp-ltdxmICoeeloaAa-aYY4VZqCc0qoC2wXGDjLPRH8AMB0xK1qtJUEVvPGI2_9bEY8ZJAOOJZglnlNMmyOwTX6DGW-JzEUocUBuZEN6submY4r77Id7oKeB9z-vr4M_Am8NY9c-m_gitXXeUi1pf_jmP_4qm1kdj7VY8gDRN2g")
+
+                self.chatClient = try ChatClient(
+                    endpoint: endpoint,
+                    credential: credential,
+                    withOptions: AzureCommunicationChatClientOptions()
+                )
+                print("ChatClient successfully created")
+                
+                // Initialize the ChatThreadClient
+               do {
+                   guard let threadId = getThreadId(from: self.teamsMeetingLink) else {
+                       print("Failed to join meeting chat 3")
+                       return
+                   }
+                   print("threadId --> "+threadId)
+                   self.chatThreadClient = try self.chatClient?.createClient(forThread: threadId)
+                   print("Joined meeting chat successfully")
+               } catch {
+                   print("Failed to create ChatThreadClient")
+                   print("Failed to join meeting chat 33")
+                   return
+               }
+
+                print("ChatClient successfully created")
+                
+                // Start real-time notifications
+                self.chatClient?.startRealTimeNotifications() { result in
+                    switch result {
+                    case .success:
+                        print("Real-time notifications started")
+                        // Receive chat messages
+                        self.chatClient?.register(event: .chatMessageReceived, handler: { response in
+                            switch response {
+                            case let .chatMessageReceivedEvent(event):
+
+                                let senderDisplayName: String = event.senderDisplayName ?? "Unknown User"
+                                let message: String = event.message.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression)
+
+                                print("Received a message: \(event.id) \(senderDisplayName) \(message)")
+
+                                self.meetingMessages.append(
+                                            MeetingMessage(
+                                                id: event.id,
+                                                content: message,
+                                                displayName: senderDisplayName
+                                            )
+                                        )
+                            default:
+                                return
+                            }
+                        })
+
+                    case .failure:
+                        print("Failed to start real-time notifications")
+                    }
+                }
+            } catch {
+                print("Unable to create ChatClient")
+                return
+            }
+        }
     }
     
     func sendMessage() {
@@ -98,139 +305,61 @@ struct ChatView: View{
 //        }
     }
     
-    var body: some View {
-        VStack(alignment: .leading) {
-            ForEach(meetingMessages, id: \.id) { message in
-                let currentUser: Bool = (message.displayName == self.displayName)
-                let foregroundColor = currentUser ? Color.white : Color.black
-                let background = currentUser ? Color.blue : Color(.systemGray6)
-                let alignment = currentUser ? HorizontalAlignment.trailing : HorizontalAlignment.leading
-                VStack {
-                    Text(message.displayName).font(Font.system(size: 10))
-                    Text(message.content)
-                }
-                .alignmentGuide(.leading) { d in d[alignment] }
-                .padding(10)
-                .foregroundColor(foregroundColor)
-                .background(background)
-                .cornerRadius(10)
-            }
-        }.frame(minWidth: 0, maxWidth: .infinity)
-        TextField("Enter your message...", text: $chatMessage)
-        Button(action: sendMessage) {
-            Text("Send Message")
-        }.onAppear{
-            print("on appear")
-            print("teamsMeetingLink->"+self.teamsMeetingLink)
-            // Initialize the ChatClient
-            do {
-                var sdkVersion = "1.0.0"
-                    var applicationId = "Azure_Chat_POC"
-                    var sdkName = "azure-communication-com.azure.android.communication.chat"
-            
-//                var userPolicy = UserAgentPolicy(sdkName: sdkName, sdkVersion: sdkVersion, telemetryOptions: TelemetryOptions(applicationId: applicationId))
-                let endpoint = "https://acschatcallingdemo.communication.azure.com/"
-                let credential = try CommunicationTokenCredential(token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hOTI0LTU0NmMtZjBhNy05MjNhMGQwMGUyNjgiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUxOTI2MTAiLCJleHAiOjE2NzUyNzkwMTAsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MTkyNjEwfQ.aOMHf6QjvmVc5kyM4xOTNbF4QPc4eKQreRNer5n1x76bFvraKd6W1K6RDzWFumsQ-Ma2bmk8A4C0tbICXbjvwbTp69I4VEKZFGtpSBMAxFOn41l6E5KC2VKYtJ06qEFiK6ugzOE__sHYTaNseXyXQejqnv3BHM-eSFeBDQtbAfGkp-ltdxmICoeeloaAa-aYY4VZqCc0qoC2wXGDjLPRH8AMB0xK1qtJUEVvPGI2_9bEY8ZJAOOJZglnlNMmyOwTX6DGW-JzEUocUBuZEN6submY4r77Id7oKeB9z-vr4M_Am8NY9c-m_gitXXeUi1pf_jmP_4qm1kdj7VY8gDRN2g")
-
-                self.chatClient = try ChatClient(
-                    endpoint: endpoint,
-                    credential: credential,
-                    withOptions: AzureCommunicationChatClientOptions()
-                )
-                print("ChatClient successfully created")
-
-                // Initialize the ChatThreadClient
-                       do {
-                           guard let threadId = getThreadId(from: self.teamsMeetingLink) else {
-                               print("Failed to join meeting chat 3")
-                               return
-                           }
-                           print("threadId --> "+threadId)
-                           self.chatThreadClient = try self.chatClient?.createClient(forThread: threadId)
-                           print("Joined meeting chat successfully")
-                       } catch {
-                           print("Failed to create ChatThreadClient")
-                           print("Failed to join meeting chat 33")
-                           return
-                       }
-                
-//                self.message = "ChatClient successfully created"
-
-                // Start real-time notifications
-                self.chatClient?.startRealTimeNotifications() { result in
-                    switch result {
-                    case .success:
-                        print("Real-time notifications started")
-                        // Receive chat messages
-//                        self.chatClient?.register(event: ChatEventId.chatMessageReceived, handler: receiveMessage)
-//                        self.chatClient?.register(event: ChatEventId.chatMessageReceived, handler: receiveMessage)
-                        
-                        self.chatClient?.register(event: .chatMessageReceived, handler: { response in
-                            switch response {
-                            case let .chatMessageReceivedEvent(event):
-                               
-                                let senderDisplayName: String = event.senderDisplayName ?? "Unknown User"
-                                let message: String = event.message.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression)
-                                
-                                print("Received a message: \(event.id) \(senderDisplayName) \(message)")
-                                
-                                self.meetingMessages.append(
-                                            MeetingMessage(
-                                                id: event.id,
-                                                content: message,
-                                                displayName: senderDisplayName
-                                            )
-                                        )
-                            default:
-                                return
-                            }
-                        })
-
-                    case .failure:
-                        print("Failed to start real-time notifications")
-//                        self.message = "Failed to enable chat notifications"
-                    }
-                }
-            } catch {
-                print("Unable to create ChatClient")
-//                self.message = "Please enter a valid endpoint and Chat token in source code"
-                return
-            }
-        }
-        
-//        NavigationView {
-//            VStack(alignment: .leading) {
-//                ForEach(meetingMessages, id: \.id) { message in
-//                    let currentUser: Bool = (message.displayName == self.displayName)
-//                    let foregroundColor = currentUser ? Color.white : Color.black
-//                    let background = currentUser ? Color.blue : Color(.systemGray6)
-//                    let alignment = currentUser ? HorizontalAlignment.trailing : HorizontalAlignment.leading
-//                    VStack {
-//                        Text(message.displayName).font(Font.system(size: 10))
-//                        Text(message.content)
-//                    }
-//                    .alignmentGuide(.leading) { d in d[alignment] }
-//                    .padding(10)
-//                    .foregroundColor(foregroundColor)
-//                    .background(background)
-//                    .cornerRadius(10)
+//    var body: some View {
+//        VStack(alignment: .leading) {
+//            ForEach(meetingMessages, id: \.id) { message in
+//                let currentUser: Bool = (message.displayName == self.displayName)
+//                let foregroundColor = currentUser ? Color.white : Color.black
+//                let background = currentUser ? Color.blue : Color(.systemGray6)
+//                let alignment = currentUser ? HorizontalAlignment.trailing : HorizontalAlignment.leading
+//                VStack {
+//                    Text(message.displayName).font(Font.system(size: 10))
+//                    Text(message.content)
 //                }
-//            }.frame(minWidth: 0, maxWidth: .infinity)
-//            TextField("Enter your message...", text: $chatMessage)
-//            Button(action: sendMessage) {
-//                Text("Send Message")
+//                .alignmentGuide(.leading) { d in d[alignment] }
+//                .padding(10)
+//                .foregroundColor(foregroundColor)
+//                .background(background)
+//                .cornerRadius(10)
 //            }
+//        }.frame(minWidth: 0, maxWidth: .infinity)
+//        TextField("Enter your message...", text: $chatMessage)
+//        Button(action: sendMessage) {
+//            Text("Send Message")
 //        }.onAppear{
+//            print("on appear")
+//            print("teamsMeetingLink->"+self.teamsMeetingLink)
 //            // Initialize the ChatClient
 //            do {
-//                let endpoint = "COMMUNICATION_SERVICES_RESOURCE_ENDPOINT_HERE>"
-//                let credential = try CommunicationTokenCredential(token: "<USER_ACCESS_TOKEN_HERE>")
+//                var sdkVersion = "1.0.0"
+//                    var applicationId = "Azure_Chat_POC"
+//                    var sdkName = "azure-communication-com.azure.android.communication.chat"
+//
+////                var userPolicy = UserAgentPolicy(sdkName: sdkName, sdkVersion: sdkVersion, telemetryOptions: TelemetryOptions(applicationId: applicationId))
+//                let endpoint = "https://acschatcallingdemo.communication.azure.com/"
+//                let credential = try CommunicationTokenCredential(token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hOTI0LTU0NmMtZjBhNy05MjNhMGQwMGUyNjgiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUxOTI2MTAiLCJleHAiOjE2NzUyNzkwMTAsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MTkyNjEwfQ.aOMHf6QjvmVc5kyM4xOTNbF4QPc4eKQreRNer5n1x76bFvraKd6W1K6RDzWFumsQ-Ma2bmk8A4C0tbICXbjvwbTp69I4VEKZFGtpSBMAxFOn41l6E5KC2VKYtJ06qEFiK6ugzOE__sHYTaNseXyXQejqnv3BHM-eSFeBDQtbAfGkp-ltdxmICoeeloaAa-aYY4VZqCc0qoC2wXGDjLPRH8AMB0xK1qtJUEVvPGI2_9bEY8ZJAOOJZglnlNMmyOwTX6DGW-JzEUocUBuZEN6submY4r77Id7oKeB9z-vr4M_Am8NY9c-m_gitXXeUi1pf_jmP_4qm1kdj7VY8gDRN2g")
 //
 //                self.chatClient = try ChatClient(
 //                    endpoint: endpoint,
 //                    credential: credential,
 //                    withOptions: AzureCommunicationChatClientOptions()
 //                )
+//                print("ChatClient successfully created")
+//
+//                // Initialize the ChatThreadClient
+//                       do {
+//                           guard let threadId = getThreadId(from: self.teamsMeetingLink) else {
+//                               print("Failed to join meeting chat 3")
+//                               return
+//                           }
+//                           print("threadId --> "+threadId)
+//                           self.chatThreadClient = try self.chatClient?.createClient(forThread: threadId)
+//                           print("Joined meeting chat successfully")
+//                       } catch {
+//                           print("Failed to create ChatThreadClient")
+//                           print("Failed to join meeting chat 33")
+//                           return
+//                       }
 //
 ////                self.message = "ChatClient successfully created"
 //
@@ -241,6 +370,28 @@ struct ChatView: View{
 //                        print("Real-time notifications started")
 //                        // Receive chat messages
 ////                        self.chatClient?.register(event: ChatEventId.chatMessageReceived, handler: receiveMessage)
+////                        self.chatClient?.register(event: ChatEventId.chatMessageReceived, handler: receiveMessage)
+//
+//                        self.chatClient?.register(event: .chatMessageReceived, handler: { response in
+//                            switch response {
+//                            case let .chatMessageReceivedEvent(event):
+//
+//                                let senderDisplayName: String = event.senderDisplayName ?? "Unknown User"
+//                                let message: String = event.message.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression)
+//
+//                                print("Received a message: \(event.id) \(senderDisplayName) \(message)")
+//
+//                                self.meetingMessages.append(
+//                                            MeetingMessage(
+//                                                id: event.id,
+//                                                content: message,
+//                                                displayName: senderDisplayName
+//                                            )
+//                                        )
+//                            default:
+//                                return
+//                            }
+//                        })
 //
 //                    case .failure:
 //                        print("Failed to start real-time notifications")
@@ -253,7 +404,63 @@ struct ChatView: View{
 //                return
 //            }
 //        }
-    }
+//
+////        NavigationView {
+////            VStack(alignment: .leading) {
+////                ForEach(meetingMessages, id: \.id) { message in
+////                    let currentUser: Bool = (message.displayName == self.displayName)
+////                    let foregroundColor = currentUser ? Color.white : Color.black
+////                    let background = currentUser ? Color.blue : Color(.systemGray6)
+////                    let alignment = currentUser ? HorizontalAlignment.trailing : HorizontalAlignment.leading
+////                    VStack {
+////                        Text(message.displayName).font(Font.system(size: 10))
+////                        Text(message.content)
+////                    }
+////                    .alignmentGuide(.leading) { d in d[alignment] }
+////                    .padding(10)
+////                    .foregroundColor(foregroundColor)
+////                    .background(background)
+////                    .cornerRadius(10)
+////                }
+////            }.frame(minWidth: 0, maxWidth: .infinity)
+////            TextField("Enter your message...", text: $chatMessage)
+////            Button(action: sendMessage) {
+////                Text("Send Message")
+////            }
+////        }.onAppear{
+////            // Initialize the ChatClient
+////            do {
+////                let endpoint = "COMMUNICATION_SERVICES_RESOURCE_ENDPOINT_HERE>"
+////                let credential = try CommunicationTokenCredential(token: "<USER_ACCESS_TOKEN_HERE>")
+////
+////                self.chatClient = try ChatClient(
+////                    endpoint: endpoint,
+////                    credential: credential,
+////                    withOptions: AzureCommunicationChatClientOptions()
+////                )
+////
+//////                self.message = "ChatClient successfully created"
+////
+////                // Start real-time notifications
+////                self.chatClient?.startRealTimeNotifications() { result in
+////                    switch result {
+////                    case .success:
+////                        print("Real-time notifications started")
+////                        // Receive chat messages
+//////                        self.chatClient?.register(event: ChatEventId.chatMessageReceived, handler: receiveMessage)
+////
+////                    case .failure:
+////                        print("Failed to start real-time notifications")
+//////                        self.message = "Failed to enable chat notifications"
+////                    }
+////                }
+////            } catch {
+////                print("Unable to create ChatClient")
+//////                self.message = "Please enter a valid endpoint and Chat token in source code"
+////                return
+////            }
+////        }
+//    }
 }
 
 struct ControlBarView: View {

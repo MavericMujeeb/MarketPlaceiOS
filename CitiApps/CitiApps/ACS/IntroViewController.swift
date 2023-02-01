@@ -34,6 +34,7 @@ class TeamsCallingViewController: UIViewController{
         let displayName =  users[loggedInUser]?["name"]  ?? ""
         let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting)
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
+        self.callingContext.displayName = displayName
         await self.callingContext.startCallComposite(callConfig)
     }
 }

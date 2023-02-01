@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+
 import Foundation
 import AzureCommunicationCalling
 import AzureCommunicationUICalling
@@ -15,7 +16,7 @@ final class CallingContext {
 
     // MARK: Properties
     private (set) var joinId: String!
-    private (set) var displayName: String!
+    var displayName: String!
     private var tokenFetcher: TokenFetcher
     private var callComposite: CallComposite?
 
@@ -54,7 +55,7 @@ final class CallingContext {
 
     @MainActor
     func startCallComposite(_ joinConfig: JoinCallConfig) async {
-        let callCompositeOptions = CallCompositeOptions()
+        let callCompositeOptions = CallCompositeOptions(name: self.displayName)
         self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
         let joinIdStr = joinConfig.joinId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
