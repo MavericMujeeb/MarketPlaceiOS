@@ -16,6 +16,7 @@ var loginDate : NSDate!
 
 import UIKit
 import FluentUI
+import Flutter
 
 class ViewController : UIViewController {
     
@@ -66,7 +67,10 @@ class ViewController : UIViewController {
         
         loggedInUser = self.username.text
         
-        
+        var userInfo = UserInfoData(name: users[self.username.text!]?["name"], email: users[self.username.text!]?["email"], id: users[self.username.text!]?["userid"])
+        var data = try! JSONEncoder().encode(userInfo)
+        var userStr = String(data: data, encoding: .utf8)
+        flutterMethodChannel(passArgs: userStr);
         if(handleExternalLinks == true){
 //            let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
 //
@@ -146,6 +150,19 @@ class ViewController : UIViewController {
         customizeNavBar()
         customizeTextFields()
         
+    }
+    
+    func flutterMethodChannel (passArgs: String?) {
+        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
+        let controller : FlutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+
+        
+        let acsChannel = FlutterMethodChannel(
+            name: "com.citi.marketplace.host",
+            binaryMessenger: controller.binaryMessenger
+        )
+        
+        acsChannel.invokeMethod("loginUserDetails", arguments: passArgs)
     }
 }
 
