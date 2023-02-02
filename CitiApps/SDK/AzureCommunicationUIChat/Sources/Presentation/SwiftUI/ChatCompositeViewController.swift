@@ -22,6 +22,15 @@ public class ChatCompositeViewController: UIViewController {
             canDismiss: true)
 
         addChild(containerUIHostingController)
+        
+        let closeItem = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(self.onBackBtnPressed(_ :))
+        )
+        self.title = "Chat"
+        self.navigationItem.leftBarButtonItem = closeItem
+
         self.view.addSubview(containerUIHostingController.view)
         containerUIHostingController.view.frame = view.bounds
         containerUIHostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -30,6 +39,10 @@ public class ChatCompositeViewController: UIViewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func onBackBtnPressed (_ sender: UIBarButtonItem){
+        self.dismiss(animated: true, completion: nil)
     }
 
     func makeContainerUIHostingController(viewFactory: CompositeViewFactoryProtocol,
