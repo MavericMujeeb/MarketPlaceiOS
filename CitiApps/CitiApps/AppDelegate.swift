@@ -51,11 +51,11 @@ class AppDelegate: FlutterAppDelegate {
     private func initializeDependencies() {
         appSettings = AppSettings()
         authHandler = AADAuthHandler(appSettings: appSettings)
-        //communicationTokenFetchUrl - keep the communicationTokenFetchUrl
-        tokenService = TokenService(tokenACS:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hMzhlLTc1ZGEtNWFhZC05MjNhMGQwMGUwNzkiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUwOTg5MDMiLCJleHAiOjE2NzUxODUzMDMsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MDk4OTAzfQ.jM2Q_dmzJOByg09Z3UD4SkAcifJoY95KzCoWsN3RuOc4nhcY3mnclg_IXOLC4mgp0pMJl7-MZzIE7OSxn1MVo6eD9Tm5qsbktWduOp_R14GcHAA99UJ3GsdoGOC1BU-HfrCPe3GOXy1s-sQHl-A1zQXrjBIoTY4hJlGQ2kfNNEMG80kJH2y6hlsa6NLM2JV4z1l34XpP_qSGmDkumQNh8ZUmONpFNU4mzyagMj-E8Nwn6HP0MCntZIHW-JUs-Cspxyzmwc5RPh2Qr0YdM3_ZUy2R5zgum-OE-N5hwTE8-8muiiVII7QkDMnH7ddQVLYPxiPT417fok6MDD920PBLbw", communicationTokenFetchUrl: "http://10.189.86.98:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
-//        tokenService = TokenService(communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
-            return self.authHandler.authToken
-        })
+//        //communicationTokenFetchUrl - keep the communicationTokenFetchUrl
+//        tokenService = TokenService(tokenACS:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hMzhlLTc1ZGEtNWFhZC05MjNhMGQwMGUwNzkiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUwOTg5MDMiLCJleHAiOjE2NzUxODUzMDMsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MDk4OTAzfQ.jM2Q_dmzJOByg09Z3UD4SkAcifJoY95KzCoWsN3RuOc4nhcY3mnclg_IXOLC4mgp0pMJl7-MZzIE7OSxn1MVo6eD9Tm5qsbktWduOp_R14GcHAA99UJ3GsdoGOC1BU-HfrCPe3GOXy1s-sQHl-A1zQXrjBIoTY4hJlGQ2kfNNEMG80kJH2y6hlsa6NLM2JV4z1l34XpP_qSGmDkumQNh8ZUmONpFNU4mzyagMj-E8Nwn6HP0MCntZIHW-JUs-Cspxyzmwc5RPh2Qr0YdM3_ZUy2R5zgum-OE-N5hwTE8-8muiiVII7QkDMnH7ddQVLYPxiPT417fok6MDD920PBLbw", communicationTokenFetchUrl: "http://10.189.86.98:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
+////        tokenService = TokenService(communicationTokenFetchUrl: "http://localhost:7071/api/TeamsIntegration", getAuthTokenFunction: { () -> String? in
+//            return self.authHandler.authToken
+//        })
     }
     
     func initializeFlutterEngine() {}

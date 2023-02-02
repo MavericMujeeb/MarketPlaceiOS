@@ -12,6 +12,7 @@ var users = [
 
 var loggedInUser : String!
 var loginDate : NSDate!
+var userid : String!
 
 
 import UIKit
@@ -65,7 +66,9 @@ class ViewController : UIViewController {
             return
         }
         
+        //TODO:Setting this info globally, might change it later.
         loggedInUser = self.username.text
+        userid = users[self.username.text!]?["userid"]
         
         var userInfo = UserInfoData(name: users[self.username.text!]?["name"], email: users[self.username.text!]?["email"], id: users[self.username.text!]?["userid"])
         var data = try! JSONEncoder().encode(userInfo)

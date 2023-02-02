@@ -17,6 +17,7 @@ final class CallingContext {
     // MARK: Properties
     private (set) var joinId: String!
     var displayName: String!
+    var userId : String!
     private var tokenFetcher: TokenFetcher
     private var callComposite: CallComposite?
 
@@ -55,7 +56,7 @@ final class CallingContext {
 
     @MainActor
     func startCallComposite(_ joinConfig: JoinCallConfig) async {
-        let callCompositeOptions = CallCompositeOptions(name: self.displayName)
+        let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId)
         self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
         let joinIdStr = joinConfig.joinId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""

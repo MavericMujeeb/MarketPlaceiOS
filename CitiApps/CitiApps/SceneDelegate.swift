@@ -73,35 +73,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let joinWeburl = getQueryStringParameter(url: meetingLink, param: "JoinWebUrl")
                 let splitJoinUrl = joinWeburl?.components(separatedBy: "&")
                 meetingFinalLink = splitJoinUrl?[0]
+                /*
+                 Uncomment this to show LoginScreen before joinig the teams meeting
+                 */
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+//                vc.handleExternalLinks = true
+//                vc.meetingLink = meetingFinalLink
                 
-//                let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+                //Ignore login and join the meeting
+                let teamsCallingViewController = TeamsCallingViewController()
+                teamsCallingViewController.teamsLink = meetingFinalLink
+//                self.present(teamsCallingViewController, animated: true)
                 
-//                let introVC = IntroViewController();
-//                introVC.authHandler = appDelegate.authHandler
-//                introVC.createCallingContextFunction = { () -> CallingContext in
-//                    return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
-//                }
-//
-//                introVC.teamsMeetingLink = meetingFinalLink
-//
-//                let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
-//                fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
-//                fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
-//                fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
-//
-//                let appearance = UINavigationBarAppearance()
-//                appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
-//                appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
-//                appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
-//
-//                fluentNavVc.navigationBar.standardAppearance = appearance
-//                fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
+                self.window?.rootViewController?.present( UINavigationController.init(rootViewController: teamsCallingViewController), animated: true)
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
-                vc.handleExternalLinks = true
-                vc.meetingLink = meetingFinalLink
-                self.window?.rootViewController = UINavigationController.init(rootViewController: vc)
+                
+//                self.window?.rootViewController = UINavigationController.init(rootViewController: teamsCallingViewController)
             }
 
         }

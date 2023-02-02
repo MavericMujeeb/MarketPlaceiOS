@@ -13,14 +13,14 @@ class TeamsCallingViewController: UIViewController{
     var tokenService: TokenService!
     var teamsLink: String!
     
-    private let busyOverlay = BusyOverlay(frame: .zero)
+//    private let busyOverlay = BusyOverlay(frame: .zero)
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         //Keep the ACS function token here -
-        self.tokenService = TokenService(tokenACS:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1hOTI0LTU0NmMtZjBhNy05MjNhMGQwMGUyNjgiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUxOTI2MTAiLCJleHAiOjE2NzUyNzkwMTAsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MTkyNjEwfQ.aOMHf6QjvmVc5kyM4xOTNbF4QPc4eKQreRNer5n1x76bFvraKd6W1K6RDzWFumsQ-Ma2bmk8A4C0tbICXbjvwbTp69I4VEKZFGtpSBMAxFOn41l6E5KC2VKYtJ06qEFiK6ugzOE__sHYTaNseXyXQejqnv3BHM-eSFeBDQtbAfGkp-ltdxmICoeeloaAa-aYY4VZqCc0qoC2wXGDjLPRH8AMB0xK1qtJUEVvPGI2_9bEY8ZJAOOJZglnlNMmyOwTX6DGW-JzEUocUBuZEN6submY4r77Id7oKeB9z-vr4M_Am8NY9c-m_gitXXeUi1pf_jmP_4qm1kdj7VY8gDRN2g", communicationTokenFetchUrl: "http://10.189.86.98:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
+        self.tokenService = TokenService(tokenACS:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1iMDM2LTYyOTItZTNjNy01OTNhMGQwMDllMmQiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUzMTEyMzQiLCJleHAiOjE2NzUzOTc2MzQsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MzExMjM0fQ.lqA8t3oBpyiPZtVwPVCiZCAtUlyiseFAvmLOyVhmui8BLw8ahuj2vF9t5EpOxF8OJGyC3l4Lrgl4sZtylFWU-UxxjBiP_abBTLBkIgUdXCHwdsqt-25RYStQikqxlNgXcyPuQxnb1gnEvw69wEhNJ7iPOPWdJSTmqQc-aW_xaLeWa1w6826Nf2NfKDrUgf66JYcHX8o3qVqQfDiRJP-yeZJur2-BRfHQvb-hgrXEQ9ii4ANpwy_EMqRY265OY4lChKXIEj5LHVbPtBwUt3tQzyVGwXdjN6eoIMpR5CORTbEP1kpEGTWuw2KlRdLyntTms9RUW8IW76s00G7ivUuX3g", communicationTokenFetchUrl: "http://10.189.86.98:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
             return appDelegate.authHandler.authToken
         })
         Task{
@@ -35,6 +35,7 @@ class TeamsCallingViewController: UIViewController{
         let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting)
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
         self.callingContext.displayName = displayName
+        self.callingContext.userId = userid
         await self.callingContext.startCallComposite(callConfig)
     }
 }
