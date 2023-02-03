@@ -25,12 +25,13 @@ class ChatViewController : UIViewController{
         print(loggedInUserId)
         let communicationIdentifier = CommunicationUserIdentifier(loggedInUserId)
         guard let communicationTokenCredential = try? CommunicationTokenCredential(
-            token:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1iMDM2LTYyOTItZTNjNy01OTNhMGQwMDllMmQiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUzMTEyMzQiLCJleHAiOjE2NzUzOTc2MzQsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MzExMjM0fQ.lqA8t3oBpyiPZtVwPVCiZCAtUlyiseFAvmLOyVhmui8BLw8ahuj2vF9t5EpOxF8OJGyC3l4Lrgl4sZtylFWU-UxxjBiP_abBTLBkIgUdXCHwdsqt-25RYStQikqxlNgXcyPuQxnb1gnEvw69wEhNJ7iPOPWdJSTmqQc-aW_xaLeWa1w6826Nf2NfKDrUgf66JYcHX8o3qVqQfDiRJP-yeZJur2-BRfHQvb-hgrXEQ9ii4ANpwy_EMqRY265OY4lChKXIEj5LHVbPtBwUt3tQzyVGwXdjN6eoIMpR5CORTbEP1kpEGTWuw2KlRdLyntTms9RUW8IW76s00G7ivUuX3g") else {
+            token:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1iM2VkLTg1ZmEtMjhkZi00NDQ4MjIwMDA0NDQiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUzNzM1NjgiLCJleHAiOjE2NzU0NTk5NjgsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MzczNTY4fQ.QkHs5ktDyPr5pmizNQGqVbOdw8AufxUhnVmnuSG78mONStUePEtfOEbLLcokNfqFLAn99O9wGJ4dHVK4sIVZsp-6tUAzSsbzz6DwGY20fREadpeg87q0UOI5gZlzyc2ydaU2iW05TLpxBdw5iwP3xVGrpc2Z138pdwE_o6XM7zEprzEFVQkGw31tT3x-adSYONxcM2rxBukIgDSQBR3BjKQl1uchUofgqNJxroh7KZuM4VZASYgP_EHZJvLkPo9mPUnH9FFDxOyQHZ0bCjKsekJZ-L2evKWgLEfYQj3rVRNwBpYPIKqxok57LV81v_mPBD_gIfoE8mQrBEP-T-BAug") else {
             return
         }
 
         self.chatAdapter = ChatAdapter(
-            endpoint: "https://acschatcallingdemo.communication.azure.com/", identifier: communicationIdentifier,
+            endpoint: "https://acschatcallingdemo.communication.azure.com/",
+            identifier: communicationIdentifier,
             credential: communicationTokenCredential,
             threadId: threadId,
             displayName: loggedInUserName)
@@ -107,7 +108,7 @@ struct ControlBarView: View {
             let thread = meetingLink[range.upperBound...]
             if let endRange = thread.range(of: "/")?.lowerBound {
                 var threadId = String(thread.prefix(upTo: endRange))
-                threadId = threadId.replacingOccurrences(of: "%3a", with: ":").replacingOccurrences(of: "%40", with: "@")
+                threadId = threadId.replacingOccurrences(of: "%3a", with: ":").replacingOccurrences(of: "%3A", with: ":").replacingOccurrences(of: "%40", with: "@")
                 return threadId
             }
         }
