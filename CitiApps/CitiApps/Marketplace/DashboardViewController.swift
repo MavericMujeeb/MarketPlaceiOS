@@ -61,9 +61,7 @@ class DashboardViewController : UIViewController {
         let logoImageView = UIImageView.init()
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.contentMode =  UIView.ContentMode.scaleAspectFit
-    
-//        logoImageView.image = UIImage.init(named: "citiLogo");
-        
+            
         let logoBarButtonItem = UIBarButtonItem.init(customView: logoImageView);
         
         let width = self.view.frame.size.width * 0.3;
@@ -79,56 +77,7 @@ class DashboardViewController : UIViewController {
         navCon.navigationBar.topItem?.rightBarButtonItem = trailingButton;
     }
     
-    func flutterMethodChannel () {
-        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
-        let controller : FlutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
-
-        
-        let acsChannel = FlutterMethodChannel(
-            name: "com.citi.marketplace.host",
-            binaryMessenger: controller.binaryMessenger
-        )
-        
-        acsChannel.setMethodCallHandler({
-          [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
-          guard call.method == "getBatteryLevel" else {
-            result(FlutterMethodNotImplemented)
-            return
-          }
-          self?.joinTeamsMeeting(result: result)
-        })
-    }
-    
-    private func joinTeamsMeeting(result: FlutterResult) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let introVC = IntroViewController();
-        introVC.authHandler = appDelegate.authHandler
-        introVC.createCallingContextFunction = { () -> CallingContext in
-            return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
-        }
-        
-        let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
-        fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
-        fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
-        fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
-        appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
-        appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
-
-        fluentNavVc.navigationBar.standardAppearance = appearance
-        fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
-        
-        self.navigationController?.pushViewController(fluentNavVc, animated: true)
-
-    }
-    
-    
     func createTabs (){
-        
-    
         tabController.delegate = self;
         tabController.tabBar.unselectedItemTintColor = .black
         
@@ -150,10 +99,7 @@ class DashboardViewController : UIViewController {
         serviceViewController.title = "Services"
         
         //Loading Market place tab from Flutter Module
-        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
-//        flutterEngine.viewController = nil
-//        let flutterViewController = (UIApplication.shared.delegate as! AppDelegate).controller
-        
+        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine        
         let flutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
 
         flutterViewController.title = "Contact"
@@ -162,40 +108,13 @@ class DashboardViewController : UIViewController {
         let profileViewController = ProfileViewController(nibName: nil, bundle: nil)
         profileViewController.title = "Profile"
         
-//        let appointmentViewController = ProfileViewController(nibName: nil, bundle: nil)
-//        appointmentViewController.title = "Appointments"
-        
-        //Loading Market place tab from Flutter Module
-//        let contactCenterFlutterEngine = FlutterEngine(name: "contact_center_flutter_engine")
-//        flutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_contact_center")
-        
-//        let contactCenterViewController = FlutterViewController(engine: contactCenterFlutterEngine, nibName: nil, bundle: nil)
-//        contactCenterViewController.title = "Appointments"
-//        contactCenterViewController.tabBarController?.hidesBottomBarWhenPushed = true
-        
-//<<<<<<< HEAD
-//        tabController.viewControllers = [homeViewController, browseViewController, serviceViewController, flutterViewController];
-//=======
         tabController.viewControllers = [dashViewController, browseViewController, serviceViewController, flutterViewController];
-//>>>>>>> main
         
         tabController.tabBar.items?[0].image =  UIImage.init(named: "accounts");
         tabController.tabBar.items?[1].image =  UIImage.init(named: "payments");
         
         tabController.tabBar.items?[2].image =  UIImage.init(named: "services");
         tabController.tabBar.items?[3].image =  UIImage.init(named: "chat");
-        //tabController.tabBar.items?[4].image =  UIImage.init(systemName: "calendar");
-
-        //Disable tabs, which dont have any content.
-//        tabController.tabBar.items?[1].isEnabled = true;
-//        tabController.tabBar.items?[2].isEnabled = true;
-//        tabController.tabBar.items?[1].isEnabled = true;
-//        tabController.tabBar.items?[2].isEnabled = false;
-//        tabController.tabBar.items?[4].isEnabled = false;
-        
-//        UITabBar.appearance().unselectedItemTintColor = UIColor.black
-
-        
         tabController.tabBar.backgroundColor = .white;
         tabController.tabBar.tintColor = UIColor.init(named: "theme-blue");
         

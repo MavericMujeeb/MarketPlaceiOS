@@ -76,13 +76,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let joinWeburl = getQueryStringParameter(url: meetingLink, param: "JoinWebUrl")
                 let splitJoinUrl = joinWeburl?.components(separatedBy: "&")
                 meetingFinalLink = splitJoinUrl?[0]
-
-                let teamsCallingViewController = TeamsCallingViewController()
-                teamsCallingViewController.teamsLink = meetingFinalLink
-                teamsCallingViewController.startCall()
                 
-//                self.window?.rootViewController?.present( UINavigationController.init(rootViewController: teamsCallingViewController), animated: true)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+                vc.handleExternalLinks = true
+                vc.meetingLink = meetingFinalLink
                 
+                self.window?.rootViewController = vc
+                self.window?.makeKeyAndVisible()
             }
 
         }

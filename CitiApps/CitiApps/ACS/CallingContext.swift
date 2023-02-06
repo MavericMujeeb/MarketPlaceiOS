@@ -22,6 +22,7 @@ final class CallingContext {
     private var callComposite: CallComposite?
 
     var callType: JoinCallType = .groupCall
+    var callChatToken: String!
 
     // MARK: Initialization
 
@@ -44,6 +45,7 @@ final class CallingContext {
     // MARK: Public API
     func getTokenCredential() async throws -> CommunicationTokenCredential {
             let token = await fetchInitialToken()
+            callChatToken = token //<---- set the call chat token
             let tokenCredentialOptions = CommunicationTokenRefreshOptions(initialToken: token, refreshProactively: true, tokenRefresher: self.tokenFetcher)
             do {
                 let tokenCredential = try CommunicationTokenCredential(withOptions: tokenCredentialOptions)
@@ -56,15 +58,17 @@ final class CallingContext {
 
     @MainActor
     func startCallComposite(_ joinConfig: JoinCallConfig) async {
-        let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId)
-        self.callComposite = CallComposite(withOptions: callCompositeOptions)
-
+        
         let joinIdStr = joinConfig.joinId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let uuid = UUID(uuidString: joinIdStr) ?? UUID()
         let displayName = joinConfig.displayName
 
         do {
             let communicationTokenCredential = try await getTokenCredential()
+            
+            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken)
+            self.callComposite = CallComposite(withOptions: callCompositeOptions)
+
             switch joinConfig.callType {
             case .groupCall:
                 self.callComposite?.launch(

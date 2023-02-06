@@ -36,13 +36,6 @@ class ViewController : UIViewController {
     
     
     @IBAction func onLoginAction(_ sender: Any) {
-        
-        print(users)
-        
-//        let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
-//        self.navigationController?.pushViewController(dashViewController, animated: false)
-//        return
-        //Dont navigate to next screen if username or password field is empty
         if(self.username.text == "" || self.password.text == "") {
             return
         }
@@ -74,6 +67,7 @@ class ViewController : UIViewController {
         var data = try! JSONEncoder().encode(userInfo)
         var userStr = String(data: data, encoding: .utf8)
         flutterMethodChannel(passArgs: userStr);
+        
         if(handleExternalLinks == true){
             let teamsCallingViewController = TeamsCallingViewController()
             teamsCallingViewController.teamsLink = self.meetingLink
@@ -91,6 +85,11 @@ class ViewController : UIViewController {
         password.resignFirstResponder()
         return true
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     
     func customizeNavBar(){
         let logoImageView = UIImageView.init()
