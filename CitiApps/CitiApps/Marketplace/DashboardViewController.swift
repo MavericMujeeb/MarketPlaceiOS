@@ -10,6 +10,22 @@ import UIKit
 import Flutter
 import FluentUI
 
+
+class PortraitOnlyNavController: UINavigationController {
+
+    override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    override var shouldAutorotate: Bool { false }
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation { .portrait }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
+}
+
 class DashboardViewController : UIViewController {
     
     lazy var tabController = UITabBarController()
@@ -84,7 +100,6 @@ class DashboardViewController : UIViewController {
     }
     
     private func joinTeamsMeeting(result: FlutterResult) {
-        print("joinTeamsMeeting")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let introVC = IntroViewController();

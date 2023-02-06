@@ -14,13 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+        /*
+         * Flutter Engine to listen to join call method call from Flutter engine and trigger the native view to perform call/chat actions
+         */
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
-        
-
         let acsChannel = FlutterMethodChannel(
             name: "com.citi.marketplace.host",
             binaryMessenger: appDelegate.controller.binaryMessenger
@@ -40,11 +39,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
         let mettingLink = args.value(forKey: "meeting_id") as! String        
-        let rootVC = self.window?.rootViewController
+//        let rootVC = self.window?.rootViewController
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
+        teamsCallingViewController.startCall()
         
-        rootVC?.present(teamsCallingViewController, animated: true)
+//        rootVC?.present(teamsCallingViewController, animated: true)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -57,7 +57,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        
+        /*
+         * Handled deeplink url
+         * Parse the meeting url and obtain the actual teams url and pass to teamview controller to perform next actions
+         */
         guard let webPageUrl = userActivity.webpageURL?.absoluteString else { return }
         
         if let urlComponent = URLComponents(string: webPageUrl) {
@@ -73,23 +76,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let joinWeburl = getQueryStringParameter(url: meetingLink, param: "JoinWebUrl")
                 let splitJoinUrl = joinWeburl?.components(separatedBy: "&")
                 meetingFinalLink = splitJoinUrl?[0]
-                /*
-                 Uncomment this to show LoginScreen before joinig the teams meeting
-                 */
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
-//                vc.handleExternalLinks = true
-//                vc.meetingLink = meetingFinalLink
-                
-                //Ignore login and join the meeting
+
                 let teamsCallingViewController = TeamsCallingViewController()
                 teamsCallingViewController.teamsLink = meetingFinalLink
-//                self.present(teamsCallingViewController, animated: true)
+                teamsCallingViewController.startCall()
                 
-                self.window?.rootViewController?.present( UINavigationController.init(rootViewController: teamsCallingViewController), animated: true)
+//                self.window?.rootViewController?.present( UINavigationController.init(rootViewController: teamsCallingViewController), animated: true)
                 
-                
-//                self.window?.rootViewController = UINavigationController.init(rootViewController: teamsCallingViewController)
             }
 
         }

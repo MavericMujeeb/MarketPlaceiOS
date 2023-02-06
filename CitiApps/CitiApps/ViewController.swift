@@ -75,32 +75,9 @@ class ViewController : UIViewController {
         var userStr = String(data: data, encoding: .utf8)
         flutterMethodChannel(passArgs: userStr);
         if(handleExternalLinks == true){
-//            let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-//
-//            let introVC = IntroViewController();
-//            introVC.authHandler = appDelegate.authHandler
-//            introVC.createCallingContextFunction = { () -> CallingContext in
-//            return CallingContext(tokenFetcher: appDelegate.tokenService.getCommunicationToken)
-//            }
-//
-//            introVC.teamsMeetingLink = self.meetingLink
-//
-//            let fluentNavVc = PortraitOnlyNavController(rootViewController: introVC)
-//            fluentNavVc.view.backgroundColor = FluentUI.Colors.surfaceSecondary
-//            fluentNavVc.view.tintColor = FluentUI.Colors.iconPrimary
-//            fluentNavVc.navigationBar.topItem?.backButtonDisplayMode = .minimal
-//
-//            let appearance = UINavigationBarAppearance()
-//            appearance.backgroundColor = FluentUI.Colors.surfaceSecondary
-//            appearance.titleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
-//            appearance.largeTitleTextAttributes = [.foregroundColor: FluentUI.Colors.textPrimary]
-//
-//            fluentNavVc.navigationBar.standardAppearance = appearance
-//            fluentNavVc.navigationBar.scrollEdgeAppearance = appearance
-            
             let teamsCallingViewController = TeamsCallingViewController()
             teamsCallingViewController.teamsLink = self.meetingLink
-            self.present(teamsCallingViewController, animated: true)
+            teamsCallingViewController.startCall()
         }
         else{
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
@@ -119,9 +96,7 @@ class ViewController : UIViewController {
         let logoImageView = UIImageView.init()
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.contentMode =  UIView.ContentMode.scaleAspectFit
-    
-//        logoImageView.image = UIImage.init(named: "citiLogo");
-        
+            
         let logoBarButtonItem = UIBarButtonItem.init(customView: logoImageView);
         
         let width = self.view.frame.size.width * 0.3;

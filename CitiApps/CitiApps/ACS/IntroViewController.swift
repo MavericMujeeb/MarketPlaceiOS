@@ -7,20 +7,19 @@ import FluentUI
 import UIKit
 
 
-class TeamsCallingViewController: UIViewController{
+class TeamsCallingViewController {
     
     var callingContext: CallingContext!
     var tokenService: TokenService!
     var teamsLink: String!
     
-//    private let busyOverlay = BusyOverlay(frame: .zero)
+    private let busyOverlay = BusyOverlay(frame: .zero)
 
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func startCall() {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         //Keep the ACS function token here -
-        self.tokenService = TokenService(tokenACS:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1iMDM2LTYyOTItZTNjNy01OTNhMGQwMDllMmQiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzUzMTEyMzQiLCJleHAiOjE2NzUzOTc2MzQsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiI2MWZmOGI4OS02NmY5LTRjMWEtODdhZC0yZTgyNjA3NTM3ZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc1MzExMjM0fQ.lqA8t3oBpyiPZtVwPVCiZCAtUlyiseFAvmLOyVhmui8BLw8ahuj2vF9t5EpOxF8OJGyC3l4Lrgl4sZtylFWU-UxxjBiP_abBTLBkIgUdXCHwdsqt-25RYStQikqxlNgXcyPuQxnb1gnEvw69wEhNJ7iPOPWdJSTmqQc-aW_xaLeWa1w6826Nf2NfKDrUgf66JYcHX8o3qVqQfDiRJP-yeZJur2-BRfHQvb-hgrXEQ9ii4ANpwy_EMqRY265OY4lChKXIEj5LHVbPtBwUt3tQzyVGwXdjN6eoIMpR5CORTbEP1kpEGTWuw2KlRdLyntTms9RUW8IW76s00G7ivUuX3g", communicationTokenFetchUrl: "http://10.189.86.98:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
+        self.tokenService = TokenService(tokenACS:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1jNWYwLTExYTQtM2RmZS05YzNhMGQwMDE3ZjciLCJzY3AiOjE3OTIsImNzaSI6IjE2NzU2NzU3MjUiLCJleHAiOjE2NzU3NjIxMjUsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAiLCJyZXNvdXJjZUlkIjoiNjFmZjhiODktNjZmOS00YzFhLTg3YWQtMmU4MjYwNzUzN2Q0IiwicmVzb3VyY2VMb2NhdGlvbiI6InVuaXRlZHN0YXRlcyIsImlhdCI6MTY3NTY3NTcyNX0.fNIGK__erJayQ9oks5DjlvItWeGbTYm7IXbWwMJxwumoTn1ypQfpjxbojCAylvnhlbuKdwWnSIUTllBk0hDRp7BRT6dUqkwIrPdy27lH85OWctBNOInjbpqdvLI-YCjKrKgQ9o4qVntIx-Qw_0GoaA5bXKKB7fJujkr4-Eux4QB9WKZMsPc-LJVGqpSr-1F4qt8_kG-1tibnZTDMYntc2FJncM0rIEjgsE2GtAx4d0BaaNAnF7qenOTKlLkLfj0wW9kYRUMF02OBpZ5tv9bFr4mEnq4SRNTkkpPIlsC5sOHmtCtny9WbLaPYcnZaFjTnckQcF8UWR2k3p5QYEDtLsA", communicationTokenFetchUrl: "http://10.189.86.98:7071/api/HttpTrigger1", getAuthTokenFunction: { () -> String? in
             return appDelegate.authHandler.authToken
         })
         Task{
@@ -39,6 +38,8 @@ class TeamsCallingViewController: UIViewController{
         await self.callingContext.startCallComposite(callConfig)
     }
 }
+
+
 let learnMoreURL = "https://aka.ms/acs"
 
 class IntroViewController: UIViewController {
@@ -64,17 +65,6 @@ class IntroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = FluentUI.Colors.surfaceSecondary
-//        createControls()
-//        layoutView()
-
-//        handleAuthState()
-        
-//        let joinCallVc = JoinCallViewController()
-//        joinCallVc.callingContext = createCallingContextFunction()
-//        joinCallVc.displayName = displayName()
-//        joinCallVc.teamsMeetingLink = teamsMeetingLink
-//
-//        navigationController?.pushViewController(joinCallVc, animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
