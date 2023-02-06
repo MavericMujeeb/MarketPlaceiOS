@@ -25,7 +25,7 @@ class ChatViewController : UIViewController{
         print(loggedInUserId)
         let communicationIdentifier = CommunicationUserIdentifier(loggedInUserId)
         guard let communicationTokenCredential = try? CommunicationTokenCredential(
-            token:"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjYxZmY4Yjg5LTY2ZjktNGMxYS04N2FkLTJlODI2MDc1MzdkNF8wMDAwMDAxNi1jNWYwLTExYTQtM2RmZS05YzNhMGQwMDE3ZjciLCJzY3AiOjE3OTIsImNzaSI6IjE2NzU2NzU3MjUiLCJleHAiOjE2NzU3NjIxMjUsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAiLCJyZXNvdXJjZUlkIjoiNjFmZjhiODktNjZmOS00YzFhLTg3YWQtMmU4MjYwNzUzN2Q0IiwicmVzb3VyY2VMb2NhdGlvbiI6InVuaXRlZHN0YXRlcyIsImlhdCI6MTY3NTY3NTcyNX0.fNIGK__erJayQ9oks5DjlvItWeGbTYm7IXbWwMJxwumoTn1ypQfpjxbojCAylvnhlbuKdwWnSIUTllBk0hDRp7BRT6dUqkwIrPdy27lH85OWctBNOInjbpqdvLI-YCjKrKgQ9o4qVntIx-Qw_0GoaA5bXKKB7fJujkr4-Eux4QB9WKZMsPc-LJVGqpSr-1F4qt8_kG-1tibnZTDMYntc2FJncM0rIEjgsE2GtAx4d0BaaNAnF7qenOTKlLkLfj0wW9kYRUMF02OBpZ5tv9bFr4mEnq4SRNTkkpPIlsC5sOHmtCtny9WbLaPYcnZaFjTnckQcF8UWR2k3p5QYEDtLsA") else {
+            token:communincationTokenString) else {
             return
         }
 
