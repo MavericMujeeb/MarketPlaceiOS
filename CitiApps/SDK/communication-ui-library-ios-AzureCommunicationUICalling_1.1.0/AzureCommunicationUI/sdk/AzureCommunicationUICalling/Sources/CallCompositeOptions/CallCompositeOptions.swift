@@ -8,6 +8,7 @@ import UIKit
 
 public var loggedInUserName=""
 public var loggedInUserId=""
+public var communincationTokenString:String!
 
 /// User-configurable options for creating CallComposite.
 public struct CallCompositeOptions {
@@ -17,17 +18,20 @@ public struct CallCompositeOptions {
     private(set) var userId: String?
 
 
+
     /// Creates an instance of CallCompositeOptions with related options.
     /// - Parameter theme: ThemeOptions for changing color pattern.
     ///  Default value is `nil`.
     /// - Parameter localization: LocalizationOptions for specifying
     ///  localization customization. Default value is `nil`.
     public init(theme: ThemeOptions? = nil,
-                localization: LocalizationOptions? = nil, name:String!, userId:String!) {
+                localization: LocalizationOptions? = nil, name:String!, userId:String!, token:String!) {
         self.themeOptions = theme
         self.localizationOptions = localization
         self.displayName = name
         loggedInUserName = name
         loggedInUserId = userId
+        //setting the token globally to use it for Chat
+        communincationTokenString = token
     }
 }
