@@ -6,7 +6,7 @@ import UIKit
 extension FluentUIStyle {
 
 	// MARK: - MSFActivityIndicatorTokens
-	open var MSFActivityIndicatorTokens: MSFActivityIndicatorTokensAppearanceProxy {
+    public var MSFActivityIndicatorTokens: MSFActivityIndicatorTokensAppearanceProxy {
 		return MSFActivityIndicatorTokensAppearanceProxy(proxy: { return self })
 	}
 	open class MSFActivityIndicatorTokensAppearanceProxy {

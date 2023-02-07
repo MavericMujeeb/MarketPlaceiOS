@@ -69,16 +69,20 @@ class ViewController : UIViewController {
         flutterMethodChannel(passArgs: userStr);
         
         if(handleExternalLinks == true){
-            let teamsCallingViewController = TeamsCallingViewController()
-            teamsCallingViewController.teamsLink = self.meetingLink
-            teamsCallingViewController.startCall()
+//            let teamsCallingViewController = TeamsCallingViewController()
+//            teamsCallingViewController.teamsLink = self.meetingLink
+//            teamsCallingViewController.startCall()
+            
+            let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
+            dashViewController.handleExternalLinks = true
+            dashViewController.meetingLink = self.meetingLink
+            self.navigationController?.pushViewController(dashViewController, animated: false)
         }
         else{
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
     }
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         username.resignFirstResponder()
@@ -88,6 +92,10 @@ class ViewController : UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if(handleExternalLinks == true) {
+            handleExternalLinks = false
+            meetingLink=""
+        }
     }
     
     
@@ -107,9 +115,9 @@ class ViewController : UIViewController {
   
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = logoBarButtonItem;
         
-        let trailingButton = UIBarButtonItem.init(customView: UIImageView(image: UIImage(systemName: "line.horizontal.3")))
-        
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = trailingButton;
+//        let trailingButton = UIBarButtonItem.init(customView: UIImageView(image: UIImage(systemName: "line.horizontal.3")))
+//
+//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = trailingButton;
     }
     
     func customizeTextFields(){

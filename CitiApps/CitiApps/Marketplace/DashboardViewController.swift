@@ -29,7 +29,9 @@ class PortraitOnlyNavController: UINavigationController {
 class DashboardViewController : UIViewController {
     
     lazy var tabController = UITabBarController()
-
+    
+    var handleExternalLinks: Bool!
+    var meetingLink : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,20 @@ class DashboardViewController : UIViewController {
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        if(handleExternalLinks == true){
+            let teamsCallingViewController = TeamsCallingViewController()
+            teamsCallingViewController.teamsLink = self.meetingLink
+            teamsCallingViewController.startCall()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if(handleExternalLinks == true) {
+            handleExternalLinks = false
+            meetingLink=""
+        }
     }
 
     @objc func appMovedToForeground() {        
@@ -50,10 +66,7 @@ class DashboardViewController : UIViewController {
     func buildView(){
         createTabs()
         let navController = UINavigationController.init(rootViewController: tabController)
-        navController.navigationBar.backgroundColor = .black
-        
-        customizeNavBar(navCon: navController)
-        
+        navController.navigationBar.isHidden = true
         self.view.addSubview(navController.view)
     }
     

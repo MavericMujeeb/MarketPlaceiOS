@@ -25,8 +25,7 @@ class AppDelegate: FlutterAppDelegate {
         initializeDependencies()
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
-
-
+    
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if let scheme = url.scheme,
             scheme.localizedCaseInsensitiveCompare("com.citi.acsdemo") == .orderedSame,
@@ -53,15 +52,6 @@ class AppDelegate: FlutterAppDelegate {
 
         UINavigationBar.appearance().tintColor = .white
         UITabBar.appearance().tintColor = .white
-    }
-        
-    override func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if(userActivity.activityType == NSUserActivityTypeBrowsingWeb){
-            let url = userActivity.webpageURL
-            let urlString = url?.absoluteString
-        }
-        
-        return true
     }
 }
 

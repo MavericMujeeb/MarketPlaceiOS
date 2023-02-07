@@ -717,7 +717,7 @@ public final class Colors: NSObject {
     /// text color used for titles
     @objc public static var textPrimary = UIColor(light: gray900, lightHighContrast: .black, dark: gray100, darkHighContrast: .white)
     /// text color used for subtitles
-    @objc public static let textSecondary = UIColor(light: gray500, lightHighContrast: gray700, dark: gray400, darkHighContrast: gray200)
+    @objc public static var textSecondary = UIColor(light: gray500, lightHighContrast: gray700, dark: gray400, darkHighContrast: gray200)
     /// text color used in disabled state
     @objc public static let textDisabled = UIColor(light: gray300, lightHighContrast: gray500, dark: gray600, darkHighContrast: gray400)
     /// text appears on top of the surface that uses `Colors.primary` as background color
