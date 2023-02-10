@@ -10,6 +10,7 @@
 		8D0A5FFA298A5A2A002EBBC4 /* AzureCommunicationUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0A5FF7298A5A1C002EBBC4 /* AzureCommunicationUIChat.framework */; };
 		8D0A5FFB298A5A2A002EBBC4 /* AzureCommunicationUIChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0A5FF7298A5A1C002EBBC4 /* AzureCommunicationUIChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D0A6077298BE4A0002EBBC4 /* UserInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A6076298BE498002EBBC4 /* UserInfoData.swift */; };
+		8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FD7E0299680D10097B59D /* CircleLoader.swift */; };
 		8D314DA329923B7400AF76F9 /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D314D9D29923B7400AF76F9 /* FlutterPluginRegistrant.xcframework */; };
 		8D314DA8299240AA00AF76F9 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D314D9E29923B7400AF76F9 /* App.xcframework */; };
 		8D314DA9299240AA00AF76F9 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D314D9E29923B7400AF76F9 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -179,6 +180,7 @@
 /* Begin PBXFileReference section */
 		8D0A5FF1298A5A1C002EBBC4 /* AzureCommunicationUIChat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCommunicationUIChat.xcodeproj; path = SDK/AzureCommunicationUIChat/AzureCommunicationUIChat.xcodeproj; sourceTree = "<group>"; };
 		8D0A6076298BE498002EBBC4 /* UserInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoData.swift; sourceTree = "<group>"; };
+		8D2FD7E0299680D10097B59D /* CircleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLoader.swift; sourceTree = "<group>"; };
 		8D314D9C29923B7400AF76F9 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Debug/Flutter.xcframework; sourceTree = "<group>"; };
 		8D314D9D29923B7400AF76F9 /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = Flutter/Debug/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
 		8D314D9E29923B7400AF76F9 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/Debug/App.xcframework; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
+				8D2FD7E0299680D10097B59D /* CircleLoader.swift */,
 				8D0A6076298BE498002EBBC4 /* UserInfoData.swift */,
 				8DE0D53029804FA200201043 /* CitiApps.entitlements */,
 				8DE0D518297FB44E00201043 /* AppSettings.swift */,
@@ -626,6 +629,7 @@
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,
 				8DFBD2D029756DD6006B0700 /* SceneDelegate89.swift in Sources */,
 				8DFBD32C297578B9006B0700 /* JoinCallConfig.swift in Sources */,
+				8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */,
 				8DFBD330297578C8006B0700 /* LinkMetadataManager.swift in Sources */,
 				8DA82E9C2978044B00A79D3B /* DashboardViewController.swift in Sources */,
 				8DFBD34029757918006B0700 /* FluentUiExtensions.swift in Sources */,
