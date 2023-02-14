@@ -15,6 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
+        self.window?.overrideUserInterfaceStyle = .light
+        
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
         let acsChannel = FlutterMethodChannel(
