@@ -1518,6 +1518,7 @@
 			baseConfigurationReference = 53FC90F925673627008A06FD /* FluentUILib.xcconfig */;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
 		};
