@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
         let acsChannel = FlutterMethodChannel(
-            name: "com.citi.marketplace.host",
+            name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
         )
         

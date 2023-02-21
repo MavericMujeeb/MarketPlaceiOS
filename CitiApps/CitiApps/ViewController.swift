@@ -143,7 +143,7 @@ class ViewController : UIViewController {
 
         
         let acsChannel = FlutterMethodChannel(
-            name: "com.citi.marketplace.host",
+            name: CitiConstants.method_channel_name,
             binaryMessenger: controller.binaryMessenger
         )
         
