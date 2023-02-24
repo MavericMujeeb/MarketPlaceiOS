@@ -5,6 +5,52 @@
 
 import SwiftUI
 
+
+struct DocumentPicker : UIViewControllerRepresentable {
+
+    @Binding var added: Bool
+    
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let controller = UIDocumentPickerViewController(forOpeningContentTypes: [.text, .pdf, .png, .jpeg])
+        controller.allowsMultipleSelection = false
+        controller.shouldShowFileExtensions = true
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        
+    }
+    
+    func makeCoordinator() -> () {
+        DocumentPickerCoordinator(added: $added)
+    }
+}
+
+class FilePickerViewController : UIViewController{
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+}
+
+class DocumentPickerCoordinator: NSObject, UIDocumentPickerDelegate{
+    @Binding var added: Bool
+    
+    init(added: Binding<Bool>) {
+        self._added = added
+    }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let url = urls.first else {
+            return
+        }
+        print(url)
+        added = true
+    }
+    
+}
+
 struct BottomBarView: View {
     private enum Constants {
         static let minimumHeight: CGFloat = 50
@@ -22,6 +68,7 @@ struct BottomBarView: View {
                 localParticipantRemovedBanner
             } else {
                 messageTextField
+                attachmentButton
                 sendButton
             }
         }
@@ -36,6 +83,23 @@ struct BottomBarView: View {
     var sendButton: some View {
         IconButton(viewModel: viewModel.sendButtonViewModel)
             .flipsForRightToLeftLayoutDirection(true)
+    }
+    
+    @State var shouldPresentChat = false
+
+        
+    var attachmentButton: some View {
+        Button(action: {
+            shouldPresentChat.toggle()
+        }) {
+            Icon(name: .attachmentIcon, size: 24)
+                .contentShape(Rectangle())
+        }.fullScreenCover(isPresented: $shouldPresentChat, content: {
+            DocumentPicker(added: $shouldPresentChat)
+        })
+        
+//        IconButton(viewModel: viewModel.attachmentButtonViewModel)
+//            .flipsForRightToLeftLayoutDirection(true)
     }
 
     var localParticipantRemovedBanner: some View {

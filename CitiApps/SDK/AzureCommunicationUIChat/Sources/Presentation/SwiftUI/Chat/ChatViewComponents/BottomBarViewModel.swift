@@ -4,12 +4,20 @@
 //
 
 import Foundation
+import SwiftUI
 
 class BottomBarViewModel: ObservableObject {
+    
+    @State var showFilePicker = false
+    @State var added = false
+    
     private let logger: Logger
     private let dispatch: ActionDispatch
 
     var sendButtonViewModel: IconButtonViewModel!
+    var attachmentButtonViewModel: IconButtonViewModel!
+    
+
 
     // MARK: Typing Indicators
     private var lastTypingIndicatorSendTimestamp = Date()
@@ -42,8 +50,22 @@ class BottomBarViewModel: ObservableObject {
                 }
                 self.sendMessage()
         }
+        
+        attachmentButtonViewModel = compositeViewModelFactory.makeIconButtonViewModel(
+            iconName: .attachmentIcon,
+            isDisabled: false,
+            action: {
+                self.uploadAttachment()
+            }
+        )
 //        sendButtonViewModel.update(
 //            accessibilityLabel: self.localizationProvider.getLocalizedString(.sendAccessibilityLabel))
+    }
+    
+    func uploadAttachment() {
+        print("uploadAttachment")
+        self.showFilePicker = true
+        self.showFilePicker.toggle()
     }
 
     func sendMessage() {

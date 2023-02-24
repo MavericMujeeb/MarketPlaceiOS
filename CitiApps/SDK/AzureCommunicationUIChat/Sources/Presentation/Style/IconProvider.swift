@@ -17,6 +17,7 @@ enum CompositeIcon: String {
     case messageSendFailed = "ic_fluent_error_circle_12_regular"
     case systemJoin = "ic_fluent_person_add_24_regular"
     case systemLeave = "ic_fluent_person_remove_24_regular"
+    case attachmentIcon = "attachment_icon"
 }
 
 struct IconProvider {
