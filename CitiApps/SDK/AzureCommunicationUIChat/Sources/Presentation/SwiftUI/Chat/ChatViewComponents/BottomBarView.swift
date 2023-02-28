@@ -67,7 +67,7 @@ struct BottomBarView: View {
                 localParticipantRemovedBanner
             } else {
                 messageTextField
-                attachmentButton
+//                attachmentButton
                 sendButton
             }
         }
