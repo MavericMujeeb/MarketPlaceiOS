@@ -26,11 +26,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
-            guard call.method == "joinCallClick" else {
-                result(FlutterMethodNotImplemented)
-                return
+            switch call.method {
+                case "joinCallClick":
+                self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
+            case "startChat":
+                self?.startChat(result: result, args: call.arguments as! NSDictionary)
+                default:
+                    result(FlutterMethodNotImplemented)
+                    return
             }
-            self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
         })
         
         
@@ -73,6 +77,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
         teamsCallingViewController.startCall()
+    }
+    
+    
+    private func startChat (result: FlutterResult, args: NSDictionary) {
+        let chatController = ChatController(params: args)
     }
 
 

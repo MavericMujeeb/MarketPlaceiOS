@@ -79,6 +79,9 @@ struct ChatMessageInfoModel: BaseInfoModel, Identifiable, Equatable, Hashable {
         self.deletedOn = deletedOn
         self.participants = participants
         self.sendStatus = sendStatus
+        print("Setting is LocalUser")
+        print(Thread.callStackSymbols)
+        print(isLocalUser)
         self.isLocalUser = isLocalUser
     }
 

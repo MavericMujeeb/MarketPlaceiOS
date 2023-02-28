@@ -105,6 +105,8 @@ struct TextMessageView: View {
     }
 
     private func getMessageBubbleBackground(messageModel: ChatMessageInfoModel) -> Color {
+        print("getMessageBubbleBackground")
+        print(messageModel.isLocalUser)
         guard messageModel.isLocalUser else {
             return Color(StyleProvider.color.surfaceTertiary)
         }
