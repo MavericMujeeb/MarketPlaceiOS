@@ -81,7 +81,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     private func startChat (result: FlutterResult, args: NSDictionary) {
-        let chatController = ChatController(params: args)
+        let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
+        chatController.prepareChatComposite()
     }
 
 
