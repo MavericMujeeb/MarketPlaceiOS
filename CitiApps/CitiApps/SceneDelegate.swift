@@ -29,8 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             switch call.method {
                 case "joinCallClick":
                 self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
-            case "startChat":
-                self?.startChat(result: result, args: call.arguments as! NSDictionary)
                 default:
                     result(FlutterMethodNotImplemented)
                     return
