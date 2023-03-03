@@ -9,7 +9,6 @@ struct DocumentPicker : UIViewControllerRepresentable {
 
     @Binding var added: Bool
     
-    
     func makeUIViewController(context: Context) -> some UIViewController {
         let controller = UIDocumentPickerViewController(forOpeningContentTypes: [.text, .pdf, .png, .jpeg])
         controller.allowsMultipleSelection = false
@@ -51,6 +50,9 @@ class DocumentPickerCoordinator: NSObject, UIDocumentPickerDelegate{
 }
 
 struct BottomBarView: View {
+    
+    static var UploadedFileUrl: String? = ""
+    
     private enum Constants {
         static let minimumHeight: CGFloat = 50
         static let focusDelay: CGFloat = 1.0
@@ -58,49 +60,105 @@ struct BottomBarView: View {
         static let padding: CGFloat = 12
     }
     @StateObject var viewModel: BottomBarViewModel
-
+    
     @State var textEditorHeight: CGFloat = 20
-
+    
     var body: some View {
         HStack(alignment: .bottom, spacing: Constants.padding) {
             if viewModel.isLocalUserRemoved {
                 localParticipantRemovedBanner
             } else {
                 messageTextField
-//                attachmentButton
+                attachmentButton
                 sendButton
             }
         }
         .padding([.top], Constants.topPadding)
         .padding([.leading, .trailing, .bottom], Constants.padding)
     }
-
+    
     var messageTextField: some View {
         TextEditorView(text: $viewModel.message)
     }
-
+    
     var sendButton: some View {
         IconButton(viewModel: viewModel.sendButtonViewModel)
             .flipsForRightToLeftLayoutDirection(true)
     }
     
     @State var shouldPresentChat = false
-
-        
+    
     var attachmentButton: some View {
         Button(action: {
             shouldPresentChat.toggle()
         }) {
             Icon(name: .attachmentIcon, size: 24)
                 .contentShape(Rectangle())
-        }.fullScreenCover(isPresented: $shouldPresentChat, content: {
-            DocumentPicker(added: $shouldPresentChat)
+        }.fileImporter(isPresented: $shouldPresentChat, allowedContentTypes: [.text, .pdf, .png, .jpeg], allowsMultipleSelection: false, onCompletion: { results in
+            
+            switch results {
+            case .success(let fileurls):
+                
+                for fileurl in fileurls {
+                    let url = fileurl as URL
+                    guard url.startAccessingSecurityScopedResource() else {return}
+                    
+                    do {
+                        let fileData = try Data(contentsOf: url)
+                        //let fileStream:String = fileData.base64EncodedString(options: NSData.Base64EncodingOptions.init(rawValue: 0))
+                        //let convertedString = NSString(data: fileData, encoding: NSUTF8StringEncoding)
+                        uploadFile(file: fileData, fileName: url.lastPathComponent, fileExtension: url.pathExtension)
+                    }
+                    catch {
+                        print("FileImporter Error: \(error)")
+                    }
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+            
         })
         
-//        IconButton(viewModel: viewModel.attachmentButtonViewModel)
-//            .flipsForRightToLeftLayoutDirection(true)
+        //        IconButton(viewModel: viewModel.attachmentButtonViewModel)
+        //            .flipsForRightToLeftLayoutDirection(true)
     }
-
+    
+    func uploadFile(file:Data, fileName: String, fileExtension: String){
+        
+        var mimeType = "image/png"
+        if fileExtension == "pdf" {
+            mimeType = "application/pdf"
+        }
+        
+        let request = MultipartFormDataRequest(fileName:  fileName)
+        request.addDataField(fieldName:  "file", fileName: fileName, data: file, mimeType: mimeType)
+        
+        URLSession.shared.dataTask(with: request, completionHandler: {data,urlResponse,error in
+            
+            if let response = urlResponse as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    BottomBarView.UploadedFileUrl = request.storageAccountEndPoint+request.containerName+fileName
+                    print("File url -> "+BottomBarView.UploadedFileUrl!)
+                }
+            }
+            if let data = data {
+                do {
+                    //let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    //print("Server Data")
+                    //print(json)
+                } catch {
+                    //print("Server Error")
+                    //print("Error Code: \(error._code)")
+                    //print("Error Messsage: \(error.localizedDescription)")
+                    //if let str = String(data: data, encoding: String.Encoding.utf8){
+                    //print("Print Server data:- " + str)
+                    //}
+                }
+            }
+        }).resume()
+    }
+    
     var localParticipantRemovedBanner: some View {
         Text("You're no longer a participant")
             .foregroundColor(Color(StyleProvider.color.textSecondary))
@@ -122,10 +180,10 @@ struct TextEditorView: View {
         static let padding: CGFloat = 6
         static let placeHolderPadding: CGFloat = 8
     }
-
+    
     @Binding var text: String
     @State var textEditorHeight: CGFloat = Constants.minimumHeight
-
+    
     var body: some View {
         ZStack(alignment: .leading) {
             heightMeasureWorkAround
@@ -137,7 +195,7 @@ struct TextEditorView: View {
             textEditorHeight = $0 + (text.numberOfLines() > 1 ? Constants.multilineHeightOffset : 0)
         }
     }
-
+    
     var heightMeasureWorkAround: some View {
         Text(text)
             .font(.system(.body))
@@ -147,7 +205,7 @@ struct TextEditorView: View {
                                        value: $0.frame(in: .local).size.height)
             })
     }
-
+    
     var textEditor: some View {
         TextEditor(text: $text)
             .font(.system(.body))
@@ -157,7 +215,7 @@ struct TextEditorView: View {
             .overlay(RoundedRectangle(cornerRadius: Constants.cornerRadius)
                 .stroke(Color(StyleProvider.color.dividerOnPrimary)))
     }
-
+    
     var placeHolder: some View {
         Group {
             if text.isEmpty {
@@ -174,7 +232,7 @@ extension String {
     func numberOfLines() -> Int {
         return self.numberOfOccurrencesOf(string: "\n") + 1
     }
-
+    
     func numberOfOccurrencesOf(string: String) -> Int {
         return self.components(separatedBy: string).count - 1
     }

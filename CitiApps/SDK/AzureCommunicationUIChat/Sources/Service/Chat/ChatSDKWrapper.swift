@@ -157,10 +157,18 @@ class ChatSDKWrapper: NSObject, ChatSDKWrapperProtocol {
 
     func sendMessage(content: String, senderDisplayName: String) async throws -> String {
         do {
+            let fileUrl = await BottomBarView.UploadedFileUrl
             let messageRequest = SendChatMessageRequest(
                 content: content,
-                senderDisplayName: senderDisplayName
+                senderDisplayName: senderDisplayName,
+                type: .html,
+                metadata: [
+                                "hasAttachment": "true",
+                                "attachmentUrl": fileUrl
+                                ]
             )
+            print("messageRequest -> ")
+            print(messageRequest)
             return try await withCheckedThrowingContinuation { continuation in
                 chatThreadClient?.send(message: messageRequest) { result, _ in
                     switch result {
