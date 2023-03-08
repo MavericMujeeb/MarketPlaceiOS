@@ -15,11 +15,13 @@ import UIKit
 class ChatController  {
     
     var chatAdapter: ChatAdapter?
-    var threadId:String! = "19:d5a8fd9e7b2c40f09a64dc9ad8ab90ad@thread.v2"
+    var threadId:String! = "19:a36fae1e68b0449fb0b2c4cd0ffa3587@thread.v2"
     var bankerAcsId:String! = "8:acs:e7831a00-fe57-4925-a06f-faaf5e80c0d4_00000017-5da6-8610-6763-563a0d009051"
-    var bankerUserToken:String! = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOmU3ODMxYTAwLWZlNTctNDkyNS1hMDZmLWZhYWY1ZTgwYzBkNF8wMDAwMDAxNy01ZGE2LTg2MTAtNjc2My01NjNhMGQwMDkwNTEiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzgyMzYyMTkiLCJleHAiOjE2NzgzMjI2MTksInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlNzgzMWEwMC1mZTU3LTQ5MjUtYTA2Zi1mYWFmNWU4MGMwZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc4MjM2MjE5fQ.MC4gjwvUfNxVE6LPZauzRIaVQGANVmKLMRwHlGFmx4Z7eXlcqXGb3aspSLkVs18fozDh4BgortMYnEsV9oUo9JRQUnT59a3YN5TKxspziFELQwD2v1ad60PtE8v5bppS8OIAjNFmIFZpEIArnOHL3pPm6qwhbiHkgFLFpknA_KHc6ou3BWinQsjl9bh6v59x03es7OYNwQcavuGQhffiew3ujvfXM15ALJD1bZNsOTTv4WlmdEvqvoGQkWi4QJSocyZdx_ELN8bUq9S8dwIhJp7_rwoRO-zKFkacujuILRkmGkIJFKoIWZegLpQJRKNTZfjBM726zr3A_yeORllYeQ"
+    var bankerUserToken:String! = ""
+    var bankerUserName:String! = "Chantal Kendall"
     var custAcsId:String! = "8:acs:e7831a00-fe57-4925-a06f-faaf5e80c0d4_00000017-5da6-e2ec-740a-113a0d0081f2"
-    var custUserToken:String! = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOmU3ODMxYTAwLWZlNTctNDkyNS1hMDZmLWZhYWY1ZTgwYzBkNF8wMDAwMDAxNy01ZGE2LWUyZWMtNzQwYS0xMTNhMGQwMDgxZjIiLCJzY3AiOjE3OTIsImNzaSI6IjE2NzgyMzYyMTkiLCJleHAiOjE2NzgzMjI2MTksInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlNzgzMWEwMC1mZTU3LTQ5MjUtYTA2Zi1mYWFmNWU4MGMwZDQiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjc4MjM2MjE5fQ.HGSA_r6Ynt1ehIFsJOt15leslSP86z0aWYn71n0T3frGbjM3J3TgcUX_zK0D0KzrILm0O9QRjS5iPKBIh8S7buUBXDcPsaxwmJ6ISz2zu2C3BC9D6QuGxsGsdPCaG9leFlByxm9Gj-lVRuy8rKllxf0QCvNLLCFTwUI99Fn0CkZqUACPCLqae7yWreGBiRcE_l5RSN_9Sw31Ti7IWXta-kNzTCbsE9i3FbrdBEEdgxHiHIs6-gA4s0uWErMnhfitZkwZLeseEx1wa9ClBTOb2Q--YOrGdHpc5ze4u31XPc3D3Gqjx4XCq2HVfzS4ihbiSVnKKyTuEX1vgZhgQBbHgA"
+    var custUserToken:String! = ""
+    var custUserName:String! = "Janet Johnson"
     var rootViewController : UIViewController!
     
     init(chatAdapter: ChatAdapter? = nil, rootViewController: UIViewController!) {
@@ -27,7 +29,7 @@ class ChatController  {
     }
     
     func prepareChatComposite() {
-        initializeChatComposite()
+        self.callUserTokenAPI()
     }
     
     func initializeChatComposite() {
@@ -35,7 +37,7 @@ class ChatController  {
         
         do{
             let credential = try CommunicationTokenCredential(
-                token: self.custUserToken
+                token: self.bankerUserToken
             )
             let options = AzureCommunicationChatClientOptions()
 
@@ -48,8 +50,8 @@ class ChatController  {
                 topic: "30-min meeting",
                 participants: [
                     ChatParticipant(
-                        id: CommunicationUserIdentifier(self.custAcsId),
-                        displayName: "Janet Johnson"
+                        id: CommunicationUserIdentifier(self.bankerAcsId),
+                        displayName: self.bankerUserName
                     ),
                 ]
             )
@@ -57,8 +59,6 @@ class ChatController  {
             chatClient.create(thread: request) { result, _ in
                 switch result {
                 case let .success(result):
-                    print("Thread ID")
-                    print(result)
                     self.startChatComposite()
                 case .failure:
                     print(result)
@@ -72,11 +72,11 @@ class ChatController  {
     
     func startChatComposite() {
         
-        let communicationIdentifier = CommunicationUserIdentifier(self.bankerAcsId)
+        let communicationIdentifier = CommunicationUserIdentifier(self.custAcsId)
         
         
         guard let communicationTokenCredential = try? CommunicationTokenCredential(
-            token:self.bankerUserToken) else {
+            token:self.custUserToken) else {
             return
         }
         print(self.threadId)
@@ -86,7 +86,7 @@ class ChatController  {
             identifier: communicationIdentifier,
             credential: communicationTokenCredential,
             threadId: self.threadId,
-            displayName: "Chantal Kandall")
+            displayName: self.custUserName)
 
         Task { @MainActor in
             guard let chatAdapter = self.chatAdapter else {
@@ -109,25 +109,24 @@ class ChatController  {
         }
     }
     
-    func callUserTokenAPI(){
-        guard let url = URL(string: "https://acscallingchatfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId=\(self.bankerAcsId)&customerAcsId=\(self.custAcsId)") else{
+    func callUserTokenAPI() {
+        CircleLoader.sharedInstance.show()
+        let fullUrl: String = "https://acscallingchatfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+       
+        guard let url = try? URL(string: fullUrl) else {
             return
         }
 
         let task = URLSession.shared.dataTask(with: url){
             data, response, error in
+            CircleLoader.sharedInstance.hide()
             if let data = data, let string = String(data: data, encoding: .utf8){
                 do {
                     let jsonDecoder = JSONDecoder()
                     let responseModel = try jsonDecoder.decode(AcsUserIdToken.self, from: data)
                     self.custUserToken = responseModel.customerUserToken
                     self.bankerUserToken = responseModel.bankerUserToken
-                    print("Response Data json -> ")
-                    print(self.custUserToken)
-                    print(self.bankerUserToken)
-                    DispatchQueue.main.async {
-                        self.initializeChatComposite()
-                    }
+                    self.initializeChatComposite()
                 } catch {
                     print("Response Data error -> ")
                     print(error)
@@ -136,7 +135,6 @@ class ChatController  {
                 print(string)
             }
         }
-
         task.resume()
     }
 }

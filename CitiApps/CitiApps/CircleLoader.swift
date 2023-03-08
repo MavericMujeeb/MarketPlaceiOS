@@ -12,7 +12,7 @@ class CircleLoader: NSObject {
     
     static let sharedInstance = CircleLoader()
 
-    let indicator: UIActivityIndicatorView? = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+    let indicator: UIActivityIndicatorView? = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
 
     let screen = UIScreen.main.bounds
 
