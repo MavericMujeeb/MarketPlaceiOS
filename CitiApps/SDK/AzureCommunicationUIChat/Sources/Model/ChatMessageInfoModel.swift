@@ -26,6 +26,11 @@ enum MessageType: Equatable {
     }
 }
 
+struct MetaData: Equatable {
+    let hasAttachment: String
+    let attachmentUrl: String
+}
+
 enum MessageSendStatus: Equatable {
     case sending
     case sent
@@ -46,6 +51,7 @@ struct ChatMessageInfoModel: BaseInfoModel, Identifiable, Equatable, Hashable {
     var deletedOn: Iso8601Date?
     var sendStatus: MessageSendStatus?
     var isLocalUser: Bool
+    var metadata: [String: String?]?
 
     // for participant added/removed only
     var participants: [ParticipantInfoModel]
@@ -61,7 +67,8 @@ struct ChatMessageInfoModel: BaseInfoModel, Identifiable, Equatable, Hashable {
          deletedOn: Iso8601Date? = nil,
          participants: [ParticipantInfoModel] = [],
          sendStatus: MessageSendStatus? = nil,
-         isLocalUser: Bool = false) {
+         isLocalUser: Bool = false,
+         metadata: [String: String?]? = nil) {
         self.id = id ?? UUID().uuidString
         self.version = version
         self.type = type
@@ -83,6 +90,7 @@ struct ChatMessageInfoModel: BaseInfoModel, Identifiable, Equatable, Hashable {
         print(Thread.callStackSymbols)
         print(isLocalUser)
         self.isLocalUser = isLocalUser
+        self.metadata = metadata
     }
 
     mutating func replace(id: String) {
@@ -209,6 +217,26 @@ extension ChatMessageInfoModel {
         default:
             return nil
         }
+    }
+    
+    func hasAttachmentUrl() -> Bool? {
+        var value:String? = self.metadata?["hasAttachment"] ?? "false"
+        var boolString = NSString(string: value!)
+        return boolString.boolValue
+    }
+    
+    func getAttachmentUrl() -> String? {
+        var value:String? = self.metadata?["attachmentUrl"] ?? ""
+        let htmlString = "<html><b><a href=\(value)>\(value)</a></b></html>"
+        var htmlToAttributedString: NSAttributedString? {
+            guard let data = htmlString.data(using: String.Encoding.utf8, allowLossyConversion: true) else { return nil }
+                do {
+                    return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+                } catch {
+                    return nil
+                }
+            }
+        return htmlToAttributedString?.string // Localization
     }
 }
 
