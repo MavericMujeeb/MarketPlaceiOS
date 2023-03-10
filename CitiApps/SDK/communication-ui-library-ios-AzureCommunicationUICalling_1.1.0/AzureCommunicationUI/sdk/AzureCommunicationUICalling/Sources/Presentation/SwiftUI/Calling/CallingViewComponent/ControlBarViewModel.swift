@@ -27,6 +27,7 @@ class ControlBarViewModel: ObservableObject {
 
     var chatButtonViewModel: IconButtonViewModel!
     var micButtonViewModel: IconButtonViewModel!
+    var screenShareButtonViewModel: IconButtonViewModel!
     var audioDeviceButtonViewModel: IconButtonViewModel!
     var hangUpButtonViewModel: IconButtonViewModel!
     var callingStatus: CallingStatus = .none
@@ -35,6 +36,8 @@ class ControlBarViewModel: ObservableObject {
                                                  transmission: .local)
     var audioState = LocalUserState.AudioState(operation: .off,
                                                device: .receiverSelected)
+    
+    var screenShareState = LocalUserState.ScreenShareState(screen: .sharingOff)
     var displayEndCallConfirm: (() -> Void)
 
     init(compositeViewModelFactory: CompositeViewModelFactoryProtocol,
@@ -88,6 +91,18 @@ class ControlBarViewModel: ObservableObject {
                 self.logger.debug("Toggle microphone button tapped")
                 self.microphoneButtonTapped()
         }
+        
+        screenShareButtonViewModel = compositeViewModelFactory.makeIconButtonViewModel(
+            iconName: isScreenShare() ? .stop_screen_share_icon : .share_screen_icon,
+            buttonType: .controlButton,
+            isDisabled: false,
+            action: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.screenShareButtonTapped()
+            }
+        )
         micButtonViewModel.accessibilityLabel = self.localizationProvider.getLocalizedString(
             .micOffAccessibilityLabel)
 
@@ -142,6 +157,11 @@ class ControlBarViewModel: ObservableObject {
         .microphoneOffTriggered : .microphoneOnTriggered
         dispatch(.localUserAction(action))
     }
+    
+    func screenShareButtonTapped() {
+        let action: LocalUserAction = screenShareState.screen == .sharingOff ? .screenSharingOnTriggered : .screenSharingOffTriggered
+        dispatch(.localUserAction(action))
+    }
 
     func selectAudioDeviceButtonTapped() {
         self.isAudioDeviceSelectionDisplayed = true
@@ -158,6 +178,10 @@ class ControlBarViewModel: ObservableObject {
 
     func isMicDisabled() -> Bool {
         audioState.operation == .pending || callingStatus == .localHold
+    }
+    
+    func isScreenShare() -> Bool {
+        screenShareState.screen == .sharingOn
     }
 
     func isAudioDeviceDisabled() -> Bool {

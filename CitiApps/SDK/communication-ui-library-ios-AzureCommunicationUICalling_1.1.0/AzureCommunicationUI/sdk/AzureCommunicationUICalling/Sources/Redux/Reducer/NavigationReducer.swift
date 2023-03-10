@@ -36,6 +36,10 @@ extension Reducer where State == NavigationState,
                 .localUserAction(_),
                 .permissionAction(_):
             return state
+        case .startScreenShareAction(_):
+            return state
+        case .stopScreenShareAction(_):
+            return state
         }
         return NavigationState(status: navigationStatus)
     }

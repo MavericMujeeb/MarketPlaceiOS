@@ -27,6 +27,9 @@ protocol CallingServiceProtocol {
 
     func holdCall() async throws
     func resumeCall() async throws
+    
+    func startScreenShare() async throws
+    func stopScreenShare() async throws
 }
 
 class CallingService: NSObject, CallingServiceProtocol {
@@ -65,6 +68,14 @@ class CallingService: NSObject, CallingServiceProtocol {
 
     func endCall() async throws {
        try await callingSDKWrapper.endCall()
+    }
+    
+    func startScreenShare() async throws {
+        try await callingSDKWrapper.startScreenShare()
+    }
+    
+    func stopScreenShare() async throws {
+        try await callingSDKWrapper.stopScreenShare()
     }
 
     func requestCameraPreviewOn() async throws -> String {

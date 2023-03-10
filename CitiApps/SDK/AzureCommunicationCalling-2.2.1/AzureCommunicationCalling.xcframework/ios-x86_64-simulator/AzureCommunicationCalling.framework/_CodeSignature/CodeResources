@@ -4,9 +4,13 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/ACSCallKit.h</key>
+		<data>
+		EIBnnBf/R3doRraN80DxGQivpvY=
+		</data>
 		<key>Headers/ACSFeatures.h</key>
 		<data>
-		z9S8/FWdg8YDBblICwUyqUYX94A=
+		QkrLBzNNokyJEP7OivSQ5LYge88=
 		</data>
 		<key>Headers/ACSStreamSize.h</key>
 		<data>
@@ -26,7 +30,7 @@
 		</data>
 		<key>Headers/AzureCommunicationCalling.h</key>
 		<data>
-		/RVdjWepCm/OxAo2P8BDF3m20LM=
+		3fP9s2YKcIJoQzckHyaiBIxALmk=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -38,11 +42,11 @@
 		</data>
 		<key>Modules/AzureCommunicationCalling.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		9MlKN40YLwlbc1QMpliPkx8tEFY=
+		uFyt/ryQf+mO1UDQoVXabjH6Ql0=
 		</data>
 		<key>Modules/AzureCommunicationCalling.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		dxofPKGivDJMrE/fekHVZsVL8EI=
+		ehHvso+MXwgjfoeMjVKZQeEMCe4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -51,11 +55,18 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Headers/ACSCallKit.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1pUsY3kkvgR/k/ipnihfh0GRzY1NUftmi5A2ViANKOc=
+			</data>
+		</dict>
 		<key>Headers/ACSFeatures.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5RRmv6oybeT/H9oAeFmwFZ7Q7Ungcoa5WeJNGlG6I0c=
+			MgDSN4svvYfCA8X6+0AkzTESHT1Ut84Oa/7yoE/yR+I=
 			</data>
 		</dict>
 		<key>Headers/ACSStreamSize.h</key>
@@ -90,7 +101,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kvOKsPve/jbNbdplYrisjgqHeqgEkZkk4Ac/cyvRTQE=
+			283W61IeNQYYdGQzqGKc1DEc8n827qh5ZwelKTQ/VSM=
 			</data>
 		</dict>
 		<key>Modules/AzureCommunicationCalling.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -104,14 +115,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1WsN+ztAaVUPx1iSBxVlcVc3MIXpcl5zJa5IfE20Low=
+			oJ0KootCudVD7qT6kG72Y3M1ynjAiv2tdKG9ehAECH8=
 			</data>
 		</dict>
 		<key>Modules/AzureCommunicationCalling.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kMPOWVmE1vwm+keo6xvPqYtQMsRL5DXcgIgRqixkIFQ=
+			sKdviTk3qeJBmJ/b8UtVLgC4Whd28aMVurLnKvw/Yd8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

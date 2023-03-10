@@ -17,6 +17,7 @@ extension Reducer where State == LocalUserState,
         var audioDeviceStatus = localUserState.audioState.device
         let displayName = localUserState.displayName
         var localVideoStreamIdentifier = localUserState.localVideoStreamIdentifier
+        var screenShareStatus = localUserState.screenShareState.screen
 
         switch action {
         case .cameraPreviewOnTriggered:
@@ -66,6 +67,10 @@ extension Reducer where State == LocalUserState,
             audioDeviceStatus = getSelectedDeviceStatus(for: device)
         case .audioDeviceChangeFailed(let error):
             audioDeviceStatus = .error(error)
+        case .screenSharingOffTriggered:
+            screenShareStatus = .sharingOff
+        case .screenSharingOnTriggered:
+            screenShareStatus = .sharingOn
         }
 
         let cameraState = LocalUserState.CameraState(operation: cameraStatus,
@@ -73,9 +78,12 @@ extension Reducer where State == LocalUserState,
                                                      transmission: cameraTransmissionStatus)
         let audioState = LocalUserState.AudioState(operation: microphoneStatus,
                                                    device: audioDeviceStatus)
+        
+        let screenShareState = LocalUserState.ScreenShareState(screen: screenShareStatus)
         return LocalUserState(cameraState: cameraState,
                               audioState: audioState,
                               displayName: displayName,
+                              screenShareState: screenShareState,
                               localVideoStreamIdentifier: localVideoStreamIdentifier)
     }
 }

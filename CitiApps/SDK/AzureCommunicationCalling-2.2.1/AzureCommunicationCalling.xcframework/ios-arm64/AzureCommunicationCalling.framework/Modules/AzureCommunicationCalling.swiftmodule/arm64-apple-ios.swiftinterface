@@ -5,13 +5,14 @@
 import Foundation
 import Swift
 import _Concurrency
+extension AzureCommunicationCalling.Features {
+  public static var recording: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RecordingCallFeature>
+  public static var transcription: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TranscriptionCallFeature>
+  public static var dominantSpeakers: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DominantSpeakersCallFeature>
+}
 @_hasMissingDesignatedInitializers public class CallFeatureFactory<T> where T : AzureCommunicationCalling.CallFeature {
   @objc deinit
 }
 extension AzureCommunicationCalling.Call {
   public func feature<TCallFeature>(_ factory: AzureCommunicationCalling.CallFeatureFactory<TCallFeature>) -> TCallFeature where TCallFeature : AzureCommunicationCalling.CallFeature
-}
-extension AzureCommunicationCalling.Features {
-  public static var recording: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RecordingCallFeature>
-  public static var transcription: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TranscriptionCallFeature>
 }

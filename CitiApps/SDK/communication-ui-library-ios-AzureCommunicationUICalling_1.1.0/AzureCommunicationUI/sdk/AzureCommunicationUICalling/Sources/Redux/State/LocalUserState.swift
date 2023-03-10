@@ -27,6 +27,11 @@ struct LocalUserState {
             }
         }
     }
+    
+    enum DeviceScreenShareStatus : Equatable{
+        case sharingOn
+        case sharingOff
+    }
 
     enum CameraDeviceSelectionStatus: Equatable {
         case front
@@ -133,9 +138,15 @@ struct LocalUserState {
         let operation: AudioOperationalStatus
         let device: AudioDeviceSelectionStatus
     }
+    
+    struct ScreenShareState {
+        let screen: DeviceScreenShareStatus
+    }
 
     let cameraState: CameraState
     let audioState: AudioState
+    let screenShareState : ScreenShareState
+    
     let displayName: String?
     let localVideoStreamIdentifier: String?
 
@@ -145,9 +156,11 @@ struct LocalUserState {
          audioState: AudioState = AudioState(operation: .off,
                                              device: .receiverSelected),
          displayName: String? = nil,
+         screenShareState: ScreenShareState = ScreenShareState(screen: .sharingOff),
          localVideoStreamIdentifier: String? = nil) {
         self.cameraState = cameraState
         self.audioState = audioState
+        self.screenShareState = screenShareState
         self.displayName = displayName
         self.localVideoStreamIdentifier = localVideoStreamIdentifier
     }

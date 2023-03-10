@@ -6,11 +6,15 @@
 	<dict>
 		<key>ios-arm64/AzureCommunicationCalling.framework/AzureCommunicationCalling</key>
 		<data>
-		KfxkT5hiwi/D2/4CbkpzzH6DDlY=
+		FhzCk14YxVPlGD7BK1f6VhQHZj4=
+		</data>
+		<key>ios-arm64/AzureCommunicationCalling.framework/Headers/ACSCallKit.h</key>
+		<data>
+		EIBnnBf/R3doRraN80DxGQivpvY=
 		</data>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Headers/ACSFeatures.h</key>
 		<data>
-		z9S8/FWdg8YDBblICwUyqUYX94A=
+		QkrLBzNNokyJEP7OivSQ5LYge88=
 		</data>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Headers/ACSStreamSize.h</key>
 		<data>
@@ -30,11 +34,11 @@
 		</data>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Headers/AzureCommunicationCalling.h</key>
 		<data>
-		/RVdjWepCm/OxAo2P8BDF3m20LM=
+		3fP9s2YKcIJoQzckHyaiBIxALmk=
 		</data>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Info.plist</key>
 		<data>
-		8t/UXpTMiMeCnmcKeCasPB4CNK0=
+		O/+IIlM1Cwpxw2sTw/8c41Ap1a0=
 		</data>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Modules/AzureCommunicationCalling.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -42,7 +46,7 @@
 		</data>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Modules/AzureCommunicationCalling.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		lIQv92HmMEp+ony2UMNmlCkRoRY=
+		+spohPM6apnRzDcg6+mnWtTVeiI=
 		</data>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Modules/module.modulemap</key>
 		<data>
@@ -50,11 +54,15 @@
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/AzureCommunicationCalling</key>
 		<data>
-		vMatKGuVwB09Xkc6WTYFHxd5/cI=
+		o5CjGZUJE/RxmBx9PWmV8tXltZw=
+		</data>
+		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Headers/ACSCallKit.h</key>
+		<data>
+		EIBnnBf/R3doRraN80DxGQivpvY=
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Headers/ACSFeatures.h</key>
 		<data>
-		z9S8/FWdg8YDBblICwUyqUYX94A=
+		QkrLBzNNokyJEP7OivSQ5LYge88=
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Headers/ACSStreamSize.h</key>
 		<data>
@@ -74,11 +82,11 @@
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Headers/AzureCommunicationCalling.h</key>
 		<data>
-		/RVdjWepCm/OxAo2P8BDF3m20LM=
+		3fP9s2YKcIJoQzckHyaiBIxALmk=
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Info.plist</key>
 		<data>
-		GA0HMWP8JubbveIEHzLoUKSd0y4=
+		C5+AcTwUF0vIi+jzIIkZ9JglVdA=
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Modules/AzureCommunicationCalling.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -86,7 +94,7 @@
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Modules/AzureCommunicationCalling.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		9MlKN40YLwlbc1QMpliPkx8tEFY=
+		uFyt/ryQf+mO1UDQoVXabjH6Ql0=
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Modules/module.modulemap</key>
 		<data>
@@ -94,7 +102,7 @@
 		</data>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/_CodeSignature/CodeResources</key>
 		<data>
-		tvjwgkYyjbylGZ00eG+dOg2dToY=
+		x821hdShXDT3FWxs8d3ePXAqQCg=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -103,22 +111,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			KfxkT5hiwi/D2/4CbkpzzH6DDlY=
+			FhzCk14YxVPlGD7BK1f6VhQHZj4=
 			</data>
 			<key>hash2</key>
 			<data>
-			N11Y9eoBXrlComYPCustF+jfQpwWmbxHNmgdjRPJQu4=
+			LPrAixiIVq7AwTWMxv/IcnVb2x1Ft/xmDdXRzjUlimA=
+			</data>
+		</dict>
+		<key>ios-arm64/AzureCommunicationCalling.framework/Headers/ACSCallKit.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			EIBnnBf/R3doRraN80DxGQivpvY=
+			</data>
+			<key>hash2</key>
+			<data>
+			1pUsY3kkvgR/k/ipnihfh0GRzY1NUftmi5A2ViANKOc=
 			</data>
 		</dict>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Headers/ACSFeatures.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			z9S8/FWdg8YDBblICwUyqUYX94A=
+			QkrLBzNNokyJEP7OivSQ5LYge88=
 			</data>
 			<key>hash2</key>
 			<data>
-			5RRmv6oybeT/H9oAeFmwFZ7Q7Ungcoa5WeJNGlG6I0c=
+			MgDSN4svvYfCA8X6+0AkzTESHT1Ut84Oa/7yoE/yR+I=
 			</data>
 		</dict>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Headers/ACSStreamSize.h</key>
@@ -169,22 +188,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			/RVdjWepCm/OxAo2P8BDF3m20LM=
+			3fP9s2YKcIJoQzckHyaiBIxALmk=
 			</data>
 			<key>hash2</key>
 			<data>
-			kvOKsPve/jbNbdplYrisjgqHeqgEkZkk4Ac/cyvRTQE=
+			283W61IeNQYYdGQzqGKc1DEc8n827qh5ZwelKTQ/VSM=
 			</data>
 		</dict>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8t/UXpTMiMeCnmcKeCasPB4CNK0=
+			O/+IIlM1Cwpxw2sTw/8c41Ap1a0=
 			</data>
 			<key>hash2</key>
 			<data>
-			slDB3v0g03viT2Afvi93XSg5N6GBlJy4hmfDMe5jB94=
+			2rk6Oa72dn+A274nDRDqghC36jd/PZssexpELiVbMpE=
 			</data>
 		</dict>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Modules/AzureCommunicationCalling.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -202,11 +221,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			lIQv92HmMEp+ony2UMNmlCkRoRY=
+			+spohPM6apnRzDcg6+mnWtTVeiI=
 			</data>
 			<key>hash2</key>
 			<data>
-			7J49XudvFKZlrriEN6QIRpw2L74UyghY4TaHEgnXBoU=
+			TiIgQgmCQQqDsfGpF7Fsqrk7ZapgMDp8YyDztb47mi4=
 			</data>
 		</dict>
 		<key>ios-arm64/AzureCommunicationCalling.framework/Modules/module.modulemap</key>
@@ -224,22 +243,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vMatKGuVwB09Xkc6WTYFHxd5/cI=
+			o5CjGZUJE/RxmBx9PWmV8tXltZw=
 			</data>
 			<key>hash2</key>
 			<data>
-			oqBUzGIc7LVtXXNunzJqqZdEvC+4rNEgYI6FjI/5DtM=
+			hphn8zDgAxvm2NyAvHiOKNOCZZfluS8EVjAbcvMzjT0=
+			</data>
+		</dict>
+		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Headers/ACSCallKit.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			EIBnnBf/R3doRraN80DxGQivpvY=
+			</data>
+			<key>hash2</key>
+			<data>
+			1pUsY3kkvgR/k/ipnihfh0GRzY1NUftmi5A2ViANKOc=
 			</data>
 		</dict>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Headers/ACSFeatures.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			z9S8/FWdg8YDBblICwUyqUYX94A=
+			QkrLBzNNokyJEP7OivSQ5LYge88=
 			</data>
 			<key>hash2</key>
 			<data>
-			5RRmv6oybeT/H9oAeFmwFZ7Q7Ungcoa5WeJNGlG6I0c=
+			MgDSN4svvYfCA8X6+0AkzTESHT1Ut84Oa/7yoE/yR+I=
 			</data>
 		</dict>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Headers/ACSStreamSize.h</key>
@@ -290,22 +320,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			/RVdjWepCm/OxAo2P8BDF3m20LM=
+			3fP9s2YKcIJoQzckHyaiBIxALmk=
 			</data>
 			<key>hash2</key>
 			<data>
-			kvOKsPve/jbNbdplYrisjgqHeqgEkZkk4Ac/cyvRTQE=
+			283W61IeNQYYdGQzqGKc1DEc8n827qh5ZwelKTQ/VSM=
 			</data>
 		</dict>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			GA0HMWP8JubbveIEHzLoUKSd0y4=
+			C5+AcTwUF0vIi+jzIIkZ9JglVdA=
 			</data>
 			<key>hash2</key>
 			<data>
-			cSMd13mUvxXD2S4/ROcBRVLtslSEkTmu6brJawSWk2Q=
+			VL0bgv4nAeFNBRkiCkZmnEihJAguADXdkdBUAkr7/Ps=
 			</data>
 		</dict>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Modules/AzureCommunicationCalling.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -323,11 +353,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9MlKN40YLwlbc1QMpliPkx8tEFY=
+			uFyt/ryQf+mO1UDQoVXabjH6Ql0=
 			</data>
 			<key>hash2</key>
 			<data>
-			1WsN+ztAaVUPx1iSBxVlcVc3MIXpcl5zJa5IfE20Low=
+			oJ0KootCudVD7qT6kG72Y3M1ynjAiv2tdKG9ehAECH8=
 			</data>
 		</dict>
 		<key>ios-x86_64-simulator/AzureCommunicationCalling.framework/Modules/module.modulemap</key>
@@ -345,11 +375,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tvjwgkYyjbylGZ00eG+dOg2dToY=
+			x821hdShXDT3FWxs8d3ePXAqQCg=
 			</data>
 			<key>hash2</key>
 			<data>
-			FizSHyCzVyYslT2Gl2G5u2QXReHM33+SY+p3Df/zeWA=
+			WKjBohZOpig0GmWPPgkxsbI+uk8OU3PFM6b//BRazck=
 			</data>
 		</dict>
 	</dict>
