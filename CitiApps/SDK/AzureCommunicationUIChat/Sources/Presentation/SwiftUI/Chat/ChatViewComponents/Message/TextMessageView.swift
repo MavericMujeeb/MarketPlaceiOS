@@ -54,6 +54,9 @@ struct TextMessageView: View {
             }
             Text(messageModel.getContentLabel())
                 .font(.body)
+//            if messageModel.hasAttachmentUrl() ?? false {
+//                Text(messageModel.getAttachmentUrl()!)
+//            }
         }
         .padding([.leading, .trailing], Constants.contentHorizontalPadding)
         .padding([.top, .bottom], Constants.contentVerticalPadding)

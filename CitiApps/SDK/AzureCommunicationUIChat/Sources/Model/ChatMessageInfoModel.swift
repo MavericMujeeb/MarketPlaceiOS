@@ -236,7 +236,8 @@ extension ChatMessageInfoModel {
                     return nil
                 }
             }
-        return htmlToAttributedString?.string // Localization
+        //return htmlToAttributedString?.string // Localization
+        return value
     }
 }
 

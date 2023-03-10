@@ -38,7 +38,7 @@ extension Reducer where State == ChatState,
             lastReadReceiptReceivedTimestamp = Date()
         case .participantsAction(.sendReadReceiptSuccess(messageId: let messageId)):
             lastReadReceiptSentTimestamp = messageId.convertEpochStringToTimestamp()
-        case .repositoryAction(.sendMessageTriggered(_, _)):
+        case .repositoryAction(.sendMessageTriggered(_, _,_)):
             lastSendingMessageTimestamp = Date()
         case .repositoryAction(.sendMessageSuccess(_, _)),
              .repositoryAction(.sendMessageFailed(_, _)):

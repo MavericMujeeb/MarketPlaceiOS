@@ -69,9 +69,16 @@ class BottomBarViewModel: ObservableObject {
     }
 
     func sendMessage() {
+        let fileUrl = BottomBarView.UploadedFileUrl
+        guard let isFileEmpty:Bool = fileUrl?.isEmpty else {return}
+    
+        var metadataSet: [String: String?]? = [:]
+        metadataSet?.updateValue("\(!isFileEmpty)", forKey: "hasAttachment")
+        metadataSet?.updateValue(fileUrl, forKey: "attachmentUrl")
         dispatch(.repositoryAction(.sendMessageTriggered(
             internalId: UUID().uuidString,
-            content: message.trim())))
+            content: message.trim(),
+            metadata: metadataSet)))
         message = ""
     }
 

@@ -35,6 +35,7 @@ protocol ChatActionHandling {
     @discardableResult
     func sendMessage(internalId: String,
                      content: String,
+                     metadata: [String: String?]?,
                      state: ChatAppState,
                      dispatch: @escaping ActionDispatch) -> Task<Void, Never>
     @discardableResult
@@ -216,6 +217,7 @@ class ChatActionHandler: ChatActionHandling {
 
     func sendMessage(internalId: String,
                      content: String,
+                     metadata: [String: String?]?,
                      state: ChatAppState,
                      dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
@@ -225,7 +227,8 @@ class ChatActionHandler: ChatActionHandling {
                 }
                 let actualId = try await chatService.sendMessage(
                     content: content,
-                    senderDisplayName: displayName)
+                    senderDisplayName: displayName,
+                    metadata: metadata)
                 dispatch(.repositoryAction(.sendMessageSuccess(
                     internalId: internalId,
                     actualId: actualId)))

@@ -22,6 +22,7 @@ protocol RepositoryMiddlewareHandling {
     func addNewSentMessage(
         internalId: String,
         content: String,
+        metadata: [String: String?]?,
         state: ChatAppState,
         dispatch: @escaping ActionDispatch) -> Task<Void, Never>
     @discardableResult
@@ -129,6 +130,7 @@ class RepositoryMiddlewareHandler: RepositoryMiddlewareHandling {
     func addNewSentMessage(
         internalId: String,
         content: String,
+        metadata: [String: String?]?,
         state: ChatAppState,
         dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
             Task {
@@ -143,7 +145,8 @@ class RepositoryMiddlewareHandler: RepositoryMiddlewareHandling {
                     senderDisplayName: displayName,
                     content: content,
                     sendStatus: .sending,
-                    isLocalUser: true)
+                    isLocalUser: true,
+                    metadata: metadata)
                 messageRepository.addNewSendingMessage(message: message)
                 dispatch(.repositoryAction(.repositoryUpdated))
             }

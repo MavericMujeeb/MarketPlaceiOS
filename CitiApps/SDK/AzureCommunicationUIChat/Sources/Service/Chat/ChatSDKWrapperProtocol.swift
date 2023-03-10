@@ -12,7 +12,7 @@ protocol ChatSDKWrapperProtocol {
     func retrieveChatThreadProperties() async throws -> ChatThreadInfoModel
     func getListOfParticipants() async throws -> [ParticipantInfoModel]
     func getPreviousMessages() async throws -> [ChatMessageInfoModel]
-    func sendMessage(content: String, senderDisplayName: String) async throws -> String
+    func sendMessage(content: String, senderDisplayName: String, metadata: [String: String?]?) async throws -> String
     func editMessage(messageId: String, content: String) async throws
     func deleteMessage(messageId: String) async throws
     func sendReadReceipt(messageId: String) async throws

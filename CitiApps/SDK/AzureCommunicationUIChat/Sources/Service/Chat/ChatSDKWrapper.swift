@@ -155,18 +155,13 @@ class ChatSDKWrapper: NSObject, ChatSDKWrapperProtocol {
         }
     }
 
-    func sendMessage(content: String, senderDisplayName: String) async throws -> String {
+    func sendMessage(content: String, senderDisplayName: String, metadata: [String: String?]?) async throws -> String {
         do {
-            let fileUrl = await BottomBarView.UploadedFileUrl
-            guard let isFileEmpty:Bool = fileUrl?.isEmpty else {return ""}
             let messageRequest = SendChatMessageRequest(
                 content: content,
                 senderDisplayName: senderDisplayName,
                 type: .html,
-                metadata: [
-                    "hasAttachment": "\(!isFileEmpty)",
-                                "attachmentUrl": fileUrl
-                                ]
+                metadata: metadata
             )
             print("messageRequest -> ")
             print(messageRequest)

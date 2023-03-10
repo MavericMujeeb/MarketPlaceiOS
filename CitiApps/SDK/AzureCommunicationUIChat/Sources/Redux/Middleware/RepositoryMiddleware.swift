@@ -91,9 +91,10 @@ extension Middleware where State == ChatAppState {
                 actionHandler.addPreviousMessages(messages: messages,
                                                   state: getState(),
                                                   dispatch: dispatch)
-            case .sendMessageTriggered(let internalId, let content):
+            case .sendMessageTriggered(let internalId, let content, let metadata):
                 actionHandler.addNewSentMessage(internalId: internalId,
                                                 content: content,
+                                                metadata: metadata,
                                                 state: getState(),
                                                 dispatch: dispatch)
             case .editMessageTriggered(let messageId, let content, _):

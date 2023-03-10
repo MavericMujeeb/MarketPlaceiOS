@@ -17,7 +17,8 @@ enum RepositoryAction: Equatable {
     case fetchPreviousMessagesFailed(error: Error)
 
     case sendMessageTriggered(internalId: String,
-                              content: String)
+                              content: String,
+                              metadata: [String: String?]?)
     case sendMessageSuccess(internalId: String,
                             actualId: String)
     case sendMessageFailed(internalId: String, error: Error)
