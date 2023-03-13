@@ -126,13 +126,8 @@ struct BottomBarView: View {
     
     func uploadFile(file:Data, fileName: String, fileExtension: String){
         
-        var mimeType = "image/png"
-        if fileExtension == "pdf" {
-            mimeType = "application/pdf"
-        }
-        
         let request = MultipartFormDataRequest(fileName:  fileName)
-        request.addDataField(fieldName:  "file", fileName: fileName, data: file, mimeType: mimeType)
+        request.addDataField(fieldName:  "file", fileName: fileName, data: file, mimeType: request.getMimeType(filenameORfileExtension: fileExtension))
         
         URLSession.shared.dataTask(with: request, completionHandler: {data,urlResponse,error in
             

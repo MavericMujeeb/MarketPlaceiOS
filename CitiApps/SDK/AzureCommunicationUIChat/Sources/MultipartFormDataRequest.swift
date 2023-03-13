@@ -67,7 +67,7 @@ struct MultipartFormDataRequest {
 //        }
         var request = URLRequest(url: URL(string: fullUrl)!)
         request.httpMethod = "PUT"
-        request.setValue("attachment; filename=\(fileName)", forHTTPHeaderField: "x-ms-blob-content-disposition")
+        //request.setValue("attachment; filename=\(fileName)", forHTTPHeaderField: "x-ms-blob-content-disposition")
         request.setValue("BlockBlob", forHTTPHeaderField: "x-ms-blob-type")
         //        request.setValue("v1", forHTTPHeaderField: "x-ms-meta-m1")
         //        request.setValue("v2", forHTTPHeaderField: "x-ms-meta-m2")
@@ -76,13 +76,27 @@ struct MultipartFormDataRequest {
         //        request.setValue("0", forHTTPHeaderField: "content-length")
         //        request.setValue("https://msftdocshareupload.blob.core.windows.net", forHTTPHeaderField: "x-ms-copy-source")
         //        request.setValue("msftdocshareupload:21W6szt/FqODHTrUi4pO3aONN9wZfSghYGWcn2hhA+yW2OvcFt0OEH+eSSXTaLkh0pTassMV6Gdm+ASt27xF8A==", forHTTPHeaderField: "Authorization")
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "content-type")
+        request.setValue(getMimeType(filenameORfileExtension: self.fileName), forHTTPHeaderField: "content-type")
         
         httpBody.appendString("--\(boundary)--")
         request.httpBody = httpBody as Data
         //print("allHTTPHeaderFields -> ")
         //print(request.allHTTPHeaderFields)
         return request
+    }
+    
+    func getMimeType(filenameORfileExtension: String) -> String {
+        var mimeType = "image/png"
+        if filenameORfileExtension == "pdf" || filenameORfileExtension.lowercased().contains(".pdf") {
+            mimeType = "application/pdf"
+        } else if filenameORfileExtension.lowercased().contains("jpeg") || filenameORfileExtension.lowercased().contains("jpg") {
+            mimeType = "image/jpeg"
+        } else if filenameORfileExtension.lowercased().contains("doc") || filenameORfileExtension.lowercased().contains("docx") {
+            mimeType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        } else if filenameORfileExtension.lowercased().contains("txt") || filenameORfileExtension.lowercased().contains("text") {
+            mimeType = "text/plain"
+        }
+        return mimeType
     }
 }
 
