@@ -15,7 +15,7 @@ import UIKit
 class ChatController  {
     
     var chatAdapter: ChatAdapter?
-    var threadId:String! = "19:a36fae1e68b0449fb0b2c4cd0ffa3587@thread.v2"
+    var threadId:String! = "19:06914d05bcf14ebf820ec38aa47aa171@thread.v2"
     var bankerAcsId:String! = "8:acs:e7831a00-fe57-4925-a06f-faaf5e80c0d4_00000017-5da6-8610-6763-563a0d009051"
     var bankerUserToken:String! = ""
     var bankerUserName:String! = "Chantal Kendall"

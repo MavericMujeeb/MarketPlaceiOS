@@ -5,8 +5,11 @@
 
 import SwiftUI
 import FluentUI
+import WebKit
 
 struct TextMessageView: View {
+    static let documentViewWidth: CGFloat = UIScreen.main.bounds.size.width/2
+    static let documentViewHeight: CGFloat = UIScreen.main.bounds.size.height/10
     private enum Constants {
         static let localLeadingPadding: CGFloat = 60
         static let remoteAvatarLeadingPadding: CGFloat = 6
@@ -28,7 +31,15 @@ struct TextMessageView: View {
                 Spacer()
             }
             avatar
-            bubble
+            VStack(alignment: .leading) {
+                bubble
+                if messageModel.hasAttachmentUrl() ?? false {
+                    documentview
+                }
+            }.padding([.leading, .trailing], Constants.contentHorizontalPadding)
+                .padding([.top, .bottom], Constants.contentVerticalPadding)
+                .background(getMessageBubbleBackground(messageModel: messageModel))
+                .cornerRadius(Constants.cornerRadius)
             if !messageModel.isLocalUser {
                 Spacer()
             }
@@ -54,16 +65,16 @@ struct TextMessageView: View {
             }
             Text(messageModel.getContentLabel())
                 .font(.body)
-//            if messageModel.hasAttachmentUrl() ?? false {
-//                Text(messageModel.getAttachmentUrl()!)
-//            }
         }
-        .padding([.leading, .trailing], Constants.contentHorizontalPadding)
-        .padding([.top, .bottom], Constants.contentVerticalPadding)
-        .background(getMessageBubbleBackground(messageModel: messageModel))
-        .cornerRadius(Constants.cornerRadius)
     }
 
+    var documentview: some View {
+        VStack(alignment: .leading) {
+            ACSDocumentView(url: messageModel.getAttachmentUrl()!)
+        }.padding([.bottom], Constants.contentVerticalPadding)
+            .frame(width: TextMessageView.documentViewWidth, height: TextMessageView.documentViewHeight)
+    }
+    
     var name: some View {
         Group {
             if showUsername && messageModel.senderDisplayName != nil {
@@ -120,4 +131,78 @@ struct TextMessageView: View {
             return Color(StyleProvider.color.primaryColorTint30)
         }
     }
+}
+
+struct ACSDocumentView: UIViewControllerRepresentable {
+    
+    var url : String!
+    
+    init(url: String!) {
+        self.url = url
+    }
+    
+    func makeUIViewController(context: Context) -> ACSDocumentViewController {
+        let vc = ACSDocumentViewController()
+        vc.url = self.url;
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: ACSDocumentViewController, context: Context) {
+        // Updates the state of the specified view controller with new information from SwiftUI.
+    }
+}
+
+class ACSDocumentViewController : UIViewController{
+    
+    var url:String!
+    
+    var webView: CustomWebView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        startDocumentViewComposite()
+    }
+
+    @objc private func startDocumentViewComposite() {
+        let urlRequest = URLRequest(url: URL(string: self.url)!)
+        let size = CGRect(x: 0, y: 0, width: TextMessageView.documentViewWidth, height: TextMessageView.documentViewHeight)
+        webView = CustomWebView(frame: size)
+        webView.load(urlRequest)
+        self.view.addSubview(webView)
+    }
+
+    @objc func onBackBtnPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+class CustomWebView: WKWebView {
+
+  init(frame: CGRect) {
+    let configuration = WKWebViewConfiguration()
+    super.init(frame: frame, configuration: configuration)
+    self.scrollView.showsHorizontalScrollIndicator = false;
+    self.scrollView.showsVerticalScrollIndicator = false;
+    self.navigationDelegate = self
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  override var intrinsicContentSize: CGSize {
+    return self.scrollView.contentSize
+  }
+
+}
+
+extension CustomWebView: WKNavigationDelegate {
+
+  func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    webView.evaluateJavaScript("document.readyState", completionHandler: { (_, _) in
+      webView.invalidateIntrinsicContentSize()
+    })
+      webView.evaluateJavaScript("document.querySelector('.HeaderWrapper').remove();", completionHandler: { (response, error) -> Void in
+    })
+  }
 }

@@ -80,6 +80,7 @@ class BottomBarViewModel: ObservableObject {
             content: message.trim(),
             metadata: metadataSet)))
         message = ""
+        BottomBarView.UploadedFileUrl = ""
     }
 
     func sendTypingIndicator() {
