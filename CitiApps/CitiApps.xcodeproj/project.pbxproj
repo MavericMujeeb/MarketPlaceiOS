@@ -24,17 +24,6 @@
 		8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; };
 		8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D7016102982BE9100FDEBFC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70160F2982BE9100FDEBFC /* LoginViewModel.swift */; };
-		8D757113299BB7A70095F2A3 /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710D299BB7A70095F2A3 /* FlutterPluginRegistrant.xcframework */; };
-		8D757115299BB7AD0095F2A3 /* webview_flutter_wkwebview.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710B299BB7A70095F2A3 /* webview_flutter_wkwebview.xcframework */; };
-		8D757116299BB7AD0095F2A3 /* webview_flutter_wkwebview.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710B299BB7A70095F2A3 /* webview_flutter_wkwebview.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D757117299BB7AF0095F2A3 /* shared_preferences_foundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710C299BB7A70095F2A3 /* shared_preferences_foundation.xcframework */; };
-		8D757118299BB7AF0095F2A3 /* shared_preferences_foundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710C299BB7A70095F2A3 /* shared_preferences_foundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D757119299BB7B30095F2A3 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710E299BB7A70095F2A3 /* Flutter.xcframework */; };
-		8D75711A299BB7B30095F2A3 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710E299BB7A70095F2A3 /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D75711B299BB7B50095F2A3 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710A299BB7A70095F2A3 /* App.xcframework */; };
-		8D75711C299BB7B50095F2A3 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75710A299BB7A70095F2A3 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D75711D299BB7C00095F2A3 /* path_provider_foundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D757109299BB7A70095F2A3 /* path_provider_foundation.xcframework */; };
-		8D75711E299BB7C00095F2A3 /* path_provider_foundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D757109299BB7A70095F2A3 /* path_provider_foundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2B29A3949200700C78 /* ChatController.swift */; };
 		8D99CA2E29A63BE900700C78 /* CitiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2D29A63BE900700C78 /* CitiConstants.swift */; };
 		8DA82E982977FFD000A79D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DA82E972977FFD000A79D3B /* Main.storyboard */; };
@@ -71,6 +60,18 @@
 		8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD3412975791C006B0700 /* LayoutHelpers.swift */; };
 		8DFBD34429757924006B0700 /* PaddingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD34329757924006B0700 /* PaddingContainer.swift */; };
 		8DFBD34629757929006B0700 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD34529757929006B0700 /* ThemeColor.swift */; };
+		AEF3B41129C10E4B005C6AD2 /* AcsUserIdToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3B41029C10E4A005C6AD2 /* AcsUserIdToken.swift */; };
+		AEF3B41E29C10F45005C6AD2 /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41829C10F45005C6AD2 /* FlutterPluginRegistrant.xcframework */; };
+		AEF3B42029C10F4C005C6AD2 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41529C10F45005C6AD2 /* App.xcframework */; };
+		AEF3B42129C10F4C005C6AD2 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41529C10F45005C6AD2 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AEF3B42229C10F4E005C6AD2 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41629C10F45005C6AD2 /* Flutter.xcframework */; };
+		AEF3B42329C10F4E005C6AD2 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41629C10F45005C6AD2 /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AEF3B42429C10F51005C6AD2 /* path_provider_foundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41729C10F45005C6AD2 /* path_provider_foundation.xcframework */; };
+		AEF3B42529C10F51005C6AD2 /* path_provider_foundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41729C10F45005C6AD2 /* path_provider_foundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AEF3B42629C10F52005C6AD2 /* shared_preferences_foundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41429C10F45005C6AD2 /* shared_preferences_foundation.xcframework */; };
+		AEF3B42729C10F52005C6AD2 /* shared_preferences_foundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41429C10F45005C6AD2 /* shared_preferences_foundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AEF3B42829C10F54005C6AD2 /* webview_flutter_wkwebview.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41929C10F45005C6AD2 /* webview_flutter_wkwebview.xcframework */; };
+		AEF3B42929C10F54005C6AD2 /* webview_flutter_wkwebview.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEF3B41929C10F45005C6AD2 /* webview_flutter_wkwebview.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,18 +161,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8D75711A299BB7B30095F2A3 /* Flutter.xcframework in Embed Frameworks */,
+				AEF3B42929C10F54005C6AD2 /* webview_flutter_wkwebview.xcframework in Embed Frameworks */,
 				8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */,
 				8D0A5FFB298A5A2A002EBBC4 /* AzureCommunicationUIChat.framework in Embed Frameworks */,
-				8D75711C299BB7B50095F2A3 /* App.xcframework in Embed Frameworks */,
-				8D75711E299BB7C00095F2A3 /* path_provider_foundation.xcframework in Embed Frameworks */,
 				8D7015F72981303100FDEBFC /* AzureCommunicationCommon.framework in Embed Frameworks */,
-				8D757118299BB7AF0095F2A3 /* shared_preferences_foundation.xcframework in Embed Frameworks */,
 				8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */,
-				8D757116299BB7AD0095F2A3 /* webview_flutter_wkwebview.xcframework in Embed Frameworks */,
+				AEF3B42729C10F52005C6AD2 /* shared_preferences_foundation.xcframework in Embed Frameworks */,
 				8D3AE9C029881A1A009DD389 /* AzureCore.framework in Embed Frameworks */,
 				8D7015F52981302F00FDEBFC /* AzureCommunicationCalling.xcframework in Embed Frameworks */,
+				AEF3B42329C10F4E005C6AD2 /* Flutter.xcframework in Embed Frameworks */,
 				8D3AE9BC29881A08009DD389 /* AzureCommunicationChat.framework in Embed Frameworks */,
+				AEF3B42529C10F51005C6AD2 /* path_provider_foundation.xcframework in Embed Frameworks */,
+				AEF3B42129C10F4C005C6AD2 /* App.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,12 +186,6 @@
 		8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCommunicationChat.xcodeproj; path = SDK/AzureCommunicationChat/AzureCommunicationChat.xcodeproj; sourceTree = "<group>"; };
 		8D3AE9A8298819A1009DD389 /* AzureCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCore.xcodeproj; path = SDK/AzureCore/AzureCore.xcodeproj; sourceTree = "<group>"; };
 		8D70160F2982BE9100FDEBFC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		8D757109299BB7A70095F2A3 /* path_provider_foundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = path_provider_foundation.xcframework; path = Flutter/Debug/path_provider_foundation.xcframework; sourceTree = "<group>"; };
-		8D75710A299BB7A70095F2A3 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/Debug/App.xcframework; sourceTree = "<group>"; };
-		8D75710B299BB7A70095F2A3 /* webview_flutter_wkwebview.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = webview_flutter_wkwebview.xcframework; path = Flutter/Debug/webview_flutter_wkwebview.xcframework; sourceTree = "<group>"; };
-		8D75710C299BB7A70095F2A3 /* shared_preferences_foundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared_preferences_foundation.xcframework; path = Flutter/Debug/shared_preferences_foundation.xcframework; sourceTree = "<group>"; };
-		8D75710D299BB7A70095F2A3 /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = Flutter/Debug/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
-		8D75710E299BB7A70095F2A3 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Debug/Flutter.xcframework; sourceTree = "<group>"; };
 		8D99CA2B29A3949200700C78 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		8D99CA2D29A63BE900700C78 /* CitiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiConstants.swift; sourceTree = "<group>"; };
 		8DA82E972977FFD000A79D3B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -234,6 +229,13 @@
 		8DFBD34329757924006B0700 /* PaddingContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingContainer.swift; sourceTree = "<group>"; };
 		8DFBD34529757929006B0700 /* ThemeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		8DFBD34729757A39006B0700 /* AppSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppSettings.xcconfig; sourceTree = "<group>"; };
+		AEF3B41029C10E4A005C6AD2 /* AcsUserIdToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcsUserIdToken.swift; sourceTree = "<group>"; };
+		AEF3B41429C10F45005C6AD2 /* shared_preferences_foundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared_preferences_foundation.xcframework; path = Flutter/Release/shared_preferences_foundation.xcframework; sourceTree = "<group>"; };
+		AEF3B41529C10F45005C6AD2 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/Release/App.xcframework; sourceTree = "<group>"; };
+		AEF3B41629C10F45005C6AD2 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Release/Flutter.xcframework; sourceTree = "<group>"; };
+		AEF3B41729C10F45005C6AD2 /* path_provider_foundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = path_provider_foundation.xcframework; path = Flutter/Release/path_provider_foundation.xcframework; sourceTree = "<group>"; };
+		AEF3B41829C10F45005C6AD2 /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = Flutter/Release/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
+		AEF3B41929C10F45005C6AD2 /* webview_flutter_wkwebview.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = webview_flutter_wkwebview.xcframework; path = Flutter/Release/webview_flutter_wkwebview.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,22 +243,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D757119299BB7B30095F2A3 /* Flutter.xcframework in Frameworks */,
+				AEF3B42229C10F4E005C6AD2 /* Flutter.xcframework in Frameworks */,
 				8D3AE9BF29881A19009DD389 /* AzureCore.framework in Frameworks */,
-				8D757115299BB7AD0095F2A3 /* webview_flutter_wkwebview.xcframework in Frameworks */,
 				8D3AE9BB29881A08009DD389 /* AzureCommunicationChat.framework in Frameworks */,
 				8D7015F82981303200FDEBFC /* AzureCommunicationUICalling.framework in Frameworks */,
-				8D75711B299BB7B50095F2A3 /* App.xcframework in Frameworks */,
+				AEF3B42829C10F54005C6AD2 /* webview_flutter_wkwebview.xcframework in Frameworks */,
 				8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */,
-				8D75711D299BB7C00095F2A3 /* path_provider_foundation.xcframework in Frameworks */,
 				8D7015F62981303100FDEBFC /* AzureCommunicationCommon.framework in Frameworks */,
+				AEF3B42429C10F51005C6AD2 /* path_provider_foundation.xcframework in Frameworks */,
+				AEF3B42029C10F4C005C6AD2 /* App.xcframework in Frameworks */,
 				8DD4CEEE29A8954000242DA0 /* Trouter in Frameworks */,
 				8D7015F42981302F00FDEBFC /* AzureCommunicationCalling.xcframework in Frameworks */,
 				8D0A5FFA298A5A2A002EBBC4 /* AzureCommunicationUIChat.framework in Frameworks */,
 				8DFBD30A297572B5006B0700 /* libFluentUI.a in Frameworks */,
-				8D757113299BB7A70095F2A3 /* FlutterPluginRegistrant.xcframework in Frameworks */,
 				8DD4CEF229A895C100242DA0 /* AzureCommunicationUICommon in Frameworks */,
-				8D757117299BB7AF0095F2A3 /* shared_preferences_foundation.xcframework in Frameworks */,
+				AEF3B42629C10F52005C6AD2 /* shared_preferences_foundation.xcframework in Frameworks */,
+				AEF3B41E29C10F45005C6AD2 /* FlutterPluginRegistrant.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +330,7 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
+				AEF3B41029C10E4A005C6AD2 /* AcsUserIdToken.swift */,
 				8D99CA2D29A63BE900700C78 /* CitiConstants.swift */,
 				8D2FD7E0299680D10097B59D /* CircleLoader.swift */,
 				8D0A6076298BE498002EBBC4 /* UserInfoData.swift */,
@@ -377,12 +380,12 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8D75710A299BB7A70095F2A3 /* App.xcframework */,
-				8D75710E299BB7A70095F2A3 /* Flutter.xcframework */,
-				8D75710D299BB7A70095F2A3 /* FlutterPluginRegistrant.xcframework */,
-				8D757109299BB7A70095F2A3 /* path_provider_foundation.xcframework */,
-				8D75710C299BB7A70095F2A3 /* shared_preferences_foundation.xcframework */,
-				8D75710B299BB7A70095F2A3 /* webview_flutter_wkwebview.xcframework */,
+				AEF3B41529C10F45005C6AD2 /* App.xcframework */,
+				AEF3B41629C10F45005C6AD2 /* Flutter.xcframework */,
+				AEF3B41829C10F45005C6AD2 /* FlutterPluginRegistrant.xcframework */,
+				AEF3B41729C10F45005C6AD2 /* path_provider_foundation.xcframework */,
+				AEF3B41429C10F45005C6AD2 /* shared_preferences_foundation.xcframework */,
+				AEF3B41929C10F45005C6AD2 /* webview_flutter_wkwebview.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				8DFBD3282975788B006B0700 /* TokenService.swift in Sources */,
 				8D99CA2E29A63BE900700C78 /* CitiConstants.swift in Sources */,
 				8D0A6077298BE4A0002EBBC4 /* UserInfoData.swift in Sources */,
+				AEF3B41129C10E4B005C6AD2 /* AcsUserIdToken.swift in Sources */,
 				8DFBD32429757878006B0700 /* AADAuthHandler.swift in Sources */,
 				8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */,
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,

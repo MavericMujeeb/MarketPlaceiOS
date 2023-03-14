@@ -112,6 +112,7 @@
 		8DB32177299121E10098B5F2 /* FluentUIResources-ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8DB32176299121E00098B5F2 /* FluentUIResources-ios.bundle */; };
 		A88000ED29070F790076B0E2 /* HtmlMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88000EC29070F790076B0E2 /* HtmlMessageView.swift */; };
 		A8BB978028F770FE008142DB /* SystemMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BB977F28F770FE008142DB /* SystemMessageView.swift */; };
+		AEF3B41329C10E64005C6AD2 /* MultipartFormDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3B41229C10E64005C6AD2 /* MultipartFormDataRequest.swift */; };
 		BD1A6A3C28ECDEAE005E0B70 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A6A3B28ECDEAE005E0B70 /* MessageListView.swift */; };
 		BD1A6A3E28ECDFAB005E0B70 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A6A3D28ECDFAB005E0B70 /* MessageListViewModel.swift */; };
 		BD1A6A3F28ECF008005E0B70 /* RepositoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50370C6628EB543200ACD234 /* RepositoryState.swift */; };
@@ -280,6 +281,7 @@
 		A63BF349E7BC31AD5300412A /* Pods_AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AzureCommunicationUIChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88000EC29070F790076B0E2 /* HtmlMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlMessageView.swift; sourceTree = "<group>"; };
 		A8BB977F28F770FE008142DB /* SystemMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMessageView.swift; sourceTree = "<group>"; };
+		AEF3B41229C10E64005C6AD2 /* MultipartFormDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartFormDataRequest.swift; sourceTree = "<group>"; };
 		BD1A6A3B28ECDEAE005E0B70 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		BD1A6A3D28ECDFAB005E0B70 /* MessageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
 		BD231EF12913257C00B56882 /* ObservableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableScrollView.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		50CB81C428C26E0C00680566 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AEF3B41229C10E64005C6AD2 /* MultipartFormDataRequest.swift */,
 				BDB1B8D528F8C8D30000300F /* Assets.xcassets */,
 				50CB81DA28C26EEB00680566 /* ChatAdapter.swift */,
 				50CB81E528C26FEF00680566 /* ChatCompositeOptions */,
@@ -1143,6 +1146,7 @@
 				50CB826728C29E6B00680566 /* ChatCompositeInternalError.swift in Sources */,
 				BDB1B8CB28F8A2940000300F /* IconButtonViewModel.swift in Sources */,
 				50CB81FA28C2861300680566 /* ChatCompositeOptions.swift in Sources */,
+				AEF3B41329C10E64005C6AD2 /* MultipartFormDataRequest.swift in Sources */,
 				50CB825328C29B4800680566 /* ParticipantInfoModel.swift in Sources */,
 				50370C6928EB544400ACD234 /* RepositoryAction.swift in Sources */,
 				50CB821F28C2876900680566 /* ChatViewModel.swift in Sources */,
