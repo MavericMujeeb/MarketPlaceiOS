@@ -169,41 +169,33 @@ class ACSDocumentViewController : UIViewController{
         let size = CGRect(x: 0, y: 0, width: TextMessageView.documentViewWidth, height: TextMessageView.documentViewHeight)
         let url = URL(string: self.url)!
         
-        let urlRequest = URLRequest(url: url)
-        webView = CustomWebView(frame: size)
-        webView.load(urlRequest)
-        self.view.addSubview(webView)
-        
-        //        if self.url.lowercased().contains("jpeg")
-        //            || self.url.lowercased().contains("jpg")
-        //            || self.url.lowercased().contains("png") {
-        //            // Fetch Image Data
-        //            // Create Data Task
-        //            let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, _, _) in
-        //                if let imgData = data {
-        //                    // Create Image and Update Image View
-        //                    DispatchQueue.main.async {
-        //                        let uiImage = UIImage(data: imgData)
-        //                        print("startDocumentViewComposite 2  -> ")
-        //                        print(imgData)
-        //                        print(uiImage)
-        //                        let imageView = UIImageView(image: uiImage)
-        //                        imageView.frame = size
-        //                        imageView.startAnimating()
-        //                        print("startDocumentViewComposite 3  -> ")
-        //                        print(imageView)
-        //                        self?.view.addSubview(imageView)
-        //                    }
-        //                }
-        //            }
-        //            // Start Data Task
-        //            dataTask.resume()
-        //        } else {
-        //            let urlRequest = URLRequest(url: url)
-        //            webView = CustomWebView(frame: size)
-        //            webView.load(urlRequest)
-        //            self.view.addSubview(webView)
-        //        }
+        if self.url.lowercased().contains("jpeg")
+            || self.url.lowercased().contains("jpg")
+            || self.url.lowercased().contains("png")
+            || self.url.lowercased().contains("heic"){
+            // Fetch Image Data
+            // Create Data Task
+            let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, _, _) in
+                if let imgData = data {
+                    // Create Image and Update Image View
+                    DispatchQueue.main.async {
+                        let uiImage = UIImage(data: imgData)
+                        let imageView = UIImageView(image: uiImage)
+                        imageView.frame = size
+                        imageView.contentMode = .scaleAspectFit
+                        imageView.startAnimating()
+                        self?.view.addSubview(imageView)
+                    }
+                }
+            }
+            // Start Data Task
+            dataTask.resume()
+        } else {
+            let urlRequest = URLRequest(url: url)
+            webView = CustomWebView(frame: size)
+            webView.load(urlRequest)
+            self.view.addSubview(webView)
+        }
     }
     
     @objc func onBackBtnPressed() {
@@ -236,9 +228,9 @@ extension CustomWebView: WKNavigationDelegate {
         
         //To hide page count in PDF
         //if condiation not hanlded other than pdf views are hiding/not displying
-//        if webView.url?.pathExtension == "pdf" || webView.url?.pathExtension == "PDF" {
-//            hidePDFPageCount(webView)
-//        }
+        //        if webView.url?.pathExtension == "pdf" || webView.url?.pathExtension == "PDF" {
+        //            hidePDFPageCount(webView)
+        //        }
         webView.evaluateJavaScript("document.readyState", completionHandler: { (_, _) in
             webView.invalidateIntrinsicContentSize()
         })

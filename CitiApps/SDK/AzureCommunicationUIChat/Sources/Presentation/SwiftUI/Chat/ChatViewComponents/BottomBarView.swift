@@ -94,7 +94,7 @@ struct BottomBarView: View {
         }) {
             Icon(name: .attachmentIcon, size: 24)
                 .contentShape(Rectangle())
-        }.fileImporter(isPresented: $shouldPresentChat, allowedContentTypes: [.text, .pdf, .png, .jpeg], allowsMultipleSelection: false, onCompletion: { results in
+        }.fileImporter(isPresented: $shouldPresentChat, allowedContentTypes: [.text, .pdf, .png, .jpeg, .heic], allowsMultipleSelection: false, onCompletion: { results in
             
             switch results {
             case .success(let fileurls):
