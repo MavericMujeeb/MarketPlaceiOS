@@ -74,6 +74,9 @@ struct TextMessageView: View {
             ACSDocumentView(url: messageModel.getAttachmentUrl()!)
         }.padding([.bottom], Constants.contentVerticalPadding)
             .frame(width: TextMessageView.documentViewWidth, height: TextMessageView.documentViewHeight)
+            .onTapGesture {
+                print("Document View Clicked")
+            }
     }
     
     var name: some View {
