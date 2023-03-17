@@ -76,6 +76,18 @@ struct TextMessageView: View {
             .frame(width: TextMessageView.documentViewWidth, height: TextMessageView.documentViewHeight)
             .onTapGesture {
                 print("Document View Clicked")
+                do {
+                    let chatCompositeViewController = ACSDocumentViewController()
+                    chatCompositeViewController.url = messageModel.getAttachmentUrl()!
+                    let navController = UINavigationController(rootViewController: chatCompositeViewController)
+                    navController.modalPresentationStyle = .pageSheet
+                    let window =  UIWindow(frame: UIScreen.main.bounds)
+                    window.rootViewController = navController
+                    window.makeKeyAndVisible()
+                } catch {
+                    print("Document View Clicked - ")
+                    print(error)
+                }
             }
     }
     
@@ -178,21 +190,10 @@ class ACSDocumentViewController : UIViewController{
             || self.url.lowercased().contains("heic"){
             // Fetch Image Data
             // Create Data Task
-            let dataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, _, _) in
-                if let imgData = data {
-                    // Create Image and Update Image View
-                    DispatchQueue.main.async {
-                        let uiImage = UIImage(data: imgData)
-                        let imageView = UIImageView(image: uiImage)
-                        imageView.frame = size
-                        imageView.contentMode = .scaleAspectFit
-                        imageView.startAnimating()
-                        self?.view.addSubview(imageView)
-                    }
-                }
-            }
-            // Start Data Task
-            dataTask.resume()
+            let imageView = UIImageView()
+            imageView.downloadImage(with: self.url, contentMode: UIView.ContentMode.scaleAspectFit)
+            imageView.frame = size
+            self.view.addSubview(imageView)
         } else {
             let urlRequest = URLRequest(url: url)
             webView = CustomWebView(frame: size)
@@ -246,5 +247,55 @@ extension CustomWebView: WKNavigationDelegate {
             return
         }
         last.isHidden = true
+    }
+}
+
+extension UIImageView {
+    
+    func downloadImage(with url: String, contentMode: UIView.ContentMode) {
+        let activityIndicator = self.activityIndicator
+        DispatchQueue.main.async {
+            activityIndicator.startAnimating()
+        }
+        guard let nsUrl = NSURL(string: url) else {return}
+        URLSession.shared.dataTask(with: nsUrl as URL, completionHandler: {
+            (data, response, error) -> Void in
+            DispatchQueue.main.async {
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+                self.contentMode =  contentMode
+                if let data = data, let imageData = UIImage(data: data) {
+                    self.image = imageData
+                }
+            }
+        }).resume()
+    }
+}
+
+extension UIView {
+    var activityIndicator: UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.black
+        self.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let centerX = NSLayoutConstraint(item: self,
+                                         attribute: .centerX,
+                                         relatedBy: .equal,
+                                         toItem: activityIndicator,
+                                         attribute: .centerX,
+                                         multiplier: 1,
+                                         constant: 0)
+        let centerY = NSLayoutConstraint(item: self,
+                                         attribute: .centerY,
+                                         relatedBy: .equal,
+                                         toItem: activityIndicator,
+                                         attribute: .centerY,
+                                         multiplier: 1,
+                                         constant: 0)
+        self.addConstraints([centerX, centerY])
+        return activityIndicator
     }
 }

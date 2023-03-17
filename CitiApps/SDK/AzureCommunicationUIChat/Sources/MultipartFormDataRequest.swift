@@ -91,6 +91,8 @@ struct MultipartFormDataRequest {
             mimeType = "application/pdf"
         } else if filenameORfileExtension.lowercased().contains("jpeg") || filenameORfileExtension.lowercased().contains("jpg") {
             mimeType = "image/jpeg"
+        } else if filenameORfileExtension.lowercased().contains("heic") {
+            mimeType = "image/heic"
         } else if filenameORfileExtension.lowercased().contains("doc") || filenameORfileExtension.lowercased().contains("docx") {
             mimeType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         } else if filenameORfileExtension.lowercased().contains("txt") || filenameORfileExtension.lowercased().contains("text") {
