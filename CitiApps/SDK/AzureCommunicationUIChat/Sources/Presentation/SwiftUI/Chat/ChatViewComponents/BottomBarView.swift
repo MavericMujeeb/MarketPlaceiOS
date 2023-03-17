@@ -51,8 +51,6 @@ class DocumentPickerCoordinator: NSObject, UIDocumentPickerDelegate{
 
 struct BottomBarView: View {
     
-    static var UploadedFileUrl: String? = ""
-    
     private enum Constants {
         static let minimumHeight: CGFloat = 50
         static let focusDelay: CGFloat = 1.0
@@ -133,8 +131,8 @@ struct BottomBarView: View {
             
             if let response = urlResponse as? HTTPURLResponse {
                 if response.statusCode == 201 {
-                    BottomBarView.UploadedFileUrl = request.storageAccountEndPoint+request.containerName+fileName
-                    print("File url -> "+BottomBarView.UploadedFileUrl!)
+                    let fileFullUrl = request.storageAccountEndPoint+request.containerName+fileName
+                    viewModel.sendMessage(fileUrl: fileFullUrl)
                 }
             }
             if let data = data {

@@ -68,10 +68,9 @@ class BottomBarViewModel: ObservableObject {
         self.showFilePicker.toggle()
     }
 
-    func sendMessage() {
-        let fileUrl = BottomBarView.UploadedFileUrl
+    func sendMessage(fileUrl: String? = "") {
         guard let isFileEmpty:Bool = fileUrl?.isEmpty else {return}
-    
+        
         var metadataSet: [String: String?]? = [:]
         metadataSet?.updateValue("\(!isFileEmpty)", forKey: "hasAttachment")
         metadataSet?.updateValue(fileUrl, forKey: "attachmentUrl")
@@ -80,7 +79,6 @@ class BottomBarViewModel: ObservableObject {
             content: message.trim(),
             metadata: metadataSet)))
         message = ""
-        BottomBarView.UploadedFileUrl = ""
     }
 
     func sendTypingIndicator() {
