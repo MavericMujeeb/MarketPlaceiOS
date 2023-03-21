@@ -26,6 +26,8 @@ struct TextMessageView: View {
     let showUsername: Bool
     let showTime: Bool
     
+    @State private var showDocView: Bool = false
+    
     var body: some View {
         HStack(spacing: Constants.spacing) {
             if messageModel.isLocalUser {
@@ -71,22 +73,23 @@ struct TextMessageView: View {
     
     var documentview: some View {
         VStack(alignment: .leading) {
-            ACSDocumentView(url: messageModel.getAttachmentUrl()!)
+            ACSDocumentView(url: messageModel.getAttachmentUrl()!, showFullScreen: false)
         }.padding([.bottom], Constants.contentVerticalPadding)
             .frame(width: TextMessageView.documentViewWidth, height: TextMessageView.documentViewHeight)
             .onTapGesture {
-                print("Document View Clicked")
-                do {
-                    let chatCompositeViewController = ACSDocumentViewController()
-                    chatCompositeViewController.url = messageModel.getAttachmentUrl()!
-                    let navController = UINavigationController(rootViewController: chatCompositeViewController)
-                    navController.modalPresentationStyle = .pageSheet
-                    let window =  UIWindow(frame: UIScreen.main.bounds)
-                    window.rootViewController = navController
-                    window.makeKeyAndVisible()
-                } catch {
-                    print("Document View Clicked - ")
-                    print(error)
+                self.showDocView.toggle()
+            }
+            .sheet(isPresented: self.$showDocView) {
+                VStack(alignment: .leading, spacing: 20) {
+                    Spacer()
+                    HStack(spacing: 20) {
+                        Button(action: self.onBackClicked) {
+                            Icon(name: .leftArrow, size: 26.0)
+                                .contentShape(Rectangle())
+                                .foregroundColor(Color(StyleProvider.color.iconSecondary))
+                        }.padding([.horizontal], 20)
+                    }
+                    ACSDocumentView(url: messageModel.getAttachmentUrl()!, showFullScreen: true)
                 }
             }
     }
@@ -147,19 +150,26 @@ struct TextMessageView: View {
             return Color(StyleProvider.color.primaryColorTint30)
         }
     }
+    
+    private func onBackClicked() {
+        self.showDocView.toggle()
+    }
 }
 
 struct ACSDocumentView: UIViewControllerRepresentable {
     
     var url : String!
+    var showFullScreen: Bool = false
     
-    init(url: String!) {
+    init(url: String!, showFullScreen: Bool = false) {
         self.url = url
+        self.showFullScreen = showFullScreen
     }
     
     func makeUIViewController(context: Context) -> ACSDocumentViewController {
         let vc = ACSDocumentViewController()
         vc.url = self.url;
+        vc.showFullScreen = self.showFullScreen
         return vc
     }
     
@@ -172,6 +182,8 @@ class ACSDocumentViewController : UIViewController{
     
     var url:String!
     
+    var showFullScreen: Bool!
+    
     var webView: CustomWebView!
     
     override func viewDidLoad() {
@@ -180,8 +192,14 @@ class ACSDocumentViewController : UIViewController{
     }
     
     @objc private func startDocumentViewComposite() {
+        var viewWidth = TextMessageView.documentViewWidth
+        var viewHeight = TextMessageView.documentViewHeight
         
-        let size = CGRect(x: 0, y: 0, width: TextMessageView.documentViewWidth, height: TextMessageView.documentViewHeight)
+        if self.showFullScreen {
+            viewWidth =  UIScreen.main.bounds.size.width
+            viewHeight = UIScreen.main.bounds.size.height
+        }
+        let size = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
         let url = URL(string: self.url)!
         
         if self.url.lowercased().contains("jpeg")
