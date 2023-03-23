@@ -87,7 +87,10 @@ struct TextMessageView: View {
                             Icon(name: .leftArrow, size: 26.0)
                                 .contentShape(Rectangle())
                                 .foregroundColor(Color(StyleProvider.color.iconSecondary))
-                        }.padding([.horizontal], 20)
+                        }
+                        Text(getFileName(fileUrl:messageModel.getAttachmentUrl()!))
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .foregroundColor(.black)
                     }
                     ACSDocumentView(url: messageModel.getAttachmentUrl()!, showFullScreen: true)
                 }
@@ -149,6 +152,11 @@ struct TextMessageView: View {
         } else {
             return Color(StyleProvider.color.primaryColorTint30)
         }
+    }
+    
+    private func getFileName(fileUrl: String) -> String {
+        let splitUrl = fileUrl.components(separatedBy: "/")
+        return splitUrl[splitUrl.count-1]
     }
     
     private func onBackClicked() {
