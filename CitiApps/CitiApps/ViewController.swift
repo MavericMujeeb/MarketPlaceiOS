@@ -27,6 +27,13 @@ class ViewController : UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordRevealer: UIButton!
     
+    @IBOutlet weak var faceDetectIV: UIImageView! {
+            didSet {
+                faceDetectIV.isUserInteractionEnabled = true
+                faceDetectIV.image = UIImage(named: "facedetection")
+            }
+        }
+    
     @IBAction func revealPassword(_ sender: Any) {
         password.togglePasswordVisibility()
     }
@@ -36,6 +43,7 @@ class ViewController : UIViewController {
     
     
     @IBAction func onLoginAction(_ sender: Any) {
+        print("onLoginAction - > clicked")
         if(self.username.text == "" || self.password.text == "") {
             return
         }
@@ -98,6 +106,9 @@ class ViewController : UIViewController {
         }
     }
     
+    @IBAction func onFaceTouchIDAction(_ sender: UITapGestureRecognizer) {
+        print("onFaceTouchIDAction - > clicked")
+    }
     
     func customizeNavBar(){
         let logoImageView = UIImageView.init()
@@ -134,7 +145,11 @@ class ViewController : UIViewController {
         super.viewDidLoad();
         customizeNavBar()
         customizeTextFields()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        authenticationWithTouchFaceID()
     }
     
     func flutterMethodChannel (passArgs: String?) {
