@@ -5,6 +5,53 @@
 
 import FluentUI
 import UIKit
+import PIPKit
+
+class PIPACSViewController : UIViewController, PIPUsable{
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .blue
+        view.layer.borderColor = UIColor.red.cgColor
+        view.layer.borderWidth = 1.0
+        print("View did load")
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        if PIPKit.isPIP {
+            stopPIPMode()
+        } else {
+            startPIPMode()
+        }
+    }
+    
+    func didChangedState(_ state: PIPState) {
+        switch state {
+        case .pip:
+            print("PIPViewController.pip")
+        case .full:
+            print("PIPViewController.full")
+        }
+    }
+    
+    func didChangePosition(_ position: PIPPosition) {
+        switch position {
+        case .topLeft:
+            print("PIPXibViewController.topLeft")
+        case .middleLeft:
+            print("PIPXibViewController.middleLeft")
+        case .bottomLeft:
+            print("PIPXibViewController.bottomLeft")
+        case .topRight:
+            print("PIPXibViewController.topRight")
+        case .middleRight:
+            print("PIPXibViewController.middleRight")
+        case .bottomRight:
+            print("PIPXibViewController.bottomRight")
+        }
+    }
+}
 
 
 class TeamsCallingViewController {
@@ -14,7 +61,6 @@ class TeamsCallingViewController {
     var teamsLink: String!
     
     private let busyOverlay = BusyOverlay(frame: .zero)
-
     
     func startCall() {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)

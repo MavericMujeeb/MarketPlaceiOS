@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Flutter
 import FluentUI
+import PIPKit
 
 
 class PortraitOnlyNavController: UINavigationController {

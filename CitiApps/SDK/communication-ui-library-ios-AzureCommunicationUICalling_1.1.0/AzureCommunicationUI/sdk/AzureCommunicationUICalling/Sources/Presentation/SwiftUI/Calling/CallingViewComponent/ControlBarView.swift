@@ -9,6 +9,7 @@ import AzureCommunicationCommon
 import Trouter
 import UIKit
 import AzureCommunicationUIChat
+import ReplayKit
 
 class ChatViewController : UIViewController{
     
@@ -21,8 +22,7 @@ class ChatViewController : UIViewController{
     }
 
     @objc private func startChatComposite() {
-        print("loggedInUserId")
-        print(loggedInUserId)
+        
         let communicationIdentifier = CommunicationUserIdentifier(loggedInUserId)
         guard let communicationTokenCredential = try? CommunicationTokenCredential(
             token:communincationTokenString) else {

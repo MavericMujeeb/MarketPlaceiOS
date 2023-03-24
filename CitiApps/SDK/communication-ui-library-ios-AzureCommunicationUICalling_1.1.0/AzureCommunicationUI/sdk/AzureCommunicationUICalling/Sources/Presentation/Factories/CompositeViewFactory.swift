@@ -33,7 +33,8 @@ struct CompositeViewFactory: CompositeViewFactoryProtocol {
     }
 
     func makeCallingView(teamsMeetingLink: String) -> CallingView {
-        return CallingView(viewModel: compositeViewModelFactory.getCallingViewModel(teamsMeetingLink: teamsMeetingLink),
+        
+        return CallingView(viewModel: compositeViewModelFactory.getCallingViewModel(teamsMeetingLink: teamsMeetingLink), setupViewModel: compositeViewModelFactory.getSetupViewModel(),
                            avatarManager: avatarManager,
                            viewManager: videoViewManager)
     }

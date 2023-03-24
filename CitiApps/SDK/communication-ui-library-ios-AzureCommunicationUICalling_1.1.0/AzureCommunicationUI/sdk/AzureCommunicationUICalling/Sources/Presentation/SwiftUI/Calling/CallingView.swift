@@ -19,6 +19,7 @@ struct CallingView: View {
     }
 
     @ObservedObject var viewModel: CallingViewModel
+    @ObservedObject var setupViewModel: SetupViewModel
     let avatarManager: AvatarViewManagerProtocol
     let viewManager: VideoViewManager
     let leaveCallConfirmationListSourceView = UIView()
@@ -51,6 +52,7 @@ struct CallingView: View {
 
     var portraitCallingView: some View {
         VStack(alignment: .center, spacing: 0) {
+//            CallingTitleView(viewModel: setupViewModel)
             containerView
             ControlBarView(viewModel: viewModel.controlBarViewModel)
             

@@ -5,8 +5,9 @@
 
 import Foundation
 import SwiftUI
+import PIPKit
 
-class ContainerUIHostingController: UIHostingController<ContainerUIHostingController.Root> {
+class ContainerUIHostingController: UIHostingController<ContainerUIHostingController.Root>, PIPUsable {
     class EnvironmentProperty {
         @Published var supportedOrientations: UIInterfaceOrientationMask
         @Published var isProximitySensorOn: Bool
@@ -46,6 +47,25 @@ class ContainerUIHostingController: UIHostingController<ContainerUIHostingContro
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
         overrideUserInterfaceStyle = StyleProvider.color.colorSchemeOverride
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        if PIPKit.isPIP {
+            stopPIPMode()
+        } else {
+            startPIPMode()
+        }
+    }
+    
+    func didChangedState(_ state: PIPState) {
+        switch state {
+        case .pip:
+            print("PIPViewController.pip")
+        case .full:
+            print("PIPViewController.full")
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
