@@ -126,6 +126,7 @@ struct SetupTitleView: View {
     var viewModel: SetupViewModel
 
     @Environment(\.sizeCategory) var sizeCategory: ContentSizeCategory
+    @Environment(\.presentationMode) var presentation
 
     var body: some View {
         VStack(spacing: verticalSpacing) {
@@ -144,6 +145,52 @@ struct SetupTitleView: View {
                             .accessibilityAddTraits(.isHeader)
                         if let subtitle = viewModel.subTitle, !subtitle.isEmpty {
                             Text(subtitle)
+                                .font(Fonts.caption1.font)
+                                .foregroundColor(Color(StyleProvider.color.onNavigationSecondary))
+                                .lineLimit(1)
+                                .minimumScaleFactor(sizeCategory.isAccessibilityCategory ? 0.4 : 1)
+                                .accessibilityAddTraits(.isHeader)
+                        }
+                    }
+                    Spacer()
+                }.accessibilitySortPriority(1)
+                 .padding(padding)
+            }.frame(height: viewHeight)
+            Divider()
+        }
+    }
+}
+
+struct CallingTitleView: View {
+    let viewHeight: CGFloat = 44
+    let padding: CGFloat = 34.0
+    let verticalSpacing: CGFloat = 0
+    var viewModel: SetupViewModel
+
+    @Environment(\.sizeCategory) var sizeCategory: ContentSizeCategory
+    @Environment(\.presentationMode) var presentation
+
+    var body: some View {
+        VStack(spacing: verticalSpacing) {
+            ZStack(alignment: .leading) {
+                Button(action: {
+                    self.presentation.wrappedValue.dismiss()
+
+                }) {
+                    Icon(name: .leftArrow, size: 20)
+                }
+                
+                HStack {
+                    Spacer()
+                    VStack {
+                        Text("Call")
+                            .font(Fonts.headline.font)
+                            .foregroundColor(Color(StyleProvider.color.onBackground))
+                            .lineLimit(1)
+                            .minimumScaleFactor(sizeCategory.isAccessibilityCategory ? 0.4 : 1)
+                            .accessibilityAddTraits(.isHeader)
+                        if let subtitle = viewModel.subTitle, !subtitle.isEmpty {
+                            Text("Call")
                                 .font(Fonts.caption1.font)
                                 .foregroundColor(Color(StyleProvider.color.onNavigationSecondary))
                                 .lineLimit(1)

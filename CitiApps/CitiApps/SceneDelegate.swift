@@ -8,6 +8,11 @@
 import UIKit
 import FluentUI
 import Flutter
+import PIPKit
+
+#if canImport(Combine)
+import Combine
+#endif
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -73,10 +78,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
-        let mettingLink = args.value(forKey: "meeting_id") as! String        
+        let mettingLink = args.value(forKey: "meeting_id") as! String
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
         teamsCallingViewController.startCall()
+
+//        PIPKit.show(with: PIPACSViewController())
     }
     
     

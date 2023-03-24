@@ -47,6 +47,10 @@ extension Reducer where State == CallingState,
                 .compositeExitAction,
                 .callingViewLaunched:
             return callingState
+        case .startScreenShareAction(_):
+            return callingState
+        case .stopScreenShareAction(_):
+            return callingState
         }
         return CallingState(status: callingStatus,
                             operationStatus: operationStatus,

@@ -32,6 +32,11 @@ extension Middleware {
                                 .compositeExitAction,
                                 .callingViewLaunched:
                             break
+                        case .startScreenShareAction(let screenShareAction):
+                            handleLocalUserAction(screenShareAction, actionHandler, getState, dispatch)
+
+                        case .stopScreenShareAction(let screenShareAction):
+                            handleLocalUserAction(screenShareAction, actionHandler, getState, dispatch)
                         }
                         return next(action)
                     }
@@ -96,6 +101,12 @@ private func handleLocalUserAction(_ action: LocalUserAction,
             .audioDeviceChangeSucceeded(device: _),
             .audioDeviceChangeFailed(error: _):
         break
+    case .screenSharingOffTriggered:
+        actionHandler.stopScreenSharing(state: getState(), dispatch: dispatch)
+
+    case .screenSharingOnTriggered:
+        actionHandler.startScreenSharing(state: getState(), dispatch: dispatch)
+
     }
 }
 

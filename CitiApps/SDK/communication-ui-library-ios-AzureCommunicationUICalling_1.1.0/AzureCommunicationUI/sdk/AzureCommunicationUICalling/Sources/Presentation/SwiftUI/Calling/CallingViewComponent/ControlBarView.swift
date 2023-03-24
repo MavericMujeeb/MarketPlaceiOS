@@ -9,6 +9,7 @@ import AzureCommunicationCommon
 import Trouter
 import UIKit
 import AzureCommunicationUIChat
+import ReplayKit
 
 class ChatViewController : UIViewController{
     
@@ -21,8 +22,7 @@ class ChatViewController : UIViewController{
     }
 
     @objc private func startChatComposite() {
-        print("loggedInUserId")
-        print(loggedInUserId)
+        
         let communicationIdentifier = CommunicationUserIdentifier(loggedInUserId)
         guard let communicationTokenCredential = try? CommunicationTokenCredential(
             token:communincationTokenString) else {
@@ -174,9 +174,9 @@ struct ControlBarView: View {
                     Spacer()
                     micButton
                     Spacer()
-                    audioDeviceButton
-                    Spacer()
                     chatButton
+                    Spacer()
+                    screenShareButton
                     Spacer()
                     hangUpButton
                 }
@@ -184,13 +184,13 @@ struct ControlBarView: View {
                 VStack {
                     hangUpButton
                     Spacer()
-                    audioDeviceButton
+                    chatButton
                     Spacer()
                     micButton
                     Spacer()
                     videoButton
                     Spacer()
-                    chatButton
+                    screenShareButton
                     
                 }
             }
@@ -224,6 +224,12 @@ struct ControlBarView: View {
             ChatScreen(threadId: getThreadId(from: self.viewModel.teamsMeetingLink))
         })
         
+    }
+    
+    var screenShareButton: some View {
+        IconButton(viewModel: viewModel.screenShareButtonViewModel)
+            .disabled(viewModel.isScreenShare())
+            .accessibility(identifier: "Screen_Share")
     }
 
     var audioDeviceButton: some View {

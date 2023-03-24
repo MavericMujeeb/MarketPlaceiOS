@@ -50,6 +50,14 @@ extension Reducer where State == ErrorState,
                 .compositeExitAction,
                 .callingViewLaunched:
             return state
+        case .startScreenShareAction(_):
+            errorType = nil
+            error = nil
+            errorCategory = .none
+        case .stopScreenShareAction(_):
+            errorType = nil
+            error = nil
+            errorCategory = .none
         }
 
         return ErrorState(internalError: errorType,

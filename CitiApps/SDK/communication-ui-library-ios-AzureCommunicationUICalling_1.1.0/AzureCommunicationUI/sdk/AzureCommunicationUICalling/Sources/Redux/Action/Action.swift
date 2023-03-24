@@ -17,4 +17,6 @@ enum Action: Equatable {
     case permissionAction(PermissionAction)
     case compositeExitAction
     case callingViewLaunched
+    case startScreenShareAction(LocalUserAction)
+    case stopScreenShareAction(LocalUserAction)
 }

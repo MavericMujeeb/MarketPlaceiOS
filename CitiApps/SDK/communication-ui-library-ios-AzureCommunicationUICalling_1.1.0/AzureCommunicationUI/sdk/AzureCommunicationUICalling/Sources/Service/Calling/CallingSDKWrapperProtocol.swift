@@ -70,6 +70,8 @@ protocol CallingSDKWrapperProtocol {
     func unmuteLocalMic() async throws
     func holdCall() async throws
     func resumeCall() async throws
+    func startScreenShare() async throws
+    func stopScreenShare() async throws
 
     var callingEventsHandler: CallingSDKEventsHandling { get }
 }

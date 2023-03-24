@@ -34,6 +34,9 @@ enum LocalUserAction: Equatable {
 
     case microphonePreviewOn
     case microphonePreviewOff
+    
+    case screenSharingOffTriggered
+    case screenSharingOnTriggered
 
     case audioDeviceChangeRequested(device: AudioDeviceType)
     case audioDeviceChangeSucceeded(device: AudioDeviceType)

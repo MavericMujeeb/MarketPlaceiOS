@@ -1,9 +1,11 @@
 // ACSCallingShared
-// This file was auto-generated from ACSCallingModelGA.cs.
+// This file was auto-generated from ACSCallingModelBETA.cs.
 
 #import <Foundation/Foundation.h>
 
+#import <CoreVideo/CoreVideo.h>
 #import <AzureCommunicationCommon/AzureCommunicationCommon-Swift.h>
+#import "ACSCallKit.h"
 #import "ACSVideoStreamRenderer.h"
 #import "ACSVideoStreamRendererView.h"
 #import "ACSStreamSize.h"
@@ -51,13 +53,58 @@ typedef NS_OPTIONS(NSInteger, ACSCallingCommunicationErrors)
     ACSCallingCommunicationErrorsParticipantAlreadyAddedToCall = 65536,
     /// Call feature extension not found.
     ACSCallingCommunicationErrorsCallFeatureExtensionNotFound = 131072,
+    /// Virtual tried to register an already registered device id.
+    ACSCallingCommunicationErrorsDuplicateDeviceId = 262144,
+    /// App is expected to register a delegation to complete the operation.
+    ACSCallingCommunicationErrorsDelegateIsRequired = 524288,
+    /// Virtual device is not started.
+    ACSCallingCommunicationErrorsVirtualDeviceNotStarted = 1048576,
+    /// Invalid video stream combination provided.
+    ACSCallingCommunicationErrorsInvalidVideoStreamCombination = 4194304,
     /// User display name is longer than the supported length.
     ACSCallingCommunicationErrorsDisplayNameLengthLongerThanSupported = 8388608,
     /// Cannot hangup for everyone in a non-hostless call
     ACSCallingCommunicationErrorsFailedToHangupForEveryone = 16777216,
     /// No multiple connections with different cloud type per app is allowed.
-    ACSCallingCommunicationErrorsNoMultipleConnectionsWithDifferentClouds = 33554432
+    ACSCallingCommunicationErrorsNoMultipleConnectionsWithDifferentClouds = 33554432,
+    /// No active audio stream to stop.
+    ACSCallingCommunicationErrorsNoActiveAudioStreamToStop = 67108864
 } NS_SWIFT_NAME(CallingCommunicationErrors);
+
+/// Local and Remote Video Stream types
+typedef NS_ENUM(NSInteger, ACSMediaStreamType)
+{
+    /// Video
+    ACSMediaStreamTypeVideo = 1,
+    /// Screen share
+    ACSMediaStreamTypeScreenSharing = 2
+} NS_SWIFT_NAME(MediaStreamType);
+
+/// Type of outgoing video stream is being used on the call
+typedef NS_ENUM(NSInteger, ACSOutgoingVideoStreamKind)
+{
+    /// None
+    ACSOutgoingVideoStreamKindNone = 0,
+    /// Local
+    ACSOutgoingVideoStreamKindLocal = 1,
+    /// Video
+    ACSOutgoingVideoStreamKindVirtual = 2,
+    /// Screen share
+    ACSOutgoingVideoStreamKindScreenShare = 3
+} NS_SWIFT_NAME(OutgoingVideoStreamKind);
+
+/// Defines possible running states for a virtual device.
+typedef NS_ENUM(NSInteger, ACSOutgoingVideoStreamState)
+{
+    /// None
+    ACSOutgoingVideoStreamStateNone = 0,
+    /// Started
+    ACSOutgoingVideoStreamStateStarted = 1,
+    /// Stopped
+    ACSOutgoingVideoStreamStateStopped = 2,
+    /// Failed
+    ACSOutgoingVideoStreamStateFailed = 3
+} NS_SWIFT_NAME(OutgoingVideoStreamState);
 
 /// Direction of the camera
 typedef NS_ENUM(NSInteger, ACSCameraFacing)
@@ -91,14 +138,30 @@ typedef NS_ENUM(NSInteger, ACSVideoDeviceType)
     ACSVideoDeviceTypeVirtual = 3
 } NS_SWIFT_NAME(VideoDeviceType);
 
-/// Local and Remote Video Stream types
-typedef NS_ENUM(NSInteger, ACSMediaStreamType)
+/// Type of outgoing audio stream is being used on the call
+typedef NS_ENUM(NSInteger, ACSAudioStreamKind)
 {
-    /// Video
-    ACSMediaStreamTypeVideo = 1,
-    /// Screen share
-    ACSMediaStreamTypeScreenSharing = 2
-} NS_SWIFT_NAME(MediaStreamType);
+    /// None
+    ACSAudioStreamKindNone = 0,
+    /// Local
+    ACSAudioStreamKindLocal = 1,
+    /// Audio
+    ACSAudioStreamKindVirtual = 2
+} NS_SWIFT_NAME(AudioStreamKind);
+
+typedef NS_ENUM(NSInteger, ACSParticipantRole)
+{
+    /// Unknown
+    ACSParticipantRoleUnknown = 0,
+    /// Attendee
+    ACSParticipantRoleAttendee = 1,
+    /// Consumer
+    ACSParticipantRoleConsumer = 2,
+    /// Presenter
+    ACSParticipantRolePresenter = 3,
+    /// Organizer
+    ACSParticipantRoleOrganizer = 4
+} NS_SWIFT_NAME(ParticipantRole);
 
 /// State of a participant in the call
 typedef NS_ENUM(NSInteger, ACSParticipantState)
@@ -155,6 +218,17 @@ typedef NS_ENUM(NSInteger, ACSCallDirection)
     ACSCallDirectionIncoming = 2
 } NS_SWIFT_NAME(CallDirection);
 
+/// Defines direction of the AudioStream or VideoStream
+typedef NS_ENUM(NSInteger, ACSMediaStreamDirection)
+{
+    /// None
+    ACSMediaStreamDirectionNone = 0,
+    /// Incoming
+    ACSMediaStreamDirectionIncoming = 1,
+    /// Outgoing
+    ACSMediaStreamDirectionOutgoing = 2
+} NS_SWIFT_NAME(MediaStreamDirection);
+
 /// DTMF (Dual-Tone Multi-Frequency) tone for PSTN calls
 typedef NS_ENUM(NSInteger, ACSDtmfTone)
 {
@@ -203,11 +277,65 @@ typedef NS_ENUM(NSInteger, ACSScalingMode)
     ACSScalingModeFit = 2
 } NS_SWIFT_NAME(ScalingMode);
 
+/// Indicates the state of recording
+typedef NS_ENUM(NSInteger, ACSRecordingState)
+{
+    /// Recording started
+    ACSRecordingStateStarted = 0,
+    /// Recording paused
+    ACSRecordingStatePaused = 1,
+    /// Recording stopped
+    ACSRecordingStateEnded = 2
+} NS_SWIFT_NAME(RecordingState);
+
+/// Informs how media frames will be available for encoding or decoding.
+typedef NS_ENUM(NSInteger, ACSVideoFrameKind)
+{
+    /// No media frame type defined. This is the default.
+    ACSVideoFrameKindNone = 0,
+    /// VideoSoftware allows video frames content available in RAM to be encoded and decoded using CPU resources. In order to allow fall backs on GPU failures, at least one VideoFormat should be of the VideoFrameKind::VideoSoftware type.
+    ACSVideoFrameKindVideoSoftware = 1,
+    /// VideoHardware allows video frames content available via platform specific hardware accelerated format. For instance, IMFSample on Windows and GL textures on Android.
+    ACSVideoFrameKindVideoHardware = 2
+} NS_SWIFT_NAME(VideoFrameKind);
+
+/// Informs how the pixels of the video frame is encoded.
+typedef NS_ENUM(NSInteger, ACSPixelFormat)
+{
+    /// No pixel format defined. This is the default.
+    ACSPixelFormatNone = 0,
+    /// Pixel format is encoded as single plane with 32 bits per pixels, 8 bits per channel, ordered as blue, followed by green, followed by red and discarding the last 8 bits.
+    ACSPixelFormatBgrx = 1,
+    /// Pixel format is encoded as single plane with 24 bits per pixels, 8 bits per channel, ordered as blue, followed by green, followed by red.
+    ACSPixelFormatBgr24 = 2,
+    /// Pixel format is encoded as single plane with 32 bits per pixels, 8 bits per channel, ordered as blue, followed by green, followed by red and discarding the last 8 bits.
+    ACSPixelFormatRgbx = 3,
+    /// Pixel format is encoded as single plane with 32 bits per pixels, 8 bits per channel, ordered as blue, followed by green, followed by red and alpha as 8 bits each. Alpha is discarded.
+    ACSPixelFormatRgba = 4,
+    /// Pixel format  is encoded as YUV 4:2:0 with a plane of 8 bit Y samples, followed by an interleaved U/V plane containing 8 bit 2x2 sub-sampled color difference samples.
+    ACSPixelFormatNv12 = 5,
+    /// Pixel format is encoded as YUV 4:2:0 with a plane of 8 bit ordered by Y, followed by a U plane, followed by a V plane.
+    ACSPixelFormatI420 NS_SWIFT_NAME(i420) = 6
+} NS_SWIFT_NAME(PixelFormat);
+
+typedef NS_ENUM(NSInteger, ACSResultType)
+{
+    /// Text contains partially spoken sentence.
+    ACSResultTypeIntermediate = 0,
+    /// Sentence has been completely transcribed.
+    ACSResultTypeFinal = 1
+} NS_SWIFT_NAME(ResultType);
+
 // MARK: Forward declarations.
+@class ACSOutgoingVideoStream;
 @class ACSVideoOptions;
 @class ACSLocalVideoStream;
 @class ACSVideoDeviceInfo;
+@class ACSOutgoingVideoStreamStateChangedEventArgs;
 @class ACSAudioOptions;
+@class ACSAudioStream;
+@class ACSIncomingAudioStream;
+@class ACSOutgoingAudioStream;
 @class ACSJoinCallOptions;
 @class ACSAcceptCallOptions;
 @class ACSStartCallOptions;
@@ -227,6 +355,7 @@ typedef NS_ENUM(NSInteger, ACSScalingMode)
 @class ACSRemoteVideoStream;
 @class ACSPropertyChangedEventArgs;
 @class ACSRemoteVideoStreamsEventArgs;
+@class ACSCallInfo;
 @class ACSParticipantsUpdatedEventArgs;
 @class ACSLocalVideoStreamsUpdatedEventArgs;
 @class ACSHangUpOptions;
@@ -238,9 +367,27 @@ typedef NS_ENUM(NSInteger, ACSScalingMode)
 @class ACSCallDiagnosticsOptions;
 @class ACSDeviceManager;
 @class ACSVideoDevicesUpdatedEventArgs;
+@class ACSRecordingUpdatedEventArgs;
+@class ACSRecordingInfo;
 @class ACSRecordingCallFeature;
 @class ACSTranscriptionCallFeature;
+@class ACSDominantSpeakersCallFeature;
+@class ACSDominantSpeakersInfo;
 @class ACSCreateViewOptions;
+@class ACSVideoFormat;
+@class ACSVideoFrameSenderChangedEventArgs;
+@class ACSVideoFrameSender;
+@class ACSRawOutgoingVideoStreamOptions;
+@class ACSFrameConfirmation;
+@class ACSSoftwareBasedVideoFrameSender;
+@class ACSRawOutgoingVideoStream;
+@class ACSScreenShareRawOutgoingVideoStream;
+@class ACSVirtualRawOutgoingVideoStream;
+@class ACSRoomCallLocator;
+@class ACSLocalAudioStream;
+@class ACSRemoteAudioStream;
+@protocol ACSLocalVideoStreamDelegate;
+@class ACSLocalVideoStreamEvents;
 @protocol ACSCallAgentDelegate;
 @class ACSCallAgentEvents;
 @protocol ACSCallDelegate;
@@ -255,6 +402,20 @@ typedef NS_ENUM(NSInteger, ACSScalingMode)
 @class ACSRecordingCallFeatureEvents;
 @protocol ACSTranscriptionCallFeatureDelegate;
 @class ACSTranscriptionCallFeatureEvents;
+@protocol ACSDominantSpeakersCallFeatureDelegate;
+@class ACSDominantSpeakersCallFeatureEvents;
+@protocol ACSRawOutgoingVideoStreamOptionsDelegate;
+@class ACSRawOutgoingVideoStreamOptionsEvents;
+@protocol ACSScreenShareRawOutgoingVideoStreamDelegate;
+@class ACSScreenShareRawOutgoingVideoStreamEvents;
+@protocol ACSVirtualRawOutgoingVideoStreamDelegate;
+@class ACSVirtualRawOutgoingVideoStreamEvents;
+
+NS_SWIFT_NAME(LocalVideoStreamEvents)
+@interface ACSLocalVideoStreamEvents : NSObject
+@property (copy, nullable) void (^onOutgoingVideoStreamStateChanged)(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull);
+- (void) removeAll;
+@end
 
 NS_SWIFT_NAME(CallAgentEvents)
 @interface ACSCallAgentEvents : NSObject
@@ -267,9 +428,11 @@ NS_SWIFT_NAME(CallEvents)
 @interface ACSCallEvents : NSObject
 @property (copy, nullable) void (^onIdChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onStateChanged)(ACSPropertyChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onRoleChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onRemoteParticipantsUpdated)(ACSParticipantsUpdatedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onLocalVideoStreamsUpdated)(ACSLocalVideoStreamsUpdatedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onIsMutedChanged)(ACSPropertyChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onTotalParticipantCountChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 - (void) removeAll;
 @end
 
@@ -279,6 +442,7 @@ NS_SWIFT_NAME(RemoteParticipantEvents)
 @property (copy, nullable) void (^onIsMutedChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onIsSpeakingChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onDisplayNameChanged)(ACSPropertyChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onRoleChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onVideoStreamsUpdated)(ACSRemoteVideoStreamsEventArgs * _Nonnull);
 - (void) removeAll;
 @end
@@ -298,6 +462,7 @@ NS_SWIFT_NAME(DeviceManagerEvents)
 NS_SWIFT_NAME(RecordingCallFeatureEvents)
 @interface ACSRecordingCallFeatureEvents : NSObject
 @property (copy, nullable) void (^onIsRecordingActiveChanged)(ACSPropertyChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onRecordingUpdated)(ACSRecordingUpdatedEventArgs * _Nonnull);
 - (void) removeAll;
 @end
 
@@ -305,6 +470,40 @@ NS_SWIFT_NAME(TranscriptionCallFeatureEvents)
 @interface ACSTranscriptionCallFeatureEvents : NSObject
 @property (copy, nullable) void (^onIsTranscriptionActiveChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 - (void) removeAll;
+@end
+
+NS_SWIFT_NAME(DominantSpeakersCallFeatureEvents)
+@interface ACSDominantSpeakersCallFeatureEvents : NSObject
+@property (copy, nullable) void (^onDominantSpeakersChanged)(ACSPropertyChangedEventArgs * _Nonnull);
+- (void) removeAll;
+@end
+
+NS_SWIFT_NAME(RawOutgoingVideoStreamOptionsEvents)
+@interface ACSRawOutgoingVideoStreamOptionsEvents : NSObject
+@property (copy, nullable) void (^onVideoFrameSenderChanged)(ACSVideoFrameSenderChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onOutgoingVideoStreamStateChanged)(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull);
+- (void) removeAll;
+@end
+
+NS_SWIFT_NAME(ScreenShareRawOutgoingVideoStreamEvents)
+@interface ACSScreenShareRawOutgoingVideoStreamEvents : NSObject
+@property (copy, nullable) void (^onOutgoingVideoStreamStateChanged)(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull);
+- (void) removeAll;
+@end
+
+NS_SWIFT_NAME(VirtualRawOutgoingVideoStreamEvents)
+@interface ACSVirtualRawOutgoingVideoStreamEvents : NSObject
+@property (copy, nullable) void (^onOutgoingVideoStreamStateChanged)(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull);
+- (void) removeAll;
+@end
+
+/**
+ * A set of methods that are called by ACSLocalVideoStream in response to important events.
+ */
+NS_SWIFT_NAME(LocalVideoStreamDelegate)
+@protocol ACSLocalVideoStreamDelegate <NSObject>
+@optional
+- (void)onOutgoingVideoStreamStateChanged:(ACSLocalVideoStream * _Nonnull)localVideoStream :(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( localVideoStream(_:didChangeOutgoingVideoStreamState:));
 @end
 
 /**
@@ -325,9 +524,11 @@ NS_SWIFT_NAME(CallDelegate)
 @optional
 - (void)onIdChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeId:));
 - (void)onStateChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeState:));
+- (void)onRoleChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeRole:));
 - (void)onRemoteParticipantsUpdated:(ACSCall * _Nonnull)call :(ACSParticipantsUpdatedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didUpdateRemoteParticipant:));
 - (void)onLocalVideoStreamsUpdated:(ACSCall * _Nonnull)call :(ACSLocalVideoStreamsUpdatedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didUpdateLocalVideoStreams:));
 - (void)onIsMutedChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeMuteState:));
+- (void)onTotalParticipantCountChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeTotalParticipantCount:));
 @end
 
 /**
@@ -340,6 +541,7 @@ NS_SWIFT_NAME(RemoteParticipantDelegate)
 - (void)onIsMutedChanged:(ACSRemoteParticipant * _Nonnull)remoteParticipant :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( remoteParticipant(_:didChangeMuteState:));
 - (void)onIsSpeakingChanged:(ACSRemoteParticipant * _Nonnull)remoteParticipant :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( remoteParticipant(_:didChangeSpeakingState:));
 - (void)onDisplayNameChanged:(ACSRemoteParticipant * _Nonnull)remoteParticipant :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( remoteParticipant(_:didChangeDisplayName:));
+- (void)onRoleChanged:(ACSRemoteParticipant * _Nonnull)remoteParticipant :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( remoteParticipant(_:didChangeRole:));
 - (void)onVideoStreamsUpdated:(ACSRemoteParticipant * _Nonnull)remoteParticipant :(ACSRemoteVideoStreamsEventArgs * _Nonnull)args NS_SWIFT_NAME( remoteParticipant(_:didUpdateVideoStreams:));
 @end
 
@@ -368,6 +570,7 @@ NS_SWIFT_NAME(RecordingCallFeatureDelegate)
 @protocol ACSRecordingCallFeatureDelegate <NSObject>
 @optional
 - (void)onIsRecordingActiveChanged:(ACSRecordingCallFeature * _Nonnull)recordingCallFeature :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( recordingCallFeature(_:didChangeRecordingState:));
+- (void)onRecordingUpdated:(ACSRecordingCallFeature * _Nonnull)recordingCallFeature :(ACSRecordingUpdatedEventArgs * _Nonnull)args NS_SWIFT_NAME( recordingCallFeature(_:didUpdateRecording:));
 @end
 
 /**
@@ -379,10 +582,65 @@ NS_SWIFT_NAME(TranscriptionCallFeatureDelegate)
 - (void)onIsTranscriptionActiveChanged:(ACSTranscriptionCallFeature * _Nonnull)transcriptionCallFeature :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( transcriptionCallFeature(_:didChangeTranscriptionState:));
 @end
 
+/**
+ * A set of methods that are called by ACSDominantSpeakersCallFeature in response to important events.
+ */
+NS_SWIFT_NAME(DominantSpeakersCallFeatureDelegate)
+@protocol ACSDominantSpeakersCallFeatureDelegate <NSObject>
+@optional
+- (void)onDominantSpeakersChanged:(ACSDominantSpeakersCallFeature * _Nonnull)dominantSpeakersCallFeature :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( dominantSpeakersCallFeature(_:didChangeDominantSpeakers:));
+@end
+
+/**
+ * A set of methods that are called by ACSRawOutgoingVideoStreamOptions in response to important events.
+ */
+NS_SWIFT_NAME(RawOutgoingVideoStreamOptionsDelegate)
+@protocol ACSRawOutgoingVideoStreamOptionsDelegate <NSObject>
+@optional
+- (void)onVideoFrameSenderChanged:(ACSRawOutgoingVideoStreamOptions * _Nonnull)rawOutgoingVideoStreamOptions :(ACSVideoFrameSenderChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(rawOutgoingVideoStreamOptions(_:didChangeVideoFrameSender:));
+- (void)onOutgoingVideoStreamStateChanged:(ACSRawOutgoingVideoStreamOptions * _Nonnull)rawOutgoingVideoStreamOptions :(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(rawOutgoingVideoStreamOptions(_:didChangeOutgoingVideoStreamState:));
+@end
+
+/**
+ * A set of methods that are called by ACSScreenShareRawOutgoingVideoStream in response to important events.
+ */
+NS_SWIFT_NAME(ScreenShareRawOutgoingVideoStreamDelegate)
+@protocol ACSScreenShareRawOutgoingVideoStreamDelegate <NSObject>
+@optional
+- (void)onOutgoingVideoStreamStateChanged:(ACSScreenShareRawOutgoingVideoStream * _Nonnull)screenShareRawOutgoingVideoStream :(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( screenShareRawOutgoingVideoStream(_:didChangeOutgoingVideoStreamState:));
+@end
+
+/**
+ * A set of methods that are called by ACSVirtualRawOutgoingVideoStream in response to important events.
+ */
+NS_SWIFT_NAME(VirtualRawOutgoingVideoStreamDelegate)
+@protocol ACSVirtualRawOutgoingVideoStreamDelegate <NSObject>
+@optional
+- (void)onOutgoingVideoStreamStateChanged:(ACSVirtualRawOutgoingVideoStream * _Nonnull)virtualRawOutgoingVideoStream :(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( virtualRawOutgoingVideoStream(_:didChangeOutgoingVideoStreamState:));
+@end
+
+/// Contains information about common properties between different types of outgoing video streams
+NS_SWIFT_NAME(OutgoingVideoStream)
+@interface ACSOutgoingVideoStream : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Informs the current running state of this OutgoingStream. It might change during the call due network conditions or other events.
+@property (readonly) ACSMediaStreamType mediaStreamType;
+
+/// Informs the type of the OutgoingVideoStream between all the available types.
+@property (readonly) ACSOutgoingVideoStreamKind outgoingVideoStreamKind;
+
+/// Informs the current running state of this OutgoingStream. It might change during the call due network conditions or other events.
+@property (readonly) ACSOutgoingVideoStreamState outgoingVideoStreamState;
+
+@end
+
 /// Property bag class for Video Options. Use this class to set video options required during a call (start/accept/join)
 NS_SWIFT_NAME(VideoOptions)
 @interface ACSVideoOptions : NSObject
--(nonnull instancetype)init:(NSArray<ACSLocalVideoStream *> * _Nonnull )localVideoStreams NS_SWIFT_NAME( init(localVideoStreams:));
+-(nonnull instancetype)init:(NSArray<ACSOutgoingVideoStream *> * _Nonnull )outgoingVideoStreams NS_SWIFT_NAME(init(outgoingVideoStreams:));
 
 -(nonnull instancetype)init NS_UNAVAILABLE;
 /// Deallocates the memory occupied by this object.
@@ -391,25 +649,33 @@ NS_SWIFT_NAME(VideoOptions)
 /// The video stream that is used to render the video on the UI surface
 @property (copy, nonnull, readonly) NSArray<ACSLocalVideoStream *> * localVideoStreams;
 
+// Class extension begins for VideoOptions.
+-(nonnull instancetype)initWithLocalVideoStreams:(NSArray<ACSLocalVideoStream *> * _Nonnull )localVideoStreams NS_SWIFT_NAME( init(localVideoStreams:));
+// Class extension ends for VideoOptions.
+
 @end
 
 /// Local video stream information
 NS_SWIFT_NAME(LocalVideoStream)
-@interface ACSLocalVideoStream : NSObject
+@interface ACSLocalVideoStream : ACSOutgoingVideoStream
 -(nonnull instancetype)init:(ACSVideoDeviceInfo * _Nonnull )camera NS_SWIFT_NAME( init(camera:));
 
 -(nonnull instancetype)init NS_UNAVAILABLE;
-/// Deallocates the memory occupied by this object.
--(void)dealloc;
-
 /// Video device to use as source for local video.
 @property (retain, nonnull, readonly) ACSVideoDeviceInfo * source;
 
 /// Sets to True when the local video stream is being sent on a call.
 @property (readonly) BOOL isSending;
 
-/// MediaStream type being used for the current local video stream (Video or ScreenShare).
-@property (readonly) ACSMediaStreamType mediaStreamType;
+/**
+ * The delegate that will handle events from the ACSLocalVideoStream.
+ */
+@property(nonatomic, weak, nullable) id<ACSLocalVideoStreamDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSLocalVideoStream.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSLocalVideoStreamEvents *events;
 
 // Class extension begins for LocalVideoStream.
 -(void)switchSource:(ACSVideoDeviceInfo* _Nonnull)camera withCompletionHandler:(void (^ _Nonnull)(NSError* _Nullable error))completionHandler NS_SWIFT_NAME( switchSource(camera:completionHandler:));
@@ -438,6 +704,21 @@ NS_SWIFT_NAME(VideoDeviceInfo)
 
 @end
 
+/// Describes an OutgoingStreamStateChanged event data.
+NS_SWIFT_NAME(OutgoingVideoStreamStateChangedEventArgs)
+@interface ACSOutgoingVideoStreamStateChangedEventArgs : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Informs the current running state of this OutgoingVideoStream. It might change during the call due network conditions or other events.
+@property (readonly) ACSOutgoingVideoStreamState outgoingVideoStreamState;
+
+/// Contains an important message about the functioning of the OutgoingVideoStream.
+@property (retain, nonnull, readonly) NSString * message;
+
+@end
+
 /// Property bag class for Audio Options. Use this class to set audio settings required during a call (start/join)
 NS_SWIFT_NAME(AudioOptions)
 @interface ACSAudioOptions : NSObject
@@ -449,6 +730,34 @@ NS_SWIFT_NAME(AudioOptions)
 /// Start an outgoing or accept incoming call muted (true) or un-muted(false)
 @property BOOL muted;
 
+/// Start an outgoing or accept incoming call speaker muted (true) or un-muted(false)
+@property BOOL speakerMuted;
+
+@property (retain, nullable) ACSIncomingAudioStream * incomingAudioStream;
+
+@property (retain, nullable) ACSOutgoingAudioStream * outgoingAudioStream;
+
+@end
+
+NS_SWIFT_NAME(AudioStream)
+@interface ACSAudioStream : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Informs the kind of the Audio Stream.
+@property (readonly) ACSAudioStreamKind audioStreamKind;
+
+@end
+
+NS_SWIFT_NAME(IncomingAudioStream)
+@interface ACSIncomingAudioStream : ACSAudioStream
+-(nonnull instancetype)init NS_UNAVAILABLE;
+@end
+
+NS_SWIFT_NAME(OutgoingAudioStream)
+@interface ACSOutgoingAudioStream : ACSAudioStream
+-(nonnull instancetype)init NS_UNAVAILABLE;
 @end
 
 /// Options to be passed when joining a call
@@ -465,6 +774,9 @@ NS_SWIFT_NAME(JoinCallOptions)
 /// Audio options when placing a call
 @property (retain, nullable) ACSAudioOptions * audioOptions;
 
+// Class extension begins for JoinCallOptions.
+@property(nullable) ACSCallKitRemoteInfo* callKitRemoteInfo;
+// Class extension ends for JoinCallOptions.
 
 @end
 
@@ -478,6 +790,9 @@ NS_SWIFT_NAME(AcceptCallOptions)
 
 /// Video options when accepting a call
 @property (retain, nonnull) ACSVideoOptions * videoOptions;
+
+/// Audio options when placing a call
+@property (retain, nullable) ACSAudioOptions * audioOptions;
 
 @end
 
@@ -497,6 +812,7 @@ NS_SWIFT_NAME(StartCallOptions)
 
 // Class extension begins for StartCallOptions.
 @property(nonatomic, nonnull) PhoneNumberIdentifier* alternateCallerId;
+@property(nullable) ACSCallKitRemoteInfo* callKitRemoteInfo;
 // Class extension ends for StartCallOptions.
 
 @end
@@ -618,6 +934,10 @@ NS_SWIFT_NAME(CallAgentOptions)
 /// Emergency call options when creating a call agent
 @property (retain, nullable) ACSEmergencyCallOptions * emergencyCallOptions;
 
+// Class extension begins for CallAgentOptions.
+@property(retain, nullable) ACSCallKitOptions* callKitOptions;
+// Class extension ends for CallAgentOptions.
+
 @end
 
 /// Options for emergency call of call agent
@@ -694,14 +1014,26 @@ NS_SWIFT_NAME(Call)
 /// Outgoing or Incoming depending on the Call Direction
 @property (readonly) ACSCallDirection direction;
 
+/// Information about the caller
+@property (retain, nonnull, readonly) ACSCallInfo * info;
+
 /// Whether the local microphone is muted or not.
 @property (readonly) BOOL isMuted;
+
+/// Whether the local speaker is muted or not.
+@property (readonly) BOOL isSpeakerMuted;
 
 /// The identity of the caller
 @property (retain, nonnull, readonly) ACSCallerInfo * callerInfo;
 
+/// Participant role in the call
+@property (readonly) ACSParticipantRole role;
+
 /// Get a list of local video streams in the current call.
 @property (copy, nonnull, readonly) NSArray<ACSLocalVideoStream *> * localVideoStreams;
+
+/// Total number of participants active in the current call
+@property (readonly) int totalParticipantCount;
 
 /**
  * The delegate that will handle events from the ACSCall.
@@ -713,8 +1045,17 @@ NS_SWIFT_NAME(Call)
  */
 @property(nonatomic, strong, nonnull, readonly) ACSCallEvents *events;
 
+/// Start audio stream
+-(void)startAudio:(ACSAudioStream * _Nonnull )stream withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( startAudio(stream:completionHandler:));
+
+/// Stop audio stream
+-(void)stopAudio:(ACSMediaStreamDirection)direction withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( stopAudio(direction:completionHandler:));
+
 /// Mute local microphone.
 -(void)muteWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( mute(completionHandler:));
+
+/// Mutes speaker.
+-(void)muteSpeaker:(BOOL)mute withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( speaker(mute:completionHandler:));
 
 /// Unmute local microphone.
 -(void)unmuteWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( unmute(completionHandler:));
@@ -723,10 +1064,10 @@ NS_SWIFT_NAME(Call)
 -(void)sendDtmf:(ACSDtmfTone)tone withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( sendDtmf(tone:completionHandler:));
 
 /// Start sharing video stream to the call
--(void)startVideo:(ACSLocalVideoStream * _Nonnull )stream withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( startVideo(stream:completionHandler:));
+-(void)startVideo:(ACSOutgoingVideoStream * _Nonnull )stream withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( startVideo(stream:completionHandler:));
 
 /// Stop sharing video stream to the call
--(void)stopVideo:(ACSLocalVideoStream * _Nonnull )stream withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( stopVideo(stream:completionHandler:));
+-(void)stopVideo:(ACSOutgoingVideoStream * _Nonnull )stream withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( stopVideo(stream:completionHandler:));
 
 /// HangUp a call
 -(void)hangUp:(ACSHangUpOptions * _Nullable )options withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( hangUp(options:completionHandler:));
@@ -758,6 +1099,9 @@ NS_SWIFT_NAME(RemoteParticipant)
 
 /// Private Preview Only: Display Name of the remote participant
 @property (retain, nonnull, readonly) NSString * displayName;
+
+/// Public Preview Only: Role of the remote participant
+@property (readonly) ACSParticipantRole role;
 
 /// True if the remote participant is muted
 @property (readonly) BOOL isMuted;
@@ -845,6 +1189,17 @@ NS_SWIFT_NAME(RemoteVideoStreamsEventArgs)
 
 /// Remote video streams that are no longer part of the current call
 @property (copy, nonnull, readonly) NSArray<ACSRemoteVideoStream *> * removedRemoteVideoStreams;
+
+@end
+
+/// Describes a call's information
+NS_SWIFT_NAME(CallInfo)
+@interface ACSCallInfo : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+-(void)getServerCallIdWithCompletionHandler:(void (^ _Nonnull )(NSString * _Nullable  value, NSError * _Nullable error))completionHandler NS_SWIFT_NAME( getServerCallId(completionHandler:));
 
 @end
 
@@ -969,7 +1324,6 @@ NS_SWIFT_NAME(CallClient)
 -(void)dispose;
 
 // Class extension begins for CallClient.
-
 -(void)createCallAgent:(CommunicationTokenCredential* _Nonnull) userCredential
  withCompletionHandler:(void (^ _Nonnull)(ACSCallAgent* _Nullable clientAgent,
                                           NSError * _Nullable error))completionHandler NS_SWIFT_NAME( createCallAgent(userCredential:completionHandler:));
@@ -978,6 +1332,10 @@ NS_SWIFT_NAME(CallClient)
                  callAgentOptions:(ACSCallAgentOptions* _Nullable) callAgentOptions
             withCompletionHandler:(void (^ _Nonnull)(ACSCallAgent* _Nullable clientAgent,
                                                      NSError* _Nullable error))completionHandler NS_SWIFT_NAME( createCallAgent(userCredential:options:completionHandler:));
+
++(void)reportIncomingCallFromKillState:(ACSPushNotificationInfo* _Nonnull)payload
+                    callKitOptions:(ACSCallKitOptions* _Nonnull) callKitOptions
+             withCompletionHandler:(void (^ _Nonnull)(NSError* _Nullable error))completionHandler NS_SWIFT_NAME( reportIncomingCallFromKillState(with:callKitOptions:completionHandler:));
 
 -(void)getDeviceManagerWithCompletionHandler:(void (^ _Nonnull)(ACSDeviceManager* _Nullable value,
                                                                 NSError* _Nullable error))completionHandler NS_SWIFT_NAME( getDeviceManager(completionHandler:));
@@ -1056,12 +1414,39 @@ NS_SWIFT_NAME(VideoDevicesUpdatedEventArgs)
 
 @end
 
+/// Describes a RecordingUpdated event data
+NS_SWIFT_NAME(RecordingUpdatedEventArgs)
+@interface ACSRecordingUpdatedEventArgs : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// The recording that was added or removed
+@property (retain, nonnull, readonly) ACSRecordingInfo * updatedRecording;
+
+@end
+
+/// The state of an existing recording
+NS_SWIFT_NAME(RecordingInfo)
+@interface ACSRecordingInfo : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Indicates the state of current recording
+@property (readonly) ACSRecordingState state;
+
+@end
+
 /// Call Feature for managing call recording
 NS_SWIFT_NAME(RecordingCallFeature)
 @interface ACSRecordingCallFeature : ACSCallFeature
 -(nonnull instancetype)init NS_UNAVAILABLE;
 /// Indicates if recording is active in current call
 @property (readonly) BOOL isRecordingActive;
+
+/// The list of current recordings
+@property (copy, nonnull, readonly) NSArray<ACSRecordingInfo *> * recordings;
 
 /**
  * The delegate that will handle events from the ACSRecordingCallFeature.
@@ -1094,6 +1479,41 @@ NS_SWIFT_NAME(TranscriptionCallFeature)
 
 @end
 
+/// Call Feature for managing the dominant speakers of a call
+NS_SWIFT_NAME(DominantSpeakersCallFeature)
+@interface ACSDominantSpeakersCallFeature : ACSCallFeature
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Information about the dominant speakers of the call
+@property (retain, nonnull, readonly) ACSDominantSpeakersInfo * dominantSpeakersInfo;
+
+/**
+ * The delegate that will handle events from the ACSDominantSpeakersCallFeature.
+ */
+@property(nonatomic, weak, nullable) id<ACSDominantSpeakersCallFeatureDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSDominantSpeakersCallFeature.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSDominantSpeakersCallFeatureEvents *events;
+
+@end
+
+/// Information about the dominant speakers of a call
+NS_SWIFT_NAME(DominantSpeakersInfo)
+@interface ACSDominantSpeakersInfo : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+// Class extension begins for DominantSpeakersInfo.
+/// List of the current dominant speakers
+@property(nonatomic, readonly, nonnull) NSArray<id<CommunicationIdentifier>> * speakers;
+/// Timestamp with the time of the current dominant speakers
+@property (copy, readonly, nonnull) NSDate * timestamp;
+// Class extension ends for DominantSpeakersInfo.
+
+@end
+
 /// Options to be passed when rendering a Video
 NS_SWIFT_NAME(CreateViewOptions)
 @interface ACSCreateViewOptions : NSObject
@@ -1105,6 +1525,189 @@ NS_SWIFT_NAME(CreateViewOptions)
 
 /// Scaling mode for rendering the video.
 @property ACSScalingMode scalingMode;
+
+@end
+
+NS_SWIFT_NAME(VideoFormat)
+@interface ACSVideoFormat : NSObject
+-(nonnull instancetype)init;
+
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Total width-wise count of pixels of the video frame. It must be greater or equal to 240 and less or equal to 1920. Values greater than 1280 and aspect ratios other than 16:9 or 4:3 might be adjusted by the SDK consuming extra resources.
+@property int width;
+
+/// Total height-wise count of pixels of the video frame. It must be greater or equal to 180 and less or equal to 1080. Values greater than 720 and aspect ratios other than 16:9 or 4:3 might be adjusted by the SDK consuming extra resources.
+@property int height;
+
+/// Informs how the content of the video frame is encoded.
+@property ACSPixelFormat pixelFormat;
+
+/// Informs how video frames will be available for encoding or decoding.
+@property ACSVideoFrameKind videoFrameKind;
+
+/// Informs how many frames per second the virtual video device will be sending to remote participants. It must be greater or equal to 1 and lower or equal to 30. The following values are preferable 7.5, 15 or 30.
+@property float framesPerSecond;
+
+/// Informs the stride in bytes for the first plane of the video frame content when VideoFrameKind is VideoSoftware. It must be greater or equal to the count of bytes required for the first plane of the selected PixelFormat.
+@property int stride1;
+
+/// For VideoFormats with more than one plane, informs the stride in bytes for the second plane of the video frame content when VideoFrameKind is VideoSoftware. It must be greater or equal to the count of bytes required for the second plane of the selected PixelFormat.
+@property int stride2;
+
+/// For VideoFormats with more than two planes, informs the stride in bytes for the third plane of the video frame content when VideoFrameKind is VideoSoftware. It must be greater or equal to the count of bytes required for the third plane of the selected PixelFormat.
+@property int stride3;
+
+@end
+
+/// Contains information about changes to the flow control of a video or audio virtual device.
+NS_SWIFT_NAME(VideoFrameSenderChangedEventArgs)
+@interface ACSVideoFrameSenderChangedEventArgs : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Returns the VideoFrameSender object to be used to send video frames to remote participants.
+@property (retain, nonnull, readonly) ACSVideoFrameSender * videoFrameSender;
+
+@end
+
+/// Abstract base class of video frame senders.
+NS_SWIFT_NAME(VideoFrameSender)
+@interface ACSVideoFrameSender : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Returns a timestamp of the current time and might be used while sending frames. This timestamp's time scale is in 100 of ns. Platform's time provider mechanism might also be used for sending frames as long as the value is in a scale of 100 of ns. The delivery of frames are not reordered based on timestamp. It throws an exception if running state is not started.
+@property (readonly) int64_t timestampInTicks;
+
+/// Returns the characteristics of how the video frame must be produced. It throws an exception if running state is not started.
+@property (retain, nonnull, readonly) ACSVideoFormat * videoFormat;
+
+/// Informs application on how to cast this object into an audio, video, software or hardware based frame class. It throws an exception if running state is not started.
+@property (readonly) ACSVideoFrameKind videoFrameKind;
+
+@end
+
+/// Defines the options required for creating a virtual video device. Changes to RawOutgoingVideoStreamOptions do not affect previously created virtual video devices.
+NS_SWIFT_NAME(RawOutgoingVideoStreamOptions)
+@interface ACSRawOutgoingVideoStreamOptions : NSObject
+-(nonnull instancetype)init;
+
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+@property (copy, nonnull) NSArray<ACSVideoFormat *> * videoFormats;
+
+/**
+ * The delegate that will handle events from the ACSRawOutgoingVideoStreamOptions.
+ */
+@property(nonatomic, weak, nullable) id<ACSRawOutgoingVideoStreamOptionsDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSRawOutgoingVideoStreamOptions.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSRawOutgoingVideoStreamOptionsEvents *events;
+
+@end
+
+/// FrameConfirmation holds information about media frames sent.
+NS_SWIFT_NAME(FrameConfirmation)
+@interface ACSFrameConfirmation : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Timestamp of when frame has been handed over to the encoder.
+@property (readonly) int64_t timestampInTicks;
+
+/// Information code reporting frame confirmation. 0 means frame has been confirmed.
+@property (readonly) int status;
+
+@end
+
+/// SoftwareBasedVideoFrameSender allows the application to send a video frame to remote participants using a software based encoder. Any instance of this class should be discarded when virtual device running turns into stopped state. It is required that at least one of the supported video frames be a software based one. This is to allow fall backs when hardware based encoders are not available or overall conditions favor software based instead of hardware based.
+NS_SWIFT_NAME(SoftwareBasedVideoFrameSender)
+@interface ACSSoftwareBasedVideoFrameSender : ACSVideoFrameSender
+-(nonnull instancetype)init NS_UNAVAILABLE;
+// Class extension begins for SoftwareBasedVideoFrameSender.
+/// Sends a video frame to remote participants. 
+/// - important: The number of planes and pixel format has to match the video 
+///              format provided to the sender, otherwise it is undefined behaviour. See `ACSVideoFormat`.
+/// This method must be called while virtual device is in running. The asynchronous operation must be finalized before sending another frame. 
+/// It throws an exception if running state is not started.
+-(void)sendFrame:(CVImageBufferRef _Nonnull)frame timestampInTicks:(long long)timestamp withCompletionHandler:(void (^ _Nonnull )(ACSFrameConfirmation * _Nullable  value, NSError * _Nullable error))completionHandler NS_SWIFT_NAME(send(frame:timestampInTicks:completion:));
+// Class extension ends for SoftwareBasedVideoFrameSender.
+
+@end
+
+/// Contains information about common properties between different types of outgoing virtual video streams
+NS_SWIFT_NAME(RawOutgoingVideoStream)
+@interface ACSRawOutgoingVideoStream : ACSOutgoingVideoStream
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Timestamp with the time of the current outgoing stream
+@property (readonly) int64_t timestampInTicks;
+
+@end
+
+/// Screen Share stream information
+NS_SWIFT_NAME(ScreenShareRawOutgoingVideoStream)
+@interface ACSScreenShareRawOutgoingVideoStream : ACSRawOutgoingVideoStream
+-(nonnull instancetype)init:(ACSRawOutgoingVideoStreamOptions * _Nonnull )videoStreamOptions NS_SWIFT_NAME( init(videoStreamOptions:));
+
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/**
+ * The delegate that will handle events from the ACSScreenShareRawOutgoingVideoStream.
+ */
+@property(nonatomic, weak, nullable) id<ACSScreenShareRawOutgoingVideoStreamDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSScreenShareRawOutgoingVideoStream.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSScreenShareRawOutgoingVideoStreamEvents *events;
+
+@end
+
+/// Virtual stream information
+NS_SWIFT_NAME(VirtualRawOutgoingVideoStream)
+@interface ACSVirtualRawOutgoingVideoStream : ACSRawOutgoingVideoStream
+-(nonnull instancetype)init:(ACSRawOutgoingVideoStreamOptions * _Nonnull )videoStreamOptions NS_SWIFT_NAME( init(videoStreamOptions:));
+
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/**
+ * The delegate that will handle events from the ACSVirtualRawOutgoingVideoStream.
+ */
+@property(nonatomic, weak, nullable) id<ACSVirtualRawOutgoingVideoStreamDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSVirtualRawOutgoingVideoStream.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSVirtualRawOutgoingVideoStreamEvents *events;
+
+@end
+
+/// Options for joining a call using Room ID locator
+NS_SWIFT_NAME(RoomCallLocator)
+@interface ACSRoomCallLocator : ACSJoinMeetingLocator
+-(nonnull instancetype)init:(NSString * _Nonnull )roomId NS_SWIFT_NAME( init(roomId:));
+
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// The Room identifier of the meeting
+@property (retain, nonnull, readonly) NSString * roomId;
+
+@end
+
+NS_SWIFT_NAME(LocalAudioStream)
+@interface ACSLocalAudioStream : ACSOutgoingAudioStream
+-(nonnull instancetype)init;
+
+@end
+
+NS_SWIFT_NAME(RemoteAudioStream)
+@interface ACSRemoteAudioStream : ACSIncomingAudioStream
+-(nonnull instancetype)init;
 
 @end
 

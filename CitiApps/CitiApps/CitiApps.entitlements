@@ -6,5 +6,7 @@
 	<array>
 		<string>applinks:msftsacc.z13.web.core.windows.net</string>
 	</array>
+	<key>com.apple.developer.networking.wifi-info</key>
+	<true/>
 </dict>
 </plist>

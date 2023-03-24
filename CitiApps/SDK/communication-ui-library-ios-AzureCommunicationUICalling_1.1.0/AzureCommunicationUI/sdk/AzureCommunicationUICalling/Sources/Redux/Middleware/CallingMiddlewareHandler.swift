@@ -39,9 +39,14 @@ protocol CallingMiddlewareHandling {
     func requestMicrophoneUnmute(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never>
     @discardableResult
     func onCameraPermissionIsSet(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never>
+    @discardableResult
+    func startScreenSharing(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never>
+    @discardableResult
+    func stopScreenSharing(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never>
 }
 
 class CallingMiddlewareHandler: CallingMiddlewareHandling {
+    
     private let callingService: CallingServiceProtocol
     private let logger: Logger
     private let cancelBag = CancelBag()
@@ -262,6 +267,28 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
             }
 
             dispatch(.callingAction(.holdRequested))
+        }
+    }
+    
+    func startScreenSharing(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
+        print("startScreenSharing --- Middleware handler")
+        return Task {
+            do {
+                try await callingService.startScreenShare()
+            } catch {
+                handle(error: error, errorType: .callEndFailed, dispatch: dispatch)
+            }
+        }
+    }
+    
+    func stopScreenSharing(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
+        Task {
+            do {
+                try await callingService.endCall()
+                dispatch(.stopScreenShareAction(.screenSharingOffTriggered))
+            } catch {
+                handle(error: error, errorType: .callEndFailed, dispatch: dispatch)
+            }
         }
     }
 }
