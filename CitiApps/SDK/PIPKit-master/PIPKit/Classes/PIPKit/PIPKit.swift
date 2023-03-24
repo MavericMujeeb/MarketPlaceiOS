@@ -84,7 +84,7 @@ public final class PIPKit {
             
             pipWindow = popupWindow
             rootViewController = viewController
-            state = .full
+            state = (viewController.initialState == .pip) ? .pip : .full
             
             viewController.view.alpha = 0.0
             viewController.setupEventDispatcher()

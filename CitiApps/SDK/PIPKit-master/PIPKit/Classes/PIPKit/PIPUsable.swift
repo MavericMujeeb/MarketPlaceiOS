@@ -14,7 +14,7 @@ public protocol PIPUsable {
 }
 
 public extension PIPUsable {
-    var initialState: PIPState { return .pip }
+    var initialState: PIPState { return .full }
     var initialPosition: PIPPosition { return .bottomRight }
     var insetsPIPFromSafeArea: Bool { return true }
     var pipEdgeInsets: UIEdgeInsets { return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15) }
