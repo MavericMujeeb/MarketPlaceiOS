@@ -6,5 +6,5 @@
 //
 
 struct CitiConstants {
-    static let method_channel_name: String = "com.citi.marketplace.host"
+    static let method_channel_name: String = "com.maveric.citiacsdemo"
 }

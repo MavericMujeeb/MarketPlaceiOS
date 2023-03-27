@@ -8,6 +8,7 @@ import FluentUI
 class InviteViewController: UIViewController {
     // MARK: Properties
     var callingContext: CallingContext!
+    var tokenService: TokenService!
     var groupCallId: String?
     var displayName: String?
 
@@ -130,11 +131,31 @@ class InviteViewController: UIViewController {
     }
 
     private func onContinueButtonTapped() {
-        Task { @MainActor in
-            let callConfig = JoinCallConfig(joinId: groupCallId, displayName: displayName ?? "", callType: .groupCall)
-            busyOverlay.present()
-            await self.callingContext.startCallComposite(callConfig)
-            self.busyOverlay.hide()
+        print("onContinueButtonTapped -> Clicked")
+        
+        Task{
+            do{
+                self.startCall()
+            }
+        }
+        
+    }
+    
+    func startCall() {
+        print("startCall -> Clicked")
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        
+        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acscallchattokenfunc.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
+            return appDelegate.authHandler.authToken
+        })
+        Task{
+            do{
+                let callConfig = JoinCallConfig(joinId: "1234", displayName: "janett", callType: .audioCall)
+                self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
+                self.callingContext.displayName = "Janet test"
+                self.callingContext.userId = "123456"
+                await self.callingContext.startAudioVideoCall(callConfig)
+            }
         }
     }
 }

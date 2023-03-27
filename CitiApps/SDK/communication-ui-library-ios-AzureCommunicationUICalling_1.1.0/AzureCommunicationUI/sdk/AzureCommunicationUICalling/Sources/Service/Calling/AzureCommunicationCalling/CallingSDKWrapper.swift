@@ -53,6 +53,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     }
 
     func startCall(isCameraPreferred: Bool, isAudioPreferred: Bool) async throws {
+        print("startCall clicked - >")
         logger.debug("Reset Subjects in callingEventsHandler")
         if let callingEventsHandler = self.callingEventsHandler
             as? CallingSDKEventsHandler {
@@ -87,7 +88,13 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
             joinLocator = GroupCallLocator(groupId: groupId)
         } else if let meetingLink = callConfiguration.meetingLink {
             joinLocator = TeamsMeetingLinkLocator(meetingLink: meetingLink)
-        } else {
+        } else if callConfiguration.compositeCallType == .audioCall,
+            let groupId = callConfiguration.groupId {
+             joinLocator = GroupCallLocator(groupId: groupId)
+         } else if callConfiguration.compositeCallType == .videoCall,
+             let groupId = callConfiguration.groupId {
+              joinLocator = GroupCallLocator(groupId: groupId)
+          } else {
             logger.error("Invalid groupID / meeting link")
             throw CallCompositeInternalError.callJoinFailed
         }
@@ -106,7 +113,8 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         setupCallRecordingAndTranscriptionFeature()
     }
     
-    
+    func startAudioVideoCall(isCameraPreferred: Bool, isAudioPreferred: Bool) async throws {
+    }
 
     func endCall() async throws {
         guard call != nil else {

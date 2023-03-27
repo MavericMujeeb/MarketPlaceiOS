@@ -46,6 +46,8 @@ public class CallComposite {
 
     private func launch(_ callConfiguration: CallConfiguration,
                         localOptions: LocalOptions?) {
+        print("launch ->")
+        print(callConfiguration.compositeCallType)
         let dependencyContainer = DependencyContainer()
         logger = dependencyContainer.resolve() as Logger
         logger?.debug("launch composite experience")
@@ -72,6 +74,7 @@ public class CallComposite {
     ///                            This is data is not sent up to ACS.
     public func launch(remoteOptions: RemoteOptions,
                        localOptions: LocalOptions? = nil) {
+        print("launch 2->")
         let callConfiguration = CallConfiguration(locator: remoteOptions.locator,
                                                   credential: remoteOptions.credential,
                                                   displayName: remoteOptions.displayName)

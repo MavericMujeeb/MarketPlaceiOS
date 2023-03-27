@@ -39,5 +39,7 @@
 	<array>
 		<string>audio</string>
 	</array>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Need microphone access for VOIP calling.</string>
 </dict>
 </plist>

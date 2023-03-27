@@ -60,6 +60,14 @@ class JoinCallViewController: UIViewController {
                 typeTitle.text = "Group call"
                 joinIdTextField.placeholder = kGroupIdPlaceHolder
                 joinIdTextField.image = nil
+            case .audioCall:
+                typeTitle.text = "Audio call"
+                joinIdTextField.placeholder = kGroupIdPlaceHolder
+                joinIdTextField.image = nil
+            case .videoCall:
+                typeTitle.text = "Video call"
+                joinIdTextField.placeholder = kGroupIdPlaceHolder
+                joinIdTextField.image = nil
             case .teamsMeeting:
                 typeTitle.text = "Teams meeting"
                 joinIdTextField.placeholder = kTeamsLinkPlaceHolder
@@ -155,6 +163,10 @@ class JoinCallViewController: UIViewController {
                 promptInvalidJoinIdInput(value: fieldValue)
                 return false
             }
+        case .audioCall:
+            return true
+        case .videoCall:
+            return true
         case .teamsMeeting:
             guard isValidTeamsUrl(url: URL(string: fieldValue)) else {
                 promptInvalidJoinIdInput(value: fieldValue)
@@ -200,6 +212,10 @@ class JoinCallViewController: UIViewController {
         switch joinCallType {
         case .groupCall:
             alertMessage = value.isEmpty ? "Group call ID required" : "We can't find that call\nCheck the call ID and try again"
+        case .audioCall:
+            alertMessage = value.isEmpty ? "Audio call ID required" : "We can't find that call\nCheck the call ID and try again"
+        case .videoCall:
+            alertMessage = value.isEmpty ? "Video call ID required" : "We can't find that call\nCheck the call ID and try again"
         case .teamsMeeting:
             alertMessage = value.isEmpty ? "Teams link required" : "We can't find that meeting\nCheck the link and try again"
         }
@@ -231,6 +247,14 @@ class JoinCallViewController: UIViewController {
             switch callType {
             case .groupCall:
                 typeTitle.text = "Group call"
+                joinIdTextField.placeholder = kGroupIdPlaceHolder
+                joinIdTextField.image = nil
+            case .audioCall:
+                typeTitle.text = "Audio call"
+                joinIdTextField.placeholder = kGroupIdPlaceHolder
+                joinIdTextField.image = nil
+            case .videoCall:
+                typeTitle.text = "Video call"
                 joinIdTextField.placeholder = kGroupIdPlaceHolder
                 joinIdTextField.image = nil
             case .teamsMeeting:
