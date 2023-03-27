@@ -75,11 +75,12 @@ public final class PIPKit {
                         .filter { $0.activationState == .foregroundActive }
                         .first
         if let windowScene = windowScene as? UIWindowScene {
-            let popupWindow = UIWindow(windowScene: windowScene)
+            
+            let popupWindow = PIPKitWindow(windowScene: windowScene)
             
             popupWindow.backgroundColor = .clear
             popupWindow.rootViewController = viewController
-            popupWindow.windowLevel = .normal
+            popupWindow.windowLevel = .alert
             popupWindow.makeKeyAndVisible()
             
             pipWindow = popupWindow
