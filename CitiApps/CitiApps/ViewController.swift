@@ -129,6 +129,8 @@ class ViewController : UIViewController {
         password.customize()
 
         password.isSecureTextEntry = true
+        
+        username.text = "janetjohnsonfamily83@gmail.com"
     }
     
     override func viewDidLoad() {
