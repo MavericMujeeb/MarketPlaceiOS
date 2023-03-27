@@ -18,7 +18,10 @@ public extension PIPUsable {
     var initialPosition: PIPPosition { return .bottomRight }
     var insetsPIPFromSafeArea: Bool { return true }
     var pipEdgeInsets: UIEdgeInsets { return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15) }
-    var pipSize: CGSize { return CGSize(width: 200.0, height: (200.0 * 9.0) / 16.0) }
+    var pipSize: CGSize {
+            return CGSize(width: 300, height: 200)
+
+        }
     var pipShadow: PIPShadow? { return PIPShadow(color: .black, opacity: 0.3, offset: CGSize(width: 0, height: 8), radius: 10) }
     var pipCorner: PIPCorner? {
         if #available(iOS 13.0, *) {

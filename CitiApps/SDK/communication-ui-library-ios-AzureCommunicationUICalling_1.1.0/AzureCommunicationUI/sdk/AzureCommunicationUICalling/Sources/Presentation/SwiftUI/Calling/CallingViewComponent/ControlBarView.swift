@@ -30,7 +30,7 @@ class ChatViewController : UIViewController{
         }
 
         self.chatAdapter = ChatAdapter(
-            endpoint: "https://acschatcallingdemo.communication.azure.com/",
+            endpoint: "https://acscallchatcomserv.communication.azure.com/",
             identifier: communicationIdentifier,
             credential: communicationTokenCredential,
             threadId: threadId,

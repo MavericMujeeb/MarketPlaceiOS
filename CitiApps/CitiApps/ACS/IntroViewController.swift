@@ -65,7 +65,7 @@ class TeamsCallingViewController {
     func startCall() {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
-        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acscallingchatfunc.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
+        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acscallchattokenfunc.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
             return appDelegate.authHandler.authToken
         })
         Task{
