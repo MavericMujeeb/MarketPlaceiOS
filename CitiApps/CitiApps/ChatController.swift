@@ -25,6 +25,8 @@ class ChatController  {
     var custUserName:String! = "Janet Johnson"
     var rootViewController : UIViewController!
     
+    var isForCall:Bool = false
+    
     init(chatAdapter: ChatAdapter? = nil, rootViewController: UIViewController!) {
         self.rootViewController = rootViewController
     }
@@ -101,11 +103,19 @@ class ChatController  {
                     print("disconnect error \(error)")
                 }
             })
-            let chatCompositeViewController = ChatCompositeViewController(
-                with: chatAdapter)
-            let navController = UINavigationController(rootViewController: chatCompositeViewController)
-            navController.modalPresentationStyle = .pageSheet
-            self.rootViewController.present(navController, animated: true)
+            if self.isForCall {
+                let chatCompositeViewController = StartCallViewController()
+                chatCompositeViewController.displayName = custUserName
+                let navController = UINavigationController(rootViewController: chatCompositeViewController)
+                navController.modalPresentationStyle = .pageSheet
+                self.rootViewController.present(navController, animated: true)
+            } else {
+                let chatCompositeViewController = ChatCompositeViewController(
+                    with: chatAdapter)
+                let navController = UINavigationController(rootViewController: chatCompositeViewController)
+                navController.modalPresentationStyle = .pageSheet
+                self.rootViewController.present(navController, animated: true)
+            }
         }
     }
     
