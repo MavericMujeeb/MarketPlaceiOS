@@ -8,6 +8,11 @@
 import UIKit
 import FluentUI
 import Flutter
+import PIPKit
+
+#if canImport(Combine)
+import Combine
+#endif
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -31,6 +36,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
             case "startChat":
                 self?.startChat(result: result, args: call.arguments as! NSDictionary)
+            case "startAudioCall":
+                self?.startAudioCall(result: result, args: call.arguments as! NSDictionary)
+            case "startVideoCall":
+                self?.startVideoCall(result: result, args: call.arguments as! NSDictionary)
                 default:
                     result(FlutterMethodNotImplemented)
                     return
@@ -73,18 +82,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
-        let mettingLink = args.value(forKey: "meeting_id") as! String        
+        let mettingLink = args.value(forKey: "meeting_id") as! String
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
         teamsCallingViewController.startCall()
+
+//        PIPKit.show(with: PIPACSViewController())
     }
     
     
     private func startChat (result: FlutterResult, args: NSDictionary) {
         let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
+        chatController.isForCall = false
         chatController.prepareChatComposite()
     }
 
+    private func startAudioCall (result: FlutterResult, args: NSDictionary) {
+        let user_name = args.value(forKey: "user_name") as! String
+        let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
+        chatController.isForCall = true
+        chatController.prepareChatComposite()
+    }
+    
+    private func startVideoCall (result: FlutterResult, args: NSDictionary) {
+        let user_name = args.value(forKey: "user_name") as! String
+        let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
+        chatController.isForCall = true
+        chatController.prepareChatComposite()
+    }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         guard let webPageUrl = userActivity.webpageURL?.absoluteString else { return }

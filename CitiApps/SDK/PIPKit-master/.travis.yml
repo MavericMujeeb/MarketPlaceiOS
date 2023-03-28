@@ -1,0 +1,20 @@
+os: osx
+osx_image: xcode11
+sudo: false
+language: objective-c
+
+env:
+- SDK="iphoneos13.0"
+
+before_install:
+- set -o pipefail
+
+script:
+- xcodebuild clean build test
+  -workspace Example/Example.xcworkspace
+  -scheme Example
+  -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.0'
+  -sdk $SDK
+  -configuration Debug
+  -enableCodeCoverage YES
+  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO | xcpretty -c

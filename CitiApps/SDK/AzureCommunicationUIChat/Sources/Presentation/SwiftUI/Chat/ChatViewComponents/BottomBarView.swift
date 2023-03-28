@@ -51,8 +51,6 @@ class DocumentPickerCoordinator: NSObject, UIDocumentPickerDelegate{
 
 struct BottomBarView: View {
     
-    static var UploadedFileUrl: String? = ""
-    
     private enum Constants {
         static let minimumHeight: CGFloat = 50
         static let focusDelay: CGFloat = 1.0
@@ -94,7 +92,7 @@ struct BottomBarView: View {
         }) {
             Icon(name: .attachmentIcon, size: 24)
                 .contentShape(Rectangle())
-        }.fileImporter(isPresented: $shouldPresentChat, allowedContentTypes: [.text, .pdf, .png, .jpeg], allowsMultipleSelection: false, onCompletion: { results in
+        }.fileImporter(isPresented: $shouldPresentChat, allowedContentTypes: [.text, .pdf, .png, .jpeg, .heic], allowsMultipleSelection: false, onCompletion: { results in
             
             switch results {
             case .success(let fileurls):
@@ -126,20 +124,15 @@ struct BottomBarView: View {
     
     func uploadFile(file:Data, fileName: String, fileExtension: String){
         
-        var mimeType = "image/png"
-        if fileExtension == "pdf" {
-            mimeType = "application/pdf"
-        }
-        
         let request = MultipartFormDataRequest(fileName:  fileName)
-        request.addDataField(fieldName:  "file", fileName: fileName, data: file, mimeType: mimeType)
+        request.addDataField(fieldName:  "file", fileName: fileName, data: file, mimeType: request.getMimeType(filenameORfileExtension: fileExtension))
         
         URLSession.shared.dataTask(with: request, completionHandler: {data,urlResponse,error in
             
             if let response = urlResponse as? HTTPURLResponse {
                 if response.statusCode == 201 {
-                    BottomBarView.UploadedFileUrl = request.storageAccountEndPoint+request.containerName+fileName
-                    print("File url -> "+BottomBarView.UploadedFileUrl!)
+                    let fileFullUrl = request.storageAccountEndPoint+request.containerName+fileName
+                    viewModel.sendMessage(fileUrl: fileFullUrl)
                 }
             }
             if let data = data {

@@ -14,15 +14,18 @@ import UIKit
 
 class ChatController  {
     
+    var commServEndPointURL:String! = "https://acscallchatcomserv.communication.azure.com/"
     var chatAdapter: ChatAdapter?
-    var threadId:String! = "19:a36fae1e68b0449fb0b2c4cd0ffa3587@thread.v2"
-    var bankerAcsId:String! = "8:acs:e7831a00-fe57-4925-a06f-faaf5e80c0d4_00000017-5da6-8610-6763-563a0d009051"
+    var threadId:String! = "19:064b68041bc84b8b8892ebc75002b7d3@thread.v2"
+    var bankerAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb"
     var bankerUserToken:String! = ""
     var bankerUserName:String! = "Chantal Kendall"
-    var custAcsId:String! = "8:acs:e7831a00-fe57-4925-a06f-faaf5e80c0d4_00000017-5da6-e2ec-740a-113a0d0081f2"
+    var custAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c35a-58a8-bcc9-3e3a0d008f97"
     var custUserToken:String! = ""
     var custUserName:String! = "Janet Johnson"
     var rootViewController : UIViewController!
+    
+    var isForCall:Bool = false
     
     init(chatAdapter: ChatAdapter? = nil, rootViewController: UIViewController!) {
         self.rootViewController = rootViewController
@@ -33,7 +36,6 @@ class ChatController  {
     }
     
     func initializeChatComposite() {
-        let endpoint = "https://acscallingchatcomserv.communication.azure.com/"
         
         do{
             let credential = try CommunicationTokenCredential(
@@ -42,7 +44,7 @@ class ChatController  {
             let options = AzureCommunicationChatClientOptions()
 
             let chatClient = try ChatClient(
-                endpoint: endpoint,
+                endpoint: self.commServEndPointURL,
                 credential: credential,
                 withOptions: options
             )
@@ -82,7 +84,7 @@ class ChatController  {
         print(self.threadId)
 
         self.chatAdapter = ChatAdapter(
-            endpoint: "https://acscallingchatcomserv.communication.azure.com/",
+            endpoint: self.commServEndPointURL,
             identifier: communicationIdentifier,
             credential: communicationTokenCredential,
             threadId: self.threadId,
@@ -101,17 +103,25 @@ class ChatController  {
                     print("disconnect error \(error)")
                 }
             })
-            let chatCompositeViewController = ChatCompositeViewController(
-                with: chatAdapter)
-            let navController = UINavigationController(rootViewController: chatCompositeViewController)
-            navController.modalPresentationStyle = .pageSheet
-            self.rootViewController.present(navController, animated: true)
+            if self.isForCall {
+                let chatCompositeViewController = StartCallViewController()
+                chatCompositeViewController.displayName = custUserName
+                let navController = UINavigationController(rootViewController: chatCompositeViewController)
+                navController.modalPresentationStyle = .pageSheet
+                self.rootViewController.present(navController, animated: true)
+            } else {
+                let chatCompositeViewController = ChatCompositeViewController(
+                    with: chatAdapter)
+                let navController = UINavigationController(rootViewController: chatCompositeViewController)
+                navController.modalPresentationStyle = .pageSheet
+                self.rootViewController.present(navController, animated: true)
+            }
         }
     }
     
     func callUserTokenAPI() {
         CircleLoader.sharedInstance.show()
-        let fullUrl: String = "https://acscallingchatfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+        let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
        
         guard let url = try? URL(string: fullUrl) else {
             return

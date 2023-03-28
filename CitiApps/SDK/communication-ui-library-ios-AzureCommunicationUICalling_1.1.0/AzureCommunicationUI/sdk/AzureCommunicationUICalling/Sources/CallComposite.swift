@@ -7,6 +7,7 @@ import AzureCommunicationCommon
 import UIKit
 import SwiftUI
 import FluentUI
+import PIPKit
 
 /// The main class representing the entry point for the Call Composite.
 public class CallComposite {
@@ -61,7 +62,7 @@ public class CallComposite {
                                                                     isRightToLeft: localizationProvider.isRightToLeft,
                                                                     meetingLink: callConfiguration.meetingLink!)
         setupManagers(with: dependencyContainer)
-        present(toolkitHostingController)
+        PIPKit.show(with: toolkitHostingController)
     }
 
     /// Start call composite experience with joining a Teams meeting.

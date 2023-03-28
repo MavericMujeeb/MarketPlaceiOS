@@ -129,6 +129,7 @@
 		8DB321632991195D0098B5F2 /* AzureCommunicationUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */; };
 		8DB321642991195D0098B5F2 /* AzureCommunicationUIChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB32175299121CB0098B5F2 /* FluentUIResources-ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8DB32174299121CB0098B5F2 /* FluentUIResources-ios.bundle */; };
+		8DC8DC1329D2FDA10047A2D3 /* PIPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC8DC1229D2FDA10047A2D3 /* PIPKit.framework */; };
 		8DFBD2AF29756471006B0700 /* libFluentUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2AE29756471006B0700 /* libFluentUI.a */; };
 		8DFBD2B12975647E006B0700 /* AzureCommunicationCalling.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2B02975647D006B0700 /* AzureCommunicationCalling.xcframework */; };
 		8DFBD2BB297564BD006B0700 /* AzureCommunicationCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2BA297564BD006B0700 /* AzureCommunicationCommon.framework */; };
@@ -377,6 +378,8 @@
 		88F6EE1B2735F8E8001AD3E9 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 		8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationUIChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB32174299121CB0098B5F2 /* FluentUIResources-ios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "FluentUIResources-ios.bundle"; path = "../../../../FluentUIResources-ios.bundle"; sourceTree = "<group>"; };
+		8DC8DC1229D2FDA10047A2D3 /* PIPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PIPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DDC5B4829CDA62900B15559 /* PIPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PIPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2AE29756471006B0700 /* libFluentUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFluentUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2B02975647D006B0700 /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = "../../../../AzureCommunicationCalling-2.2.1/AzureCommunicationCalling.xcframework"; sourceTree = "<group>"; };
 		8DFBD2B429756486006B0700 /* AzureCommunicationCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -474,6 +477,7 @@
 			files = (
 				8DFBD2BB297564BD006B0700 /* AzureCommunicationCommon.framework in Frameworks */,
 				8DB321632991195D0098B5F2 /* AzureCommunicationUIChat.framework in Frameworks */,
+				8DC8DC1329D2FDA10047A2D3 /* PIPKit.framework in Frameworks */,
 				8DFBD2AF29756471006B0700 /* libFluentUI.a in Frameworks */,
 				8DFBD2B12975647E006B0700 /* AzureCommunicationCalling.xcframework in Frameworks */,
 			);
@@ -1170,6 +1174,8 @@
 		D925FB8A0861AF0C1415C6C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8DC8DC1229D2FDA10047A2D3 /* PIPKit.framework */,
+				8DDC5B4829CDA62900B15559 /* PIPKit.framework */,
 				8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */,
 				8DFBD2BA297564BD006B0700 /* AzureCommunicationCommon.framework */,
 				8DFBD2B72975649E006B0700 /* AzureCommunicationCommon.framework */,
@@ -1663,7 +1669,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1693,7 +1699,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

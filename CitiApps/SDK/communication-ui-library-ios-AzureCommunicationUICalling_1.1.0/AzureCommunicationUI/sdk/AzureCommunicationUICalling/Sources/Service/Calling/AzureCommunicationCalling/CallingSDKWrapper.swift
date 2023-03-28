@@ -8,7 +8,7 @@ import Combine
 import AzureCommunicationCalling
 import ReplayKit
 import CoreLocation
-
+import PIPKit
 
 class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerDelegate{
     let callingEventsHandler: CallingSDKEventsHandling
@@ -267,29 +267,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     }
     
     
-    
-    func setupScreenShare() {
-        //Step -1
-        videoFormat.width = 1280
-        videoFormat.height = 720
-        videoFormat.pixelFormat = .nv12
-        videoFormat.videoFrameKind = .videoSoftware
-        videoFormat.framesPerSecond = 30
-        videoFormat.stride1 = 1280
-        videoFormat.stride2 = 1280
-        videoFrmts.append(videoFormat)
-        
-        //Step -2
-        let options = RawOutgoingVideoStreamOptions()
-        options.videoFormats = videoFrmts
-
-        //Step -3
-        options.delegate = self
-        
-        //Step -5
-        let virtualRawOutgoingVideoStream = VirtualRawOutgoingVideoStream(videoStreamOptions: options)
-
-        
+    func startScreenShare() async throws {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
@@ -297,21 +275,12 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
 
         AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: {response in
             if response{
-                //access granted
-                //Step -5
-                self.screenShareRawOutgoingVideoStream = ScreenShareRawOutgoingVideoStream(videoStreamOptions: options)
                 self.toggleSendingScreenShareOutgoingVideo()
             }
             else{
                 //Access denied
             }
         })
-    }
-    
-    
-    
-    func startScreenShare() async throws {
-        setupScreenShare()
     }
     
     var screenShareProducer: ScreenSharingProducer?
@@ -322,7 +291,6 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         guard let call = call else {
             return
         }
-        print("toggleSendingScreenShareOutgoingVideo")
 
         if sendingScreenShare {
             screenShareProducer?.stopRecording()
@@ -334,33 +302,26 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
             self.screenShareProducer?.onReadyCallback = { [weak self] in
                 guard let producer = self?.screenShareProducer else { return }
                 
-                self?.outgoingVideoSender = RawOutgoingVideoSender(frameProducer: producer, videoFormat: self!.videoFormat)
-                self?.outgoingVideoSender?.startSending(to: self?.call)
+                self?.outgoingVideoSender = RawOutgoingVideoSender(frameProducer: producer)
+                self?.outgoingVideoSender?.startSending(to: call)
             }
             screenShareProducer?.startRecording()
+            DispatchQueue.main.async {
+                PIPKit.visibleViewController?.startPIPMode()
+            }
         }
         sendingScreenShare.toggle()
     }
     
     func stopScreenShare() async throws {
+        DispatchQueue.main.async {
+            PIPKit.visibleViewController?.stopPIPMode()
+        }
         screenShareProducer?.stopRecording()
         screenShareProducer = nil
         outgoingVideoSender?.stopSending()
         outgoingVideoSender = nil
         sendingScreenShare.toggle()
-    }
-}
-
-extension CallingSDKWrapper : RawOutgoingVideoStreamOptionsDelegate{
-    
-    func rawOutgoingVideoStreamOptions(_ options: RawOutgoingVideoStreamOptions,
-                                        didChangeOutgoingVideoStreamState args: OutgoingVideoStreamStateChangedEventArgs) {
-        outgoingVideoStreamState = args.outgoingVideoStreamState
-    }
-    
-    func rawOutgoingVideoStreamOptions(_ rawOutgoingVideoStreamOptions: RawOutgoingVideoStreamOptions,
-                                       didChangeVideoFrameSender args: VideoFrameSenderChangedEventArgs) {
-        self.frameSender = args.videoFrameSender
     }
 }
 
@@ -573,36 +534,46 @@ final class RawOutgoingVideoSender: NSObject {
     private var syncSema : DispatchSemaphore?
     private(set) weak var call: Call?
     private var running: Bool = false
-    private let frameQueue: DispatchQueue = DispatchQueue(label: "org.microsoft.frame-sender")
-//    private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "RawOutgoingVideoSender")
+    private let frameQueue: DispatchQueue = DispatchQueue(label: "com.citiacs.calling-screenshare")
 
     private var options: RawOutgoingVideoStreamOptions!
     private var outgoingVideoStreamState: OutgoingVideoStreamState = .none
 
-    init(frameProducer: FrameProducerProtocol, videoFormat:VideoFormat) {
+    init(frameProducer: FrameProducerProtocol) {
         self.frameProducer = frameProducer
         super.init()
+
+        let videoFormat = VideoFormat()
+        
+        print(UIScreen.main.nativeBounds.width.self)
+        print(UIScreen.main.nativeBounds.height.self)
+        videoFormat.width = 890
+        videoFormat.height = 1900
+        videoFormat.pixelFormat = .nv12
+        videoFormat.videoFrameKind = .videoSoftware
+        videoFormat.framesPerSecond = 30
+        videoFormat.stride1 = 890
+        videoFormat.stride2 = 890
+        
         options = RawOutgoingVideoStreamOptions()
+        options.videoFormats = [videoFormat]
         options.delegate = self
-        options.videoFormats = [videoFormat] // Video format we specified on step 1.
-        self.rawOutgoingStream = VirtualRawOutgoingVideoStream(videoStreamOptions: options)
+
+
+        self.rawOutgoingStream = ScreenShareRawOutgoingVideoStream(videoStreamOptions: options)
     }
 
     func startSending(to call: Call?) {
         self.call = call
         self.startRunning()
-        self.call?.startVideo(stream: rawOutgoingStream) { error in
+        self.call?.startVideo(stream: self.rawOutgoingStream) { error in
             // Stream sending started.
-            print("Stream started")
-            print(self.rawOutgoingStream)
-            print(error)
-            
         }
     }
 
     func stopSending() {
         self.stopRunning()
-        call?.stopVideo(stream: rawOutgoingStream) { error in
+        call?.stopVideo(stream: self.rawOutgoingStream) { error in
             // Stream sending stopped.
         }
     }
@@ -617,11 +588,9 @@ final class RawOutgoingVideoSender: NSObject {
     }
 
     private func startFrameGenerator() {
-        print("startFrameGenerator ------- ")
         guard let sender = self.frameSender else {
             return
         }
-
         // How many times per second, based on sender format FPS.
         let interval = TimeInterval((1 as Float) / sender.videoFormat.framesPerSecond)
         frameQueue.async { [weak self] in
@@ -629,12 +598,12 @@ final class RawOutgoingVideoSender: NSObject {
                 guard let self = self, let sender = self.frameSender else {
                     return
                 }
-
                 let planeData = self.frameProducer.nextFrame(for: sender.videoFormat)
                 self.sendSync(with: sender, frame: planeData)
             }
             RunLoop.current.run()
             self?.timer?.fire()
+            
         }
     }
 
@@ -642,20 +611,19 @@ final class RawOutgoingVideoSender: NSObject {
         guard let softwareSender = sender as? SoftwareBasedVideoFrameSender else {
            return
         }
-        print("syncSema - dispatch")
         // Ensure that a frame will not be sent before another finishes.
         syncSema = DispatchSemaphore(value: 0)
         softwareSender.send(frame: frame, timestampInTicks: sender.timestampInTicks) { [weak self] confirmation, error in
-            print(error)
             self?.syncSema?.signal()
             guard let self = self else { return }
             if let confirmation = confirmation {
-                // Can check if confirmation was successful using `confirmation.status`
+                print(confirmation.status)
+                //Can check if confirmation was successful using `confirmation.status`
             } else if let error = error {
-                // Can check details about error in case of failure.
+                //Can check details about error in case of failure.
             }
         }
-        syncSema?.signal()
+        syncSema?.wait()
     }
 
     private func stopRunning() {
@@ -692,15 +660,23 @@ extension RawOutgoingVideoSender: RawOutgoingVideoStreamOptionsDelegate {
             self.frameSender = args.videoFrameSender
             startRunning()
         } else {
-//            sender = args.videoFrameSender
+            self.frameSender = args.videoFrameSender
         }
     }
 }
 
 
+extension CallingSDKWrapper: RPScreenRecorderDelegate{
+    
+}
+
 final class ScreenSharingProducer: FrameProducerProtocol {
     private var sampleBuffer: CMSampleBuffer?
     let lock = NSRecursiveLock()
+    
+    //Gray
+    var buffer: CVPixelBuffer? = nil
+    private var currentFormat: VideoFormat?
 
     // Invoked when producer receives the first frame from ReplayKit.
     var onReadyCallback: (() -> Void)?
@@ -716,18 +692,22 @@ final class ScreenSharingProducer: FrameProducerProtocol {
 
     func startRecording() {
         // Start a recording of the screen with ReplayKit.
-        RPScreenRecorder.shared().startCapture { [weak self] sampleBuffer, type, error in
-            guard type == .video, error == nil else { return }
-            guard let self = self else { return }
-
-            self.lock.lock()
-            let isFirstFrame = self.sampleBuffer == nil
-            if isFirstFrame {
-                self.onReadyCallback?()
-                self.onReadyCallback = nil
-            }
-            self.sampleBuffer = sampleBuffer
-            self.lock.unlock()
+        let recorder = RPScreenRecorder.shared()
+        if recorder.isAvailable {
+            recorder.startCapture(handler: { [weak self] sampleBuffer, type, error in
+                guard type == .video, error == nil else { return }
+                guard let self = self else { return }
+                self.lock.lock()
+                let isFirstFrame = self.sampleBuffer == nil
+                if isFirstFrame {
+                    self.onReadyCallback?()
+                    self.onReadyCallback = nil
+                }
+                self.sampleBuffer = sampleBuffer
+                self.lock.unlock()
+            }, completionHandler: { error in
+                print(error)
+            })
         }
     }
 
