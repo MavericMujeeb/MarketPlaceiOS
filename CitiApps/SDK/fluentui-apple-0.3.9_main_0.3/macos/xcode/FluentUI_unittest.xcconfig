@@ -1,0 +1,14 @@
+//
+//  Copyright (c) Microsoft Corporation. All rights reserved.
+//  Licensed under the MIT License.
+//
+
+#include "FluentUI_common.xcconfig"
+
+PRODUCT_NAME = FluentUIUnitTests
+INFOPLIST_FILE = ../FluentUIUnitTest/FluentUIUnitTest-Info.plist
+
+CLANG_ENABLE_MODULES = YES
+
+CLANG_WARN_DOCUMENTATION_COMMENTS = YES
+GCC_TREAT_WARNINGS_AS_ERRORS = YES

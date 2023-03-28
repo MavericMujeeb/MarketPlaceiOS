@@ -1,0 +1,4956 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CommunicationTokenCredentialProviding",
+        "printedName": "CommunicationTokenCredentialProviding",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "token",
+            "printedName": "token(completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "AzureCommunicationCommon.CommunicationAccessToken?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationAccessToken",
+                            "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Error?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon0B24TokenCredentialProvidingP5token17completionHandleryyAA0b6AccessD0CSg_s5Error_pSgtc_tF",
+            "mangledName": "$s24AzureCommunicationCommon0B24TokenCredentialProvidingP5token17completionHandleryyAA0b6AccessD0CSg_s5Error_pSgtc_tF",
+            "moduleName": "AzureCommunicationCommon",
+            "genericSig": "<τ_0_0 where τ_0_0 : AzureCommunicationCommon.CommunicationTokenCredentialProviding>",
+            "sugared_genericSig": "<Self where Self : AzureCommunicationCommon.CommunicationTokenCredentialProviding>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:24AzureCommunicationCommon0B24TokenCredentialProvidingP",
+        "mangledName": "$s24AzureCommunicationCommon0B24TokenCredentialProvidingP",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "IdentifierKind",
+        "printedName": "IdentifierKind",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "communicationUser",
+            "printedName": "communicationUser",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(cpy)communicationUser",
+            "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC17communicationUserACvpZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(cm)communicationUser",
+                "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC17communicationUserACvgZ",
+                "moduleName": "AzureCommunicationCommon",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "phoneNumber",
+            "printedName": "phoneNumber",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(cpy)phoneNumber",
+            "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC11phoneNumberACvpZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(cm)phoneNumber",
+                "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC11phoneNumberACvgZ",
+                "moduleName": "AzureCommunicationCommon",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "microsoftTeamsUser",
+            "printedName": "microsoftTeamsUser",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(cpy)microsoftTeamsUser",
+            "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC18microsoftTeamsUserACvpZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(cm)microsoftTeamsUser",
+                "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC18microsoftTeamsUserACvgZ",
+                "moduleName": "AzureCommunicationCommon",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "unknown",
+            "printedName": "unknown",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(cpy)unknown",
+            "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC7unknownACvpZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(cm)unknown",
+                "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC7unknownACvgZ",
+                "moduleName": "AzureCommunicationCommon",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(im)initWithRawValue:",
+            "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC8rawValueACSS_tcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind(im)init",
+            "mangledName": "$s24AzureCommunicationCommon14IdentifierKindCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind",
+        "mangledName": "$s24AzureCommunicationCommon14IdentifierKindC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CommunicationIdentifier",
+        "printedName": "CommunicationIdentifier",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "rawId",
+            "printedName": "rawId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier(py)rawId",
+            "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP5rawIdSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "protocolReq": true,
+            "declAttributes": [
+              "ObjC"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier(im)rawId",
+                "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP5rawIdSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "genericSig": "<τ_0_0 where τ_0_0 : AzureCommunicationCommon.CommunicationIdentifier>",
+                "sugared_genericSig": "<Self where Self : AzureCommunicationCommon.CommunicationIdentifier>",
+                "protocolReq": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "kind",
+            "printedName": "kind",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier(py)kind",
+            "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP4kindAA0D4KindCvp",
+            "moduleName": "AzureCommunicationCommon",
+            "protocolReq": true,
+            "declAttributes": [
+              "ObjC"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier(im)kind",
+                "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP4kindAA0D4KindCvg",
+                "moduleName": "AzureCommunicationCommon",
+                "genericSig": "<τ_0_0 where τ_0_0 : AzureCommunicationCommon.CommunicationIdentifier>",
+                "sugared_genericSig": "<Self where Self : AzureCommunicationCommon.CommunicationIdentifier>",
+                "protocolReq": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier",
+        "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP",
+        "moduleName": "AzureCommunicationCommon",
+        "genericSig": "<τ_0_0 : ObjectiveC.NSObjectProtocol>",
+        "sugared_genericSig": "<Self : ObjectiveC.NSObjectProtocol>",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Function",
+        "name": "createCommunicationIdentifier",
+        "printedName": "createCommunicationIdentifier(fromRawId:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "CommunicationIdentifier",
+            "printedName": "AzureCommunicationCommon.CommunicationIdentifier",
+            "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "String",
+            "printedName": "Swift.String",
+            "usr": "s:SS"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "s:24AzureCommunicationCommon06createB10Identifier9fromRawIdAA0bE0_pSS_tF",
+        "mangledName": "$s24AzureCommunicationCommon06createB10Identifier9fromRawIdAA0bE0_pSS_tF",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CommunicationUserIdentifier",
+        "printedName": "CommunicationUserIdentifier",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "rawId",
+            "printedName": "rawId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier(py)rawId",
+            "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierC5rawIdSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "objc_name": "rawId",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier(im)rawId",
+                "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierC5rawIdSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "isOpen": true,
+                "objc_name": "rawId",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "kind",
+            "printedName": "kind",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier(py)kind",
+            "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierC4kindAA0E4KindCvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "objc_name": "kind",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier(im)kind",
+                "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierC4kindAA0E4KindCvg",
+                "moduleName": "AzureCommunicationCommon",
+                "isOpen": true,
+                "objc_name": "kind",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "identifier",
+            "printedName": "identifier",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier(py)identifier",
+            "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierC10identifierSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier(im)identifier",
+                "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierC10identifierSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationUserIdentifier",
+                "printedName": "AzureCommunicationCommon.CommunicationUserIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier(im)initWithIdentifier:",
+            "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierCyACSScfc",
+            "moduleName": "AzureCommunicationCommon",
+            "objc_name": "initWithIdentifier:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationUserIdentifier",
+                "printedName": "AzureCommunicationCommon.CommunicationUserIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier(im)init",
+            "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationUserIdentifier",
+        "mangledName": "$s24AzureCommunicationCommon0B14UserIdentifierC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "CommunicationIdentifier",
+            "printedName": "CommunicationIdentifier",
+            "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier",
+            "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UnknownIdentifier",
+        "printedName": "UnknownIdentifier",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "rawId",
+            "printedName": "rawId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier(py)rawId",
+            "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierC5rawIdSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "objc_name": "rawId",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier(im)rawId",
+                "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierC5rawIdSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "isOpen": true,
+                "objc_name": "rawId",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "kind",
+            "printedName": "kind",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier(py)kind",
+            "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierC4kindAA0E4KindCvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "objc_name": "kind",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier(im)kind",
+                "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierC4kindAA0E4KindCvg",
+                "moduleName": "AzureCommunicationCommon",
+                "isOpen": true,
+                "objc_name": "kind",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "identifier",
+            "printedName": "identifier",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier(py)identifier",
+            "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierC10identifierSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier(im)identifier",
+                "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierC10identifierSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnknownIdentifier",
+                "printedName": "AzureCommunicationCommon.UnknownIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier(im)initWithIdentifier:",
+            "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierCyACSScfc",
+            "moduleName": "AzureCommunicationCommon",
+            "objc_name": "initWithIdentifier:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnknownIdentifier",
+                "printedName": "AzureCommunicationCommon.UnknownIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier(im)init",
+            "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)UnknownIdentifier",
+        "mangledName": "$s24AzureCommunicationCommon17UnknownIdentifierC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "CommunicationIdentifier",
+            "printedName": "CommunicationIdentifier",
+            "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier",
+            "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PhoneNumberIdentifier",
+        "printedName": "PhoneNumberIdentifier",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "phoneNumber",
+            "printedName": "phoneNumber",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(py)phoneNumber",
+            "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC05phoneE0SSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(im)phoneNumber",
+                "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC05phoneE0SSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "rawId",
+            "printedName": "rawId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(py)rawId",
+            "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC5rawIdSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "objc_name": "rawId",
+            "declAttributes": [
+              "ObjC",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(im)rawId",
+                "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC5rawIdSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "objc_name": "rawId",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "kind",
+            "printedName": "kind",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(py)kind",
+            "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC4kindAA0F4KindCvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "objc_name": "kind",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(im)kind",
+                "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC4kindAA0F4KindCvg",
+                "moduleName": "AzureCommunicationCommon",
+                "isOpen": true,
+                "objc_name": "kind",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(phoneNumber:rawId:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PhoneNumberIdentifier",
+                "printedName": "AzureCommunicationCommon.PhoneNumberIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(im)initWithPhoneNumber:rawId:",
+            "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC05phoneE05rawIdACSS_SSSgtcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PhoneNumberIdentifier",
+                "printedName": "AzureCommunicationCommon.PhoneNumberIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PhoneNumberIdentifier",
+                "printedName": "AzureCommunicationCommon.PhoneNumberIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon21PhoneNumberIdentifierC2eeoiySbAC_ACtFZ",
+            "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC2eeoiySbAC_ACtFZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isEqual",
+            "printedName": "isEqual(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(im)isEqual:",
+            "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC7isEqualySbypSgF",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "isOpen": true,
+            "objc_name": "isEqual:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl",
+              "Override",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PhoneNumberIdentifier",
+                "printedName": "AzureCommunicationCommon.PhoneNumberIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier(im)init",
+            "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)PhoneNumberIdentifier",
+        "mangledName": "$s24AzureCommunicationCommon21PhoneNumberIdentifierC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "CommunicationIdentifier",
+            "printedName": "CommunicationIdentifier",
+            "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier",
+            "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MicrosoftTeamsUserIdentifier",
+        "printedName": "MicrosoftTeamsUserIdentifier",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "userId",
+            "printedName": "userId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(py)userId",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC6userIdSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)userId",
+                "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC6userIdSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "isAnonymous",
+            "printedName": "isAnonymous",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(py)isAnonymous",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC11isAnonymousSbvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)isAnonymous",
+                "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC11isAnonymousSbvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "rawId",
+            "printedName": "rawId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(py)rawId",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC5rawIdSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "objc_name": "rawId",
+            "declAttributes": [
+              "ObjC",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)rawId",
+                "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC5rawIdSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "objc_name": "rawId",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "kind",
+            "printedName": "kind",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentifierKind",
+                "printedName": "AzureCommunicationCommon.IdentifierKind",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(py)kind",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC4kindAA0G4KindCvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "objc_name": "kind",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentifierKind",
+                    "printedName": "AzureCommunicationCommon.IdentifierKind",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)IdentifierKind"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)kind",
+                "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC4kindAA0G4KindCvg",
+                "moduleName": "AzureCommunicationCommon",
+                "isOpen": true,
+                "objc_name": "kind",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "cloudEnviroment",
+            "printedName": "cloudEnviroment",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(py)cloudEnviroment",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC15cloudEnviromentAA0B16CloudEnvironmentCvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CommunicationCloudEnvironment",
+                    "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)cloudEnviroment",
+                "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC15cloudEnviromentAA0B16CloudEnvironmentCvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(userId:isAnonymous:rawId:cloudEnvironment:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MicrosoftTeamsUserIdentifier",
+                "printedName": "AzureCommunicationCommon.MicrosoftTeamsUserIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "hasDefaultArg": true,
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)initWithUserId:isAnonymous:rawId:cloudEnvironment:",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC6userId11isAnonymous03rawI016cloudEnvironmentACSS_SbSSSgAA0b5CloudN0Ctcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(userId:isAnonymous:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MicrosoftTeamsUserIdentifier",
+                "printedName": "AzureCommunicationCommon.MicrosoftTeamsUserIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)initWithUserId:isAnonymous:",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC6userId11isAnonymousACSS_Sbtcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Convenience",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "MicrosoftTeamsUserIdentifier",
+                "printedName": "AzureCommunicationCommon.MicrosoftTeamsUserIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "MicrosoftTeamsUserIdentifier",
+                "printedName": "AzureCommunicationCommon.MicrosoftTeamsUserIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC2eeoiySbAC_ACtFZ",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC2eeoiySbAC_ACtFZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "isEqual",
+            "printedName": "isEqual(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)isEqual:",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC7isEqualySbypSgF",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "isOpen": true,
+            "objc_name": "isEqual:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "AccessControl",
+              "Override",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MicrosoftTeamsUserIdentifier",
+                "printedName": "AzureCommunicationCommon.MicrosoftTeamsUserIdentifier",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier(im)init",
+            "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)MicrosoftTeamsUserIdentifier",
+        "mangledName": "$s24AzureCommunicationCommon28MicrosoftTeamsUserIdentifierC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "CommunicationIdentifier",
+            "printedName": "CommunicationIdentifier",
+            "usr": "c:@M@AzureCommunicationCommon@objc(pl)CommunicationIdentifier",
+            "mangledName": "$s24AzureCommunicationCommon0B10IdentifierP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CommunicationAccessToken",
+        "printedName": "CommunicationAccessToken",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "token",
+            "printedName": "token",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken(py)token",
+            "mangledName": "$s24AzureCommunicationCommon0B11AccessTokenC5tokenSSvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken(im)token",
+                "mangledName": "$s24AzureCommunicationCommon0B11AccessTokenC5tokenSSvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "expiresOn",
+            "printedName": "expiresOn",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Date",
+                "printedName": "Foundation.Date",
+                "usr": "s:10Foundation4DateV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken(py)expiresOn",
+            "mangledName": "$s24AzureCommunicationCommon0B11AccessTokenC9expiresOn10Foundation4DateVvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Date",
+                    "printedName": "Foundation.Date",
+                    "usr": "s:10Foundation4DateV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken(im)expiresOn",
+                "mangledName": "$s24AzureCommunicationCommon0B11AccessTokenC9expiresOn10Foundation4DateVvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(token:expiresOn:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationAccessToken",
+                "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Date",
+                "printedName": "Foundation.Date",
+                "usr": "s:10Foundation4DateV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken(im)initWithToken:expiresOn:",
+            "mangledName": "$s24AzureCommunicationCommon0B11AccessTokenC5token9expiresOnACSS_10Foundation4DateVtcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationAccessToken",
+                "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken(im)init",
+            "mangledName": "$s24AzureCommunicationCommon0B11AccessTokenCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken",
+        "mangledName": "$s24AzureCommunicationCommon0B11AccessTokenC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ThreadSafeRefreshableAccessTokenCache",
+        "printedName": "ThreadSafeRefreshableAccessTokenCache",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "currentToken",
+            "printedName": "currentToken",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationAccessToken",
+                "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC07currentH033_5DF7D09A03F51C1EDFE8CBE6A423D86ELLAA0bgH0Cvp",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC07currentH033_5DF7D09A03F51C1EDFE8CBE6A423D86ELLAA0bgH0Cvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isInternal": true,
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 0,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "scheduleProactivelyRefreshing",
+            "printedName": "scheduleProactivelyRefreshing",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC29scheduleProactivelyRefreshing33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLSbvp",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC29scheduleProactivelyRefreshing33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLSbvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isInternal": true,
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 1,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "proactiveRefreshTimer",
+            "printedName": "proactiveRefreshTimer",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Timer?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Timer",
+                    "printedName": "Foundation.Timer",
+                    "usr": "c:objc(cs)NSTimer"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC21proactiveRefreshTimer33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLSo7NSTimerCSgvp",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC21proactiveRefreshTimer33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLSo7NSTimerCSgvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isInternal": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 2,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "proactiveRefreshingInterval",
+            "printedName": "proactiveRefreshingInterval",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC27proactiveRefreshingInterval33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLSdvp",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC27proactiveRefreshingInterval33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLSdvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isInternal": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 3,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "onDemandRefreshingInterval",
+            "printedName": "onDemandRefreshingInterval",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC26onDemandRefreshingInterval33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLSdvp",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC26onDemandRefreshingInterval33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLSdvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isInternal": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 4,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "tokenRefresher",
+            "printedName": "tokenRefresher",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(@escaping (Swift.String?, Swift.Error?) -> ()) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.String?, Swift.Error?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Error?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC14tokenRefresher33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLyyySSSg_s5Error_pSgtccvp",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC14tokenRefresher33_5DF7D09A03F51C1EDFE8CBE6A423D86ELLyyySSSg_s5Error_pSgtccvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isInternal": true,
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 5,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Var",
+            "name": "anyThreadRefreshing",
+            "printedName": "anyThreadRefreshing",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DispatchSemaphore",
+                "printedName": "Dispatch.DispatchSemaphore",
+                "usr": "c:objc(cs)OS_dispatch_semaphore"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC03anyD10RefreshingSo21OS_dispatch_semaphoreCvp",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC03anyD10RefreshingSo21OS_dispatch_semaphoreCvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 6,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DispatchSemaphore",
+                    "printedName": "Dispatch.DispatchSemaphore",
+                    "usr": "c:objc(cs)OS_dispatch_semaphore"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC03anyD10RefreshingSo21OS_dispatch_semaphoreCvg",
+                "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC03anyD10RefreshingSo21OS_dispatch_semaphoreCvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent",
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(refreshProactively:tokenRefresher:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ThreadSafeRefreshableAccessTokenCache",
+                "printedName": "AzureCommunicationCommon.ThreadSafeRefreshableAccessTokenCache",
+                "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(@escaping (Swift.String?, Swift.Error?) -> ()) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.String?, Swift.Error?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Error?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC18refreshProactively14tokenRefresherACSb_yySSSg_s5Error_pSgtcctcfc",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC18refreshProactively14tokenRefresherACSb_yySSSg_s5Error_pSgtcctcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "Convenience",
+              "AccessControl"
+            ],
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(refreshProactively:initialValue:tokenRefresher:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ThreadSafeRefreshableAccessTokenCache",
+                "printedName": "AzureCommunicationCommon.ThreadSafeRefreshableAccessTokenCache",
+                "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationAccessToken",
+                "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(@escaping (Swift.String?, Swift.Error?) -> ()) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.String?, Swift.Error?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Error?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC18refreshProactively12initialValue14tokenRefresherACSb_AA0bgH0CyySSSg_s5Error_pSgtcctcfc",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC18refreshProactively12initialValue14tokenRefresherACSb_AA0bgH0CyySSSg_s5Error_pSgtcctcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "getValue",
+            "printedName": "getValue(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "AzureCommunicationCommon.CommunicationAccessToken?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationAccessToken",
+                            "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Error?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC8getValueyyyAA0bgH0CSg_s5Error_pSgtcF",
+            "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC8getValueyyyAA0bgH0CSg_s5Error_pSgtcF",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC",
+        "mangledName": "$s24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "AutoRefreshTokenCredential",
+        "printedName": "AutoRefreshTokenCredential",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "accessTokenCache",
+            "printedName": "accessTokenCache",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ThreadSafeRefreshableAccessTokenCache",
+                "printedName": "AzureCommunicationCommon.ThreadSafeRefreshableAccessTokenCache",
+                "usr": "s:24AzureCommunicationCommon37ThreadSafeRefreshableAccessTokenCacheC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon26AutoRefreshTokenCredentialC06accessF5Cache33_057EA86AEF197489225D821BD91B7583LLAA027ThreadSafeRefreshableAccessfI0Cvp",
+            "mangledName": "$s24AzureCommunicationCommon26AutoRefreshTokenCredentialC06accessF5Cache33_057EA86AEF197489225D821BD91B7583LLAA027ThreadSafeRefreshableAccessfI0Cvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isInternal": true,
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 0,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(tokenRefresher:refreshProactively:initialToken:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AutoRefreshTokenCredential",
+                "printedName": "AzureCommunicationCommon.AutoRefreshTokenCredential",
+                "usr": "s:24AzureCommunicationCommon26AutoRefreshTokenCredentialC"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(@escaping (Swift.String?, Swift.Error?) -> ()) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.String?, Swift.Error?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Error?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24AzureCommunicationCommon26AutoRefreshTokenCredentialC14tokenRefresher18refreshProactively07initialF0ACyySSSg_s5Error_pSgtcc_SbAGtKcfc",
+            "mangledName": "$s24AzureCommunicationCommon26AutoRefreshTokenCredentialC14tokenRefresher18refreshProactively07initialF0ACyySSSg_s5Error_pSgtcc_SbAGtKcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "token",
+            "printedName": "token(completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "AzureCommunicationCommon.CommunicationAccessToken?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationAccessToken",
+                            "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Error?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon26AutoRefreshTokenCredentialC5token17completionHandleryyAA0b6AccessF0CSg_s5Error_pSgtc_tF",
+            "mangledName": "$s24AzureCommunicationCommon26AutoRefreshTokenCredentialC5token17completionHandleryyAA0b6AccessF0CSg_s5Error_pSgtc_tF",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:24AzureCommunicationCommon26AutoRefreshTokenCredentialC",
+        "mangledName": "$s24AzureCommunicationCommon26AutoRefreshTokenCredentialC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "CommunicationTokenCredentialProviding",
+            "printedName": "CommunicationTokenCredentialProviding",
+            "usr": "s:24AzureCommunicationCommon0B24TokenCredentialProvidingP",
+            "mangledName": "$s24AzureCommunicationCommon0B24TokenCredentialProvidingP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CommunicationCloudEnvironment",
+        "printedName": "CommunicationCloudEnvironment",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "Public",
+            "printedName": "Public",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(cpy)Public",
+            "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC6PublicACvpZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CommunicationCloudEnvironment",
+                    "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(cm)Public",
+                "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC6PublicACvgZ",
+                "moduleName": "AzureCommunicationCommon",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "Dod",
+            "printedName": "Dod",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(cpy)Dod",
+            "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC3DodACvpZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CommunicationCloudEnvironment",
+                    "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(cm)Dod",
+                "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC3DodACvgZ",
+                "moduleName": "AzureCommunicationCommon",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "Gcch",
+            "printedName": "Gcch",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(cpy)Gcch",
+            "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC4GcchACvpZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CommunicationCloudEnvironment",
+                    "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                    "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(cm)Gcch",
+                "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC4GcchACvgZ",
+                "moduleName": "AzureCommunicationCommon",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(environmentValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(im)initWithEnvironmentValue:",
+            "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC16environmentValueACSS_tcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "getEnvironmentValue",
+            "printedName": "getEnvironmentValue()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(im)getEnvironmentValue",
+            "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC03getE5ValueSSyF",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon0B16CloudEnvironmentC2eeoiySbAC_ACtFZ",
+            "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC2eeoiySbAC_ACtFZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationCloudEnvironment",
+                "printedName": "AzureCommunicationCommon.CommunicationCloudEnvironment",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment(im)init",
+            "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationCloudEnvironment",
+        "mangledName": "$s24AzureCommunicationCommon0B16CloudEnvironmentC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CommunicationTokenRefreshOptions",
+        "printedName": "CommunicationTokenRefreshOptions",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "initialToken",
+            "printedName": "initialToken",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(py)initialToken",
+            "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC07initialD0SSSgvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(im)initialToken",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC07initialD0SSSgvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(im)setInitialToken:",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC07initialD0SSSgvs",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:24AzureCommunicationCommon0B19TokenRefreshOptionsC07initialD0SSSgvM",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC07initialD0SSSgvM",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "refreshProactively",
+            "printedName": "refreshProactively",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(py)refreshProactively",
+            "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC18refreshProactivelySbvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "declAttributes": [
+              "HasStorage",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(im)refreshProactively",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC18refreshProactivelySbvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(im)setRefreshProactively:",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC18refreshProactivelySbvs",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:24AzureCommunicationCommon0B19TokenRefreshOptionsC18refreshProactivelySbvM",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC18refreshProactivelySbvM",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "tokenRefresher",
+            "printedName": "tokenRefresher",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(@escaping (Swift.String?, Swift.Error?) -> ()) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.String?, Swift.Error?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Error?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(py)tokenRefresher",
+            "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC14tokenRefresheryyySSSg_s5Error_pSgtccvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "declAttributes": [
+              "HasStorage",
+              "ObjC"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(@escaping (Swift.String?, Swift.Error?) -> ()) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.String?, Swift.Error?)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "Swift.String?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "String",
+                                    "printedName": "Swift.String",
+                                    "usr": "s:SS"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "Swift.Error?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Error",
+                                    "printedName": "Swift.Error",
+                                    "usr": "s:s5ErrorP"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(im)tokenRefresher",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC14tokenRefresheryyySSSg_s5Error_pSgtccvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(@escaping (Swift.String?, Swift.Error?) -> ()) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Tuple",
+                            "printedName": "(Swift.String?, Swift.Error?)",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "Swift.String?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "String",
+                                    "printedName": "Swift.String",
+                                    "usr": "s:SS"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              },
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Optional",
+                                "printedName": "Swift.Error?",
+                                "children": [
+                                  {
+                                    "kind": "TypeNominal",
+                                    "name": "Error",
+                                    "printedName": "Swift.Error",
+                                    "usr": "s:s5ErrorP"
+                                  }
+                                ],
+                                "usr": "s:Sq"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(im)setTokenRefresher:",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC14tokenRefresheryyySSSg_s5Error_pSgtccvs",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:24AzureCommunicationCommon0B19TokenRefreshOptionsC14tokenRefresheryyySSSg_s5Error_pSgtccvM",
+                "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC14tokenRefresheryyySSSg_s5Error_pSgtccvM",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "isOpen": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(initialToken:refreshProactively:tokenRefresher:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationTokenRefreshOptions",
+                "printedName": "AzureCommunicationCommon.CommunicationTokenRefreshOptions",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(@escaping (Swift.String?, Swift.Error?) -> ()) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?, Swift.Error?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(Swift.String?, Swift.Error?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.Error?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "Error",
+                                "printedName": "Swift.Error",
+                                "usr": "s:s5ErrorP"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(im)initWithInitialToken:refreshProactively:tokenRefresher:",
+            "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC07initialD018refreshProactively14tokenRefresherACSSSg_SbyyAG_s5Error_pSgtcctcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationTokenRefreshOptions",
+                "printedName": "AzureCommunicationCommon.CommunicationTokenRefreshOptions",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions(im)init",
+            "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions",
+        "mangledName": "$s24AzureCommunicationCommon0B19TokenRefreshOptionsC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "JwtPayload",
+        "printedName": "JwtPayload",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "exp",
+            "printedName": "exp",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UInt64",
+                "printedName": "Swift.UInt64",
+                "usr": "s:s6UInt64V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon10JwtPayloadV3exps6UInt64Vvp",
+            "mangledName": "$s24AzureCommunicationCommon10JwtPayloadV3exps6UInt64Vvp",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "HasStorage"
+            ],
+            "fixedbinaryorder": 0,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt64",
+                    "printedName": "Swift.UInt64",
+                    "usr": "s:s6UInt64V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:24AzureCommunicationCommon10JwtPayloadV3exps6UInt64Vvg",
+                "mangledName": "$s24AzureCommunicationCommon10JwtPayloadV3exps6UInt64Vvg",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UInt64",
+                    "printedName": "Swift.UInt64",
+                    "usr": "s:s6UInt64V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:24AzureCommunicationCommon10JwtPayloadV3exps6UInt64Vvs",
+                "mangledName": "$s24AzureCommunicationCommon10JwtPayloadV3exps6UInt64Vvs",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:24AzureCommunicationCommon10JwtPayloadV3exps6UInt64VvM",
+                "mangledName": "$s24AzureCommunicationCommon10JwtPayloadV3exps6UInt64VvM",
+                "moduleName": "AzureCommunicationCommon",
+                "implicit": true,
+                "declAttributes": [
+                  "Transparent"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(exp:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "JwtPayload",
+                "printedName": "AzureCommunicationCommon.JwtPayload",
+                "usr": "s:24AzureCommunicationCommon10JwtPayloadV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt64",
+                "printedName": "Swift.UInt64",
+                "usr": "s:s6UInt64V"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24AzureCommunicationCommon10JwtPayloadV3expACs6UInt64V_tcfc",
+            "mangledName": "$s24AzureCommunicationCommon10JwtPayloadV3expACs6UInt64V_tcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "JwtPayload",
+                "printedName": "AzureCommunicationCommon.JwtPayload",
+                "usr": "s:24AzureCommunicationCommon10JwtPayloadV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24AzureCommunicationCommon10JwtPayloadV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s24AzureCommunicationCommon10JwtPayloadV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:24AzureCommunicationCommon10JwtPayloadV",
+        "mangledName": "$s24AzureCommunicationCommon10JwtPayloadV",
+        "moduleName": "AzureCommunicationCommon",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "JwtTokenParser",
+        "printedName": "JwtTokenParser",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "createAccessToken",
+            "printedName": "createAccessToken(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationAccessToken",
+                "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon14JwtTokenParserO012createAccessE0yAA0bhE0CSSKFZ",
+            "mangledName": "$s24AzureCommunicationCommon14JwtTokenParserO012createAccessE0yAA0bhE0CSSKFZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "convertFromBase64Url",
+            "printedName": "convertFromBase64Url(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon14JwtTokenParserO20convertFromBase64Urly10Foundation4DataVSSKFZ",
+            "mangledName": "$s24AzureCommunicationCommon14JwtTokenParserO20convertFromBase64Urly10Foundation4DataVSSKFZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "decodeJwtPayload",
+            "printedName": "decodeJwtPayload(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "JwtPayload",
+                "printedName": "AzureCommunicationCommon.JwtPayload",
+                "usr": "s:24AzureCommunicationCommon10JwtPayloadV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon14JwtTokenParserO06decodeD7PayloadyAA0dH0VSSKFZ",
+            "mangledName": "$s24AzureCommunicationCommon14JwtTokenParserO06decodeD7PayloadyAA0dH0VSSKFZ",
+            "moduleName": "AzureCommunicationCommon",
+            "static": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:24AzureCommunicationCommon14JwtTokenParserO",
+        "mangledName": "$s24AzureCommunicationCommon14JwtTokenParserO",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ],
+        "isEnumExhaustive": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CommunicationTokenCredential",
+        "printedName": "CommunicationTokenCredential",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(token:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationTokenCredential",
+                "printedName": "AzureCommunicationCommon.CommunicationTokenCredential",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenCredential"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenCredential(im)initWithToken:error:",
+            "mangledName": "$s24AzureCommunicationCommon0B15TokenCredentialC5tokenACSS_tKcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(withOptions:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationTokenCredential",
+                "printedName": "AzureCommunicationCommon.CommunicationTokenCredential",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenCredential"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationTokenRefreshOptions",
+                "printedName": "AzureCommunicationCommon.CommunicationTokenRefreshOptions",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenRefreshOptions"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenCredential(im)initWithOptions:error:",
+            "mangledName": "$s24AzureCommunicationCommon0B15TokenCredentialC11withOptionsAcA0bd7RefreshG0C_tKcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "token",
+            "printedName": "token(completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "AzureCommunicationCommon.CommunicationAccessToken?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationAccessToken",
+                            "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Error?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenCredential(im)tokenWithCompletionHandler:",
+            "mangledName": "$s24AzureCommunicationCommon0B15TokenCredentialC5token17completionHandleryyAA0b6AccessD0CSg_s5Error_pSgtc_tF",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationTokenCredential",
+                "printedName": "AzureCommunicationCommon.CommunicationTokenCredential",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenCredential"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenCredential(im)init",
+            "mangledName": "$s24AzureCommunicationCommon0B15TokenCredentialCACycfc",
+            "moduleName": "AzureCommunicationCommon",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationTokenCredential",
+        "mangledName": "$s24AzureCommunicationCommon0B15TokenCredentialC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "ObjCMembers",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCommon",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "StaticTokenCredential",
+        "printedName": "StaticTokenCredential",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "accessToken",
+            "printedName": "accessToken",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationAccessToken",
+                "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:24AzureCommunicationCommon21StaticTokenCredentialC06accessE033_B8A63D2C88B4664FE61104A6AAECDBB2LLAA0b6AccessE0Cvp",
+            "mangledName": "$s24AzureCommunicationCommon21StaticTokenCredentialC06accessE033_B8A63D2C88B4664FE61104A6AAECDBB2LLAA0b6AccessE0Cvp",
+            "moduleName": "AzureCommunicationCommon",
+            "isInternal": true,
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "fixedbinaryorder": 0,
+            "isLet": true,
+            "hasStorage": true
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(token:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "StaticTokenCredential",
+                "printedName": "AzureCommunicationCommon.StaticTokenCredential",
+                "usr": "s:24AzureCommunicationCommon21StaticTokenCredentialC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:24AzureCommunicationCommon21StaticTokenCredentialC5tokenACSS_tKcfc",
+            "mangledName": "$s24AzureCommunicationCommon21StaticTokenCredentialC5tokenACSS_tKcfc",
+            "moduleName": "AzureCommunicationCommon",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "token",
+            "printedName": "token(completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(AzureCommunicationCommon.CommunicationAccessToken?, Swift.Error?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "AzureCommunicationCommon.CommunicationAccessToken?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationAccessToken",
+                            "printedName": "AzureCommunicationCommon.CommunicationAccessToken",
+                            "usr": "c:@M@AzureCommunicationCommon@objc(cs)CommunicationAccessToken"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.Error?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ],
+                "typeAttributes": [
+                  "noescape"
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:24AzureCommunicationCommon21StaticTokenCredentialC5token17completionHandleryyAA0b6AccessE0CSg_s5Error_pSgtXE_tF",
+            "mangledName": "$s24AzureCommunicationCommon21StaticTokenCredentialC5token17completionHandleryyAA0b6AccessE0CSg_s5Error_pSgtXE_tF",
+            "moduleName": "AzureCommunicationCommon",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:24AzureCommunicationCommon21StaticTokenCredentialC",
+        "mangledName": "$s24AzureCommunicationCommon21StaticTokenCredentialC",
+        "moduleName": "AzureCommunicationCommon",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "CommunicationTokenCredentialProviding",
+            "printedName": "CommunicationTokenCredentialProviding",
+            "usr": "s:24AzureCommunicationCommon0B24TokenCredentialProvidingP",
+            "mangledName": "$s24AzureCommunicationCommon0B24TokenCredentialProvidingP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 1566,
+      "length": 19,
+      "value": "\"communicationUser\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 1648,
+      "length": 13,
+      "value": "\"phoneNumber\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 1731,
+      "length": 20,
+      "value": "\"microsoftTeamsUser\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 1810,
+      "length": 9,
+      "value": "\"unknown\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 1439,
+      "length": 14,
+      "value": "\"AzureCommunicationCommon.IdentifierKind\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 4347,
+      "length": 27,
+      "value": "\"AzureCommunicationCommon.CommunicationUserIdentifier\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 4931,
+      "length": 17,
+      "value": "\"AzureCommunicationCommon.UnknownIdentifier\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 5488,
+      "length": 21,
+      "value": "\"AzureCommunicationCommon.PhoneNumberIdentifier\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "BooleanLiteral",
+      "offset": 8267,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Identifiers.swift",
+      "kind": "StringLiteral",
+      "offset": 7265,
+      "length": 28,
+      "value": "\"AzureCommunicationCommon.MicrosoftTeamsUserIdentifier\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Authentication\/CommunicationAccessToken.swift",
+      "kind": "StringLiteral",
+      "offset": 1455,
+      "length": 24,
+      "value": "\"AzureCommunicationCommon.CommunicationAccessToken\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Authentication\/ThreadSafeRefreshableAccessTokenCache.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1687,
+      "length": 3,
+      "value": "600"
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Authentication\/ThreadSafeRefreshableAccessTokenCache.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1750,
+      "length": 3,
+      "value": "120"
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Authentication\/ThreadSafeRefreshableAccessTokenCache.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1862,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/CommunicationCloudEnvironment.swift",
+      "kind": "StringLiteral",
+      "offset": 1537,
+      "length": 8,
+      "value": "\"public\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/CommunicationCloudEnvironment.swift",
+      "kind": "StringLiteral",
+      "offset": 1623,
+      "length": 5,
+      "value": "\"dod\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/CommunicationCloudEnvironment.swift",
+      "kind": "StringLiteral",
+      "offset": 1707,
+      "length": 6,
+      "value": "\"gcch\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/CommunicationCloudEnvironment.swift",
+      "kind": "StringLiteral",
+      "offset": 1374,
+      "length": 29,
+      "value": "\"AzureCommunicationCommon.CommunicationCloudEnvironment\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Authentication\/CommunicationTokenRefreshOptions.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2640,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Authentication\/CommunicationTokenRefreshOptions.swift",
+      "kind": "StringLiteral",
+      "offset": 1605,
+      "length": 32,
+      "value": "\"AzureCommunicationCommon.CommunicationTokenRefreshOptions\""
+    },
+    {
+      "filePath": "\/Users\/mohamadmujeebu\/Desktop\/Flutter\/MarketPlace_NEW2\/CitiApps\/CitiApps\/SDK\/AzureCommunicationCommon\/Source\/Authentication\/CommunicationTokenCredential.swift",
+      "kind": "StringLiteral",
+      "offset": 1699,
+      "length": 28,
+      "value": "\"AzureCommunicationCommon.CommunicationTokenCredential\""
+    }
+  ]
+}

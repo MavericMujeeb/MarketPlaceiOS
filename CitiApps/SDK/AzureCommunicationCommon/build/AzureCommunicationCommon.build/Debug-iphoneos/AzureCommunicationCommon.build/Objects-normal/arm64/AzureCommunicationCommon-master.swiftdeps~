@@ -1,0 +1,24 @@
+version: "Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)"
+options: "ede02cc61259fe098cc386af58941c2854cd49a66ae946c4035df567cda27ef3"
+build_start_time: [1674144844, 187713146]
+build_end_time: [1674144844, 306473970]
+inputs:
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Authentication/AutoRefreshTokenCredential.swift"
+  : !private [1662659490, 0]
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Authentication/CommunicationAccessToken.swift"
+  : !private [1662659490, 0]
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Authentication/CommunicationTokenCredential.swift"
+  : !private [1662659490, 0]
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Authentication/CommunicationTokenCredentialProviding.swift"
+  : !private [1662659490, 0]
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Authentication/CommunicationTokenRefreshOptions.swift"
+  : !private [1662659490, 0]
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Authentication/JwtTokenParser.swift"
+  : !private [1662659490, 0]
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Authentication/StaticTokenCredential.swift"
+  : !private [1662659490, 0]
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Authentication/ThreadSafeRefreshableAccessTokenCache.swift"
+  : !private [1662659490, 0]
+  ? "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/CommunicationCloudEnvironment.swift"
+  : !private [1662659490, 0]
+  "/Users/mohamadmujeebu/Desktop/Flutter/MarketPlace_NEW2/CitiApps/CitiApps/SDK/AzureCommunicationCommon/Source/Identifiers.swift": !private [1662659490, 0]
