@@ -97,9 +97,7 @@ public final class PIPKit {
         
         
     }
-    
-    
-    
+
     public class func dismiss(animated: Bool, completion: (() -> Void)? = nil) {
         state = .exit
         rootViewController?.pipDismiss(animated: animated, completion: {

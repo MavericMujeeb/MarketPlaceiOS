@@ -63,6 +63,7 @@ public class CallComposite {
                                                                     meetingLink: callConfiguration.meetingLink!)
         setupManagers(with: dependencyContainer)
         PIPKit.show(with: toolkitHostingController)
+//        present(toolkitHostingController)
     }
 
     /// Start call composite experience with joining a Teams meeting.

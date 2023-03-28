@@ -8,6 +8,7 @@ import Combine
 import AzureCommunicationCalling
 import ReplayKit
 import CoreLocation
+
 import PIPKit
 
 class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerDelegate{
@@ -288,16 +289,19 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     var sendingScreenShare: Bool = false
     
     func toggleSendingScreenShareOutgoingVideo() {
+
         guard let call = call else {
             return
         }
 
         if sendingScreenShare {
+
             screenShareProducer?.stopRecording()
             outgoingVideoSender?.stopSending()
             outgoingVideoSender = nil
             screenShareProducer = nil
         } else {
+
             self.screenShareProducer = ScreenSharingProducer()
             self.screenShareProducer?.onReadyCallback = { [weak self] in
                 guard let producer = self?.screenShareProducer else { return }
@@ -598,6 +602,7 @@ final class RawOutgoingVideoSender: NSObject {
                 guard let self = self, let sender = self.frameSender else {
                     return
                 }
+
                 let planeData = self.frameProducer.nextFrame(for: sender.videoFormat)
                 self.sendSync(with: sender, frame: planeData)
             }
