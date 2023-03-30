@@ -17,12 +17,14 @@ class SetupControlBarViewModel: ObservableObject {
 
     private var isJoinRequested: Bool = false
     private var callingStatus: CallingStatus = .none
+    private(set) var screenShareStatus: LocalUserState.DeviceScreenShareStatus = .sharingOff
     private var cameraStatus: LocalUserState.CameraOperationalStatus = .off
     private(set) var micStatus: LocalUserState.AudioOperationalStatus = .off
     private var localVideoStreamId: String?
     private(set) var cameraButtonViewModel: IconWithLabelButtonViewModel<CameraButtonState>!
     private(set) var micButtonViewModel: IconWithLabelButtonViewModel<MicButtonState>!
     private(set) var audioDeviceButtonViewModel: IconWithLabelButtonViewModel<AudioButtonState>!
+    private(set) var screenShareButtonViewModel: IconWithLabelButtonViewModel<ScreennShareState>!
 
     let audioDevicesListViewModel: AudioDevicesListViewModel
 
@@ -65,6 +67,19 @@ class SetupControlBarViewModel: ObservableObject {
                 self.microphoneButtonTapped()
         }
         micButtonViewModel.accessibilityLabel = self.localizationProvider.getLocalizedString(.micOffAccessibilityLabel)
+        
+        
+        screenShareButtonViewModel = compositeViewModelFactory.makeIconWithLabelButtonViewModel(
+            selectedButtonState: ScreennShareState.screenShareOff,
+            localizationProvider: self.localizationProvider,
+            buttonTypeColor: .colorThemedWhite,
+            isDisabled: false) { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.logger.debug("Toggle microphone button tapped")
+                self.screenShareButtonTapped()
+        }
 
         audioDeviceButtonViewModel = compositeViewModelFactory.makeIconWithLabelButtonViewModel(
             selectedButtonState: AudioButtonState.speaker,
@@ -91,6 +106,16 @@ class SetupControlBarViewModel: ObservableObject {
             dispatch(.localUserAction(.cameraOnTriggered))
         case (true, _):
             dispatch(.localUserAction(.cameraOffTriggered))
+        }
+    }
+    
+    func screenShareButtonTapped(){
+        let isScreenShareOn = screenShareStatus == .sharingOn
+        switch(isScreenShareOn){
+        case (false):
+            dispatch(.localUserAction(.screenSharingOnTriggered))
+        case (true):
+            dispatch(.localUserAction(.screenSharingOffTriggered))
         }
     }
 
@@ -138,6 +163,7 @@ class SetupControlBarViewModel: ObservableObject {
         cameraStatus = localUserState.cameraState.operation
         micStatus = localUserState.audioState.operation
         updateButtonViewModel(localUserState: localUserState)
+        screenShareStatus = localUserState.screenShareState.screen
 
         if localVideoStreamId != localUserState.localVideoStreamIdentifier {
             localVideoStreamId = localUserState.localVideoStreamIdentifier
@@ -168,12 +194,16 @@ class SetupControlBarViewModel: ObservableObject {
                                      ? localizationProvider.getLocalizedString(.micOnAccessibilityLabel)
                                      : localizationProvider.getLocalizedString(.micOffAccessibilityLabel))
         micButtonViewModel.update(isDisabled: isAudioDisabled())
+        
+        screenShareButtonViewModel.update(selectedButtonState: screenShareStatus == .sharingOn ? ScreennShareState.screenShareOn : ScreennShareState.screenShareOff)
+        
 
         let audioDeviceStatus = localUserState.audioState.device
         audioDeviceButtonViewModel.update(
             selectedButtonState: AudioButtonState.getButtonState(from: audioDeviceStatus))
         audioDeviceButtonViewModel.update(
             accessibilityValue: audioDeviceStatus.getLabel(localizationProvider: localizationProvider))
+        
     }
 
     private func updateButtonTypeColor(isLocalVideoOff: Bool) {

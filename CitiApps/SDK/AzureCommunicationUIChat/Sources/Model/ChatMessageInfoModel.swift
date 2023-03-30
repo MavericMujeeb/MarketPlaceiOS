@@ -5,6 +5,7 @@
 
 import AzureCore
 import UIKit
+import Foundation
 
 enum MessageType: Equatable {
     case custom(String)
@@ -27,6 +28,7 @@ enum MessageType: Equatable {
 }
 
 struct MetaData: Equatable {
+    //ios
     let hasAttachment: String
     let attachmentUrl: String
 }
@@ -219,14 +221,67 @@ extension ChatMessageInfoModel {
         }
     }
     
+    func isAttachmentReceived ()-> Bool{
+        let fileMeta = self.metadata?["fileSharingMetadata"] ?? nil
+        return fileMeta != nil
+    }
+    
     func hasAttachmentUrl() -> Bool? {
-        var value:String? = self.metadata?["hasAttachment"] ?? "false"
-        var boolString = NSString(string: value!)
-        return boolString.boolValue
+        print("hasAttachmentUrl --- api call")
+        print(isAttachmentReceived() ?? "no value")
+        if(isAttachmentReceived() == true){
+            print("Crash-1")
+            let fileMeta = self.metadata?["fileSharingMetadata"] ?? nil
+            print("Crash-2")
+            let fileInfo =  fileMeta?.data(using: .utf8) ?? nil
+            print("Crash-3")
+            do {
+                print("Crash-4")
+                let IntArray = try JSONSerialization.jsonObject(with: fileInfo!, options:[]) as? [Any]
+                print("Crash-5")
+                if IntArray?.count == 0 {
+                    return false
+                }
+                let fileDetails = IntArray![0] as? [String:String]
+                print("Crash-6")
+                let url = fileDetails!["url"] ?? nil
+                print("Crash-7")
+                return url != nil                
+            } catch {
+                print("Error in Serialization")
+            }
+            print("Crash-9")
+            return false
+        }
+        else{
+            print("Crash-10")
+            let value:String? = self.metadata?["hasAttachment"] ?? "false"
+            print("Crash-11")
+            let boolString = NSString(string: value!)
+            print("Crash-12")
+            return boolString.boolValue
+        }
     }
     
     func getAttachmentUrl() -> String? {
-        var value:String? = self.metadata?["attachmentUrl"] ?? ""
+        var value:String? = ""
+        if(isAttachmentReceived() == true){
+            let fileMeta = self.metadata?["fileSharingMetadata"] ?? nil
+            let fileInfo =  fileMeta?.data(using: .utf8) ?? nil
+            
+            do {
+                let IntArray = try JSONSerialization.jsonObject(with: fileInfo!, options:[]) as? [Any]
+                let fileDetails = IntArray![0] as? [String:String]
+                let url = fileDetails!["url"] ?? ""
+                value = url
+                
+            } catch {
+                print("Error in Serialization")
+            }
+        }
+        else{
+            value = self.metadata?["attachmentUrl"] ?? ""
+        }
         let htmlString = "<html><b><a href=\(value)>\(value)</a></b></html>"
         var htmlToAttributedString: NSAttributedString? {
             guard let data = htmlString.data(using: String.Encoding.utf8, allowLossyConversion: true) else { return nil }
@@ -237,6 +292,8 @@ extension ChatMessageInfoModel {
                 }
             }
         //return htmlToAttributedString?.string // Localization
+        print("htmlToAttributedString ---- ")
+        print(value)
         return value
     }
 }

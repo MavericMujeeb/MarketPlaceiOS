@@ -93,7 +93,7 @@ class ControlBarViewModel: ObservableObject {
         }
         
         screenShareButtonViewModel = compositeViewModelFactory.makeIconButtonViewModel(
-            iconName: isScreenShare() ? .stop_screen_share_icon : .share_screen_icon,
+            iconName: .share_screen_icon,
             buttonType: .controlButton,
             isDisabled: false,
             action: { [weak self] in
@@ -252,6 +252,8 @@ class ControlBarViewModel: ObservableObject {
                                      ? localizationProvider.getLocalizedString(.micOnAccessibilityLabel)
                                      : localizationProvider.getLocalizedString(.micOffAccessibilityLabel))
         micButtonViewModel.update(isDisabled: isMicDisabled())
+        
+        screenShareState = localUserState.screenShareState
         screenShareButtonViewModel.update(iconName: screenShareState.screen == .sharingOn ? .stop_screen_share_icon : .share_screen_icon)
         audioDeviceButtonViewModel.update(isDisabled: isAudioDeviceDisabled())
         let audioDeviceState = localUserState.audioState.device

@@ -33,7 +33,9 @@ enum LocalizationKey: String {
     case cameraDisabled = "AzureCommunicationUICalling.SetupView.PreviewArea.AudioGrantedCameraDisabled"
     case audioAndCameraDisabled = "AzureCommunicationUICalling.SetupView.PreviewArea.AudioDisabledCameraDenied"
     case audioDisabled = "AzureCommunicationUICalling.SetupView.PreviewArea.AudioDisabled"
-
+    case screenSharingOn = "AzureCommunicationUICalling.SetupView.Button.ScreenSharingOn"
+    case screenSharingOff = "AzureCommunicationUICalling.SetupView.Button.ScreenSharingOff"
+    
     /* LobbyView */
     case waitingForHost = "AzureCommunicationUICalling.LobbyView.Text.WaitingForHost"
     case waitingDetails = "AzureCommunicationUICalling.LobbyView.Text.WaitingDetails"

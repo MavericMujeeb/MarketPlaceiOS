@@ -271,7 +271,6 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
     }
     
     func startScreenSharing(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
-        print("startScreenSharing --- Middleware handler")
         return Task {
             do {
                 try await callingService.startScreenShare()
@@ -282,10 +281,10 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
     }
     
     func stopScreenSharing(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
-        Task {
+        return Task {
             do {
-                try await callingService.endCall()
-                dispatch(.stopScreenShareAction(.screenSharingOffTriggered))
+                print("stopScreenSharing -- called")
+                try await callingService.stopScreenShare()
             } catch {
                 handle(error: error, errorType: .callEndFailed, dispatch: dispatch)
             }

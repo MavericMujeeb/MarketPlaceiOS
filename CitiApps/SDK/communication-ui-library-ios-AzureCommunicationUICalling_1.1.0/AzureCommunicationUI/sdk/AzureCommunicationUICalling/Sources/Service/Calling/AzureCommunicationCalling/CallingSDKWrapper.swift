@@ -314,14 +314,15 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     }
     
     func stopScreenShare() async throws {
-        DispatchQueue.main.async {
-            PIPKit.visibleViewController?.stopPIPMode()
-        }
+        print("stopScreenShare -- test")
         screenShareProducer?.stopRecording()
         screenShareProducer = nil
         outgoingVideoSender?.stopSending()
         outgoingVideoSender = nil
         sendingScreenShare.toggle()
+        DispatchQueue.main.async {
+            PIPKit.visibleViewController?.stopPIPMode()
+        }
     }
 }
 
@@ -433,6 +434,9 @@ extension CallingSDKWrapper {
         let diagnostics = clientOptions.diagnostics ?? CallDiagnosticsOptions()
         diagnostics.tags.append(contentsOf: appendingTag)
         clientOptions.diagnostics = diagnostics
+        
+        
+        
         return CallClient(options: clientOptions)
     }
 

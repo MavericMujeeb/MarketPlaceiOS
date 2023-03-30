@@ -228,7 +228,7 @@ struct ControlBarView: View {
     
     var screenShareButton: some View {
         IconButton(viewModel: viewModel.screenShareButtonViewModel)
-            .disabled(viewModel.isScreenShare())
+            .disabled(false)
             .accessibility(identifier: "Screen_Share")
     }
 

@@ -5,6 +5,7 @@
 
 import SwiftUI
 import FluentUI
+import PIPKit
 
 struct CallingView: View {
     enum InfoHeaderViewConstants {
@@ -52,7 +53,6 @@ struct CallingView: View {
 
     var portraitCallingView: some View {
         VStack(alignment: .center, spacing: 0) {
-//            CallingTitleView(viewModel: setupViewModel)
             containerView
             ControlBarView(viewModel: viewModel.controlBarViewModel)
             

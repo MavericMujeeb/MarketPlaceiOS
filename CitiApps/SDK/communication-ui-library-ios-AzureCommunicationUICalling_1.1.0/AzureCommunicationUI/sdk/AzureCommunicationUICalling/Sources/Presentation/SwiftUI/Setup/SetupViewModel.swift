@@ -124,8 +124,7 @@ class SetupViewModel: ObservableObject {
     func dismissButtonTapped() {
         let isJoining = callingStatus != .none
         let action: Action = isJoining ? .callingAction(.callEndRequested) : .compositeExitAction
-        print(action)
-//        store.dispatch(action: action)
+        store.dispatch(action: action)
     }
 
     func receive(_ state: AppState) {

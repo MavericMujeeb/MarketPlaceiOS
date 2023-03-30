@@ -208,8 +208,7 @@ class ACSDocumentViewController : UIViewController{
             viewHeight = UIScreen.main.bounds.size.height
         }
         let size = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
-        let url = URL(string: self.url)!
-        
+        let url = URL(string: self.url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
         if self.url.lowercased().contains("jpeg")
             || self.url.lowercased().contains("jpg")
             || self.url.lowercased().contains("png")

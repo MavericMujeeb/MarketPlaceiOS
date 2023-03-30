@@ -57,6 +57,30 @@ enum MicButtonState: ButtonState {
     }
 }
 
+enum ScreennShareState: ButtonState{
+    
+    case screenShareOff
+    case screenShareOn
+    
+    var iconName: CompositeIcon {
+        switch self {
+        case .screenShareOff:
+            return .stop_screen_share_icon
+        case .screenShareOn:
+            return .share_screen_icon
+        }
+    }
+    
+    var localizationKey: LocalizationKey {
+        switch self {
+        case .screenShareOff:
+            return .screenSharingOff
+        case .screenShareOn:
+            return .screenSharingOn
+        }
+    }
+}
+
 enum AudioButtonState: ButtonState {
     case speaker
     case receiver
