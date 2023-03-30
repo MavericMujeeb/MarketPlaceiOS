@@ -132,7 +132,7 @@ struct BottomBarView: View {
             if let response = urlResponse as? HTTPURLResponse {
                 if response.statusCode == 201 {
                     let fileFullUrl = request.storageAccountEndPoint+request.containerName+fileName
-                    viewModel.sendMessage(fileUrl: fileFullUrl)
+                    viewModel.sendMessage(fileUrl: fileFullUrl, fileName: fileName, fileExtension: fileExtension)
                 }
             }
             if let data = data {
@@ -229,6 +229,11 @@ extension String {
     func numberOfOccurrencesOf(string: String) -> Int {
         return self.components(separatedBy: string).count - 1
     }
+    
+    func toJSON() -> Any? {
+            guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
+            return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        }
 }
 
 struct ViewHeightKey: PreferenceKey {

@@ -68,12 +68,19 @@ class BottomBarViewModel: ObservableObject {
         self.showFilePicker.toggle()
     }
 
-    func sendMessage(fileUrl: String? = "") {
-        guard let isFileEmpty:Bool = fileUrl?.isEmpty else {return}
-        
+    func sendMessage(fileUrl: String? = "", fileName: String? = "", fileExtension: String? = "") {
+        guard let isFileEmpty:Bool = fileName?.isEmpty else {return}
+        var jsonStringAsArray:String = ""
+        if !(isFileEmpty) {
+            message = fileName!
+            jsonStringAsArray = "[{" +
+            "\"name\":\"\(fileName!)\"," +
+            "\"extension\":\"\(fileExtension!)\"," +
+            "\"url\":\"\(fileUrl!)\"" +
+            "}]"
+        }
         var metadataSet: [String: String?]? = [:]
-        metadataSet?.updateValue("\(!isFileEmpty)", forKey: "hasAttachment")
-        metadataSet?.updateValue(fileUrl, forKey: "attachmentUrl")
+        metadataSet?.updateValue(jsonStringAsArray, forKey: "fileSharingMetadata")
         dispatch(.repositoryAction(.sendMessageTriggered(
             internalId: UUID().uuidString,
             content: message.trim(),
