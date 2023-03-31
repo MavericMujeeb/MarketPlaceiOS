@@ -36,4 +36,5 @@ struct CallConfiguration {
 enum CompositeCallType {
     case groupCall
     case teamsMeeting
+    case audioVideoMeeting
 }

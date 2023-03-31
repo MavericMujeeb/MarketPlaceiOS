@@ -131,6 +131,7 @@ public class CallComposite {
 
         router.setDismissComposite { [weak toolkitHostingController, weak self] in
             toolkitHostingController?.dismissSelf()
+            PIPKit.dismiss(animated: true)
             self?.cleanUpManagers()
         }
 

@@ -104,11 +104,18 @@ class ChatController  {
                 }
             })
             if self.isForCall {
-                let chatCompositeViewController = StartCallViewController()
-                chatCompositeViewController.displayName = custUserName
-                let navController = UINavigationController(rootViewController: chatCompositeViewController)
-                navController.modalPresentationStyle = .pageSheet
-                self.rootViewController.present(navController, animated: true)
+//                let chatCompositeViewController = StartCallViewController()
+//                chatCompositeViewController.displayName = custUserName
+//                let navController = UINavigationController(rootViewController: chatCompositeViewController)
+//                navController.modalPresentationStyle = .pageSheet
+//                self.rootViewController.present(navController, animated: true)
+//
+//                Task { @MainActor in
+//                    let callConfig = JoinCallConfig(joinId: "", displayName: "", callType: .groupCall)
+//                    await self.callingContext.startCallComposite(callConfig)
+//                }
+                
+                
             } else {
                 let chatCompositeViewController = ChatCompositeViewController(
                     with: chatAdapter)

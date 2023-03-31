@@ -10,6 +10,7 @@ import Trouter
 import UIKit
 import AzureCommunicationUIChat
 import ReplayKit
+import PIPKit
 
 class ChatViewController : UIViewController{
     
@@ -213,6 +214,7 @@ struct ControlBarView: View {
         Group{
             Button(
                 action: {
+                    PIPKit.visibleViewController?.stopPIPMode()
                     shouldPresentChat.toggle()
                 }) {
                 Image(uiImage: UIImage(named: "teamchat")!)
@@ -253,7 +255,7 @@ struct ControlBarView: View {
     }
     
     func leaveCall(){
-        
+        print("leaveCall ----- ")
     }
 
     var exitConfirmationDrawer: some View {
