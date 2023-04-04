@@ -111,7 +111,6 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
                                              accessibilityProvider: accessibilityProvider,
                                              isIpadInterface: UIDevice.current.userInterfaceIdiom == .pad,
                                              teamsMeetingLink: teamsMeetingLink)
-            print("teamsMeetingLinkViewModel->"+teamsMeetingLink)
             viewModel.teamsMeetingLink = teamsMeetingLink
             self.setupViewModel = nil
             self.callingViewModel = viewModel

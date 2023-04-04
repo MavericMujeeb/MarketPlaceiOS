@@ -227,38 +227,25 @@ extension ChatMessageInfoModel {
     }
     
     func hasAttachmentUrl() -> Bool? {
-        print("hasAttachmentUrl --- api call")
-        print(isAttachmentReceived() ?? "no value")
         if(isAttachmentReceived() == true){
-            print("Crash-1")
             let fileMeta = self.metadata?["fileSharingMetadata"] ?? nil
-            print("Crash-2")
             let fileInfo =  fileMeta?.data(using: .utf8) ?? nil
-            print("Crash-3")
             do {
-                print("Crash-4")
                 let IntArray = try JSONSerialization.jsonObject(with: fileInfo!, options:[]) as? [Any]
-                print("Crash-5")
                 if IntArray?.count == 0 {
                     return false
                 }
                 let fileDetails = IntArray![0] as? [String:String]
-                print("Crash-6")
                 let url = fileDetails!["url"] ?? nil
-                print("Crash-7")
-                return url != nil                
+                return url != nil
             } catch {
                 print("Error in Serialization")
             }
-            print("Crash-9")
             return false
         }
         else{
-            print("Crash-10")
             let value:String? = self.metadata?["hasAttachment"] ?? "false"
-            print("Crash-11")
             let boolString = NSString(string: value!)
-            print("Crash-12")
             return boolString.boolValue
         }
     }
@@ -292,8 +279,6 @@ extension ChatMessageInfoModel {
                 }
             }
         //return htmlToAttributedString?.string // Localization
-        print("htmlToAttributedString ---- ")
-        print(value)
         return value
     }
 }

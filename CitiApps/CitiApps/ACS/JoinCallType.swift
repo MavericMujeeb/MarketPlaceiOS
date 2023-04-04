@@ -8,6 +8,7 @@ import Foundation
 enum JoinCallType: Int, RawRepresentable, CustomStringConvertible {
     case groupCall
     case teamsMeeting
+    case voiceCall
 
     var description: String {
         switch self {
@@ -15,6 +16,8 @@ enum JoinCallType: Int, RawRepresentable, CustomStringConvertible {
             return "Group call"
         case .teamsMeeting:
             return "Teams meeting"
+        case .voiceCall:
+            return "ACS Voice Call"
         }
     }
 }

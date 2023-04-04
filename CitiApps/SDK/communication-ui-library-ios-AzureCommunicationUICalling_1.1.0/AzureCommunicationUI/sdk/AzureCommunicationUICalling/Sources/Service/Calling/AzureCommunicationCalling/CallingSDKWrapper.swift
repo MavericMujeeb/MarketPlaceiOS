@@ -69,7 +69,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
 
     func joinCall(isCameraPreferred: Bool, isAudioPreferred: Bool) async throws {
         logger.debug( "Joining call")
-//        try await startVoiceCall(isCameraPreferred: false, isAudioPreferred: true)
+//        try await startVoiceCall(isCameraPreferred: false, isAudioPreferred: true, acsId: "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb")
 //        return
         let joinCallOptions = JoinCallOptions()
 
@@ -90,11 +90,21 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         } else if let meetingLink = callConfiguration.meetingLink {
             joinLocator = TeamsMeetingLinkLocator(meetingLink: meetingLink)
         } else {
-            logger.error("Invalid groupID / meeting link")
             throw CallCompositeInternalError.callJoinFailed
         }
-
-        let joinedCall = try await callAgent?.join(with: joinLocator, joinCallOptions: joinCallOptions)
+    
+        let joinedCall:Call?
+        
+        if callConfiguration.compositeCallType == .audioVideoMeeting {
+            let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(callConfiguration.acsId ?? "")]
+            joinedCall = try await callAgent?.startCall(participants: callees, options: StartCallOptions())
+            print("Joined Call")
+            print(joinedCall)
+        }
+        else{
+            joinedCall = try await callAgent?.join(with: joinLocator, joinCallOptions: joinCallOptions)
+        }
+        
         guard let joinedCall = joinedCall else {
             logger.error( "Join call failed")
             throw CallCompositeInternalError.callJoinFailed
@@ -103,16 +113,20 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         if let callingEventsHandler = self.callingEventsHandler as? CallingSDKEventsHandler {
             joinedCall.delegate = callingEventsHandler
         }
+        print("joined call delegate")
         call = joinedCall
         setupCallRecordingAndTranscriptionFeature()
     }
     
     
     
-    func startVoiceCall(isCameraPreferred: Bool, isAudioPreferred: Bool) async throws {
+    func startVoiceCall(isCameraPreferred: Bool, isAudioPreferred: Bool, acsId: String) async throws {
+        let startCallOptions = StartCallOptions()
+        startCallOptions.audioOptions = AudioOptions()
+        startCallOptions.audioOptions?.muted = !isAudioPreferred
         
         // start call logic
-        let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier("8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb")]
+        let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(acsId)]
         let joinedCall = try await callAgent?.startCall(participants: callees, options: StartCallOptions())
         guard let joinedCall = joinedCall else {
             logger.error( "Join call failed")
@@ -124,46 +138,6 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         }
         call = joinedCall
         setupCallRecordingAndTranscriptionFeature()
-        
-//
-//        var userCredential: CommunicationTokenCredential?
-//        do {
-//            userCredential = try CommunicationTokenCredential(token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjY0YTM4ZDUyLTMzZmItNDQwNy1hOGZhLWNiMzI3ZWZkZjdkNV8wMDAwMDAxNy1kNzVhLWQ4NWEtYzgxMS0yNDQ4MjIwMDJhN2IiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODAyNjI5MDMiLCJleHAiOjE2ODAzNDkzMDMsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiI2NGEzOGQ1Mi0zM2ZiLTQ0MDctYThmYS1jYjMyN2VmZGY3ZDUiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjgwMjYyOTAzfQ.YuWmDDrmhRuz63BbrOgr7H5jLJKxbmiHLXB6BRpfxlFpGj-LzvVKJbq4FP4C4TZavqRUD5GEF4rEADSd_juqW1T3P_pV844g6yotniKRnx-A-HkQ74eLi1RBgAipy-m7l30ibKL1ovVKSZ2leR2b1odmRabCJcC5laRFNXNpGx8hK-ss_25igNMDeeqiv1NIR0OsqeD7Y9-7FpN-yR3OZ9Nb_R7uJl8AS3hDp_ZkIWSBDV8G5rjarWCH6GQAuIZb4LoIA1TCuqu5fRkIwnTk9o7odRuCbmyzKZc_BrTKM0DRwZXUBHS5iURyfGDNpvWTAtJdC4hk1vRfDhedx8UMLA")
-//        } catch {
-//            print("ERROR: It was not possible to create user credential.")
-//            return
-//        }
-//
-//        callClient = CallClient()
-//        // Creates the call agent
-//        self.callClient?.createCallAgent(userCredential: userCredential!) { (agent, error) in
-//            if error != nil {
-//                print("ERROR: It was not possible to create a call agent.")
-//                return
-//            }
-//            else {
-//                self.callAgent = agent
-//                print("Call agent successfully created.")
-//                // Ask permissions
-//                AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
-//                    if granted {
-//                        // start call logic
-//                        let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier("8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb")]
-//                        self.callAgent?.startCall(participants: callees, options: StartCallOptions()) { (call, error) in
-//                            if (error == nil) {
-//                                self.call = call
-//                                print("callllll -- ")
-//                            } else {
-//                                print("Failed to get call object")
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-        
-        
     }
     
     

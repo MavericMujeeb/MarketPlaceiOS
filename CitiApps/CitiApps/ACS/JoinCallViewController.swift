@@ -65,6 +65,10 @@ class JoinCallViewController: UIViewController {
                 joinIdTextField.placeholder = kTeamsLinkPlaceHolder
                 joinIdTextField.text = teamsMeetingLink
                 joinIdTextField.image = UIImage(named: "linkIcon")
+            case .voiceCall:
+                typeTitle.text = "Call"
+                joinIdTextField.placeholder = kTeamsLinkPlaceHolder
+                joinIdTextField.image = nil
             }
         }
         Task{
@@ -160,6 +164,11 @@ class JoinCallViewController: UIViewController {
                 promptInvalidJoinIdInput(value: fieldValue)
                 return false
             }
+        case .voiceCall:
+            guard isValidTeamsUrl(url: URL(string: fieldValue)) else {
+                promptInvalidJoinIdInput(value: fieldValue)
+                return false
+            }
         }
         return true
     }
@@ -202,6 +211,8 @@ class JoinCallViewController: UIViewController {
             alertMessage = value.isEmpty ? "Group call ID required" : "We can't find that call\nCheck the call ID and try again"
         case .teamsMeeting:
             alertMessage = value.isEmpty ? "Teams link required" : "We can't find that meeting\nCheck the link and try again"
+        case .voiceCall:
+            alertMessage = value.isEmpty ? "ACS user id required" : "We can't find that meeting\nCheck the link and try again"
         }
         let notification = FluentUI.NotificationView()
         notification.setup(style: .dangerToast, message: alertMessage)
@@ -211,7 +222,6 @@ class JoinCallViewController: UIViewController {
 
     // MARK: Navigation
     func navigateToCall() async {
-        print("navigateToCall ---------------")
         guard let joinId = joinIdTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return
         }
@@ -238,7 +248,12 @@ class JoinCallViewController: UIViewController {
                 joinIdTextField.placeholder = kTeamsLinkPlaceHolder
                 joinIdTextField.text = teamsMeetingLink
                 joinIdTextField.image = UIImage(named: "linkIcon")
+            case .voiceCall:
+                typeTitle.text = "Call"
+                joinIdTextField.placeholder = kGroupIdPlaceHolder
+                joinIdTextField.image = nil
             }
+            
         }
     }
 

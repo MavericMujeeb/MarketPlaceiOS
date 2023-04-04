@@ -81,7 +81,6 @@ class ChatController  {
             token:self.custUserToken) else {
             return
         }
-        print(self.threadId)
 
         self.chatAdapter = ChatAdapter(
             endpoint: self.commServEndPointURL,

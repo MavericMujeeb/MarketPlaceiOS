@@ -12,6 +12,7 @@ struct CallConfiguration {
     let compositeCallType: CompositeCallType
     let credential: CommunicationTokenCredential
     let displayName: String?
+    let acsId:String?
     let diagnosticConfig: DiagnosticConfig
 
     init(locator: JoinLocator,
@@ -21,11 +22,18 @@ struct CallConfiguration {
         case let .groupCall(groupId: groupId):
             self.groupId = groupId
             self.meetingLink = nil
+            self.acsId = nil
             self.compositeCallType = .groupCall
         case let .teamsMeeting(teamsLink: meetingLink):
             self.groupId = nil
             self.meetingLink = meetingLink
+            self.acsId = nil
             self.compositeCallType = .teamsMeeting
+        case let .audioVideoCall(acsId: acsUserId):
+            self.groupId = nil
+            self.meetingLink = ""
+            self.acsId = acsUserId
+            self.compositeCallType = .audioVideoMeeting
         }
         self.credential = credential
         self.displayName = displayName

@@ -60,6 +60,9 @@ class TeamsCallingViewController {
     var tokenService: TokenService!
     var teamsLink: String!
     
+    var bankerAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb"
+    var custAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c35a-58a8-bcc9-3e3a0d008f97"
+    
     private let busyOverlay = BusyOverlay(frame: .zero)
     
     func startCall() {
@@ -73,6 +76,30 @@ class TeamsCallingViewController {
                 await self.joinCall()
             }
         }
+    }
+    
+    func startAudioVideoCall() {
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        
+        let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+       
+        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acscallchattokenfunc.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
+            return appDelegate.authHandler.authToken
+        })
+        Task{
+            do{
+                await self.startAudioCall(acsId: self.bankerAcsId)
+            }
+        }
+    }
+    
+    func startAudioCall(acsId:String) async {
+        let displayName =  users[loggedInUser]?["name"]  ?? ""
+        let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall)
+        self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCustomerCommunicationToken)
+        self.callingContext.displayName = displayName
+        self.callingContext.userId = userid
+        await self.callingContext.startCallComposite(callConfig)
     }
     
     func joinCall() async {

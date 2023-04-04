@@ -87,6 +87,14 @@ final class CallingContext {
                         displayName: displayName
                     )
                 )
+            case .voiceCall:
+                self.callComposite?.launch(
+                    remoteOptions: RemoteOptions(
+                        for: .audioVideoCall(acsId: joinIdStr),
+                        credential: communicationTokenCredential,
+                        displayName: displayName
+                    )
+                )
             }
         } catch {
             print("ERROR: Cannot start or join a call due to user credential creating error: \(error.localizedDescription).")

@@ -12,7 +12,7 @@ public enum JoinLocator {
     case groupCall(groupId: UUID)
     /// Teams Meeting with string teamsLink URI
     case teamsMeeting(teamsLink: String)
-//    case audioVideoCall(communicationIdentifier: String)
+    case audioVideoCall(acsId: String)
 }
 
 /// Object for remote options for Call Composite
