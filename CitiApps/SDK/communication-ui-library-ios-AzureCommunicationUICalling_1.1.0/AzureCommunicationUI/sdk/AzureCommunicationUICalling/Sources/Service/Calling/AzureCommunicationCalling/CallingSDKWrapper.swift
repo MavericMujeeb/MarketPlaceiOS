@@ -89,6 +89,8 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
             joinLocator = GroupCallLocator(groupId: groupId)
         } else if let meetingLink = callConfiguration.meetingLink {
             joinLocator = TeamsMeetingLinkLocator(meetingLink: meetingLink)
+        } else if let acsUserId = callConfiguration.acsId {
+            joinLocator = TeamsMeetingLinkLocator(meetingLink: acsUserId)
         } else {
             throw CallCompositeInternalError.callJoinFailed
         }
@@ -96,10 +98,8 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         let joinedCall:Call?
         
         if callConfiguration.compositeCallType == .audioVideoMeeting {
-            let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(callConfiguration.acsId ?? "")]
+            let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(callConfiguration.acsId!)]
             joinedCall = try await callAgent?.startCall(participants: callees, options: StartCallOptions())
-            print("Joined Call")
-            print(joinedCall)
         }
         else{
             joinedCall = try await callAgent?.join(with: joinLocator, joinCallOptions: joinCallOptions)
