@@ -123,16 +123,16 @@ struct BottomBarView: View {
     }
     
     func uploadFile(file:Data, fileName: String, fileExtension: String){
-        
-        let request = MultipartFormDataRequest(fileName:  fileName)
-        request.addDataField(fieldName:  "file", fileName: fileName, data: file, mimeType: request.getMimeType(filenameORfileExtension: fileExtension))
+        let editedFilename = fileName.removeWhitespaces.stripped
+        let request = MultipartFormDataRequest(fileName:  editedFilename)
+        request.addDataField(fieldName:  "file", fileName: editedFilename, data: file, mimeType: request.getMimeType(filenameORfileExtension: fileExtension))
         
         URLSession.shared.dataTask(with: request, completionHandler: {data,urlResponse,error in
             
             if let response = urlResponse as? HTTPURLResponse {
                 if response.statusCode == 201 {
-                    let fileFullUrl = request.storageAccountEndPoint+request.containerName+fileName
-                    viewModel.sendMessage(fileUrl: fileFullUrl, fileName: fileName, fileExtension: fileExtension)
+                    let fileFullUrl = request.storageAccountEndPoint+request.containerName+editedFilename
+                    viewModel.sendMessage(fileUrl: fileFullUrl, fileName: editedFilename, fileExtension: fileExtension)
                 }
             }
             if let data = data {
@@ -231,9 +231,18 @@ extension String {
     }
     
     func toJSON() -> Any? {
-            guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
-            return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-        }
+        guard let data = self.data(using: .utf8, allowLossyConversion: false) else { return nil }
+        return try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+    }
+    
+    var stripped: String {
+        let okayChars = Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890+-=().!_")
+        return self.filter {okayChars.contains($0) }
+    }
+    
+    var removeWhitespaces: String {
+        return components(separatedBy: .whitespaces).joined()
+    }
 }
 
 struct ViewHeightKey: PreferenceKey {
