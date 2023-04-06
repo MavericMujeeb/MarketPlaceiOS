@@ -22,21 +22,22 @@ class ChatViewController : UIViewController{
         startChatComposite()
     }
     
-    override func viewWillLayoutSubviews() {
-      let width = self.view.frame.width
-      let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 44))
-      self.view.addSubview(navigationBar);
-      let navigationItem = UINavigationItem(title: "Chat")
-        let closeItem = UIBarButtonItem(
-            barButtonSystemItem: .close,
-            target: self,
-            action: #selector(self.onBackBtnPressed(_ :))
-        )
-      navigationItem.leftBarButtonItem = closeItem
-      navigationBar.setItems([navigationItem], animated: false)
-    }
+//    override func viewWillLayoutSubviews() {
+//      let width = self.view.frame.width
+//      let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 44))
+//      self.view.addSubview(navigationBar);
+//      let navigationItem = UINavigationItem(title: "Chat")
+//        let closeItem = UIBarButtonItem(
+//            barButtonSystemItem: .close,
+//            target: self,
+//            action: #selector(self.onBackBtnPressed(_ :))
+//        )
+//      navigationItem.leftBarButtonItem = closeItem
+//      navigationBar.setItems([navigationItem], animated: false)
+//    }
     
-    @objc func onBackBtnPressed (_ sender: UIBarButtonItem){
+    @objc func onBackBtnPressed (){
+        print("onBackBtnPressed")
         self.dismiss(animated: true, completion: nil)
         Task { @MainActor in
             self.chatAdapter?.disconnect(completionHandler: { [weak self] result in
@@ -65,21 +66,29 @@ class ChatViewController : UIViewController{
             threadId: threadId,
             displayName: loggedInUserName)
 
-        guard let chatAdapter = self.chatAdapter else {
-            return
-        }
-        chatAdapter.connect(completionHandler: { [weak self] result in
-            switch result {
-            case .success:
-                self?.chatAdapter = nil
-                print("success -- chatadapter")
-            case .failure(let error):
-                print("disconnect error \(error)")
+        
+        Task { @MainActor in
+            
+            guard let chatAdapter = self.chatAdapter else {
+                return
             }
-        })
-        let chatCompositeViewController = ChatCompositeViewController(
-            with: chatAdapter)
-        self.view.addSubview(chatCompositeViewController.view)
+            chatAdapter.connect(completionHandler: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.chatAdapter = nil
+                    print("success -- chatadapter")
+                case .failure(let error):
+                    print("disconnect error \(error)")
+                }
+            })
+            
+            let chatCompositeViewController = ChatCompositeViewController(
+                with: chatAdapter)
+            let nv = UINavigationController(rootViewController: chatCompositeViewController)
+            nv.modalPresentationStyle = .fullScreen
+            self.dismiss(animated: true, completion: nil)
+            self.present(nv, animated: false, completion: nil)
+        }
     }
 }
 
@@ -231,7 +240,7 @@ struct ControlBarView: View {
                                 .font(.title)
                                 .foregroundColor(.black)
             }
-        }.sheet(isPresented: $shouldPresentChat, content: {
+        }.fullScreenCover(isPresented: $shouldPresentChat, content: {
             ChatScreen(threadId: getThreadId(from: self.viewModel.teamsMeetingLink))
         })
         
