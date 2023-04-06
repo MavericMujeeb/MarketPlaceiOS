@@ -40,7 +40,7 @@ class ControlBarViewModel: ObservableObject {
     var screenShareState = LocalUserState.ScreenShareState(screen: .sharingOff)
     var displayEndCallConfirm: (() -> Void)
 
-    init(compositeViewModelFactory: CompositeViewModelFactoryProtocol,
+    init(compositeViewModelFactory: CompositeViewModelFactory,
          logger: Logger,
          localizationProvider: LocalizationProviderProtocol,
          dispatchAction: @escaping ActionDispatch,

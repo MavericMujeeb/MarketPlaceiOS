@@ -47,7 +47,7 @@ class RemoteParticipantsManager: RemoteParticipantsManagerProtocol {
         let removedParticipantsIds = participantsIds.subtracting(updatedParticipantsIds)
         participantsIds = updatedParticipantsIds
 
-        postRemoteParticipantsJoinedEvent(joinedParticipantsIds)
+        postRemoteParticipantsJoinedEvent(joinedParticipantsIds: joinedParticipantsIds)
         postRemoteParticipantsRemovedEvent(removedParticipantsIds)
     }
 
@@ -60,9 +60,14 @@ class RemoteParticipantsManager: RemoteParticipantsManagerProtocol {
         avatarViewManager.updateStorage(with: Array(removedParticipantsIds))
     }
 
-    private func postRemoteParticipantsJoinedEvent(_ joinedParticipantsIds: Set<String>) {
+    private func postRemoteParticipantsJoinedEvent(joinedParticipantsIds: Set<String>) {
+        
         guard let didRemoteParticipantsJoin = eventsHandler.onRemoteParticipantJoined else {
             return
+        }
+        
+        if(joinedParticipantsIds.isEmpty){
+            let joinedParticipantsIds = callingSDKWrapper.acsParticipantsIds
         }
 
         // check if new participants joined a call

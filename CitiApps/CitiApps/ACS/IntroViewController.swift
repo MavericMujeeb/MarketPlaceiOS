@@ -95,7 +95,7 @@ class TeamsCallingViewController {
     
     func startAudioCall(acsId:String) async {
         let displayName =  users[loggedInUser]?["name"]  ?? ""
-        let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall)
+        let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall, isAudioCall: true, isVideoCall: false)
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCustomerCommunicationToken)
         self.callingContext.displayName = displayName
         self.callingContext.userId = userid
@@ -104,7 +104,7 @@ class TeamsCallingViewController {
     
     func joinCall() async {
         let displayName =  users[loggedInUser]?["name"]  ?? ""
-        let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting)
+        let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting, isAudioCall: true, isVideoCall: true)
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
         self.callingContext.displayName = displayName
         self.callingContext.userId = userid

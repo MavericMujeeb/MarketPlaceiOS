@@ -32,7 +32,8 @@ final class DependencyContainer {
 
     func registerDependencies(_ callConfiguration: CallConfiguration,
                               localOptions: LocalOptions?,
-                              callCompositeEventsHandler: CallComposite.Events) {
+                              callCompositeEventsHandler: CallComposite.Events, isAudioCall:Bool?, isVideoCall:Bool?) {
+        
         register(CallingSDKEventsHandler(logger: resolve()) as CallingSDKEventsHandling)
         register(CallingSDKWrapper(logger: resolve(),
                                    callingEventsHandler: resolve(),
@@ -55,7 +56,7 @@ final class DependencyContainer {
                                            networkManager: resolve(),
                                            localizationProvider: resolve(),
                                            accessibilityProvider: resolve(),
-                                           localOptions: localOptions) as CompositeViewModelFactoryProtocol)
+                                           localOptions: localOptions, isAudioCall: isAudioCall!, isVideoCall: isVideoCall!) as CompositeViewModelFactoryProtocol)
         register(CompositeViewFactory(logger: resolve(),
                                       avatarManager: resolve(),
                                       videoViewManager: resolve(),

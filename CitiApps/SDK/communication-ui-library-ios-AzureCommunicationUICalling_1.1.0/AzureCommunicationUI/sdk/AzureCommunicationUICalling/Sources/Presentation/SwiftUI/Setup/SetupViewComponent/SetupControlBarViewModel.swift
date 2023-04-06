@@ -28,7 +28,7 @@ class SetupControlBarViewModel: ObservableObject {
 
     let audioDevicesListViewModel: AudioDevicesListViewModel
 
-    init(compositeViewModelFactory: CompositeViewModelFactoryProtocol,
+    init(compositeViewModelFactory: CompositeViewModelFactory,
          logger: Logger,
          dispatchAction: @escaping ActionDispatch,
          localUserState: LocalUserState,
@@ -54,6 +54,10 @@ class SetupControlBarViewModel: ObservableObject {
         }
         cameraButtonViewModel.accessibilityLabel = self.localizationProvider.getLocalizedString(
             .videoOffAccessibilityLabel)
+        
+        if(compositeViewModelFactory.isAudioCall == true){
+            
+        }
 
         micButtonViewModel = compositeViewModelFactory.makeIconWithLabelButtonViewModel(
             selectedButtonState: MicButtonState.micOff,

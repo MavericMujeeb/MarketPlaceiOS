@@ -31,6 +31,7 @@ public class CallComposite {
     private var audioSessionManager: AudioSessionManagerProtocol?
     private var remoteParticipantsManager: RemoteParticipantsManagerProtocol?
     private var avatarViewManager: AvatarViewManagerProtocol?
+    private var callCompositeOptions: CallCompositeOptions?
 
     /// Create an instance of CallComposite with options.
     /// - Parameter options: The CallCompositeOptions used to configure the experience.
@@ -38,6 +39,7 @@ public class CallComposite {
         events = Events()
         themeOptions = options?.themeOptions
         localizationOptions = options?.localizationOptions
+        callCompositeOptions = options
     }
 
     deinit {
@@ -52,7 +54,7 @@ public class CallComposite {
 
         dependencyContainer.registerDependencies(callConfiguration,
                                                  localOptions: localOptions,
-                                                 callCompositeEventsHandler: events)
+                                                 callCompositeEventsHandler: events, isAudioCall: callCompositeOptions?.isAudioCall, isVideoCall: callCompositeOptions?.isVideoCall)
         let localizationProvider = dependencyContainer.resolve() as LocalizationProviderProtocol
         setupColorTheming()
         setupLocalization(with: localizationProvider)
@@ -60,7 +62,7 @@ public class CallComposite {
                                                                     logger: dependencyContainer.resolve(),
                                                                     viewFactory: dependencyContainer.resolve(),
                                                                     isRightToLeft: localizationProvider.isRightToLeft,
-                                                                    meetingLink: callConfiguration.meetingLink!)
+                                                                    meetingLink: callConfiguration.meetingLink!, isAudioCall: (callCompositeOptions?.isAudioCall)!, isVideoCall: (callCompositeOptions?.isVideoCall)!)
         setupManagers(with: dependencyContainer)
         PIPKit.show(with: toolkitHostingController)
     }
@@ -118,12 +120,13 @@ public class CallComposite {
                                               logger: Logger,
                                               viewFactory: CompositeViewFactoryProtocol,
                                               isRightToLeft: Bool,
-                                              meetingLink: String) -> ContainerUIHostingController {
+                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool) -> ContainerUIHostingController {
+        
         let rootView = ContainerView(router: router,
                                      logger: logger,
                                      viewFactory: viewFactory,
                                      isRightToLeft: isRightToLeft,
-                                     meetingLink: meetingLink)
+                                     meetingLink: meetingLink, isAudioCall: isAudioCall, isVideoCall: isVideoCall)
         let toolkitHostingController = ContainerUIHostingController(rootView: rootView,
                                                                     callComposite: self,
                                                                     isRightToLeft: isRightToLeft)

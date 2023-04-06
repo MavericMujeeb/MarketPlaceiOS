@@ -59,7 +59,7 @@ class CallingViewModel: ObservableObject {
         let isCallConnected = store.state.callingState.status == .connected
         let hasRemoteParticipants = store.state.remoteParticipantsState.participantInfoList.count > 0
         self.teamsMeetingLink = teamsMeetingLink
-        print("teamsMeetingLink->"+teamsMeetingLink)
+        
         isParticipantGridDisplayed = isCallConnected && hasRemoteParticipants
         controlBarViewModel = compositeViewModelFactory
             .makeControlBarViewModel(dispatchAction: actionDispatch, endCallConfirm: { [weak self] in

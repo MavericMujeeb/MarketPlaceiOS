@@ -126,6 +126,7 @@
 		88B87C572755911B00290DD1 /* CallInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B87C562755911B00290DD1 /* CallInfoModel.swift */; };
 		88F6EE1A2735F5CB001AD3E9 /* ErrorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6EE192735F5CB001AD3E9 /* ErrorReducer.swift */; };
 		88F6EE1C2735F8E8001AD3E9 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6EE1B2735F8E8001AD3E9 /* ErrorState.swift */; };
+		8D9C69A829DDBD4300234447 /* CallObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C69A729DDBD4300234447 /* CallObserver.swift */; };
 		8DB321632991195D0098B5F2 /* AzureCommunicationUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */; };
 		8DB321642991195D0098B5F2 /* AzureCommunicationUIChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB32175299121CB0098B5F2 /* FluentUIResources-ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8DB32174299121CB0098B5F2 /* FluentUIResources-ios.bundle */; };
@@ -376,6 +377,7 @@
 		88B87C562755911B00290DD1 /* CallInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallInfoModel.swift; sourceTree = "<group>"; };
 		88F6EE192735F5CB001AD3E9 /* ErrorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReducer.swift; sourceTree = "<group>"; };
 		88F6EE1B2735F8E8001AD3E9 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
+		8D9C69A729DDBD4300234447 /* CallObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallObserver.swift; sourceTree = "<group>"; };
 		8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationUIChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB32174299121CB0098B5F2 /* FluentUIResources-ios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "FluentUIResources-ios.bundle"; path = "../../../../FluentUIResources-ios.bundle"; sourceTree = "<group>"; };
 		8DC8DC1229D2FDA10047A2D3 /* PIPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PIPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -937,6 +939,14 @@
 			path = AzureCommunicationCalling;
 			sourceTree = "<group>";
 		};
+		8D9C69A629DDBD2F00234447 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C69A729DDBD4300234447 /* CallObserver.swift */,
+			);
+			path = Observer;
+			sourceTree = "<group>";
+		};
 		982C282C267BF07300427246 /* FluentUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1070,6 +1080,7 @@
 		A8659FC72602A22000C807DE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8D9C69A629DDBD2F00234447 /* Observer */,
 				1F94DADE2673E94F00691D1E /* CallComposite.swift */,
 				1F11D2B92640AD2200D33838 /* Presentation */,
 				A83739AF26210CC200D46787 /* CallCompositeOptions */,
@@ -1417,6 +1428,7 @@
 				50FA45F5267D3BD3001844AC /* ControlBarView.swift in Sources */,
 				1FCB056B2671D8BE00126A4E /* StyleProvider.swift in Sources */,
 				1F2BEDBB26328EBA00D98266 /* PermissionReducer.swift in Sources */,
+				8D9C69A829DDBD4300234447 /* CallObserver.swift in Sources */,
 				1FBCB6B9264BA90000F57EEA /* ParticipantGridCellVideoView.swift in Sources */,
 				1F48B401274879F000B6E5F9 /* DiagnosticConfig.swift in Sources */,
 				985DF372269D065400CFDA55 /* ViewExtension.swift in Sources */,
@@ -1667,6 +1679,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1697,6 +1710,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

@@ -10,7 +10,9 @@ import ReplayKit
 import CoreLocation
 import PIPKit
 
-class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerDelegate{
+class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerDelegate, CallDelegate{
+    
+    var acsParticipantsIds: Set<String>
     let callingEventsHandler: CallingSDKEventsHandling
 
     private let logger: Logger
@@ -22,6 +24,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     private var localVideoStream: AzureCommunicationCalling.LocalVideoStream?
 
     private var newVideoDeviceAddedHandler: ((VideoDeviceInfo) -> Void)?
+
     
     /*
      * SCREEN SHARING
@@ -41,6 +44,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         self.logger = logger
         self.callingEventsHandler = callingEventsHandler
         self.callConfiguration = callConfiguration
+        self.acsParticipantsIds = []
         super.init()
     }
 
@@ -69,8 +73,6 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
 
     func joinCall(isCameraPreferred: Bool, isAudioPreferred: Bool) async throws {
         logger.debug( "Joining call")
-//        try await startVoiceCall(isCameraPreferred: false, isAudioPreferred: true, acsId: "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb")
-//        return
         let joinCallOptions = JoinCallOptions()
 
         if isCameraPreferred,
@@ -89,9 +91,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
             joinLocator = GroupCallLocator(groupId: groupId)
         } else if let meetingLink = callConfiguration.meetingLink {
             joinLocator = TeamsMeetingLinkLocator(meetingLink: meetingLink)
-        } else if let acsUserId = callConfiguration.acsId {
-            joinLocator = TeamsMeetingLinkLocator(meetingLink: acsUserId)
-        } else {
+        }  else {
             throw CallCompositeInternalError.callJoinFailed
         }
     
@@ -113,35 +113,11 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         if let callingEventsHandler = self.callingEventsHandler as? CallingSDKEventsHandler {
             joinedCall.delegate = callingEventsHandler
         }
-        print("joined call delegate")
-        call = joinedCall
-        setupCallRecordingAndTranscriptionFeature()
-    }
-    
-    
-    
-    func startVoiceCall(isCameraPreferred: Bool, isAudioPreferred: Bool, acsId: String) async throws {
-        let startCallOptions = StartCallOptions()
-        startCallOptions.audioOptions = AudioOptions()
-        startCallOptions.audioOptions?.muted = !isAudioPreferred
         
-        // start call logic
-        let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(acsId)]
-        let joinedCall = try await callAgent?.startCall(participants: callees, options: StartCallOptions())
-        guard let joinedCall = joinedCall else {
-            logger.error( "Join call failed")
-            throw CallCompositeInternalError.callJoinFailed
-        }
-
-        if let callingEventsHandler = self.callingEventsHandler as? CallingSDKEventsHandler {
-            joinedCall.delegate = callingEventsHandler
-        }
         call = joinedCall
         setupCallRecordingAndTranscriptionFeature()
     }
     
-    
-
     func endCall() async throws {
         guard call != nil else {
             throw CallCompositeInternalError.callEndFailed
@@ -297,6 +273,13 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
                     // do stuff
                 }
             }
+        }
+    }
+    
+    // render remote video streams when remote participant changes
+    public func call(_ call: Call, didUpdateRemoteParticipant args: ParticipantsUpdatedEventArgs) {
+        for participant in args.addedParticipants {
+            self.acsParticipantsIds.insert(participant.identifier.rawId)
         }
     }
     

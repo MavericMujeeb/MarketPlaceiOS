@@ -71,19 +71,25 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
 
     private weak var setupViewModel: SetupViewModel?
     private weak var callingViewModel: CallingViewModel?
+    
+    let isAudioCall:Bool
+    let isVideoCall:Bool
 
     init(logger: Logger,
          store: Store<AppState>,
          networkManager: NetworkManager,
          localizationProvider: LocalizationProviderProtocol,
          accessibilityProvider: AccessibilityProviderProtocol,
-         localOptions: LocalOptions? = nil) {
+         localOptions: LocalOptions? = nil, isAudioCall:Bool, isVideoCall:Bool) {
         self.logger = logger
         self.store = store
         self.networkManager = networkManager
         self.accessibilityProvider = accessibilityProvider
         self.localizationProvider = localizationProvider
         self.localOptions = localOptions
+        self.isAudioCall = isAudioCall
+        self.isVideoCall = isVideoCall
+        
     }
 
     // MARK: CompositeViewModels
@@ -254,6 +260,8 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
 
     // MARK: SetupViewModels
     func makePreviewAreaViewModel(dispatchAction: @escaping ActionDispatch) -> PreviewAreaViewModel {
+        
+        
         PreviewAreaViewModel(compositeViewModelFactory: self,
                              dispatchAction: dispatchAction,
                              localizationProvider: localizationProvider)

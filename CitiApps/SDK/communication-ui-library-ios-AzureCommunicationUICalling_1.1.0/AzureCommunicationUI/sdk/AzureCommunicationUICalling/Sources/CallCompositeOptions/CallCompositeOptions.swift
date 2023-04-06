@@ -17,6 +17,8 @@ public struct CallCompositeOptions {
     private(set) var displayName: String?
     private(set) var userId: String?
 
+    private(set) var isAudioCall: Bool?
+    private(set) var isVideoCall: Bool?
 
 
     /// Creates an instance of CallCompositeOptions with related options.
@@ -25,7 +27,7 @@ public struct CallCompositeOptions {
     /// - Parameter localization: LocalizationOptions for specifying
     ///  localization customization. Default value is `nil`.
     public init(theme: ThemeOptions? = nil,
-                localization: LocalizationOptions? = nil, name:String!, userId:String!, token:String!) {
+                localization: LocalizationOptions? = nil, name:String!, userId:String!, token:String!, isAudio:Bool!, isVideo:Bool!) {
         self.themeOptions = theme
         self.localizationOptions = localization
         self.displayName = name
@@ -33,5 +35,7 @@ public struct CallCompositeOptions {
         loggedInUserId = userId
         //setting the token globally to use it for Chat
         communincationTokenString = token
+        isAudioCall = isAudio
+        isVideoCall = isVideo
     }
 }

@@ -9,4 +9,6 @@ struct JoinCallConfig {
     let joinId: String?
     let displayName: String
     let callType: JoinCallType
+    let isAudioCall: Bool!
+    let isVideoCall: Bool!
 }

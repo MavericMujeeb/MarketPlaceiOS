@@ -58,6 +58,9 @@ final class CallingContext {
 
     @MainActor
     func startCallComposite(_ joinConfig: JoinCallConfig) async {
+        //token
+        //create call
+        //launch
         
         let joinIdStr = joinConfig.joinId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let uuid = UUID(uuidString: joinIdStr) ?? UUID()
@@ -66,7 +69,7 @@ final class CallingContext {
         do {
             let communicationTokenCredential = try await getTokenCredential()
             
-            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken)
+            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
             switch joinConfig.callType {

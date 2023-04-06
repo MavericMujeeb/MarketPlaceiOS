@@ -225,7 +225,7 @@ class JoinCallViewController: UIViewController {
         guard let joinId = joinIdTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return
         }
-        let callConfig = JoinCallConfig(joinId: joinId, displayName: displayName ?? "", callType: joinCallType)
+        let callConfig = JoinCallConfig(joinId: joinId, displayName: displayName ?? "", callType: joinCallType, isAudioCall: true, isVideoCall: true)
         self.dismiss(animated: true)
         busyOverlay.present()
         await self.callingContext.startCallComposite(callConfig)

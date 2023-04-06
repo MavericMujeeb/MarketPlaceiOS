@@ -15,6 +15,8 @@ struct ContainerView: View {
         UIDevice.current.userInterfaceIdiom == .phone ? .portrait : .allButUpsideDown
     let isRightToLeft: Bool
     let meetingLink: String
+    let isAudioCall:Bool
+    let isVideoCall:Bool
 
     var body: some View {
         Group {

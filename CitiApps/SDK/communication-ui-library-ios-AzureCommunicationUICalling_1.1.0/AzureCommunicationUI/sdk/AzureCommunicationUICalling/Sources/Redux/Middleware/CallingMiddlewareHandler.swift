@@ -59,6 +59,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
 
     func setupCall(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
+            print("setupCall")
             do {
                 try await callingService.setupCall()
                 if state.permissionState.cameraPermission == .granted,
@@ -74,6 +75,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
 
     func startCall(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
+            print("startCall")
             do {
                 try await callingService.startCall(
                     isCameraPreferred: state.localUserState.cameraState.operation == .on,
@@ -283,7 +285,6 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
     func stopScreenSharing(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         return Task {
             do {
-                print("stopScreenSharing -- called")
                 try await callingService.stopScreenShare()
             } catch {
                 handle(error: error, errorType: .callEndFailed, dispatch: dispatch)

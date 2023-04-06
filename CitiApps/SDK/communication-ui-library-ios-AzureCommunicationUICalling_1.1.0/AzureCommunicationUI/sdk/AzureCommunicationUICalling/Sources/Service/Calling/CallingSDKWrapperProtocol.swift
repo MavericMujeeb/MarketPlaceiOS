@@ -74,6 +74,9 @@ protocol CallingSDKWrapperProtocol {
     func stopScreenShare() async throws
 
     var callingEventsHandler: CallingSDKEventsHandling { get }
+    
+    var acsParticipantsIds: Set<String> { get set }
+
 }
 
 protocol CallingSDKEventsHandling {
