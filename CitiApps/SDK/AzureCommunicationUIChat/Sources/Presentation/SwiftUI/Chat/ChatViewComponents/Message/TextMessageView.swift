@@ -66,8 +66,21 @@ struct TextMessageView: View {
                 timeStamp
                 edited
             }
-            Text(messageModel.getContentLabel())
-                .font(.body)
+//            let _ = print("hi! its a message view and has url")
+            if let url =  messageModel.checkContentIsUrl()  {
+              
+                Text(messageModel.getContentLabel()).foregroundColor(.blue)
+                    .underline()
+                    .onTapGesture {
+                        guard let url = URL(string: String(url)) else { return }
+                        UIApplication.shared.open(url)
+                    }
+                    .font(.body)
+            }else {
+                Text(messageModel.getContentLabel())
+                    .font(.body)
+            }
+           
         }
     }
     

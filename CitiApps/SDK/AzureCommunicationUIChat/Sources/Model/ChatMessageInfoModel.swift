@@ -174,6 +174,20 @@ extension ChatMessageInfoModel {
     func getContentLabel() -> String {
         return content ?? "Text not available" // Localization
     }
+    
+    func checkContentIsUrl() -> String? {
+        if let text = content{
+            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+                    let matches = detector.matches(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count))
+            if let match = matches.first, let url = match.url {
+                print("Found URL: \(url)")
+                return url.absoluteString
+            }
+
+        }
+        
+        return nil // Localization
+    }
 
     private func getTopicLabel() -> String {
         guard let topic = content else {
