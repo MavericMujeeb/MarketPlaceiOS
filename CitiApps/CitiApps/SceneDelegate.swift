@@ -9,6 +9,7 @@ import UIKit
 import FluentUI
 import Flutter
 import PIPKit
+import AzureCommunicationUIChat
 
 #if canImport(Combine)
 import Combine
@@ -24,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: myNotificationName, object: nil)
+        
         let acsChannel = FlutterMethodChannel(
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
@@ -33,12 +36,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
             switch call.method {
                 case "joinCallClick":
+                print("joinCallClick")
                 self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
             case "startChat":
                 self?.startChat(result: result, args: call.arguments as! NSDictionary)
             case "startAudioCall":
+                print("Strating the audio call")
                 self?.startAudioCall(result: result, args: call.arguments as! NSDictionary)
             case "startVideoCall":
+                print("Strating the video call")
                 self?.startAudioCall(result: result, args: call.arguments as! NSDictionary)
                 default:
                     result(FlutterMethodNotImplemented)
@@ -46,6 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         })
         
+      
         
         if let userActivity = connectionOptions.userActivities.first {
             if let incomingURL = userActivity.webpageURL {
@@ -89,6 +96,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 //        PIPKit.show(with: PIPACSViewController())
     }
+    
+    @objc func handleNotification(_ notification : NSNotification){
+        print("handle the chat")
+        let teamsVC = TeamsCallingViewController()
+        teamsVC.startAudioVideoCall()
+    }
+    
     
     
     private func startChat (result: FlutterResult, args: NSDictionary) {

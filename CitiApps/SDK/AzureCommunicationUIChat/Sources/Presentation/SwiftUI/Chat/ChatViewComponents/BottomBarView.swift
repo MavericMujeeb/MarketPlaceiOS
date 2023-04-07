@@ -56,6 +56,7 @@ struct BottomBarView: View {
         static let focusDelay: CGFloat = 1.0
         static let topPadding: CGFloat = 10
         static let padding: CGFloat = 12
+        static let minimumRectHeight: CGFloat = 40
     }
     @StateObject var viewModel: BottomBarViewModel
     
@@ -90,8 +91,8 @@ struct BottomBarView: View {
         Button(action: {
             shouldPresentChat.toggle()
         }) {
-            Icon(name: .attachmentIcon, size: 24)
-                .contentShape(Rectangle())
+            Icon(name: .attachmentIcon, size: 24).foregroundColor(.black).fixedSize(horizontal: true, vertical: false)
+                .contentShape(Rectangle()).frame(height: Constants.minimumRectHeight)
         }.fileImporter(isPresented: $shouldPresentChat, allowedContentTypes: [.text, .pdf, .png, .jpeg, .heic], allowsMultipleSelection: false, onCompletion: { results in
             
             switch results {
