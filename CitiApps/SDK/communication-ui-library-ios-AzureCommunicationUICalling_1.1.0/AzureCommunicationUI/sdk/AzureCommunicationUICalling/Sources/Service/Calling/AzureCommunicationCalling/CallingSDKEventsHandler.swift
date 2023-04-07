@@ -21,6 +21,9 @@ class CallingSDKEventsHandler: NSObject, CallingSDKEventsHandling {
     private var previousCallingStatus: CallingStatus = .none
     private var remoteParticipants = MappedSequence<String, AzureCommunicationCalling.RemoteParticipant>()
 
+    var acsParticipantsIds: Set<String> = []
+
+    
     init(logger: Logger) {
         self.logger = logger
         super.init()
@@ -148,6 +151,7 @@ class CallingSDKEventsHandler: NSObject, CallingSDKEventsHandling {
 extension CallingSDKEventsHandler: CallDelegate,
     RecordingCallFeatureDelegate,
     TranscriptionCallFeatureDelegate {
+        
     func call(_ call: Call, didUpdateRemoteParticipant args: ParticipantsUpdatedEventArgs) {
         if !args.removedParticipants.isEmpty {
             removeRemoteParticipants(args.removedParticipants)
@@ -158,6 +162,14 @@ extension CallingSDKEventsHandler: CallDelegate,
     }
 
     func call(_ call: Call, didChangeState args: PropertyChangedEventArgs) {
+        
+        for participant in call.remoteParticipants {
+            if(!self.acsParticipantsIds.contains(participant.identifier.rawId)){
+                self.acsParticipantsIds.insert(participant.identifier.rawId)
+                addRemoteParticipants([participant])
+            }
+        }
+        
         let currentStatus = call.state.toCallingStatus()
         let internalError = call.callEndReason.toCompositeInternalError(wasCallConnected())
 
@@ -166,10 +178,6 @@ extension CallingSDKEventsHandler: CallDelegate,
             let subcode = call.callEndReason.subcode
             logger.error("Receive vaildate CallEndReason:\(code), subcode:\(subcode)")
         }
-
-        print("call.state.toCallingStatus()")
-        print(call.state.toCallingStatus())
-        print(internalError ?? "")
         let callInfoModel = CallInfoModel(status: currentStatus,
                                           internalError: internalError)
         callInfoSubject.send(callInfoModel)
