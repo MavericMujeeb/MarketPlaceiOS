@@ -65,7 +65,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
                 if state.permissionState.cameraPermission == .granted,
                    state.localUserState.cameraState.operation == .off,
                    state.errorState.internalError == nil {
-                    dispatch(.localUserAction(.cameraPreviewOnTriggered))
+//                    dispatch(.localUserAction(.cameraPreviewOnTriggered))
                 }
             } catch {
                 handle(error: error, errorType: .callJoinFailed, dispatch: dispatch)
@@ -159,6 +159,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
 
     func requestCameraPreviewOn(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
+            print("requestCameraPreviewOn")
             if state.permissionState.cameraPermission == .notAsked {
                 dispatch(.permissionAction(.cameraPermissionRequested))
             } else {
@@ -166,6 +167,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
                     let identifier = try await callingService.requestCameraPreviewOn()
                     dispatch(.localUserAction(.cameraOnSucceeded(videoStreamIdentifier: identifier)))
                 } catch {
+                    print("requestCameraPreviewOn -- failed")
                     dispatch(.localUserAction(.cameraOnFailed(error: error)))
                 }
             }
@@ -174,6 +176,8 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
 
     func requestCameraOn(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
+            print("requestCameraOn")
+            
             if state.permissionState.cameraPermission == .notAsked {
                 dispatch(.permissionAction(.cameraPermissionRequested))
             } else {
@@ -182,6 +186,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
                     try await Task.sleep(nanoseconds: NSEC_PER_SEC)
                     dispatch(.localUserAction(.cameraOnSucceeded(videoStreamIdentifier: streamId)))
                 } catch {
+                    print("requestCameraOn -- failed")
                     dispatch(.localUserAction(.cameraOnFailed(error: error)))
                 }
             }
@@ -190,10 +195,12 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
 
     func requestCameraOff(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
+            print("requestCameraOff")
             do {
                 try await callingService.stopLocalVideoStream()
                 dispatch(.localUserAction(.cameraOffSucceeded))
             } catch {
+                print("requestCameraOff -- failed")
                 dispatch(.localUserAction(.cameraOffFailed(error: error)))
             }
         }

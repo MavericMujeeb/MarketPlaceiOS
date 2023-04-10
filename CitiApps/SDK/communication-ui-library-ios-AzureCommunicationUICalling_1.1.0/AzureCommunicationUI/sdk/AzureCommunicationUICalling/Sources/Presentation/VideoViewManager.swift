@@ -69,14 +69,16 @@ class VideoViewManager: NSObject, RendererDelegate, RendererViewManager {
     }
 
     func getLocalVideoRendererView(_ videoStreamId: String) -> UIView? {
+        print("getLocalVideoRendererView - 1")
         if let localRenderCache = localRendererViews.value(forKey: videoStreamId) {
             return localRenderCache.rendererView
         }
-
+        print("getLocalVideoRendererView - 2")
         guard let videoStream: CompositeLocalVideoStream<AzureCommunicationCalling.LocalVideoStream> =
                 callingSDKWrapper.getLocalVideoStream(videoStreamId) else {
             return nil
         }
+        print("getLocalVideoRendererView - 3")
         let wrappedVideoStream = videoStream.wrappedObject
         do {
             let newRenderer: VideoStreamRenderer = try VideoStreamRenderer(localVideoStream: wrappedVideoStream)

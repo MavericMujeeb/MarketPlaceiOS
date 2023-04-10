@@ -52,11 +52,11 @@ class ContainerUIHostingController: UIHostingController<ContainerUIHostingContro
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        if PIPKit.isPIP {
-            stopPIPMode()
-        } else {
-            startPIPMode()
-        }
+//        if PIPKit.isPIP {
+//            stopPIPMode()
+//        } else {
+//            startPIPMode()
+//        }
     }
     
     func didChangedState(_ state: PIPState) {
