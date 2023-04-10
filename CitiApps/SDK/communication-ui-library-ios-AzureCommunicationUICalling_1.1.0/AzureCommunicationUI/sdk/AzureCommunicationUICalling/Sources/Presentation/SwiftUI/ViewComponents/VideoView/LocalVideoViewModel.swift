@@ -59,7 +59,8 @@ class LocalVideoViewModel: ObservableObject {
         if displayName != localUserState.displayName {
             displayName = localUserState.displayName
         }
-
+        print("Update function  localUserState : cameraOperationalStatus \(localUserState.cameraState.operation)")
+        print("cameraOperationalStatus :\(cameraOperationalStatus)")
         if cameraOperationalStatus != localUserState.cameraState.operation {
             cameraOperationalStatus = localUserState.cameraState.operation
         }

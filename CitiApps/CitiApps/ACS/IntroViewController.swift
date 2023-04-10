@@ -78,7 +78,8 @@ class TeamsCallingViewController {
         }
     }
     
-    func startAudioVideoCall() {
+    func startAudioVideoCall(isVideoCall : Bool = false) {
+        print("\(#function):\(isVideoCall)")
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
         let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
@@ -88,14 +89,15 @@ class TeamsCallingViewController {
         })
         Task{
             do{
-                await self.startAudioCall(acsId: self.bankerAcsId)
+                await self.startAudioCall(acsId: self.bankerAcsId,isVideoCall: isVideoCall)
             }
         }
     }
     
-    func startAudioCall(acsId:String) async {
+    func startAudioCall(acsId:String,isVideoCall : Bool = false) async {
+        print("\(#function):\(isVideoCall)")
         let displayName =  users[loggedInUser]?["name"]  ?? ""
-        let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall, isAudioCall: true, isVideoCall: false)
+        let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall, isAudioCall: true, isVideoCall: isVideoCall)
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCustomerCommunicationToken)
         self.callingContext.displayName = displayName
         self.callingContext.userId = userid
@@ -104,7 +106,7 @@ class TeamsCallingViewController {
     
     func joinCall() async {
         let displayName =  users[loggedInUser]?["name"]  ?? ""
-        let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting, isAudioCall: true, isVideoCall: true)
+        let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting, isAudioCall: true, isVideoCall: false)
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
         self.callingContext.displayName = displayName
         self.callingContext.userId = userid

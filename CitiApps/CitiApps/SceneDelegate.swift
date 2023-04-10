@@ -99,8 +99,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @objc func handleNotification(_ notification : NSNotification){
         print("handle the chat")
+        let info = notification.userInfo
+        let isVideoCall = info!["isVideo"] as! Bool
         let teamsVC = TeamsCallingViewController()
-        teamsVC.startAudioVideoCall()
+        teamsVC.startAudioVideoCall(isVideoCall: isVideoCall)
     }
     
     

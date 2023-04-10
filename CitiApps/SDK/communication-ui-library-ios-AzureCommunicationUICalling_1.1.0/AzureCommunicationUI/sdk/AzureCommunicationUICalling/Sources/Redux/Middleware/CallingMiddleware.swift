@@ -6,15 +6,16 @@
 import Combine
 
 extension Middleware {
-    static func liveCallingMiddleware(callingMiddlewareHandler actionHandler: CallingMiddlewareHandling)
+    static func liveCallingMiddleware(callingMiddlewareHandler actionHandler: CallingMiddlewareHandling, isVideoCall : Bool = false)
     -> Middleware<AppState> {
         Middleware<AppState>(
             apply: { dispatch, getState in
                 return { next in
                     return { action in
+                        print("liveCallingMiddleware: \(isVideoCall)")
                         switch action {
                         case .callingAction(let callingAction):
-                            handleCallingAction(callingAction, actionHandler, getState, dispatch)
+                            handleCallingAction(callingAction, actionHandler, getState,isVideoCall: isVideoCall, dispatch)
 
                         case .localUserAction(let localUserAction):
                             handleLocalUserAction(localUserAction, actionHandler, getState, dispatch)
@@ -48,11 +49,12 @@ extension Middleware {
 
 private func handleCallingAction(_ action: CallingAction,
                                  _ actionHandler: CallingMiddlewareHandling,
-                                 _ getState: () -> AppState,
+                                 _ getState: () -> AppState, isVideoCall : Bool = false,
                                  _ dispatch: @escaping ActionDispatch) {
+    print("handleCallingAction:\(isVideoCall)")
     switch action {
     case .setupCall:
-        actionHandler.setupCall(state: getState(), dispatch: dispatch)
+        actionHandler.setupCall(state: getState(),isVideoCall: isVideoCall, dispatch: dispatch)
     case .callStartRequested:
         actionHandler.startCall(state: getState(), dispatch: dispatch)
     case .callEndRequested:
