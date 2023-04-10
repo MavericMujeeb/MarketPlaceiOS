@@ -43,7 +43,7 @@ final class DependencyContainer {
         register(CallingService(logger: resolve(),
                                 callingSDKWrapper: resolve()) as CallingServiceProtocol)
         let displayName = localOptions?.participantViewData?.displayName ?? callConfiguration.displayName
-        register(makeStore(displayName: displayName) as Store<AppState>)
+        register(makeStore(displayName: displayName,isVideoCall: isVideoCall ?? false) as Store<AppState>)
         register(NavigationRouter(store: resolve(),
                                   logger: resolve()) as NavigationRouter)
         register(AccessibilityProvider() as AccessibilityProviderProtocol)
@@ -74,10 +74,11 @@ final class DependencyContainer {
                                            avatarViewManager: resolve()) as RemoteParticipantsManagerProtocol)
     }
 
-    private func makeStore(displayName: String?) -> Store<AppState> {
+    private func makeStore(displayName: String?, isVideoCall : Bool = false) -> Store<AppState> {
+        print("make store :\(isVideoCall)")
         let middlewaresHandler = CallingMiddlewareHandler(callingService: resolve(), logger: resolve())
         let middlewares: [Middleware] = [
-            Middleware<AppState>.liveCallingMiddleware(callingMiddlewareHandler: middlewaresHandler)
+            Middleware<AppState>.liveCallingMiddleware(callingMiddlewareHandler: middlewaresHandler,isVideoCall: isVideoCall)
         ]
 
         let localUserState = LocalUserState(displayName: displayName)

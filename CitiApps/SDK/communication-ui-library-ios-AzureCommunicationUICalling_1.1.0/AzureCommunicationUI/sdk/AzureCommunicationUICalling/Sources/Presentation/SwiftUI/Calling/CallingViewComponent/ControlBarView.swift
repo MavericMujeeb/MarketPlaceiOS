@@ -83,7 +83,7 @@ class ChatViewController : UIViewController{
             })
             
             let chatCompositeViewController = ChatCompositeViewController(
-                with: chatAdapter)
+                with: chatAdapter,showCallButtons: false)
             let nv = UINavigationController(rootViewController: chatCompositeViewController)
             nv.modalPresentationStyle = .fullScreen
             self.dismiss(animated: true, completion: nil)
