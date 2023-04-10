@@ -8,7 +8,7 @@ import Foundation
 
 protocol CallingMiddlewareHandling {
     @discardableResult
-    func setupCall(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never>
+    func setupCall(state: AppState,isVideoCall : Bool, dispatch: @escaping ActionDispatch) -> Task<Void, Never>
     @discardableResult
     func startCall(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never>
     @discardableResult
@@ -57,15 +57,20 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
         self.logger = logger
     }
 
-    func setupCall(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
+    func setupCall(state: AppState,isVideoCall : Bool = false, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
             print("setupCall")
             do {
                 try await callingService.setupCall()
-                if state.permissionState.cameraPermission == .granted,
-                   state.localUserState.cameraState.operation == .off,
-                   state.errorState.internalError == nil {
-                    dispatch(.localUserAction(.cameraPreviewOnTriggered))
+                print("setup call :\(isVideoCall)")
+                if isVideoCall {
+                    print("video call is true")
+                    if state.permissionState.cameraPermission == .granted,
+                       state.localUserState.cameraState.operation == .off,
+                       state.errorState.internalError == nil   {
+                        dispatch(.localUserAction(.cameraPreviewOnTriggered))
+                    }
+
                 }
             } catch {
                 handle(error: error, errorType: .callJoinFailed, dispatch: dispatch)
