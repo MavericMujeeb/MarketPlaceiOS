@@ -125,6 +125,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         do {
             try await call?.hangUp(options: HangUpOptions())
             logger.debug("Call ended successfully")
+            self.callAgent?.dispose()
         } catch {
             logger.error( "It was not possible to hangup the call.")
             throw error
@@ -536,7 +537,7 @@ extension CallingSDKWrapper: DeviceManagerDelegate {
         if let existingVideoStream = localVideoStream {
             return existingVideoStream
         }
-
+        print("getValidLocalVideoStream")
         let videoDevice = await getVideoDeviceInfo(.front)
         let videoStream = AzureCommunicationCalling.LocalVideoStream(camera: videoDevice)
         localVideoStream = videoStream
