@@ -41,11 +41,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             case "startChat":
                 self?.startChat(result: result, args: call.arguments as! NSDictionary)
             case "startAudioCall":
-                print("Strating the audio call")
                 self?.startAudioCall(result: result, args: call.arguments as! NSDictionary)
             case "startVideoCall":
-                print("Strating the video call")
-                self?.startAudioCall(result: result, args: call.arguments as! NSDictionary)
+               self?.startVideoCall(result: result, args: call.arguments as! NSDictionary)
                 default:
                     result(FlutterMethodNotImplemented)
                     return
@@ -115,14 +113,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func startAudioCall (result: FlutterResult, args: NSDictionary) {
         let teamsCallingViewController = TeamsCallingViewController()
-        teamsCallingViewController.startAudioVideoCall()
+        teamsCallingViewController.startAudioVideoCall(isVideoCall: false)
     }
     
     private func startVideoCall (result: FlutterResult, args: NSDictionary) {
         let user_name = args.value(forKey: "user_name") as! String
-        let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
-        chatController.isForCall = true
-        chatController.prepareChatComposite()
+        let teamsCallingViewController = TeamsCallingViewController()
+        teamsCallingViewController.startAudioVideoCall(isVideoCall: true)
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {

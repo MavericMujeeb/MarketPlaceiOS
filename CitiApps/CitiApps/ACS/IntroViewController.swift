@@ -79,7 +79,6 @@ class TeamsCallingViewController {
     }
     
     func startAudioVideoCall(isVideoCall : Bool = false) {
-        print("\(#function):\(isVideoCall)")
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
         let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
