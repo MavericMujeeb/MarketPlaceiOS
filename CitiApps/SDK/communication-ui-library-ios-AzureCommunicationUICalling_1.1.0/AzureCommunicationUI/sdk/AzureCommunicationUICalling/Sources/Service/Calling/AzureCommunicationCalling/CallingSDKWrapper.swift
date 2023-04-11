@@ -125,7 +125,11 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         do {
             try await call?.hangUp(options: HangUpOptions())
             logger.debug("Call ended successfully")
-            self.callAgent?.dispose()
+            print("Call ended successfully")
+            if((self.callAgent?.calls.count)! > 0){
+                self.callAgent?.dispose()
+            }
+
         } catch {
             logger.error( "It was not possible to hangup the call.")
             throw error
@@ -133,7 +137,10 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     }
     
     func autoDismissCall() async throws{
+        print("autoDismissCall")
         self.callAgent?.dispose()
+        print(self.callAgent?.calls.count)
+
     }
 
     func getRemoteParticipant<ParticipantType, StreamType>(_ identifier: String)

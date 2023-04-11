@@ -89,7 +89,6 @@ class CallingService: NSObject, CallingServiceProtocol {
     }
 
     func startLocalVideoStream() async throws -> String {
-        print("startLocalVideoStream----")
         return try await callingSDKWrapper.startCallLocalVideoStream()
     }
 

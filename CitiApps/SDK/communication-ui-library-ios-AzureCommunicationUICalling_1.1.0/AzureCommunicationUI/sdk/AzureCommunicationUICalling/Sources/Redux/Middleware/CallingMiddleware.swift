@@ -29,10 +29,10 @@ extension Middleware {
                             handleAudioSessionAction(audioAction, actionHandler, getState, dispatch)
 
                         case .errorAction(_),
-                                .compositeExitAction,
                                 .callingViewLaunched:
-                            actionHandler.autoDimissCall(state: getState(), dispatch: dispatch)
                             break
+                        case .compositeExitAction:
+                            actionHandler.autoDimissCall(state: getState(), dispatch: dispatch)
                         case .startScreenShareAction(let screenShareAction):
                             handleLocalUserAction(screenShareAction, actionHandler, getState, dispatch)
 
