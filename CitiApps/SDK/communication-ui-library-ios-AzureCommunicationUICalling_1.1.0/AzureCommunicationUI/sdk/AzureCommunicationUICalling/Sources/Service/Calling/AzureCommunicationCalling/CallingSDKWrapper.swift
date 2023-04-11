@@ -540,7 +540,7 @@ extension CallingSDKWrapper: DeviceManagerDelegate {
         if let existingVideoStream = localVideoStream {
             return existingVideoStream
         }
-
+        print("getValidLocalVideoStream")
         let videoDevice = await getVideoDeviceInfo(.front)
         let videoStream = AzureCommunicationCalling.LocalVideoStream(camera: videoDevice)
         localVideoStream = videoStream
