@@ -72,6 +72,7 @@ protocol CallingSDKWrapperProtocol {
     func resumeCall() async throws
     func startScreenShare() async throws
     func stopScreenShare() async throws
+    func autoDismissCall() async throws
 
     var callingEventsHandler: CallingSDKEventsHandling { get }
     

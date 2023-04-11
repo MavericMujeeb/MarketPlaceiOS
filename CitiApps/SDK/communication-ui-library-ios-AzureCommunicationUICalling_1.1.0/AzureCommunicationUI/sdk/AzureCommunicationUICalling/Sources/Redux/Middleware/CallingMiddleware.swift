@@ -12,7 +12,6 @@ extension Middleware {
             apply: { dispatch, getState in
                 return { next in
                     return { action in
-                        print("liveCallingMiddleware: \(isVideoCall)")
                         switch action {
                         case .callingAction(let callingAction):
                             handleCallingAction(callingAction, actionHandler, getState,isVideoCall: isVideoCall, dispatch)
@@ -32,6 +31,7 @@ extension Middleware {
                         case .errorAction(_),
                                 .compositeExitAction,
                                 .callingViewLaunched:
+                            actionHandler.autoDimissCall(state: getState(), dispatch: dispatch)
                             break
                         case .startScreenShareAction(let screenShareAction):
                             handleLocalUserAction(screenShareAction, actionHandler, getState, dispatch)
@@ -51,7 +51,6 @@ private func handleCallingAction(_ action: CallingAction,
                                  _ actionHandler: CallingMiddlewareHandling,
                                  _ getState: () -> AppState, isVideoCall : Bool = false,
                                  _ dispatch: @escaping ActionDispatch) {
-    print("handleCallingAction:\(isVideoCall)")
     switch action {
     case .setupCall:
         actionHandler.setupCall(state: getState(),isVideoCall: isVideoCall, dispatch: dispatch)

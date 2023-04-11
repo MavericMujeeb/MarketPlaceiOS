@@ -30,6 +30,8 @@ protocol CallingServiceProtocol {
     
     func startScreenShare() async throws
     func stopScreenShare() async throws
+    
+    func autoDismissCall() async throws
 }
 
 class CallingService: NSObject, CallingServiceProtocol {
@@ -68,6 +70,10 @@ class CallingService: NSObject, CallingServiceProtocol {
 
     func endCall() async throws {
        try await callingSDKWrapper.endCall()
+    }
+    
+    func autoDismissCall() async throws{
+        try await callingSDKWrapper.autoDismissCall()
     }
     
     func startScreenShare() async throws {

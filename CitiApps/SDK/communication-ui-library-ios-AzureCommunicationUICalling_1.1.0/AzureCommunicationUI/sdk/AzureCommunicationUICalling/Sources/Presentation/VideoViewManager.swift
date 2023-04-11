@@ -94,6 +94,7 @@ class VideoViewManager: NSObject, RendererDelegate, RendererViewManager {
                                       value: cache)
             return newRendererView
         } catch let error {
+            print("Failed to render remote video, reason")
             logger.error("Failed to render remote video, reason:\(error.localizedDescription)")
             return nil
         }

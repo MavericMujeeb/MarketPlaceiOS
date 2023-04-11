@@ -125,10 +125,15 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         do {
             try await call?.hangUp(options: HangUpOptions())
             logger.debug("Call ended successfully")
+            self.callAgent?.dispose()
         } catch {
             logger.error( "It was not possible to hangup the call.")
             throw error
         }
+    }
+    
+    func autoDismissCall() async throws{
+        self.callAgent?.dispose()
     }
 
     func getRemoteParticipant<ParticipantType, StreamType>(_ identifier: String)
@@ -331,7 +336,6 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     }
     
     func stopScreenShare() async throws {
-        print("stopScreenShare -- test")
         screenShareProducer?.stopRecording()
         screenShareProducer = nil
         outgoingVideoSender?.stopSending()
