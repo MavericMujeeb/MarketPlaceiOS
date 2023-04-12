@@ -6,6 +6,8 @@
 import SwiftUI
 import FluentUI
 import WebKit
+import UniformTypeIdentifiers
+
 
 struct TextMessageView: View {
     
@@ -35,7 +37,14 @@ struct TextMessageView: View {
             }
             avatar
             VStack(alignment: .leading) {
-                bubble
+                bubble.contextMenu {
+                    Button( action: {
+                        UIPasteboard.general.setValue(messageModel.getContentLabel(), forPasteboardType: "public.plain-text")
+                    }) {
+                        Text("Copy to clipboard")
+                        Image(systemName: "doc.on.doc")
+                    }
+                }
                 if messageModel.hasAttachmentUrl() ?? false {
                     documentview
                 }
@@ -78,7 +87,9 @@ struct TextMessageView: View {
                     .font(.body)
             }else {
                 Text(messageModel.getContentLabel())
-                    .font(.body)
+                    .font(.body).contextMenu{
+                        
+                    }
             }
            
         }
