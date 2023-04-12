@@ -32,6 +32,9 @@ extension Middleware {
                                 .callingViewLaunched:
                             break
                         case .compositeExitAction:
+                            print("compositeExitAction")
+                            let action: LocalUserAction = .cameraOffTriggered
+                            dispatch(.localUserAction(action))
                             actionHandler.autoDimissCall(state: getState(), dispatch: dispatch)
                         case .startScreenShareAction(let screenShareAction):
                             handleLocalUserAction(screenShareAction, actionHandler, getState, dispatch)
