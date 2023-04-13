@@ -196,9 +196,12 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
             return
         }
         do {
+            print("call.stopVideo")
             try await call.stopVideo(stream: videoStream)
+            print("Local video stopped successfully")
             logger.debug("Local video stopped successfully")
         } catch {
+            print("Local video stopped successfully -- error")
             logger.error( "Local video failed to stop. \(error)")
             throw error
         }
@@ -547,7 +550,6 @@ extension CallingSDKWrapper: DeviceManagerDelegate {
         if let existingVideoStream = localVideoStream {
             return existingVideoStream
         }
-        print("getValidLocalVideoStream")
         let videoDevice = await getVideoDeviceInfo(.front)
         let videoStream = AzureCommunicationCalling.LocalVideoStream(camera: videoDevice)
         localVideoStream = videoStream

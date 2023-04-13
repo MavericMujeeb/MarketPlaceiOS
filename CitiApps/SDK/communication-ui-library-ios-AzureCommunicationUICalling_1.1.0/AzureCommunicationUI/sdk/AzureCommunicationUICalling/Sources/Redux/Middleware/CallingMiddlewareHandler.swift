@@ -67,7 +67,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
                     if state.permissionState.cameraPermission == .granted,
                        state.localUserState.cameraState.operation == .off,
                        state.errorState.internalError == nil   {
-                        dispatch(.localUserAction(.cameraPreviewOnTriggered))
+//                        dispatch(.localUserAction(.cameraPreviewOnTriggered))
                     }
                 }
             } catch {
@@ -93,7 +93,11 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
     func endCall(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
             do {
+                print("cameraOffTriggered --- 1")
+                dispatch(.localUserAction(.cameraOffTriggered))
+                print("endcall")
                 try await callingService.endCall()
+                print("endcall - complete")
                 dispatch(.callingAction(.callEnded))
             } catch {
                 handle(error: error, errorType: .callEndFailed, dispatch: dispatch)
@@ -105,6 +109,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
     func autoDimissCall(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
             do {
+                dispatch(.localUserAction(.cameraOffTriggered))
                 try await callingService.autoDismissCall()
             } catch {
                 handle(error: error, errorType: .callEndFailed, dispatch: dispatch)
@@ -204,6 +209,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
     func requestCameraOff(state: AppState, dispatch: @escaping ActionDispatch) -> Task<Void, Never> {
         Task {
             do {
+                print("callingService - - stopLocalVideoStream")
                 try await callingService.stopLocalVideoStream()
                 dispatch(.localUserAction(.cameraOffSucceeded))
             } catch {

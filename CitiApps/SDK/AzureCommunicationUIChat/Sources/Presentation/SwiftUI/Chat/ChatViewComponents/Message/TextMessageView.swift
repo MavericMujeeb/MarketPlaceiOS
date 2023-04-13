@@ -37,14 +37,7 @@ struct TextMessageView: View {
             }
             avatar
             VStack(alignment: .leading) {
-                bubble.contextMenu {
-                    Button( action: {
-                        UIPasteboard.general.setValue(messageModel.getContentLabel(), forPasteboardType: "public.plain-text")
-                    }) {
-                        Text("Copy to clipboard")
-                        Image(systemName: "doc.on.doc")
-                    }
-                }
+                bubble
                 if messageModel.hasAttachmentUrl() ?? false {
                     documentview
                 }
@@ -85,10 +78,23 @@ struct TextMessageView: View {
                         UIApplication.shared.open(url)
                     }
                     .font(.body)
+                    .contextMenu {
+                        Button( action: {
+                            UIPasteboard.general.setValue(messageModel.getContentLabel(), forPasteboardType: "public.plain-text")
+                        }) {
+                            Text("Copy to clipboard")
+                            Image(systemName: "doc.on.doc")
+                        }
+                    }
             }else {
                 Text(messageModel.getContentLabel())
                     .font(.body).contextMenu{
-                        
+                        Button( action: {
+                            UIPasteboard.general.setValue(messageModel.getContentLabel(), forPasteboardType: "public.plain-text")
+                        }) {
+                            Text("Copy to clipboard")
+                            Image(systemName: "doc.on.doc")
+                        }
                     }
             }
            
