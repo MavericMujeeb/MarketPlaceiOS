@@ -145,7 +145,7 @@ class ControlBarViewModel: ObservableObject {
         guard !isCameraStateUpdating else {
             return
         }
-        isCameraStateUpdating = false
+//        isCameraStateUpdating = true
         let action: LocalUserAction = cameraState.operation == .on ?
             .cameraOffTriggered : .cameraOnTriggered
         dispatch(.localUserAction(action))

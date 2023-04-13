@@ -74,16 +74,22 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     func joinCall(isCameraPreferred: Bool, isAudioPreferred: Bool) async throws {
         logger.debug( "Joining call")
         let joinCallOptions = JoinCallOptions()
+        let startCallOptions = StartCallOptions()
 
         if isCameraPreferred,
            let localVideoStream = localVideoStream {
             let localVideoStreamArray = [localVideoStream]
             let videoOptions = VideoOptions(localVideoStreams: localVideoStreamArray)
             joinCallOptions.videoOptions = videoOptions
+            startCallOptions.videoOptions = videoOptions
         }
 
         joinCallOptions.audioOptions = AudioOptions()
         joinCallOptions.audioOptions?.muted = !isAudioPreferred
+        
+        startCallOptions.audioOptions = AudioOptions()
+        startCallOptions.audioOptions?.muted = !isAudioPreferred
+        
 
         var joinLocator: JoinMeetingLocator
         if callConfiguration.compositeCallType == .groupCall,
@@ -99,7 +105,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         
         if callConfiguration.compositeCallType == .audioVideoMeeting {
             let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(callConfiguration.acsId!)]
-            joinedCall = try await callAgent?.startCall(participants: callees, options: StartCallOptions())
+            joinedCall = try await callAgent?.startCall(participants: callees, options: startCallOptions)
         }
         else{
             joinedCall = try await callAgent?.join(with: joinLocator, joinCallOptions: joinCallOptions)
