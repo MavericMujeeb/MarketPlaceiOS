@@ -80,11 +80,11 @@ struct MessageListView: View {
                                     createMessageSendStatus(message: message)
                                 }
                             }
-                            
+                            .flippedUpsideDown()
                         }
                     }
                 })
-            
+            .flippedUpsideDown()
             .listStyle(.plain)
             .environment(\.defaultMinListRowHeight, Constants.defaultMinListRowHeight)
             .onChange(of: viewModel.shouldScrollToBottom) { _ in
