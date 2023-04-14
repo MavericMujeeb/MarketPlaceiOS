@@ -311,6 +311,13 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.requestAlwaysAuthorization()
 
+        do{
+            try await stopLocalVideoStream()
+        }
+        catch{
+           //
+        }
+        
         AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: {response in
             if response{
                 self.toggleSendingScreenShareOutgoingVideo()
@@ -343,6 +350,8 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
                 self?.outgoingVideoSender = RawOutgoingVideoSender(frameProducer: producer)
                 self?.outgoingVideoSender?.startSending(to: call)
             }
+
+            
             screenShareProducer?.startRecording()
             DispatchQueue.main.async {
                 PIPKit.visibleViewController?.startPIPMode()
@@ -360,6 +369,15 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         DispatchQueue.main.async {
             PIPKit.visibleViewController?.stopPIPMode()
         }
+        
+        do {
+            print("startCallLocalVideoStream")
+            
+            try await startCallLocalVideoStream()
+        } catch {
+//            throw CallCompositeInternalError.deviceManagerFailed(error)
+        }
+        
     }
 }
 
@@ -615,6 +633,7 @@ final class RawOutgoingVideoSender: NSObject {
         self.stopRunning()
         call?.stopVideo(stream: self.rawOutgoingStream) { error in
             // Stream sending stopped.
+            
         }
     }
 
