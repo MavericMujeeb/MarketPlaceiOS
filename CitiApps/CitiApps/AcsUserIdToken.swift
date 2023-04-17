@@ -15,3 +15,13 @@ struct AcsUserIdToken: Codable {
     var customerUserId: String? = ""
     var customerUserToken: String? = ""
 }
+
+struct ParticipantDetails: Codable {
+    let originator: Participant?
+    let participantList: [Participant]?
+}
+
+struct Participant: Codable {
+    let participantName, participantId, acsId, participantType: String?
+    let threadId: String?
+}

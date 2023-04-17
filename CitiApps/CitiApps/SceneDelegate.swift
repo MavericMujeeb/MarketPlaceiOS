@@ -106,7 +106,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     private func startChat (result: FlutterResult, args: NSDictionary) {
+        let bankerEmailId = args.value(forKey: "user_name") as! String
         let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
+        chatController.bankerEmailId = bankerEmailId
         chatController.isForCall = false
         chatController.prepareChatComposite()
     }
