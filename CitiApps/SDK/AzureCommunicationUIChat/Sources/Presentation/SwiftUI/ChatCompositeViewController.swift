@@ -18,10 +18,9 @@ public class ChatCompositeViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        print("ChatCompositeViewController loaded")
     }
     var chatView: UIHostingController<ContainerView>!
-    public var onCloseChatCompositeViewcompletion: ((String?) -> Void)?
+    public var onCloseChatCompositeViewcompletion: (() -> Void)?
 
 
     /// Create an instance of ChatCompositeViewController with chatAdapter for a single chat thread
@@ -29,11 +28,9 @@ public class ChatCompositeViewController: UIViewController {
     ///    - chatAdapter: The required parameter to create a view component
     public init(with chatAdapter: ChatAdapter,showCallButtons : Bool = true ) {
         super.init(nibName: nil, bundle: nil)
-        print("ChatCompositeViewController init")
         let containerUIHostingController =  makeContainerUIHostingController(
             viewFactory: chatAdapter.compositeViewFactory!,
             canDismiss: true)
-        print("containerUIHostingController")
         addChild(containerUIHostingController)
         
         let closeItem = UIBarButtonItem(
@@ -74,9 +71,8 @@ public class ChatCompositeViewController: UIViewController {
     }
     
     @objc func onBackBtnPressed (_ sender: UIBarButtonItem){
-        print("Chat composite view controller close button")
         self.dismiss(animated: false, completion: {
-            self.onCloseChatCompositeViewcompletion?("close")
+            self.onCloseChatCompositeViewcompletion?()
         })
     }
     
