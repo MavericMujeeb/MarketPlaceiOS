@@ -14,18 +14,26 @@ public let myNotificationName = Notification.Name("com.example.startChat")
 
 /// The Chat Composite View Controller is a view component for a single chat thread
 public class ChatCompositeViewController: UIViewController {
+    
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        print("ChatCompositeViewController loaded")
+    }
     var chatView: UIHostingController<ContainerView>!
+    public var onCloseChatCompositeViewcompletion: ((String?) -> Void)?
+
 
     /// Create an instance of ChatCompositeViewController with chatAdapter for a single chat thread
     /// - Parameters:
     ///    - chatAdapter: The required parameter to create a view component
     public init(with chatAdapter: ChatAdapter,showCallButtons : Bool = true ) {
         super.init(nibName: nil, bundle: nil)
-      
-        let containerUIHostingController = makeContainerUIHostingController(
+        print("ChatCompositeViewController init")
+        let containerUIHostingController =  makeContainerUIHostingController(
             viewFactory: chatAdapter.compositeViewFactory!,
             canDismiss: true)
-
+        print("containerUIHostingController")
         addChild(containerUIHostingController)
         
         let closeItem = UIBarButtonItem(
@@ -66,7 +74,10 @@ public class ChatCompositeViewController: UIViewController {
     }
     
     @objc func onBackBtnPressed (_ sender: UIBarButtonItem){
-        self.dismiss(animated: true, completion: nil)
+        print("Chat composite view controller close button")
+        self.dismiss(animated: false, completion: {
+            self.onCloseChatCompositeViewcompletion?("close")
+        })
     }
     
     @objc func onAudioCallBtnPressed (_ sender: UIBarButtonItem){
@@ -86,6 +97,7 @@ public class ChatCompositeViewController: UIViewController {
 
     func makeContainerUIHostingController(viewFactory: CompositeViewFactoryProtocol,
                                           canDismiss: Bool) -> ContainerUIHostingController {
+        print("makeContainerUIHostingController func")
         let rootView = ContainerView(viewFactory: viewFactory)
         let containerUIHostingController = ContainerUIHostingController(rootView: rootView)
         containerUIHostingController.modalPresentationStyle = .fullScreen
