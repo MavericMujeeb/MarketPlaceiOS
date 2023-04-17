@@ -12,14 +12,164 @@ import AzureCommunicationUIChat
 import ReplayKit
 import PIPKit
 
+
+struct AcsUserIdToken: Codable {
+    
+    var acsEndpoint: String? = ""
+    var bankerUserId: String? = ""
+    var bankerUserToken: String? = ""
+    var customerUserId: String? = ""
+    var customerUserToken: String? = ""
+}
+
 class ChatViewController : UIViewController{
     
     var chatAdapter: ChatAdapter?
-    var threadId:String!
+//    var threadId:String!
+    
+    var commServEndPointURL:String! = "https://acscallchatcomserv.communication.azure.com/"
+    var threadId:String! = "19:064b68041bc84b8b8892ebc75002b7d3@thread.v2"
+    var bankerAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb"
+    var bankerUserToken:String! = ""
+    var bankerUserName:String! = "Chantal Kendall"
+    var custAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c35a-58a8-bcc9-3e3a0d008f97"
+    var custUserToken:String! = ""
+    var custUserName:String! = "Janet Johnson"
+    var isTeamsChat : Bool!
+    
 
     override func viewDidLoad() {
+        print("chat view controller loaded")
         super.viewDidLoad()
-        startChatComposite()
+        if isTeamsChat {
+            startTeamsChatComposite()
+        }else{
+            prepareChatComposite()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("chat view controller will appear")
+//        if chatAdapter == nil {
+//            print("chat adapter is nil")
+//            self.dismiss(animated: false)
+//        }else{
+//            print("chat adapter is not nil")
+//        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print(" ChatViewController viewWillDisappear ")
+    }
+    
+    func prepareChatComposite() {
+        self.callUserTokenAPI()
+    }
+    
+    func initializeChatComposite() {
+        
+        do{
+            let credential = try CommunicationTokenCredential(
+                token: self.bankerUserToken
+            )
+            let options = AzureCommunicationChatClientOptions()
+
+            let chatClient = try ChatClient(
+                endpoint: self.commServEndPointURL,
+                credential: credential,
+                withOptions: options
+            )
+            let request = CreateChatThreadRequest(
+                topic: "30-min meeting",
+                participants: [
+                    ChatParticipant(
+                        id: CommunicationUserIdentifier(self.bankerAcsId),
+                        displayName: self.bankerUserName
+                    ),
+                ]
+            )
+
+            chatClient.create(thread: request) { result, _ in
+                switch result {
+                case let .success(result):
+                    self.startChatComposite()
+                case .failure:
+                    print(result)
+                }
+            }
+        }
+        catch {
+            //hanle the error
+        }
+    }
+    
+    @objc private func startChatComposite() {
+        print("chatViewController :startChatComposite")
+        let communicationIdentifier = CommunicationUserIdentifier(self.custAcsId)
+        
+        
+        guard let communicationTokenCredential = try? CommunicationTokenCredential(
+            token:self.custUserToken) else {
+            return
+        }
+
+        self.chatAdapter = ChatAdapter(
+            endpoint: self.commServEndPointURL,
+            identifier: communicationIdentifier,
+            credential: communicationTokenCredential,
+            threadId: self.threadId,
+            displayName: self.custUserName)
+
+        Task { @MainActor in
+            guard let chatAdapter = self.chatAdapter else {
+                return
+            }
+            chatAdapter.connect(completionHandler: { [weak self] result in
+                switch result {
+                case .success:
+                    self?.chatAdapter = nil
+                    print("success -- chatadapter")
+                case .failure(let error):
+                    print("disconnect error \(error)")
+                }
+            })
+            
+            let chatCompositeViewController = ChatCompositeViewController(
+                with: chatAdapter,showCallButtons: false)
+            chatCompositeViewController.onCloseChatCompositeViewcompletion = {data in
+                self.dismiss(animated: false)
+            }
+            let nv = UINavigationController(rootViewController: chatCompositeViewController)
+            nv.modalPresentationStyle = .pageSheet
+            self.present(nv, animated: false, completion: nil)
+        }
+    }
+    
+    func callUserTokenAPI() {
+        let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+       
+        guard let url = try? URL(string: fullUrl) else {
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url){
+            data, response, error in
+            if let data = data, let string = String(data: data, encoding: .utf8){
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let responseModel = try jsonDecoder.decode(AcsUserIdToken.self, from: data)
+                    self.custUserToken = responseModel.customerUserToken
+                    self.bankerUserToken = responseModel.bankerUserToken
+                    self.initializeChatComposite()
+                } catch {
+                    print("Response Data error -> ")
+                    print(error)
+                }
+                print("Response Data string -> ")
+                print(string)
+            }
+        }
+        task.resume()
     }
     
 //    override func viewWillLayoutSubviews() {
@@ -51,8 +201,10 @@ class ChatViewController : UIViewController{
         }
     }
 
-    @objc private func startChatComposite() {
+    @objc private func startTeamsChatComposite() {
         
+        print("threadId :\(threadId)")
+
         let communicationIdentifier = CommunicationUserIdentifier(loggedInUserId)
         guard let communicationTokenCredential = try? CommunicationTokenCredential(
             token:communincationTokenString) else {
@@ -66,10 +218,11 @@ class ChatViewController : UIViewController{
             threadId: threadId,
             displayName: loggedInUserName)
 
-        
+
         Task { @MainActor in
-            
+
             guard let chatAdapter = self.chatAdapter else {
+                print("returning chat adapter")
                 return
             }
             chatAdapter.connect(completionHandler: { [weak self] result in
@@ -81,7 +234,7 @@ class ChatViewController : UIViewController{
                     print("disconnect error \(error)")
                 }
             })
-            
+
             let chatCompositeViewController = ChatCompositeViewController(
                 with: chatAdapter,showCallButtons: false)
             let nv = UINavigationController(rootViewController: chatCompositeViewController)
@@ -95,15 +248,22 @@ class ChatViewController : UIViewController{
 struct ChatScreen: UIViewControllerRepresentable{
     
     var threadId : String!
+    var isTeamsChat : Bool!
     
-    init(threadId: String!) {
-        self.threadId = threadId
+    init(threadId: String!,isTeamsChat : Bool = true) {
+        self.isTeamsChat = isTeamsChat
+        if isTeamsChat {
+            self.threadId = threadId
+        }
     }
     typealias UIViewControllerType = ChatViewController
     
     func makeUIViewController(context: Context) -> ChatViewController {
         let vc = ChatViewController()
-        vc.threadId = threadId;
+        if isTeamsChat {
+            vc.threadId = threadId;
+        }
+        vc.isTeamsChat = isTeamsChat
         return vc
     }
     
@@ -123,11 +283,13 @@ struct ControlBarView: View {
     @Environment(\.screenSizeClass) var screenSizeClass: ScreenSizeClassType
     
     func getThreadId(from meetingLink: String) -> String? {
+        print("getThreadId: \(meetingLink)")
         if let range = meetingLink.range(of: "meetup-join/") {
             let thread = meetingLink[range.upperBound...]
             if let endRange = thread.range(of: "/")?.lowerBound {
                 var threadId = String(thread.prefix(upTo: endRange))
                 threadId = threadId.replacingOccurrences(of: "%3a", with: ":").replacingOccurrences(of: "%3A", with: ":").replacingOccurrences(of: "%40", with: "@")
+                print("threadId is :\(threadId)")
                 return threadId
             }
         }
@@ -241,7 +403,11 @@ struct ControlBarView: View {
                                 .foregroundColor(.black)
             }
         }.fullScreenCover(isPresented: $shouldPresentChat, content: {
-            ChatScreen(threadId: getThreadId(from: self.viewModel.teamsMeetingLink))
+            if self.viewModel.teamsMeetingLink.isEmpty {
+                ChatScreen(threadId: "",isTeamsChat: false)
+            }else{
+                ChatScreen(threadId: getThreadId(from: self.viewModel.teamsMeetingLink))
+            }
         })
         
     }
