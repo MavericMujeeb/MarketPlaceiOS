@@ -67,7 +67,7 @@ class CallingMiddlewareHandler: CallingMiddlewareHandling {
                     if state.permissionState.cameraPermission == .granted,
                        state.localUserState.cameraState.operation == .off,
                        state.errorState.internalError == nil   {
-//                        dispatch(.localUserAction(.cameraPreviewOnTriggered))
+                        dispatch(.localUserAction(.cameraPreviewOnTriggered))
                     }
                 }
             } catch {

@@ -37,6 +37,7 @@ struct MessageView: View {
             message
             .padding(edgeInsets)
         }
+        .rotationEffect(.zero)
     }
 
     var dateHeader: some View {

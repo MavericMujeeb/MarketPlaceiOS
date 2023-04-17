@@ -38,14 +38,6 @@ struct TextMessageView: View {
             avatar
             VStack(alignment: .leading) {
                 bubble
-                    .contextMenu {
-                    Button( action: {
-                        UIPasteboard.general.setValue(messageModel.getContentLabel(), forPasteboardType: "public.plain-text")
-                    }) {
-                        Text("Copy to clipboard")
-                        Image(systemName: "doc.on.doc")
-                    }
-                }
                 if messageModel.hasAttachmentUrl() ?? false {
                     documentview
                 }
@@ -78,17 +70,39 @@ struct TextMessageView: View {
             }
 //            let _ = print("hi! its a message view and has url")
             if let url =  messageModel.checkContentIsUrl()  {
-              
-                Text(messageModel.getContentLabel()).foregroundColor(.blue)
+                if #available(iOS 15.0, *) {
+                    VStack{
+                        Text(messageModel.getContentLabel()).foregroundColor(.blue)
+                        .underline()
+                        .onTapGesture {
+                            guard let url = URL(string: String(url)) else { return }
+                            UIApplication.shared.open(url)
+                        }
+                        .font(.body)
+                    }
+                    .textSelection(.enabled)
+                } else {
+                    Text(messageModel.getContentLabel()).foregroundColor(.blue)
                     .underline()
                     .onTapGesture {
                         guard let url = URL(string: String(url)) else { return }
                         UIApplication.shared.open(url)
                     }
                     .font(.body)
-            }else {
-                Text(messageModel.getContentLabel())
-                    .font(.body)
+                    
+                 }
+            } else {
+                if #available(iOS 15.0, *) {
+                    VStack{
+                        Text(messageModel.getContentLabel())
+                            .font(.body)
+                    }
+                    .textSelection(.enabled)
+                } else {
+                    Text(messageModel.getContentLabel())
+                        .font(.body)
+                    
+                 }
             }
            
         }
