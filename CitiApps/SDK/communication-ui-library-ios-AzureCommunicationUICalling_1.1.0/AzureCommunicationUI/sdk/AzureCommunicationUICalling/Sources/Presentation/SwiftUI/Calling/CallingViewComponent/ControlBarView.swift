@@ -39,7 +39,6 @@ class ChatViewController : UIViewController{
     
 
     override func viewDidLoad() {
-        print("chat view controller loaded")
         super.viewDidLoad()
         if isTeamsChat {
             startTeamsChatComposite()
@@ -48,19 +47,7 @@ class ChatViewController : UIViewController{
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("chat view controller will appear")
-//        if chatAdapter == nil {
-//            print("chat adapter is nil")
-//            self.dismiss(animated: false)
-//        }else{
-//            print("chat adapter is not nil")
-//        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        print(" ChatViewController viewWillDisappear ")
-    }
+
     
     func prepareChatComposite() {
         self.callUserTokenAPI()
@@ -104,7 +91,6 @@ class ChatViewController : UIViewController{
     }
     
     @objc private func startChatComposite() {
-        print("chatViewController :startChatComposite")
         let communicationIdentifier = CommunicationUserIdentifier(self.custAcsId)
         
         
@@ -136,11 +122,11 @@ class ChatViewController : UIViewController{
             
             let chatCompositeViewController = ChatCompositeViewController(
                 with: chatAdapter,showCallButtons: false)
-            chatCompositeViewController.onCloseChatCompositeViewcompletion = {data in
+            chatCompositeViewController.onCloseChatCompositeViewcompletion = {
                 self.dismiss(animated: false)
             }
             let nv = UINavigationController(rootViewController: chatCompositeViewController)
-            nv.modalPresentationStyle = .pageSheet
+            nv.modalPresentationStyle = .fullScreen
             self.present(nv, animated: false, completion: nil)
         }
     }
@@ -203,7 +189,6 @@ class ChatViewController : UIViewController{
 
     @objc private func startTeamsChatComposite() {
         
-        print("threadId :\(threadId)")
 
         let communicationIdentifier = CommunicationUserIdentifier(loggedInUserId)
         guard let communicationTokenCredential = try? CommunicationTokenCredential(
@@ -283,7 +268,6 @@ struct ControlBarView: View {
     @Environment(\.screenSizeClass) var screenSizeClass: ScreenSizeClassType
     
     func getThreadId(from meetingLink: String) -> String? {
-        print("getThreadId: \(meetingLink)")
         if let range = meetingLink.range(of: "meetup-join/") {
             let thread = meetingLink[range.upperBound...]
             if let endRange = thread.range(of: "/")?.lowerBound {
