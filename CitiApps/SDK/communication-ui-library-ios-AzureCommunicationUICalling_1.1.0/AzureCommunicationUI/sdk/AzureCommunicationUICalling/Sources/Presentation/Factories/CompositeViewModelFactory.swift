@@ -213,7 +213,7 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
                             dispatchAction: dispatchAction,
                             endCallConfirm: endCallConfirm,
                             localUserState: localUserState,
-                            teamsMeetingLink: teamsMeetingLink)
+                            teamsMeetingLink: teamsMeetingLink,isAudioOnlyCall:isAudioCall)
     }
     func makeInfoHeaderViewModel(localUserState: LocalUserState) -> InfoHeaderViewModel {
         InfoHeaderViewModel(compositeViewModelFactory: self,
@@ -273,7 +273,7 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
                                  logger: logger,
                                  dispatchAction: dispatchAction,
                                  localUserState: localUserState,
-                                 localizationProvider: localizationProvider)
+                                 localizationProvider: localizationProvider,isAudioOnlyCall: isAudioCall)
     }
 
     func makeJoiningCallActivityViewModel() -> JoiningCallActivityViewModel {

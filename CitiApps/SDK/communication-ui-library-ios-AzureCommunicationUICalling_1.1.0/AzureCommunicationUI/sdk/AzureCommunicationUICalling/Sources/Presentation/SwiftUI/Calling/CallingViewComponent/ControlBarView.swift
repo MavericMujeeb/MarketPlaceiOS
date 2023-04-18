@@ -364,6 +364,7 @@ struct ControlBarView: View {
 
     var videoButton: some View {
         IconButton(viewModel: viewModel.cameraButtonViewModel)
+            .disabled(viewModel.isCameraDisabled())
             .accessibility(identifier: AccessibilityIdentifier.videoAccessibilityID.rawValue)
     }
 
@@ -398,7 +399,7 @@ struct ControlBarView: View {
     
     var screenShareButton: some View {
         IconButton(viewModel: viewModel.screenShareButtonViewModel)
-            .disabled(false)
+            .disabled(viewModel.isScreenShareDisabled())
             .accessibility(identifier: "Screen_Share")
     }
 
