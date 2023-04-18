@@ -22,17 +22,28 @@ struct AcsUserIdToken: Codable {
     var customerUserToken: String? = ""
 }
 
+struct ParticipantDetails: Codable {
+    let originator: Participant?
+    let participantList: [Participant]?
+}
+
+struct Participant: Codable {
+    let participantName, participantId, acsId, participantType: String?
+    let threadId: String?
+}
+
 class ChatViewController : UIViewController{
     
     var chatAdapter: ChatAdapter?
 //    var threadId:String!
     
     var commServEndPointURL:String! = "https://acscallchatcomserv.communication.azure.com/"
-    var threadId:String! = "19:064b68041bc84b8b8892ebc75002b7d3@thread.v2"
-    var bankerAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb"
+    var threadId:String! = ""
+    var bankerAcsId:String! = ""
     var bankerUserToken:String! = ""
-    var bankerUserName:String! = "Chantal Kendall"
-    var custAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c35a-58a8-bcc9-3e3a0d008f97"
+    var bankerEmailId:String! = ""
+    var bankerUserName:String! = ""
+    var custAcsId:String! = ""
     var custUserToken:String! = ""
     var custUserName:String! = "Janet Johnson"
     var isTeamsChat : Bool!
@@ -50,7 +61,7 @@ class ChatViewController : UIViewController{
 
     
     func prepareChatComposite() {
-        self.callUserTokenAPI()
+        self.callParticipantDetailsAPI()
     }
     
     func initializeChatComposite() {
@@ -158,6 +169,48 @@ class ChatViewController : UIViewController{
         task.resume()
     }
     
+    func callParticipantDetailsAPI() {
+        self.bankerEmailId = UserDefaults.standard.string(forKey: "bankerEmailId")
+        let reqBody = "{" +
+        "\"originatorId\":\"\(self.bankerEmailId!)\"," +
+        "\"participantName\":\"\(self.custUserName!)\"" +
+        "}"
+        
+        let fullUrl: String = "https://service-20230322105302607.azurewebsites.net/api/participantDetails"
+        
+        guard let url = try? URL(string: fullUrl) else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = reqBody.data(using: .utf8)!
+        
+        let task = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            
+            if let data = data, let string = String(data: data, encoding: .utf8){
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let responseModel = try jsonDecoder.decode(ParticipantDetails.self, from: data)
+                    self.bankerUserName = responseModel.originator?.participantName
+                    self.bankerAcsId = responseModel.originator?.acsId
+                    self.custUserName = responseModel.participantList?[0].participantName
+                    self.custAcsId = responseModel.participantList?[0].acsId
+                    self.threadId = responseModel.participantList?[0].threadId
+                    self.callUserTokenAPI()
+                } catch {
+                    print("Response Data error -> ")
+                    print(error)
+                }
+                print("Response Data string -> ")
+                print(string)
+            }
+        }
+        task.resume()
+    }
 //    override func viewWillLayoutSubviews() {
 //      let width = self.view.frame.width
 //      let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 44))

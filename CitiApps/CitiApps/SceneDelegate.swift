@@ -18,6 +18,8 @@ import Combine
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    let storageUserDefaults = UserDefaults.standard
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
@@ -90,6 +92,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mettingLink = args.value(forKey: "meeting_id") as! String
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
+        storageUserDefaults.set("", forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startCall()
 
 //        PIPKit.show(with: PIPACSViewController())
@@ -109,18 +112,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let bankerEmailId = args.value(forKey: "user_name") as! String
         let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
         chatController.bankerEmailId = bankerEmailId
+        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         chatController.isForCall = false
         chatController.prepareChatComposite()
     }
 
     private func startAudioCall (result: FlutterResult, args: NSDictionary) {
+        let bankerEmailId = args.value(forKey: "user_name") as! String
         let teamsCallingViewController = TeamsCallingViewController()
+        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: false)
     }
     
     private func startVideoCall (result: FlutterResult, args: NSDictionary) {
-        let user_name = args.value(forKey: "user_name") as! String
+        let bankerEmailId = args.value(forKey: "user_name") as! String
         let teamsCallingViewController = TeamsCallingViewController()
+        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: true)
     }
 
