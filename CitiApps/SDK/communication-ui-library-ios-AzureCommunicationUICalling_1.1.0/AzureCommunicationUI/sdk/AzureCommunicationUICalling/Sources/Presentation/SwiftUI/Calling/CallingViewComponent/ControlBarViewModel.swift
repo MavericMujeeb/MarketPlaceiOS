@@ -39,6 +39,8 @@ class ControlBarViewModel: ObservableObject {
     
     var screenShareState = LocalUserState.ScreenShareState(screen: .sharingOff)
     var displayEndCallConfirm: (() -> Void)
+    
+    var isAudioOnlyCall : Bool
 
     init(compositeViewModelFactory: CompositeViewModelFactory,
          logger: Logger,
@@ -46,12 +48,13 @@ class ControlBarViewModel: ObservableObject {
          dispatchAction: @escaping ActionDispatch,
          endCallConfirm: @escaping (() -> Void),
          localUserState: LocalUserState,
-         teamsMeetingLink: String) {
+         teamsMeetingLink: String,isAudioOnlyCall : Bool = false) {
         self.logger = logger
         self.localizationProvider = localizationProvider
         self.dispatch = dispatchAction
         self.displayEndCallConfirm = endCallConfirm
         self.teamsMeetingLink = teamsMeetingLink
+        self.isAudioOnlyCall = isAudioOnlyCall
 
         audioDevicesListViewModel = compositeViewModelFactory.makeAudioDevicesListViewModel(
             dispatchAction: dispatch,
@@ -172,7 +175,12 @@ class ControlBarViewModel: ObservableObject {
 
     func isCameraDisabled() -> Bool {
         cameraPermission == .denied || cameraState.operation == .pending ||
-        callingStatus == .localHold || isCameraStateUpdating
+        callingStatus == .localHold || isCameraStateUpdating || isAudioOnlyCall
+    }
+    
+    func isScreenShareDisabled() -> Bool {
+        //if its audio only call then disable the screen sharing option
+        isAudioOnlyCall
     }
 
     func isMicDisabled() -> Bool {
@@ -254,6 +262,7 @@ class ControlBarViewModel: ObservableObject {
         
         screenShareState = localUserState.screenShareState
         screenShareButtonViewModel.update(iconName: screenShareState.screen == .sharingOn ? .stop_screen_share_icon : .share_screen_icon)
+        screenShareButtonViewModel.update(isDisabled: isScreenShareDisabled())
         audioDeviceButtonViewModel.update(isDisabled: isAudioDeviceDisabled())
         let audioDeviceState = localUserState.audioState.device
         audioDeviceButtonViewModel.update(
