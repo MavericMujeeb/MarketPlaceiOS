@@ -8,3 +8,7 @@
 struct CitiConstants {
     static let method_channel_name: String = "com.maveric.citiacsdemo"
 }
+
+struct StorageKeys {
+    static let bankerEmailId: String = "bankerEmailId"
+}

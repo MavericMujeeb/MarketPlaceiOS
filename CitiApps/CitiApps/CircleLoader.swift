@@ -11,15 +11,15 @@ import UIKit
 class CircleLoader: NSObject {
     
     static let sharedInstance = CircleLoader()
-
+    
     let indicator: UIActivityIndicatorView? = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-
+    
     let screen = UIScreen.main.bounds
-
+    
     var appDelegate: SceneDelegate {
         guard let sceneDelegate = UIApplication.shared.connectedScenes
             .first!.delegate as? SceneDelegate else {
-                fatalError("sceneDelegate is not UIApplication.shared.delegate")
+            fatalError("sceneDelegate is not UIApplication.shared.delegate")
         }
         return sceneDelegate
     }
@@ -32,11 +32,13 @@ class CircleLoader: NSObject {
     }
     
     func show() {
-        indicator?.frame = CGRect(x: 0.0, y: 0.0, width: 60.0, height: 60.0)
-        indicator?.frame.origin.x = (screen.width/2 - 20)
-        indicator?.frame.origin.y = (screen.height/2 - 20)
-        rootController?.view.addSubview(indicator!)
-        indicator?.startAnimating()
+        DispatchQueue.main.async {
+            self.indicator?.frame = CGRect(x: 0.0, y: 0.0, width: 60.0, height: 60.0)
+            self.indicator?.frame.origin.x = (self.screen.width/2 - 20)
+            self.indicator?.frame.origin.y = (self.screen.height/2 - 20)
+            self.rootController?.view.addSubview(self.indicator!)
+            self.indicator?.startAnimating()
+        }
     }
     
     func hide() {
