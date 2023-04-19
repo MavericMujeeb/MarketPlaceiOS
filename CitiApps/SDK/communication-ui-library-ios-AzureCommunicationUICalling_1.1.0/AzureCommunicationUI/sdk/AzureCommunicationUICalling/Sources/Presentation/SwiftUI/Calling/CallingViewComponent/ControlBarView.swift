@@ -35,7 +35,7 @@ struct Participant: Codable {
 class ChatViewController : UIViewController{
     
     var chatAdapter: ChatAdapter?
-//    var threadId:String!
+    //    var threadId:String!
     
     var commServEndPointURL:String! = "https://acscallchatcomserv.communication.azure.com/"
     var threadId:String! = ""
@@ -48,7 +48,6 @@ class ChatViewController : UIViewController{
     var custUserName:String! = "Janet Johnson"
     var isTeamsChat : Bool!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         if isTeamsChat {
@@ -57,8 +56,6 @@ class ChatViewController : UIViewController{
             prepareChatComposite()
         }
     }
-    
-
     
     func prepareChatComposite() {
         self.callParticipantDetailsAPI()
@@ -71,7 +68,7 @@ class ChatViewController : UIViewController{
                 token: self.bankerUserToken
             )
             let options = AzureCommunicationChatClientOptions()
-
+            
             let chatClient = try ChatClient(
                 endpoint: self.commServEndPointURL,
                 credential: credential,
@@ -86,7 +83,7 @@ class ChatViewController : UIViewController{
                     ),
                 ]
             )
-
+            
             chatClient.create(thread: request) { result, _ in
                 switch result {
                 case let .success(result):
@@ -109,14 +106,14 @@ class ChatViewController : UIViewController{
             token:self.custUserToken) else {
             return
         }
-
+        
         self.chatAdapter = ChatAdapter(
             endpoint: self.commServEndPointURL,
             identifier: communicationIdentifier,
             credential: communicationTokenCredential,
             threadId: self.threadId,
             displayName: self.custUserName)
-
+        
         Task { @MainActor in
             guard let chatAdapter = self.chatAdapter else {
                 return
@@ -143,14 +140,16 @@ class ChatViewController : UIViewController{
     }
     
     func callUserTokenAPI() {
+        let progressIndiactor = self.showProgressIndicator
         let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
-       
+        
         guard let url = try? URL(string: fullUrl) else {
             return
         }
-
+        
         let task = URLSession.shared.dataTask(with: url){
             data, response, error in
+            self.hideProgressIndicator(indicator: progressIndiactor)
             if let data = data, let string = String(data: data, encoding: .utf8){
                 do {
                     let jsonDecoder = JSONDecoder()
@@ -170,6 +169,7 @@ class ChatViewController : UIViewController{
     }
     
     func callParticipantDetailsAPI() {
+        let progressIndiactor = self.showProgressIndicator
         self.bankerEmailId = UserDefaults.standard.string(forKey: "bankerEmailId")
         let reqBody = "{" +
         "\"originatorId\":\"\(self.bankerEmailId!)\"," +
@@ -190,7 +190,7 @@ class ChatViewController : UIViewController{
         
         let task = URLSession.shared.dataTask(with: request){
             data, response, error in
-            
+            self.hideProgressIndicator(indicator: progressIndiactor)
             if let data = data, let string = String(data: data, encoding: .utf8){
                 do {
                     let jsonDecoder = JSONDecoder()
@@ -211,19 +211,19 @@ class ChatViewController : UIViewController{
         }
         task.resume()
     }
-//    override func viewWillLayoutSubviews() {
-//      let width = self.view.frame.width
-//      let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 44))
-//      self.view.addSubview(navigationBar);
-//      let navigationItem = UINavigationItem(title: "Chat")
-//        let closeItem = UIBarButtonItem(
-//            barButtonSystemItem: .close,
-//            target: self,
-//            action: #selector(self.onBackBtnPressed(_ :))
-//        )
-//      navigationItem.leftBarButtonItem = closeItem
-//      navigationBar.setItems([navigationItem], animated: false)
-//    }
+    //    override func viewWillLayoutSubviews() {
+    //      let width = self.view.frame.width
+    //      let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 44))
+    //      self.view.addSubview(navigationBar);
+    //      let navigationItem = UINavigationItem(title: "Chat")
+    //        let closeItem = UIBarButtonItem(
+    //            barButtonSystemItem: .close,
+    //            target: self,
+    //            action: #selector(self.onBackBtnPressed(_ :))
+    //        )
+    //      navigationItem.leftBarButtonItem = closeItem
+    //      navigationBar.setItems([navigationItem], animated: false)
+    //    }
     
     @objc func onBackBtnPressed (){
         print("onBackBtnPressed")
@@ -239,26 +239,26 @@ class ChatViewController : UIViewController{
             })
         }
     }
-
+    
     @objc private func startTeamsChatComposite() {
         
-
+        
         let communicationIdentifier = CommunicationUserIdentifier(loggedInUserId)
         guard let communicationTokenCredential = try? CommunicationTokenCredential(
             token:communincationTokenString) else {
             return
         }
-
+        
         self.chatAdapter = ChatAdapter(
             endpoint: "https://acscallchatcomserv.communication.azure.com/",
             identifier: communicationIdentifier,
             credential: communicationTokenCredential,
             threadId: threadId,
             displayName: loggedInUserName)
-
-
+        
+        
         Task { @MainActor in
-
+            
             guard let chatAdapter = self.chatAdapter else {
                 print("returning chat adapter")
                 return
@@ -272,7 +272,7 @@ class ChatViewController : UIViewController{
                     print("disconnect error \(error)")
                 }
             })
-
+            
             let chatCompositeViewController = ChatCompositeViewController(
                 with: chatAdapter,showCallButtons: false)
             let nv = UINavigationController(rootViewController: chatCompositeViewController)
@@ -313,11 +313,11 @@ struct ChatScreen: UIViewControllerRepresentable{
 
 struct ControlBarView: View {
     @ObservedObject var viewModel: ControlBarViewModel
-
+    
     // anchor views for drawer views on (iPad)
     @State var audioDeviceButtonSourceView = UIView()
     @State var leaveCallConfirmationListSourceView = UIView()
-
+    
     @Environment(\.screenSizeClass) var screenSizeClass: ScreenSizeClassType
     
     func getThreadId(from meetingLink: String) -> String? {
@@ -332,7 +332,7 @@ struct ControlBarView: View {
         }
         return nil
     }
-
+    
     var body: some View {
         Group {
             if screenSizeClass == .ipadScreenSize {
@@ -355,7 +355,7 @@ struct ControlBarView: View {
                 .accessibility(addTraits: .isModal)
         })
     }
-
+    
     /// A stack view that has items centered aligned horizontally in its stack view
     var centeredStack: some View {
         Group {
@@ -382,7 +382,7 @@ struct ControlBarView: View {
             }
         }
     }
-
+    
     /// A stack view that has items that take the stakview space evenly
     var nonCenteredStack: some View {
         Group {
@@ -414,13 +414,13 @@ struct ControlBarView: View {
             }
         }
     }
-
+    
     var videoButton: some View {
         IconButton(viewModel: viewModel.cameraButtonViewModel)
             .disabled(viewModel.isCameraDisabled())
             .accessibility(identifier: AccessibilityIdentifier.videoAccessibilityID.rawValue)
     }
-
+    
     var micButton: some View {
         IconButton(viewModel: viewModel.micButtonViewModel)
             .disabled(viewModel.isMicDisabled())
@@ -435,11 +435,11 @@ struct ControlBarView: View {
                     PIPKit.visibleViewController?.stopPIPMode()
                     shouldPresentChat.toggle()
                 }) {
-                Image(uiImage: UIImage(named: "teamchat")!)
-                                .renderingMode(.original)
-                                .font(.title)
-                                .foregroundColor(.black)
-            }
+                    Image(uiImage: UIImage(named: "teamchat")!)
+                        .renderingMode(.original)
+                        .font(.title)
+                        .foregroundColor(.black)
+                }
         }.fullScreenCover(isPresented: $shouldPresentChat, content: {
             if self.viewModel.teamsMeetingLink.isEmpty {
                 ChatScreen(threadId: "",isTeamsChat: false)
@@ -455,40 +455,63 @@ struct ControlBarView: View {
             .disabled(viewModel.isScreenShareDisabled())
             .accessibility(identifier: "Screen_Share")
     }
-
+    
     var audioDeviceButton: some View {
         IconButton(viewModel: viewModel.audioDeviceButtonViewModel)
             .background(SourceViewSpace(sourceView: audioDeviceButtonSourceView))
             .accessibility(identifier: AccessibilityIdentifier.audioDeviceAccessibilityID.rawValue)
-
+        
     }
-
+    
     var hangUpButton: some View {
         IconButton(viewModel: viewModel.hangUpButtonViewModel)
             .background(SourceViewSpace(sourceView: leaveCallConfirmationListSourceView))
             .accessibilityIdentifier(AccessibilityIdentifier.hangupAccessibilityID.rawValue)
     }
-
+    
     var audioDeviceSelectionListView: some View {
         CompositeAudioDevicesList(isPresented: $viewModel.isAudioDeviceSelectionDisplayed,
                                   viewModel: viewModel.audioDevicesListViewModel,
                                   sourceView: audioDeviceButtonSourceView)
-            .modifier(LockPhoneOrientation())
+        .modifier(LockPhoneOrientation())
     }
     
     func leaveCall(){
         print("leaveCall ----- ")
     }
-
+    
     var exitConfirmationDrawer: some View {
         CompositeLeaveCallConfirmationList(isPresented: $viewModel.isConfirmLeaveListDisplayed,
                                            viewModel: viewModel.getLeaveCallConfirmationListViewModel(),
                                            sourceView: leaveCallConfirmationListSourceView, callBack: leaveCall)
-            .modifier(LockPhoneOrientation())
+        .modifier(LockPhoneOrientation())
     }
 }
 
 struct LeaveCallConfirmationListViewModel {
     let headerName: String?
     let listItemViewModel: [LeaveCallConfirmationViewModel]
+}
+
+extension UIViewController {
+    
+    var showProgressIndicator:UIActivityIndicatorView? {
+        let screen = UIScreen.main.bounds
+        let indicator: UIActivityIndicatorView? = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        DispatchQueue.main.async {
+            indicator?.frame = CGRect(x: 0.0, y: 0.0, width: 60.0, height: 60.0)
+            indicator?.frame.origin.x = (screen.width/2 - 20)
+            indicator?.frame.origin.y = (screen.height/2 - 20)
+            self.view.addSubview(indicator!)
+            indicator?.startAnimating()
+        }
+        return indicator
+    }
+    
+    func hideProgressIndicator(indicator: UIActivityIndicatorView?) {
+        DispatchQueue.main.async {
+            indicator?.stopAnimating()
+            indicator?.removeFromSuperview()
+        }
+    }
 }
