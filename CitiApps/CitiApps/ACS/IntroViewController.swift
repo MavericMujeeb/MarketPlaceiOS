@@ -80,15 +80,17 @@ class TeamsCallingViewController {
     
     func startAudioVideoCall(isVideoCall : Bool = false) {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-        
+        CircleLoader.sharedInstance.show()
         let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
        
         self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: fullUrl, getAuthTokenFunction: { () -> String? in
+           
             return appDelegate.authHandler.authToken
         })
         Task{
             do{
                 await self.startAudioCall(acsId: self.bankerAcsId,isVideoCall: isVideoCall)
+                CircleLoader.sharedInstance.hide()
             }
         }
     }
