@@ -59,7 +59,9 @@ struct MessageView: View {
                                     showUsername: showUsername,
                                     showTime: showTime)
                 }
-            case .participantsAdded, .participantsRemoved, .topicUpdated:
+//            case .participantsAdded, .participantsRemoved, .topicUpdated:
+//                SystemMessageView(messageModel: messageModel)
+            case .participantsAdded, .participantsRemoved:
                 SystemMessageView(messageModel: messageModel)
             default:
                 EmptyView()

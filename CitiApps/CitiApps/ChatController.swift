@@ -23,7 +23,7 @@ class ChatController  {
     var bankerUserName:String! = ""
     var custAcsId:String! = ""
     var custUserToken:String! = ""
-    var custUserName:String! = "Janet Johnson"
+    var custUserName:String! = UserDefaults.standard.string(forKey: "loginUserName")
     var rootViewController : UIViewController!
     
     var isForCall:Bool = false

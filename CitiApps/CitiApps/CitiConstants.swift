@@ -11,4 +11,5 @@ struct CitiConstants {
 
 struct StorageKeys {
     static let bankerEmailId: String = "bankerEmailId"
+    static let loginUserName: String = "loginUserName"
 }

@@ -24,7 +24,7 @@ extension ChatMessageReceivedEvent {
             content: self.message,
             createdOn: self.createdOn,
 //            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
-            isLocalUser: self.senderDisplayName == "Janet Johnson" ? true : false,
+            isLocalUser: self.senderDisplayName == UserDefaults.standard.string(forKey: "loginUserName") ? true : false,
             metadata: self.metadata)
     }
 }
@@ -40,7 +40,7 @@ extension ChatMessageEditedEvent {
             content: self.message,
             createdOn: self.createdOn,
             editedOn: self.editedOn,
-            isLocalUser: self.senderDisplayName == "Janet Johnson" ? true : false,
+            isLocalUser: self.senderDisplayName == UserDefaults.standard.string(forKey: "loginUserName") ? true : false,
             metadata: self.metadata)
     }
 }
