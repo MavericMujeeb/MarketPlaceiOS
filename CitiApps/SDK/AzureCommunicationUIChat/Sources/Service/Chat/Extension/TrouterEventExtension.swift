@@ -10,6 +10,11 @@ import Foundation
 
 extension ChatMessageReceivedEvent {
     func toChatMessageInfoModel(localUserId: String) -> ChatMessageInfoModel {
+        print("toChatMessageInfoModel----")
+        print("self.sender?.rawId :\(self.sender?.rawId) and localUserId :\(localUserId)")
+        print("clc :\( !((self.sender != nil && self.sender?.rawId != nil)  && (self.sender?.rawId == localUserId)))")
+        print("senderId string val :\(self.sender?.stringValue)")
+        print("senderDisplayName :\(self.senderDisplayName)")
         return ChatMessageInfoModel(
             id: self.id,
             version: self.version,
@@ -18,7 +23,8 @@ extension ChatMessageReceivedEvent {
             senderDisplayName: self.senderDisplayName,
             content: self.message,
             createdOn: self.createdOn,
-            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
+//            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
+            isLocalUser: self.senderDisplayName == "Janet Johnson" ? true : false,
             metadata: self.metadata)
     }
 }
@@ -34,7 +40,7 @@ extension ChatMessageEditedEvent {
             content: self.message,
             createdOn: self.createdOn,
             editedOn: self.editedOn,
-            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
+            isLocalUser: self.senderDisplayName == "Janet Johnson" ? true : false,
             metadata: self.metadata)
     }
 }

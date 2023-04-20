@@ -153,8 +153,8 @@ struct MessageListView: View {
         let lastMessageIndex = index == 0 ? 0 : index - 1
         let lastMessage = messages[lastMessageIndex]
         let showDateHeader = index == 0 || message.createdOn.dayOfYear - lastMessage.createdOn.dayOfYear > 0
-        let isConsecutive = message.senderId == lastMessage.senderId
-        let showUsername = !message.isLocalUser && !isConsecutive
+        let isConsecutive = message.senderId == nil ? false : message.senderId == lastMessage.senderId
+        let showUsername = !(message.isLocalUser || isConsecutive)
         let showTime = !isConsecutive
         let showMessageStatus = viewModel.shouldShowMessageStatusView(message: message)
 
