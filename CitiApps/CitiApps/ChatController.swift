@@ -178,6 +178,11 @@ class ChatController  {
             data, response, error in
             CircleLoader.sharedInstance.hide()
            
+            print("callParticipantDetailsAPI")
+            print(data)
+            print(response)
+            print(error)
+            
             if let data = data, let string = String(data: data, encoding: .utf8){
                 do {
                     let jsonDecoder = JSONDecoder()
@@ -187,6 +192,7 @@ class ChatController  {
                     self.custUserName = responseModel.participantList?[0].participantName
                     self.custAcsId = responseModel.participantList?[0].acsId
                     self.threadId = responseModel.participantList?[0].threadId
+                    print("callUserTokenAPI")
                     self.callUserTokenAPI()
                 } catch {
                     print("Response Data error -> ")

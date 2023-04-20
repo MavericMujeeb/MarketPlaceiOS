@@ -31,12 +31,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
         )
+        self.registerIncomingCallHandler()
         
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
             switch call.method {
                 case "joinCallClick":
-                print("joinCallClick")
                 self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
             case "startChat":
                 self?.startChat(result: result, args: call.arguments as! NSDictionary)
@@ -49,8 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     return
             }
         })
-        
-      
         
         if let userActivity = connectionOptions.userActivities.first {
             if let incomingURL = userActivity.webpageURL {
@@ -86,17 +84,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
     }
     
+    
+    func registerIncomingCallHandler () {
+        let incomingCallController = IncomingCallController()
+        incomingCallController.resigterIncomingCallClient()
+    }
+    
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
         let mettingLink = args.value(forKey: "meeting_id") as! String
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
         teamsCallingViewController.startCall()
-
-//        PIPKit.show(with: PIPACSViewController())
     }
     
     @objc func handleNotification(_ notification : NSNotification){
-        print("handle the chat")
         let info = notification.userInfo
         let isVideoCall = info!["isVideo"] as! Bool
         let teamsVC = TeamsCallingViewController()
@@ -119,7 +120,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func startVideoCall (result: FlutterResult, args: NSDictionary) {
-        let user_name = args.value(forKey: "user_name") as! String
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.startAudioVideoCall(isVideoCall: true)
     }
