@@ -21,7 +21,7 @@ extension ChatMessage {
             deletedOn: self.deletedOn,
             participants: self.content?.participants?.map { $0.toParticipantInfoModel(localUserId) } ?? [],
 //            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
-            isLocalUser: self.senderDisplayName == "Janet Johnson" ? true : false,
+            isLocalUser: self.senderDisplayName == UserDefaults.standard.string(forKey: "loginUserName") ? true : false,
             metadata: self.metadata)
     }
 }
