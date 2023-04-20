@@ -69,7 +69,7 @@ struct ChatMessageInfoModel: BaseInfoModel, Identifiable, Equatable, Hashable {
          deletedOn: Iso8601Date? = nil,
          participants: [ParticipantInfoModel] = [],
          sendStatus: MessageSendStatus? = nil,
-         isLocalUser: Bool = false,
+         isLocalUser: Bool = true,
          metadata: [String: String?]? = nil) {
         self.id = id ?? UUID().uuidString
         self.version = version
@@ -88,9 +88,9 @@ struct ChatMessageInfoModel: BaseInfoModel, Identifiable, Equatable, Hashable {
         self.deletedOn = deletedOn
         self.participants = participants
         self.sendStatus = sendStatus
-        print("Setting is LocalUser")
+        print("Setting is LocalUser :\(isLocalUser)")
         print(Thread.callStackSymbols)
-        print(isLocalUser)
+//        print(isLocalUser)
         self.isLocalUser = isLocalUser
         self.metadata = metadata
     }
