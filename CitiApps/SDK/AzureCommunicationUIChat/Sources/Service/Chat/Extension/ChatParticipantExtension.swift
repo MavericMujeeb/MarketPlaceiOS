@@ -9,9 +9,12 @@ import AzureCommunicationChat
 
 extension ChatParticipant {
     func toParticipantInfoModel(_ localParticipantId: String) -> ParticipantInfoModel {
+        print("current display name is :\(self.displayName)")
+        print("current identifier is :\(self.id)")
+        print("isLocalParticipant :\(id.stringValue) and localParticipantId :\(localParticipantId)")
         return ParticipantInfoModel(
             identifier: self.id,
-            displayName: self.displayName ?? "Unknown user",
+            displayName: self.displayName ?? "",
             isLocalParticipant: id.stringValue == localParticipantId,
             sharedHistoryTime: self.shareHistoryTime ?? Iso8601Date())
     }
