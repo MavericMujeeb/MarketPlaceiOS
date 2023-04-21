@@ -10,11 +10,6 @@ import Foundation
 
 extension ChatMessageReceivedEvent {
     func toChatMessageInfoModel(localUserId: String) -> ChatMessageInfoModel {
-        print("toChatMessageInfoModel----")
-        print("self.sender?.rawId :\(self.sender?.rawId) and localUserId :\(localUserId)")
-        print("clc :\( !((self.sender != nil && self.sender?.rawId != nil)  && (self.sender?.rawId == localUserId)))")
-        print("senderId string val :\(self.sender?.stringValue)")
-        print("senderDisplayName :\(self.senderDisplayName)")
         return ChatMessageInfoModel(
             id: self.id,
             version: self.version,
@@ -23,6 +18,7 @@ extension ChatMessageReceivedEvent {
             senderDisplayName: self.senderDisplayName,
             content: self.message,
             createdOn: self.createdOn,
+            //commenting below line as rawId from teams meeting chat isn't matching with localUserId(even for local user)
 //            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
             isLocalUser: self.senderDisplayName == UserDefaults.standard.string(forKey: "loginUserName") ? true : false,
             metadata: self.metadata)
