@@ -20,6 +20,7 @@ extension ChatMessage {
             editedOn: self.editedOn,
             deletedOn: self.deletedOn,
             participants: self.content?.participants?.map { $0.toParticipantInfoModel(localUserId) } ?? [],
+            //commenting below line as rawId from teams meeting chat isn't matching with localUserId(even for local user)
 //            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
             isLocalUser: self.senderDisplayName == "Janet Johnson" ? true : false,
             metadata: self.metadata)
