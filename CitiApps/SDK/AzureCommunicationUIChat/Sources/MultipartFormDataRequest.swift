@@ -11,9 +11,9 @@ struct MultipartFormDataRequest {
     private let boundary: String = UUID().uuidString
     var httpBody = NSMutableData()
     let fileName: String
-    let storageAccountEndPoint: String = "https://acschatdocupload.blob.core.windows.net/"
+    let storageAccountEndPoint: String = "https://acsdocumentsa.blob.core.windows.net/"
     let containerName: String = "docfiles/"
-    let storageAccountBlobSASToken: String = "?sv=2021-12-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-12-05T03:23:58Z&st=2023-03-27T18:23:58Z&spr=https,http&sig=RTHEaafFC0TpRCVJHd%2BrvyCDxhMbfNKQ39NzO8%2B%2ByDI%3D"
+    let storageAccountBlobSASToken: String = "?sv=2021-10-04&st=2023-04-25T20%3A04%3A18Z&se=2024-12-17T21%3A04%3A00Z&sr=c&sp=racwdxltf&sig=36l4ulqAYH2in4sqie2iTKYNChR3Z8NzRGiTT5giq28%3D"
     
     init(fileName: String) {
         self.fileName = fileName

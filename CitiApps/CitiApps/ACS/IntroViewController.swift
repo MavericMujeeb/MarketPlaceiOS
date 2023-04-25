@@ -73,7 +73,7 @@ class TeamsCallingViewController {
     func startCall() {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
-        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acscallchattokenfunc.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
+        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acstokenfuncapp.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
             return appDelegate.authHandler.authToken
         })
         Task{
@@ -97,7 +97,7 @@ class TeamsCallingViewController {
         "\"participantName\":\"\(self.custUserName!)\"" +
         "}"
         
-        let fullUrl: String = "https://service-20230322105302607.azurewebsites.net/api/participantDetails"
+        let fullUrl: String = "https://acsinfo.azurewebsites.net/api/participantDetails"
         
         guard let url = try? URL(string: fullUrl) else {
             return
@@ -137,7 +137,7 @@ class TeamsCallingViewController {
     func startCall(isVideoCall : Bool) {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         CircleLoader.sharedInstance.show()
-        let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+        let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
        
         self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: fullUrl, getAuthTokenFunction: { () -> String? in
            
