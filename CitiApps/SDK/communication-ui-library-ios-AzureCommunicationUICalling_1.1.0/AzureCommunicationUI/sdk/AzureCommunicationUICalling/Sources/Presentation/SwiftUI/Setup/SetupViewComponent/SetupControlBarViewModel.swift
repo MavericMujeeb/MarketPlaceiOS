@@ -27,15 +27,18 @@ class SetupControlBarViewModel: ObservableObject {
     private(set) var screenShareButtonViewModel: IconWithLabelButtonViewModel<ScreennShareState>!
 
     let audioDevicesListViewModel: AudioDevicesListViewModel
+    
+    var isAudioOnlyCall : Bool
 
     init(compositeViewModelFactory: CompositeViewModelFactory,
          logger: Logger,
          dispatchAction: @escaping ActionDispatch,
          localUserState: LocalUserState,
-         localizationProvider: LocalizationProviderProtocol) {
+         localizationProvider: LocalizationProviderProtocol, isAudioOnlyCall : Bool = false) {
         self.logger = logger
         self.dispatch = dispatchAction
         self.localizationProvider = localizationProvider
+        self.isAudioOnlyCall = isAudioOnlyCall
 
         audioDevicesListViewModel = compositeViewModelFactory.makeAudioDevicesListViewModel(
             dispatchAction: dispatchAction,
@@ -45,11 +48,11 @@ class SetupControlBarViewModel: ObservableObject {
             selectedButtonState: CameraButtonState.videoOff,
             localizationProvider: self.localizationProvider,
             buttonTypeColor: .colorThemedWhite,
-            isDisabled: false) { [weak self] in
+            isDisabled: isAudioOnlyCall) { [weak self] in
                 guard let self = self else {
                     return
                 }
-                self.logger.debug("Toggle camera button tapped")
+                self.logger.debug("Toggle camera button tapped::")
                 self.videoButtonTapped()
         }
         cameraButtonViewModel.accessibilityLabel = self.localizationProvider.getLocalizedString(
@@ -143,7 +146,7 @@ class SetupControlBarViewModel: ObservableObject {
     }
 
     func isCameraDisabled() -> Bool {
-        return isJoinRequested || cameraPermission == .denied
+        return isJoinRequested || cameraPermission == .denied || isAudioOnlyCall
     }
 
     func isAudioDisabled() -> Bool {

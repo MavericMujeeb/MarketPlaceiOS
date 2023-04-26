@@ -20,6 +20,34 @@ import FluentUI
 import Flutter
 import PIPKit
 
+import AzureCommunicationCalling
+import AVFoundation
+
+class CallHandler: NSObject, CallDelegate, CallAgentDelegate {
+    
+    private static var instance: CallHandler?
+    static func getOrCreateInstance() -> CallHandler {
+        if let c = instance {
+          return c
+        }
+        instance = CallHandler()
+        return instance!
+    }
+    
+    public func call(_ call: Call, didChangeState args: PropertyChangedEventArgs) {
+        print("didChangeState")
+        print("state")
+        print(call.state)
+    }
+    
+
+    func callAgent(_ callAgent: CallAgent, didUpdateCalls args: CallsUpdatedEventArgs) {
+        print(callAgent)
+        print("callAgent ---------- ")
+    }
+}
+
+
 class ViewController : UIViewController {
     
     @IBOutlet weak var username: UITextField!
@@ -35,8 +63,56 @@ class ViewController : UIViewController {
     var handleExternalLinks: Bool!
     var meetingLink : String!
     
+    //Added for testing purpose
+    var callClient: CallClient?
+    var callAgent: CallAgent?
+    
+    //Added for testing purpose
+    func makeCallToClient(){
+        var userCredential: CommunicationTokenCredential?
+        do {
+            userCredential = try CommunicationTokenCredential(token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOjY0YTM4ZDUyLTMzZmItNDQwNy1hOGZhLWNiMzI3ZWZkZjdkNV8wMDAwMDAxOC00MmQ5LTRkZTItZTE2Ny01NjNhMGQwMDFhY2MiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODIwNjYzNTIiLCJleHAiOjE2ODIxNTI3NTIsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiI2NGEzOGQ1Mi0zM2ZiLTQ0MDctYThmYS1jYjMyN2VmZGY3ZDUiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjgyMDY2MzUyfQ.IzkAbAZ9m-mysuOH1v6x1dpwKv8sBi5S_bTpB6bcCD5D-VPjf-14poTZ-sEmbz_-3l0k2AxEHmpwE--tSkGcRR3Jdy19XZYxTn_V99QkVyDlgplkjyyhXh8gmFQbzsrQHRfDP-wIy6pKjSu6xrqiVETEijUyej5Zt8F_muHbQ1xcaJQz-3aNyDHxz4rUFbcv6dRtnYtRrSdvijXzZw6dBBfILwrCm4B2gJNacKvACwMWzTsUBLbCkPuS2Ik2RccpIlAAggCDGAZasMIcme8NMmT3JTYr1-PyiXUNIWouikcYtwMKykSTLJtufCi1D_AiLKV-xtQW2WrfPUPWgle25g")
+        } catch {
+            print("ERROR: It was not possible to create user credential.")
+            return
+        }
+        
+        self.callClient = CallClient()
+        
+        self.callClient?.createCallAgent(userCredential: userCredential!) { (agent, error) in
+            if error != nil {
+                print("ERROR: It was not possible to create a call agent.")
+                return
+            }
+
+            else {
+                self.callAgent = agent
+                let callHandler = CallHandler.getOrCreateInstance()
+                self.callAgent?.delegate = callHandler
+                
+                print("Call agent successfully created.")
+                self.callClient?.getDeviceManager { (deviceManager, error) in
+                    if (error == nil) {
+                        let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier("8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c35a-58a8-bcc9-3e3a0d008f97")]
+                        print("startCall")
+                        self.callAgent?.startCall(participants: callees, options: StartCallOptions()) { (call, error) in
+                            print("ACS call ---- ")
+                            print(call ?? "Call empty")
+                            print("ACS call ---- ")
+                        }
+                        
+                    } else {
+                        print("Failed to get device manager instance")
+                    }
+                }
+            }
+        }
+    }
     
     @IBAction func onLoginAction(_ sender: Any) {
+        //Added for testing purpose
+        makeCallToClient()
+        return
         if(self.username.text == "" || self.password.text == "") {
             return
         }

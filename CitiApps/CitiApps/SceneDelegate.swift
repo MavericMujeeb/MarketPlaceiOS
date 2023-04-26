@@ -18,6 +18,8 @@ import Combine
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    let storageUserDefaults = UserDefaults.standard
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
@@ -36,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
             switch call.method {
-                case "joinCallClick":
+            case "joinCallClick":
                 self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
             case "startChat":
                 self?.startChat(result: result, args: call.arguments as! NSDictionary)
@@ -94,6 +96,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mettingLink = args.value(forKey: "meeting_id") as! String
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
+        storageUserDefaults.set("", forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startCall()
     }
     
@@ -110,17 +113,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let bankerEmailId = args.value(forKey: "user_name") as! String
         let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
         chatController.bankerEmailId = bankerEmailId
+        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         chatController.isForCall = false
         chatController.prepareChatComposite()
     }
 
     private func startAudioCall (result: FlutterResult, args: NSDictionary) {
+        let bankerEmailId = args.value(forKey: "user_name") as! String
         let teamsCallingViewController = TeamsCallingViewController()
+        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: false)
     }
     
     private func startVideoCall (result: FlutterResult, args: NSDictionary) {
+        let bankerEmailId = args.value(forKey: "user_name") as! String
         let teamsCallingViewController = TeamsCallingViewController()
+        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: true)
     }
 

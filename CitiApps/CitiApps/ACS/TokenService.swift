@@ -19,6 +19,7 @@ class TokenService {
     
     
     func getCustomerCommunicationToken(completionHandler: @escaping (String?, Error?) -> Void) {
+        CircleLoader.sharedInstance.show()
         guard let url = URL(string: communicationTokenFetchUrl),
               url.host != nil else {
             assertionFailure(
@@ -39,6 +40,7 @@ class TokenService {
         }
         
         URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
+            CircleLoader.sharedInstance.hide()
             if let error = error {
                 completionHandler(nil, error)
             } else if let data = data {
