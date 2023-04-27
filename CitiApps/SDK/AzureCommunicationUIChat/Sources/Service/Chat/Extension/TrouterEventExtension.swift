@@ -18,7 +18,9 @@ extension ChatMessageReceivedEvent {
             senderDisplayName: self.senderDisplayName,
             content: self.message,
             createdOn: self.createdOn,
-            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
+            //commenting below line as rawId from teams meeting chat isn't matching with localUserId(even for local user)
+//            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
+            isLocalUser: self.senderDisplayName == UserDefaults.standard.string(forKey: "loginUserName") ? true : false,
             metadata: self.metadata)
     }
 }
@@ -34,7 +36,7 @@ extension ChatMessageEditedEvent {
             content: self.message,
             createdOn: self.createdOn,
             editedOn: self.editedOn,
-            isLocalUser: self.sender != nil && self.sender?.rawId == localUserId,
+            isLocalUser: self.senderDisplayName == UserDefaults.standard.string(forKey: "loginUserName") ? true : false,
             metadata: self.metadata)
     }
 }

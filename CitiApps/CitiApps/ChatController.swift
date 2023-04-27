@@ -14,7 +14,7 @@ import UIKit
 
 class ChatController  {
     
-    var commServEndPointURL:String! = "https://acscallchatcomserv.communication.azure.com/"
+    var commServEndPointURL:String! = "https://acscomunicationservice.communication.azure.com/"
     var chatAdapter: ChatAdapter?
     var threadId:String! = ""
     var bankerAcsId:String! = ""
@@ -23,7 +23,7 @@ class ChatController  {
     var bankerUserName:String! = ""
     var custAcsId:String! = ""
     var custUserToken:String! = ""
-    var custUserName:String! = "Janet Johnson"
+    var custUserName:String! = UserDefaults.standard.string(forKey: "loginUserName")
     var rootViewController : UIViewController!
     
     var isForCall:Bool = false
@@ -128,7 +128,7 @@ class ChatController  {
     
     func callUserTokenAPI() {
         CircleLoader.sharedInstance.show()
-        let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+        let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
        
         guard let url = try? URL(string: fullUrl) else {
             return
@@ -161,8 +161,8 @@ class ChatController  {
         "\"originatorId\":\"\(self.bankerEmailId!)\"," +
         "\"participantName\":\"\(self.custUserName!)\"" +
         "}"
-        
-        let fullUrl: String = "https://service-20230322105302607.azurewebsites.net/api/participantDetails"
+
+        let fullUrl: String = "https://acsinfo.azurewebsites.net/api/participantDetails"
         
         guard let url = try? URL(string: fullUrl) else {
             return

@@ -112,8 +112,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func startChat (result: FlutterResult, args: NSDictionary) {
         let bankerEmailId = args.value(forKey: "user_name") as! String
         let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
-        chatController.bankerEmailId = bankerEmailId
-        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
+        chatController.bankerEmailId = "chantal@acsteamsciti.onmicrosoft.com"
+        storageUserDefaults.set("chantal@acsteamsciti.onmicrosoft.com", forKey: StorageKeys.bankerEmailId)
         chatController.isForCall = false
         chatController.prepareChatComposite()
     }
@@ -121,14 +121,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func startAudioCall (result: FlutterResult, args: NSDictionary) {
         let bankerEmailId = args.value(forKey: "user_name") as! String
         let teamsCallingViewController = TeamsCallingViewController()
-        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
+        storageUserDefaults.set("chantal@acsteamsciti.onmicrosoft.com", forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: false)
     }
     
     private func startVideoCall (result: FlutterResult, args: NSDictionary) {
         let bankerEmailId = args.value(forKey: "user_name") as! String
         let teamsCallingViewController = TeamsCallingViewController()
-        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
+        storageUserDefaults.set("chantal@acsteamsciti.onmicrosoft.com", forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: true)
     }
 

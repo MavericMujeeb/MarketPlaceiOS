@@ -60,15 +60,20 @@ class TeamsCallingViewController {
     var tokenService: TokenService!
     var teamsLink: String!
     
-    var bankerAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c355-9a77-71bf-a43a0d0088eb"
-    var custAcsId:String! = "8:acs:64a38d52-33fb-4407-a8fa-cb327efdf7d5_00000017-c35a-58a8-bcc9-3e3a0d008f97"
+    var bankerAcsId:String! = ""
+    var bankerUserToken:String! = ""
+    var bankerEmailId:String! = ""
+    var bankerUserName:String! = ""
+    var custAcsId:String! = ""
+    var custUserToken:String! = ""
+    var custUserName:String! = ""
     
     private let busyOverlay = BusyOverlay(frame: .zero)
     
     func startCall() {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
-        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acscallchattokenfunc.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
+        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acstokenfuncapp.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
             return appDelegate.authHandler.authToken
         })
         Task{
@@ -79,16 +84,71 @@ class TeamsCallingViewController {
     }
     
     func startAudioVideoCall(isVideoCall : Bool = false) {
-        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        self.callParticipantDetailsAPI(isVideoCall: isVideoCall)
+    }
+    
+    func callParticipantDetailsAPI(isVideoCall : Bool) {
+        CircleLoader.sharedInstance.show()
+        let storageUserDefaults = UserDefaults.standard
+        self.bankerEmailId = storageUserDefaults.string(forKey: "bankerEmailId")
+        self.custUserName = storageUserDefaults.string(forKey: "loginUserName")
+        let reqBody = "{" +
+        "\"originatorId\":\"\(self.bankerEmailId!)\"," +
+        "\"participantName\":\"\(self.custUserName!)\"" +
+        "}"
         
-        let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+        let fullUrl: String = "https://acsinfo.azurewebsites.net/api/participantDetails"
+        
+        guard let url = try? URL(string: fullUrl) else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" //set http method as POST
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = reqBody.data(using: .utf8)!
+        
+        let task = URLSession.shared.dataTask(with: request){
+            data, response, error in
+            CircleLoader.sharedInstance.hide()
+            if let data = data, let string = String(data: data, encoding: .utf8){
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let responseModel = try jsonDecoder.decode(ParticipantDetails.self, from: data)
+                    self.bankerUserName = responseModel.originator?.participantName
+                    self.bankerAcsId = responseModel.originator?.acsId
+                    ACSResources.bankerAcsId = self.bankerAcsId
+                    
+                    self.custUserName = responseModel.participantList?[0].participantName
+                    self.custAcsId = responseModel.participantList?[0].acsId
+                    DispatchQueue.main.async {
+                        self.startCall(isVideoCall: isVideoCall)
+                    }
+                } catch {
+                    print("Response Data error -> ")
+                    print(error)
+                }
+                print("Response Data string -> ")
+                print(string)
+            }
+        }
+        task.resume()
+    }
+    
+    func startCall(isVideoCall : Bool) {
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        CircleLoader.sharedInstance.show()
+        let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
        
         self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: fullUrl, getAuthTokenFunction: { () -> String? in
+           
             return appDelegate.authHandler.authToken
         })
         Task{
             do{
                 await self.startAudioCall(acsId: self.bankerAcsId,isVideoCall: isVideoCall)
+                CircleLoader.sharedInstance.hide()
             }
         }
     }

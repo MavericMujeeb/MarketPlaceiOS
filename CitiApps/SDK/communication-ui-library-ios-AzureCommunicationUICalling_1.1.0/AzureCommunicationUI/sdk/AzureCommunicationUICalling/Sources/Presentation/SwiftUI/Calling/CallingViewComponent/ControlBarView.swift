@@ -37,7 +37,7 @@ class ChatViewController : UIViewController{
     var chatAdapter: ChatAdapter?
     //    var threadId:String!
     
-    var commServEndPointURL:String! = "https://acscallchatcomserv.communication.azure.com/"
+    var commServEndPointURL:String! = "https://acscomunicationservice.communication.azure.com/"
     var threadId:String! = ""
     var bankerAcsId:String! = ""
     var bankerUserToken:String! = ""
@@ -45,7 +45,7 @@ class ChatViewController : UIViewController{
     var bankerUserName:String! = ""
     var custAcsId:String! = ""
     var custUserToken:String! = ""
-    var custUserName:String! = "Janet Johnson"
+    var custUserName:String! = UserDefaults.standard.string(forKey: "loginUserName")
     var isTeamsChat : Bool!
     
     override func viewDidLoad() {
@@ -141,7 +141,7 @@ class ChatViewController : UIViewController{
     
     func callUserTokenAPI() {
         let progressIndiactor = self.showProgressIndicator
-        let fullUrl: String = "https://acscallchattokenfunc.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+        let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
         
         guard let url = try? URL(string: fullUrl) else {
             return
@@ -176,7 +176,7 @@ class ChatViewController : UIViewController{
         "\"participantName\":\"\(self.custUserName!)\"" +
         "}"
         
-        let fullUrl: String = "https://service-20230322105302607.azurewebsites.net/api/participantDetails"
+        let fullUrl: String = "https://acsinfo.azurewebsites.net/api/participantDetails"
         
         guard let url = try? URL(string: fullUrl) else {
             return
@@ -250,7 +250,7 @@ class ChatViewController : UIViewController{
         }
         
         self.chatAdapter = ChatAdapter(
-            endpoint: "https://acscallchatcomserv.communication.azure.com/",
+            endpoint: self.commServEndPointURL,
             identifier: communicationIdentifier,
             credential: communicationTokenCredential,
             threadId: threadId,

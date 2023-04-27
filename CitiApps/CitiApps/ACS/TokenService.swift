@@ -95,6 +95,7 @@ class TokenService {
                     let res = try JSONDecoder().decode(TokenResponse.self, from: data)
                     completionHandler(res.token, nil)
                 } catch let error {
+                    print(error)
                     if let parsedPayload = data.asPrettyJson {
                         print("Payload:\n\(parsedPayload)")
                     }

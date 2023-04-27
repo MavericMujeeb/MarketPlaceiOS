@@ -7,7 +7,7 @@
 
 var users = [
     "janetjohnsonfamily83@gmail.com": ["name":"Janet Johnson","email":"janetjohnsonfamily83@gmail.com","userid":"a2194b29-07bb-48bb-8607-6151334cf904"],
-    "johnwilliamsfamily9@gmail.com": ["name":"Smith Johnson","email":"johnwilliamsfamily9@gmail.com","userid":"8294e32a-d846-440d-b875-87b171b80787"],
+    "johnwilliamsfamily9@gmail.com": ["name":"Johnson williams","email":"johnwilliamsfamily9@gmail.com","userid":"8294e32a-d846-440d-b875-87b171b80787"],
 ]
 
 var loggedInUser : String!
@@ -108,11 +108,12 @@ class ViewController : UIViewController {
             }
         }
     }
+    let storageUserDefaults = UserDefaults.standard
     
     @IBAction func onLoginAction(_ sender: Any) {
         //Added for testing purpose
-        makeCallToClient()
-        return
+//        makeCallToClient()
+//        return
         if(self.username.text == "" || self.password.text == "") {
             return
         }
@@ -139,7 +140,7 @@ class ViewController : UIViewController {
         //TODO:Setting this info globally, might change it later.
         loggedInUser = self.username.text
         userid = users[self.username.text!]?["userid"]
-        
+        storageUserDefaults.set(users[self.username.text!]?["name"], forKey: StorageKeys.loginUserName)
         var userInfo = UserInfoData(name: users[self.username.text!]?["name"], email: users[self.username.text!]?["email"], id: users[self.username.text!]?["userid"])
         var data = try! JSONEncoder().encode(userInfo)
         var userStr = String(data: data, encoding: .utf8)
