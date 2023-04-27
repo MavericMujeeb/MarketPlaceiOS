@@ -65,7 +65,7 @@ struct MessageListView: View {
                 content: {
                     LazyVStack(spacing: 0) {
                         Section(footer: previousFetchActivityIndicator) {
-                            ForEach(viewModel.messages.reversed()) { message in
+                            ForEach(viewModel.messages) { message in
                                 HStack(spacing: Constants.messageSendStatusViewPadding) {
                                     createMessage(message: message, messages: viewModel.messages)
                                         .onAppear {
@@ -80,14 +80,15 @@ struct MessageListView: View {
                                     createMessageSendStatus(message: message)
                                 }
                             }
-                            .flippedUpsideDown()
+//                            .flippedUpsideDown()
                         }
                     }
                 })
-            .flippedUpsideDown()
+//            .flippedUpsideDown()
             .listStyle(.plain)
             .environment(\.defaultMinListRowHeight, Constants.defaultMinListRowHeight)
             .onChange(of: viewModel.shouldScrollToBottom) { _ in
+                let _ = print("viewModel.shouldScrollToBottom : \(viewModel.shouldScrollToBottom)")
                 scrollToBottom(proxy: scrollProxy)
             }
             .onChange(of: viewModel.shouldScrollToId) { _ in
@@ -96,11 +97,15 @@ struct MessageListView: View {
         }.onReceive(keyboardWillShow) { _ in
             viewModel.shouldScrollToBottom = true
         }
+        
     }
 
     private func scrollToBottom(proxy: ScrollViewProxy) {
+        print(#function)
         if viewModel.shouldScrollToBottom {
+            let _ = print("count of messages :\(viewModel.messages.count)")
             if let lastMessageId = viewModel.messages.last?.id {
+                print("lastMessageId is :\(viewModel.messages.last?.id)")
                 withAnimation(.linear(duration: 0.1)) {
                     proxy.scrollTo(lastMessageId, anchor: .bottom)
                 }
