@@ -68,43 +68,61 @@ struct TextMessageView: View {
                 timeStamp
                 edited
             }
-//            let _ = print("hi! its a message view and has url")
+            //            let _ = print("hi! its a message view and has url")
             if let url =  messageModel.checkContentIsUrl()  {
                 if #available(iOS 15.0, *) {
                     VStack{
+                        
                         Text(messageModel.getContentLabel()).foregroundColor(.blue)
+                            .underline()
+                            .onTapGesture {
+                                guard let url = URL(string: String(url)) else { return }
+                                UIApplication.shared.open(url)
+                            }
+                            .font(.body)
+                            .contextMenu {
+                                Button( action: {
+                                    UIPasteboard.general.setValue(messageModel.getContentLabel(), forPasteboardType: "public.plain-text")
+                                }) {
+                                    Text("Copy to clipboard")
+                                    Image(systemName: "doc.on.doc")
+                                }
+                            }
+                    }
+                    
+                } else {
+                    Text(messageModel.getContentLabel()).foregroundColor(.blue)
                         .underline()
                         .onTapGesture {
                             guard let url = URL(string: String(url)) else { return }
                             UIApplication.shared.open(url)
                         }
                         .font(.body)
-                    }
-                    .textSelection(.enabled)
-                } else {
-                    Text(messageModel.getContentLabel()).foregroundColor(.blue)
-                    .underline()
-                    .onTapGesture {
-                        guard let url = URL(string: String(url)) else { return }
-                        UIApplication.shared.open(url)
-                    }
-                    .font(.body)
                     
-                 }
+                }
             } else {
                 if #available(iOS 15.0, *) {
                     VStack{
+                        let _ = print("message id is :\(messageModel.id) and msg is :\(messageModel.getContentLabel())")
                         Text(messageModel.getContentLabel())
                             .font(.body)
+                            .contextMenu {
+                                Button( action: {
+                                    UIPasteboard.general.setValue(messageModel.getContentLabel(), forPasteboardType: "public.plain-text")
+                                }) {
+                                    Text("Copy to clipboard")
+                                    Image(systemName: "doc.on.doc")
+                                }
+                            }
                     }
-                    .textSelection(.enabled)
+                    
                 } else {
                     Text(messageModel.getContentLabel())
                         .font(.body)
                     
-                 }
+                }
             }
-           
+            
         }
     }
     
