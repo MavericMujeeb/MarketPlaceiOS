@@ -10,9 +10,15 @@ import MSAL
 import Flutter
 import FluentUI
 import FlutterPluginRegistrant
+import PushKit
+import AzureCommunicationCalling
+
+#if canImport(Combine)
+import Combine
+#endif
 
 @main
-class AppDelegate: FlutterAppDelegate {
+class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate {
 
     private (set) var appSettings: AppSettings!
     private (set) var authHandler: AADAuthHandler!
@@ -20,8 +26,26 @@ class AppDelegate: FlutterAppDelegate {
     
     lazy var flutterEngine = FlutterEngine()
     var controller : FlutterViewController!
+    
+    let appPubs = AppPubs()
+    private var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        if #available(iOS 10.0, *){
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+                (granted, error) in
+
+                if (granted)
+                {
+                    DispatchQueue.main.async {
+                        application.registerForRemoteNotifications()
+                    }
+                }
+            }
+        }
+        
         initializeDependencies()
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -53,5 +77,61 @@ class AppDelegate: FlutterAppDelegate {
         UINavigationBar.appearance().tintColor = .white
         UITabBar.appearance().tintColor = .white
     }
+    
+    
+    func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
+        print("pushCredentials")
+        print(registry.pushToken(for: .voIP))
+        appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
+    }
+
+    // Handle incoming pushes
+    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
+        print("didReceiveIncomingPushWith")
+        let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
+        let userDefaults: UserDefaults = .standard
+        let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
+        if isCallKitInSDKEnabled {
+            #if BETA
+            let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
+            CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
+                if error == nil {
+                    self.appPubs.pushPayload = payload
+                }
+            }
+            #endif
+        } else {
+            let incomingCallReporter = CallKitIncomingCallReporter()
+            incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
+                                                   caller: callNotification.from,
+                                                   callerDisplayName: callNotification.fromDisplayName,
+                                                    videoEnabled: callNotification.incomingWithVideo) { error in
+                if error == nil {
+                    self.appPubs.pushPayload = payload
+                }
+            }
+        }
+    }
+
+    override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        print("didRegisterForRemoteNotificationsWithDeviceToken")
+        // Create a push registry object
+        // Set the registry's delegate to self
+        voipRegistry.delegate = self
+        // Set the push type to VoIP
+        voipRegistry.desiredPushTypes = [PKPushType.voIP]
+    }
 }
+
+class AppPubs {
+    init() {
+        self.pushPayload = nil
+        self.pushToken = nil
+    }
+
+    @Published var pushPayload: PKPushPayload?
+    @Published var pushToken: Data?
+}
+
 

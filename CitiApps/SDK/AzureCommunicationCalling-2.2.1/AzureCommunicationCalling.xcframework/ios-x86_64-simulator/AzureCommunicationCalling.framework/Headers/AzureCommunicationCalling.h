@@ -68,7 +68,17 @@ typedef NS_OPTIONS(NSInteger, ACSCallingCommunicationErrors)
     /// No multiple connections with different cloud type per app is allowed.
     ACSCallingCommunicationErrorsNoMultipleConnectionsWithDifferentClouds = 33554432,
     /// No active audio stream to stop.
-    ACSCallingCommunicationErrorsNoActiveAudioStreamToStop = 67108864
+    ACSCallingCommunicationErrorsNoActiveAudioStreamToStop = 67108864,
+    /// Start teams captions failed
+    ACSCallingCommunicationErrorsTeamsCaptionsCallFeatureStartFailed = 536870912,
+    /// Teams Captions set spoken language failed
+    ACSCallingCommunicationErrorsTeamsCaptionsCallFeatureSetSpokenLanguageFailed = 8192,
+    /// Teams Captions set caption language failed
+    ACSCallingCommunicationErrorsTeamsCaptionsCallFeatureSetCaptionLanguageFailed = 2097152,
+    /// Feature extension not found.
+    ACSCallingCommunicationErrorsFeatureExtensionNotFound = 134217728,
+    /// Video effect not supported by device
+    ACSCallingCommunicationErrorsVideoEffectNotSupported = 268435456
 } NS_SWIFT_NAME(CallingCommunicationErrors);
 
 /// Local and Remote Video Stream types
@@ -148,6 +158,15 @@ typedef NS_ENUM(NSInteger, ACSAudioStreamKind)
     /// Audio
     ACSAudioStreamKindVirtual = 2
 } NS_SWIFT_NAME(AudioStreamKind);
+
+typedef NS_ENUM(NSInteger, ACSPushNotificationEventType)
+{
+    ACSPushNotificationEventTypeNone = 0,
+    ACSPushNotificationEventTypeIncomingCall = 107,
+    ACSPushNotificationEventTypeIncomingGroupCall = 109,
+    ACSPushNotificationEventTypeIncomingPstnCall = 111,
+    ACSPushNotificationEventTypeStopRinging = 110
+} NS_SWIFT_NAME(PushNotificationEventType);
 
 typedef NS_ENUM(NSInteger, ACSParticipantRole)
 {
@@ -288,6 +307,14 @@ typedef NS_ENUM(NSInteger, ACSRecordingState)
     ACSRecordingStateEnded = 2
 } NS_SWIFT_NAME(RecordingState);
 
+typedef NS_ENUM(NSInteger, ACSCaptionsResultType)
+{
+    /// Text contains partially spoken sentence.
+    ACSCaptionsResultTypePartial = 0,
+    /// Sentence has been completely transcribed.
+    ACSCaptionsResultTypeFinal = 1
+} NS_SWIFT_NAME(CaptionsResultType);
+
 /// Informs how media frames will be available for encoding or decoding.
 typedef NS_ENUM(NSInteger, ACSVideoFrameKind)
 {
@@ -325,6 +352,19 @@ typedef NS_ENUM(NSInteger, ACSResultType)
     /// Sentence has been completely transcribed.
     ACSResultTypeFinal = 1
 } NS_SWIFT_NAME(ResultType);
+
+/// Represents a diagnostic quality scale.
+typedef NS_ENUM(NSInteger, ACSDiagnosticQuality)
+{
+    /// Unknown
+    ACSDiagnosticQualityUnknown = 0,
+    /// Good
+    ACSDiagnosticQualityGood = 1,
+    /// Poor
+    ACSDiagnosticQualityPoor = 2,
+    /// Bad
+    ACSDiagnosticQualityBad = 3
+} NS_SWIFT_NAME(DiagnosticQuality);
 
 // MARK: Forward declarations.
 @class ACSOutgoingVideoStream;
@@ -371,8 +411,14 @@ typedef NS_ENUM(NSInteger, ACSResultType)
 @class ACSRecordingInfo;
 @class ACSRecordingCallFeature;
 @class ACSTranscriptionCallFeature;
+@class ACSTeamsCaptionsCallFeature;
+@class ACSStartCaptionsOptions;
+@class ACSTeamsCaptionsInfo;
 @class ACSDominantSpeakersCallFeature;
 @class ACSDominantSpeakersInfo;
+@class ACSRaiseHandCallFeature;
+@class ACSRaisedHand;
+@class ACSRaisedHandChangedEventArgs;
 @class ACSCreateViewOptions;
 @class ACSVideoFormat;
 @class ACSVideoFrameSenderChangedEventArgs;
@@ -386,6 +432,13 @@ typedef NS_ENUM(NSInteger, ACSResultType)
 @class ACSRoomCallLocator;
 @class ACSLocalAudioStream;
 @class ACSRemoteAudioStream;
+@class ACSDiagnosticsCallFeature;
+@class ACSNetworkDiagnostics;
+@class ACSNetworkDiagnosticValues;
+@class ACSFlagDiagnosticChangedEventArgs;
+@class ACSQualityDiagnosticChangedEventArgs;
+@class ACSMediaDiagnostics;
+@class ACSMediaDiagnosticValues;
 @protocol ACSLocalVideoStreamDelegate;
 @class ACSLocalVideoStreamEvents;
 @protocol ACSCallAgentDelegate;
@@ -402,14 +455,22 @@ typedef NS_ENUM(NSInteger, ACSResultType)
 @class ACSRecordingCallFeatureEvents;
 @protocol ACSTranscriptionCallFeatureDelegate;
 @class ACSTranscriptionCallFeatureEvents;
+@protocol ACSTeamsCaptionsCallFeatureDelegate;
+@class ACSTeamsCaptionsCallFeatureEvents;
 @protocol ACSDominantSpeakersCallFeatureDelegate;
 @class ACSDominantSpeakersCallFeatureEvents;
+@protocol ACSRaiseHandCallFeatureDelegate;
+@class ACSRaiseHandCallFeatureEvents;
 @protocol ACSRawOutgoingVideoStreamOptionsDelegate;
 @class ACSRawOutgoingVideoStreamOptionsEvents;
 @protocol ACSScreenShareRawOutgoingVideoStreamDelegate;
 @class ACSScreenShareRawOutgoingVideoStreamEvents;
 @protocol ACSVirtualRawOutgoingVideoStreamDelegate;
 @class ACSVirtualRawOutgoingVideoStreamEvents;
+@protocol ACSNetworkDiagnosticsDelegate;
+@class ACSNetworkDiagnosticsEvents;
+@protocol ACSMediaDiagnosticsDelegate;
+@class ACSMediaDiagnosticsEvents;
 
 NS_SWIFT_NAME(LocalVideoStreamEvents)
 @interface ACSLocalVideoStreamEvents : NSObject
@@ -431,7 +492,8 @@ NS_SWIFT_NAME(CallEvents)
 @property (copy, nullable) void (^onRoleChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onRemoteParticipantsUpdated)(ACSParticipantsUpdatedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onLocalVideoStreamsUpdated)(ACSLocalVideoStreamsUpdatedEventArgs * _Nonnull);
-@property (copy, nullable) void (^onIsMutedChanged)(ACSPropertyChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onIsMutedChanged)(ACSPropertyChangedEventArgs * _Nonnull) DEPRECATED_MSG_ATTRIBUTE("Deprecated use OnIsOutgoingAudioStateChanged instead");
+@property (copy, nullable) void (^onIsOutgoingAudioStateChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 @property (copy, nullable) void (^onTotalParticipantCountChanged)(ACSPropertyChangedEventArgs * _Nonnull);
 - (void) removeAll;
 @end
@@ -472,9 +534,23 @@ NS_SWIFT_NAME(TranscriptionCallFeatureEvents)
 - (void) removeAll;
 @end
 
+NS_SWIFT_NAME(TeamsCaptionsCallFeatureEvents)
+@interface ACSTeamsCaptionsCallFeatureEvents : NSObject
+@property (copy, nullable) void (^onCaptionsActiveChanged)(ACSPropertyChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onCaptionsReceived)(ACSTeamsCaptionsInfo * _Nonnull);
+- (void) removeAll;
+@end
+
 NS_SWIFT_NAME(DominantSpeakersCallFeatureEvents)
 @interface ACSDominantSpeakersCallFeatureEvents : NSObject
 @property (copy, nullable) void (^onDominantSpeakersChanged)(ACSPropertyChangedEventArgs * _Nonnull);
+- (void) removeAll;
+@end
+
+NS_SWIFT_NAME(RaiseHandCallFeatureEvents)
+@interface ACSRaiseHandCallFeatureEvents : NSObject
+@property (copy, nullable) void (^onRaisedHandReceived)(ACSRaisedHandChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onLoweredHandReceived)(ACSRaisedHandChangedEventArgs * _Nonnull);
 - (void) removeAll;
 @end
 
@@ -494,6 +570,35 @@ NS_SWIFT_NAME(ScreenShareRawOutgoingVideoStreamEvents)
 NS_SWIFT_NAME(VirtualRawOutgoingVideoStreamEvents)
 @interface ACSVirtualRawOutgoingVideoStreamEvents : NSObject
 @property (copy, nullable) void (^onOutgoingVideoStreamStateChanged)(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull);
+- (void) removeAll;
+@end
+
+NS_SWIFT_NAME(NetworkDiagnosticsEvents)
+@interface ACSNetworkDiagnosticsEvents : NSObject
+@property (copy, nullable) void (^onNoNetworkChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onNetworkRelaysNotReachableChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onNetworkReconnectChanged)(ACSQualityDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onNetworkReceiveQualityChanged)(ACSQualityDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onNetworkSendQualityChanged)(ACSQualityDiagnosticChangedEventArgs * _Nonnull);
+- (void) removeAll;
+@end
+
+NS_SWIFT_NAME(MediaDiagnosticsEvents)
+@interface ACSMediaDiagnosticsEvents : NSObject
+@property (copy, nullable) void (^onSpeakerNotFunctioningChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onSpeakerNotFunctioningDeviceInUseChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onSpeakerMutedChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onSpeakerVolumeIsZeroChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onNoSpeakerDevicesEnumeratedChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onSpeakingWhileMicrophoneIsMutedChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onNoMicrophoneDevicesEnumeratedChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onMicrophoneNotFunctioningDeviceInUseChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onCameraFreezeChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onCameraStartFailedChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onCameraStartTimedOutChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onMicrophoneNotFunctioningChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onMicrophoneMuteUnexpectedlyChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
+@property (copy, nullable) void (^onCameraPermissionDeniedChanged)(ACSFlagDiagnosticChangedEventArgs * _Nonnull);
 - (void) removeAll;
 @end
 
@@ -527,7 +632,8 @@ NS_SWIFT_NAME(CallDelegate)
 - (void)onRoleChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeRole:));
 - (void)onRemoteParticipantsUpdated:(ACSCall * _Nonnull)call :(ACSParticipantsUpdatedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didUpdateRemoteParticipant:));
 - (void)onLocalVideoStreamsUpdated:(ACSCall * _Nonnull)call :(ACSLocalVideoStreamsUpdatedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didUpdateLocalVideoStreams:));
-- (void)onIsMutedChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeMuteState:));
+- (void)onIsMutedChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeMuteState:)) DEPRECATED_MSG_ATTRIBUTE("Deprecated use call(_:didUpdateOutgoingAudioState:) instead");
+- (void)onIsOutgoingAudioStateChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didUpdateOutgoingAudioState:));
 - (void)onTotalParticipantCountChanged:(ACSCall * _Nonnull)call :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( call(_:didChangeTotalParticipantCount:));
 @end
 
@@ -583,12 +689,32 @@ NS_SWIFT_NAME(TranscriptionCallFeatureDelegate)
 @end
 
 /**
+ * A set of methods that are called by ACSTeamsCaptionsCallFeature in response to important events.
+ */
+NS_SWIFT_NAME(TeamsCaptionsCallFeatureDelegate)
+@protocol ACSTeamsCaptionsCallFeatureDelegate <NSObject>
+@optional
+- (void)onCaptionsActiveChanged:(ACSTeamsCaptionsCallFeature * _Nonnull)teamsCaptionsCallFeature :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( teamsCaptionsCallFeature(_:didChangeCaptionsActiveState:));
+- (void)onCaptionsReceived:(ACSTeamsCaptionsCallFeature * _Nonnull)teamsCaptionsCallFeature :(ACSTeamsCaptionsInfo * _Nonnull)captionsInfo NS_SWIFT_NAME( teamsCaptionsCallFeature(_:didReceiveCaptions:));
+@end
+
+/**
  * A set of methods that are called by ACSDominantSpeakersCallFeature in response to important events.
  */
 NS_SWIFT_NAME(DominantSpeakersCallFeatureDelegate)
 @protocol ACSDominantSpeakersCallFeatureDelegate <NSObject>
 @optional
 - (void)onDominantSpeakersChanged:(ACSDominantSpeakersCallFeature * _Nonnull)dominantSpeakersCallFeature :(ACSPropertyChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( dominantSpeakersCallFeature(_:didChangeDominantSpeakers:));
+@end
+
+/**
+ * A set of methods that are called by ACSRaiseHandCallFeature in response to important events.
+ */
+NS_SWIFT_NAME(RaiseHandCallFeatureDelegate)
+@protocol ACSRaiseHandCallFeatureDelegate <NSObject>
+@optional
+- (void)onRaisedHandReceived:(ACSRaiseHandCallFeature * _Nonnull)raiseHandCallFeature :(ACSRaisedHandChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( raiseHandCallFeature(_:didReceiveRaisedHand:));
+- (void)onLoweredHandReceived:(ACSRaiseHandCallFeature * _Nonnull)raiseHandCallFeature :(ACSRaisedHandChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( raiseHandCallFeature(_:didReceiveLoweredHand:));
 @end
 
 /**
@@ -617,6 +743,41 @@ NS_SWIFT_NAME(VirtualRawOutgoingVideoStreamDelegate)
 @protocol ACSVirtualRawOutgoingVideoStreamDelegate <NSObject>
 @optional
 - (void)onOutgoingVideoStreamStateChanged:(ACSVirtualRawOutgoingVideoStream * _Nonnull)virtualRawOutgoingVideoStream :(ACSOutgoingVideoStreamStateChangedEventArgs * _Nonnull)args NS_SWIFT_NAME( virtualRawOutgoingVideoStream(_:didChangeOutgoingVideoStreamState:));
+@end
+
+/**
+ * A set of methods that are called by ACSNetworkDiagnostics in response to important events.
+ */
+NS_SWIFT_NAME(NetworkDiagnosticsDelegate)
+@protocol ACSNetworkDiagnosticsDelegate <NSObject>
+@optional
+- (void)onNoNetworkChanged:(ACSNetworkDiagnostics * _Nonnull)networkDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(networkDiagnostics(_:didChangeNoNetworkValue:));
+- (void)onNetworkRelaysNotReachableChanged:(ACSNetworkDiagnostics * _Nonnull)networkDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(networkDiagnostics(_:didChangeNetworkRelaysNotReachableValue:));
+- (void)onNetworkReconnectChanged:(ACSNetworkDiagnostics * _Nonnull)networkDiagnostics :(ACSQualityDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(networkDiagnostics(_:didChangeNetworkReconnectValue:));
+- (void)onNetworkReceiveQualityChanged:(ACSNetworkDiagnostics * _Nonnull)networkDiagnostics :(ACSQualityDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(networkDiagnostics(_:didChangeNetworkReceiveQualityValue:));
+- (void)onNetworkSendQualityChanged:(ACSNetworkDiagnostics * _Nonnull)networkDiagnostics :(ACSQualityDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(networkDiagnostics(_:didChangeNetworkSendQualityValue:));
+@end
+
+/**
+ * A set of methods that are called by ACSMediaDiagnostics in response to important events.
+ */
+NS_SWIFT_NAME(MediaDiagnosticsDelegate)
+@protocol ACSMediaDiagnosticsDelegate <NSObject>
+@optional
+- (void)onSpeakerNotFunctioningChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeSpeakerNotFunctioningValue:));
+- (void)onSpeakerNotFunctioningDeviceInUseChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeSpeakerNotFunctioningDeviceInUseValue:));
+- (void)onSpeakerMutedChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeSpeakerMutedValue:));
+- (void)onSpeakerVolumeIsZeroChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeSpeakerVolumeIsZeroValue:));
+- (void)onNoSpeakerDevicesEnumeratedChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeNoSpeakerDevicesEnumeratedValue:));
+- (void)onSpeakingWhileMicrophoneIsMutedChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeSpeakingWhileMicrophoneIsMutedValue:));
+- (void)onNoMicrophoneDevicesEnumeratedChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeNoMicrophoneDevicesEnumeratedValue:));
+- (void)onMicrophoneNotFunctioningDeviceInUseChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeMicrophoneNotFunctioningDeviceInUseValue:));
+- (void)onCameraFreezeChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeCameraFreezeValue:));
+- (void)onCameraStartFailedChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeCameraStartFailedValue:));
+- (void)onCameraStartTimedOutChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeCameraStartTimedOutValue:));
+- (void)onMicrophoneNotFunctioningChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeMicrophoneNotFunctioningValue:));
+- (void)onMicrophoneMuteUnexpectedlyChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeMicrophoneMuteUnexpectedlyValue:));
+- (void)onCameraPermissionDeniedChanged:(ACSMediaDiagnostics * _Nonnull)mediaDiagnostics :(ACSFlagDiagnosticChangedEventArgs * _Nonnull)args NS_SWIFT_NAME(mediaDiagnostics(_:didChangeCameraPermissionDeniedValue:));
 @end
 
 /// Contains information about common properties between different types of outgoing video streams
@@ -728,10 +889,12 @@ NS_SWIFT_NAME(AudioOptions)
 -(void)dealloc;
 
 /// Start an outgoing or accept incoming call muted (true) or un-muted(false)
-@property BOOL muted;
+@property BOOL muted DEPRECATED_MSG_ATTRIBUTE("Deprecated use outgoingAudioMuted instead");
+
+@property BOOL outgoingAudioMuted;
 
 /// Start an outgoing or accept incoming call speaker muted (true) or un-muted(false)
-@property BOOL speakerMuted;
+@property BOOL incomingAudioMuted;
 
 @property (retain, nullable) ACSIncomingAudioStream * incomingAudioStream;
 
@@ -911,6 +1074,8 @@ NS_SWIFT_NAME(PushNotificationInfo)
 /// Indicates whether the incoming call has a video or not
 @property (readonly) BOOL incomingWithVideo;
 
+@property (readonly) ACSPushNotificationEventType eventType;
+
 // Class extension begins for PushNotificationInfo.
 @property (retain, readonly, nonnull) id<CommunicationIdentifier> from;
 @property (retain, readonly, nonnull) id<CommunicationIdentifier> to;
@@ -973,7 +1138,7 @@ NS_SWIFT_NAME(CallAgent)
  */
 @property(nonatomic, strong, nonnull, readonly) ACSCallAgentEvents *events;
 
-/// Releases all the resources held by CallAgent. CallAgent should be destroyed/nullified after dispose.
+/// Releases all the resources held by CallAgent. CallAgent should be destroyed/nullified after dispose. Closes this resource. This gets projected to java.lang.AutoCloseable.close() in Java projection.
 -(void)dispose;
 
 /// Unregister all previously registered devices from receiving incoming calls push notifications.
@@ -1018,10 +1183,12 @@ NS_SWIFT_NAME(Call)
 @property (retain, nonnull, readonly) ACSCallInfo * info;
 
 /// Whether the local microphone is muted or not.
-@property (readonly) BOOL isMuted;
+@property (readonly) BOOL isMuted DEPRECATED_MSG_ATTRIBUTE("Deprecated use isOutgoingAudioMuted instead");
+
+@property (readonly) BOOL isOutgoingAudioMuted;
 
 /// Whether the local speaker is muted or not.
-@property (readonly) BOOL isSpeakerMuted;
+@property (readonly) BOOL isIncomingAudioMuted;
 
 /// The identity of the caller
 @property (retain, nonnull, readonly) ACSCallerInfo * callerInfo;
@@ -1052,13 +1219,16 @@ NS_SWIFT_NAME(Call)
 -(void)stopAudio:(ACSMediaStreamDirection)direction withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( stopAudio(direction:completionHandler:));
 
 /// Mute local microphone.
--(void)muteWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( mute(completionHandler:));
+-(void)muteWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( mute(completionHandler:)) DEPRECATED_MSG_ATTRIBUTE("Deprecated use updateOutgoingAudio(mute:) instead");
 
-/// Mutes speaker.
--(void)muteSpeaker:(BOOL)mute withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( speaker(mute:completionHandler:));
+/// Mutes/Unmutes speaker.
+-(void)updateIncomingAudio:(BOOL)mute withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( updateIncomingAudio(mute:completionHandler:));
+
+/// Mutes/Unmutes microphone.
+-(void)updateOutgoingAudio:(BOOL)mute withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( updateOutgoingAudio(mute:completionHandler:));
 
 /// Unmute local microphone.
--(void)unmuteWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( unmute(completionHandler:));
+-(void)unmuteWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( unmute(completionHandler:)) DEPRECATED_MSG_ATTRIBUTE("Deprecated use updateOutgoingAudio(mute:) instead");
 
 /// Send DTMF tone
 -(void)sendDtmf:(ACSDtmfTone)tone withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( sendDtmf(tone:completionHandler:));
@@ -1479,6 +1649,83 @@ NS_SWIFT_NAME(TranscriptionCallFeature)
 
 @end
 
+/// Call Feature for managing captions for a teams interop call.
+NS_SWIFT_NAME(TeamsCaptionsCallFeature)
+@interface ACSTeamsCaptionsCallFeature : ACSCallFeature
+-(nonnull instancetype)init NS_UNAVAILABLE;
+@property (copy, nonnull, readonly) NSArray<NSString *> * supportedSpokenLanguages;
+
+@property (copy, nonnull, readonly) NSArray<NSString *> * supportedCaptionLanguages;
+
+/// Indicates if captions is active in current call.
+@property (readonly) BOOL isCaptionsFeatureActive;
+
+/**
+ * The delegate that will handle events from the ACSTeamsCaptionsCallFeature.
+ */
+@property(nonatomic, weak, nullable) id<ACSTeamsCaptionsCallFeatureDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSTeamsCaptionsCallFeature.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSTeamsCaptionsCallFeatureEvents *events;
+
+/// Starts the captions.
+-(void)startCaptions:(ACSStartCaptionsOptions * _Nullable )options withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( startCaptions(options:completionHandler:));
+
+/// Stop the captions.
+-(void)stopCaptionsWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( stopCaptions(completionHandler:));
+
+/// Set the spoken language.
+-(void)setSpokenLanguage:(NSString * _Nonnull )language withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( set(spokenLanguage:completionHandler:));
+
+/// Set the captions language.
+-(void)setCaptionLanguage:(NSString * _Nonnull )language withCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( set(captionLanguage:completionHandler:));
+
+@end
+
+NS_SWIFT_NAME(StartCaptionsOptions)
+@interface ACSStartCaptionsOptions : NSObject
+-(nonnull instancetype)init;
+
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// language in which the speaker is speaking.
+@property (retain, nonnull) NSString * spokenLanguage;
+
+@end
+
+/// Captions details for teams captions call feature.
+NS_SWIFT_NAME(TeamsCaptionsInfo)
+@interface ACSTeamsCaptionsInfo : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Information about the speaker.
+@property (retain, nonnull, readonly) ACSCallerInfo * speaker;
+
+/// The original text with no transcribed.
+@property (retain, nonnull, readonly) NSString * spokenText;
+
+/// language identifier for the speaker.
+@property (retain, nonnull, readonly) NSString * spokenLanguage;
+
+/// The transcribed text.
+@property (retain, nonnull, readonly) NSString * captionText;
+
+/// language identifier for the captions text.
+@property (retain, nonnull, readonly) NSString * captionLanguage;
+
+/// CaptionsResultType is Intermediate if text contains partially spoken sentence. It is set to final once the sentence has been completely transcribed.
+@property (readonly) ACSCaptionsResultType resultType;
+
+/// Timestamp denoting the time when the corresponding speech was made. timestamp is received from call recorder in C# ticks since 1/1/1900 (NTP Epoch) timestamp is converted to ms since 1/1/1970 (UNIX Epoch) 10000 C# ticks / 1 ms
+@property (retain, nonnull, readonly) NSDate * timestamp;
+
+@end
+
 /// Call Feature for managing the dominant speakers of a call
 NS_SWIFT_NAME(DominantSpeakersCallFeature)
 @interface ACSDominantSpeakersCallFeature : ACSCallFeature
@@ -1505,12 +1752,74 @@ NS_SWIFT_NAME(DominantSpeakersInfo)
 /// Deallocates the memory occupied by this object.
 -(void)dealloc;
 
+/// Last updated time of the current dominant speakers list
+@property (retain, nonnull, readonly) NSDate * lastUpdatedAt NS_SWIFT_NAME(lastUpdated);
+
 // Class extension begins for DominantSpeakersInfo.
 /// List of the current dominant speakers
 @property(nonatomic, readonly, nonnull) NSArray<id<CommunicationIdentifier>> * speakers;
-/// Timestamp with the time of the current dominant speakers
-@property (copy, readonly, nonnull) NSDate * timestamp;
 // Class extension ends for DominantSpeakersInfo.
+
+@end
+
+/// Call Feature for managing raise hand states for a call.
+NS_SWIFT_NAME(RaiseHandCallFeature)
+@interface ACSRaiseHandCallFeature : ACSCallFeature
+-(nonnull instancetype)init NS_UNAVAILABLE;
+@property (copy, nonnull, readonly) NSArray<ACSRaisedHand *> * raisedHands;
+
+/**
+ * The delegate that will handle events from the ACSRaiseHandCallFeature.
+ */
+@property(nonatomic, weak, nullable) id<ACSRaiseHandCallFeatureDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSRaiseHandCallFeature.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSRaiseHandCallFeatureEvents *events;
+
+/// Send request to raise hand for local user.
+-(void)raiseHandWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( raiseHand(completionHandler:));
+
+/// Send request to lower hand for local user.
+-(void)lowerHandWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( lowerHand(completionHandler:));
+
+/// Send request to lower raise hand raise status for every user on the call.
+-(void)lowerAllHandsWithCompletionHandler:(void (^ _Nonnull )(NSError * _Nullable error))completionHandler NS_SWIFT_NAME( lowerAllHands(completionHandler:));
+
+// Class extension begins for RaiseHandCallFeature.
+-(void)lowerHands:(NSArray<id<CommunicationIdentifier>>* _Nonnull)participants
+withCompletionHandler:(void (^ _Nonnull)(NSError *error))completionHandler NS_SWIFT_NAME( lowerHands(participants:completionHandler:));
+// Class extension ends for RaiseHandCallFeature.
+
+@end
+
+/// Raise hand details for Call.
+NS_SWIFT_NAME(RaisedHand)
+@interface ACSRaisedHand : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Order of raise hand events.
+@property (readonly) int order;
+
+// Class extension begins for RaisedHand.
+@property(nonatomic, readonly, nonnull) id<CommunicationIdentifier> identifier;
+// Class extension ends for RaisedHand.
+
+@end
+
+/// Raise hand details for Call.
+NS_SWIFT_NAME(RaisedHandChangedEventArgs)
+@interface ACSRaisedHandChangedEventArgs : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+// Class extension begins for RaisedHandChangedEventArgs.
+@property(nonatomic, readonly, nonnull) id<CommunicationIdentifier> identifier;
+// Class extension ends for RaisedHandChangedEventArgs.
 
 @end
 
@@ -1528,6 +1837,7 @@ NS_SWIFT_NAME(CreateViewOptions)
 
 @end
 
+/// Describes details of the video frame content that the application is capable of generating. ACS Calling SDK will dynamically select the VideoFormat best matching with network conditions at runtime.
 NS_SWIFT_NAME(VideoFormat)
 @interface ACSVideoFormat : NSObject
 -(nonnull instancetype)init;
@@ -1708,6 +2018,130 @@ NS_SWIFT_NAME(LocalAudioStream)
 NS_SWIFT_NAME(RemoteAudioStream)
 @interface ACSRemoteAudioStream : ACSIncomingAudioStream
 -(nonnull instancetype)init;
+
+@end
+
+/// Wraps the diagnostic feature in the call context.
+NS_SWIFT_NAME(DiagnosticsCallFeature)
+@interface ACSDiagnosticsCallFeature : ACSCallFeature
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Source for all network diagnostics.
+@property (retain, nonnull, readonly) ACSNetworkDiagnostics * networkDiagnostics;
+
+/// Source for all media diagnostics.
+@property (retain, nonnull, readonly) ACSMediaDiagnostics * mediaDiagnostics;
+
+@end
+
+/// Represents an object where network diagnostics are accessed.
+NS_SWIFT_NAME(NetworkDiagnostics)
+@interface ACSNetworkDiagnostics : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Get latest values for all known network diagnostics.
+@property (retain, nonnull, readonly) ACSNetworkDiagnosticValues * latest;
+
+/**
+ * The delegate that will handle events from the ACSNetworkDiagnostics.
+ */
+@property(nonatomic, weak, nullable) id<ACSNetworkDiagnosticsDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSNetworkDiagnostics.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSNetworkDiagnosticsEvents *events;
+
+@end
+
+/// Represents an object where all the latest diagnostics values for network diagnostic.
+NS_SWIFT_NAME(NetworkDiagnosticValues)
+@interface ACSNetworkDiagnosticValues : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+// Class extension begins for NetworkDiagnosticValues.
+-(BOOL)valueForNoNetwork:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForNetworkRelaysNotReachable:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+
+-(ACSDiagnosticQuality)valueForNetworkReconnect NS_REFINED_FOR_SWIFT;
+-(ACSDiagnosticQuality)valueForNetworkReceiveQuality NS_REFINED_FOR_SWIFT;
+-(ACSDiagnosticQuality)valueForNetworkSendQuality NS_REFINED_FOR_SWIFT;
+// Class extension ends for NetworkDiagnosticValues.
+
+@end
+
+/// Event payload containing information of a boolean diagnostic change event.
+NS_SWIFT_NAME(FlagDiagnosticChangedEventArgs)
+@interface ACSFlagDiagnosticChangedEventArgs : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// The new diagnostic value.
+@property (readonly) BOOL value;
+
+@end
+
+/// Event payload containing information of a quality diagnostic change event.
+NS_SWIFT_NAME(QualityDiagnosticChangedEventArgs)
+@interface ACSQualityDiagnosticChangedEventArgs : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// The new diagnostic quality value.
+@property (readonly) ACSDiagnosticQuality value;
+
+@end
+
+/// Represents an object where media diagnostics are accessed.
+NS_SWIFT_NAME(MediaDiagnostics)
+@interface ACSMediaDiagnostics : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+/// Stored latest values for all known media diagnostics.
+@property (retain, nonnull, readonly) ACSMediaDiagnosticValues * latest;
+
+/**
+ * The delegate that will handle events from the ACSMediaDiagnostics.
+ */
+@property(nonatomic, weak, nullable) id<ACSMediaDiagnosticsDelegate> delegate;
+
+/**
+ * The events will register blocks to handle events from the ACSMediaDiagnostics.
+ */
+@property(nonatomic, strong, nonnull, readonly) ACSMediaDiagnosticsEvents *events;
+
+@end
+
+/// Represents an object where all the latest diagnostics values for media diagnostic.
+NS_SWIFT_NAME(MediaDiagnosticValues)
+@interface ACSMediaDiagnosticValues : NSObject
+-(nonnull instancetype)init NS_UNAVAILABLE;
+/// Deallocates the memory occupied by this object.
+-(void)dealloc;
+
+// Class extension begins for MediaDiagnosticValues.
+-(BOOL)valueForSpeakerNotFunctioning:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForSpeakerNotFunctioningDeviceInUse:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForSpeakerMuted:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForSpeakerVolumeIsZero:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForNoSpeakerDevicesEnumerated:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForSpeakingWhileMicrophoneIsMuted:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForNoMicrophoneDevicesEnumerated:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForMicrophoneNotFunctioningDeviceInUse:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForCameraFreeze:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForCameraStartFailed:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForCameraStartTimedOut:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForMicrophoneNotFunctioning:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForMicrophoneMuteUnexpectedly:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+-(BOOL)valueForCameraPermissionDenied:(NSError *_Nullable *_Nullable)error __attribute__((swift_error(nonnull_error))) NS_REFINED_FOR_SWIFT;
+// Class extension ends for MediaDiagnosticValues.
 
 @end
 

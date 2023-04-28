@@ -18,11 +18,10 @@ import Combine
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
     let storageUserDefaults = UserDefaults.standard
+//    private var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
         self.window?.overrideUserInterfaceStyle = .light
         
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
@@ -33,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
         )
-        self.registerIncomingCallHandler()
+//        self.registerIncomingCallHandler()
         
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
@@ -87,10 +86,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    func registerIncomingCallHandler () {
-        let incomingCallController = IncomingCallController()
-        incomingCallController.resigterIncomingCallClient()
-    }
+//    func registerIncomingCallHandler () {
+//        let incomingCallController = IncomingCallController()
+//        incomingCallController.resigterIncomingCallClient()
+//    }
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
         let mettingLink = args.value(forKey: "meeting_id") as! String
@@ -160,6 +159,46 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       guard let url = URLComponents(string: url) else { return nil }
       return url.queryItems?.first(where: { $0.name == param })?.value
     }
+//
+//    func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
+//        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+//        appDelegate.appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
+//    }
+//
+//    // Handle incoming pushes
+//    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
+//        let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
+//        let userDefaults: UserDefaults = .standard
+//        let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
+//        if isCallKitInSDKEnabled {
+//            #if BETA
+//            let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
+//            CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
+//                if error == nil {
+//                    self.appPubs.pushPayload = payload
+//                }
+//            }
+//            #endif
+//        } else {
+//            let incomingCallReporter = CallKitIncomingCallReporter()
+//            incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
+//                                                   caller: callNotification.from,
+//                                                   callerDisplayName: callNotification.fromDisplayName,
+//                                                    videoEnabled: callNotification.incomingWithVideo) { error in
+//                if error == nil {
+//                    let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+//                    appDelegate.appPubs.pushPayload = payload
+//                }
+//            }
+//        }
+//    }
+//
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        // Create a push registry object
+//        // Set the registry's delegate to self
+//        voipRegistry.delegate = self
+//        // Set the push type to VoIP
+//        voipRegistry.desiredPushTypes = [PKPushType.voIP]
+//    }
 
 }
-
