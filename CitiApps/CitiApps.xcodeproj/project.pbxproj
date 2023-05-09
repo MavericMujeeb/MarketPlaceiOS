@@ -39,6 +39,8 @@
 		8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; };
 		8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D7016102982BE9100FDEBFC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70160F2982BE9100FDEBFC /* LoginViewModel.swift */; };
+		8D7522932A0916B7001FDB1C /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */; };
+		8D7522942A0916C1001FDB1C /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */; };
 		8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2B29A3949200700C78 /* ChatController.swift */; };
 		8D99CA2E29A63BE900700C78 /* CitiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2D29A63BE900700C78 /* CitiConstants.swift */; };
 		8DA82E982977FFD000A79D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DA82E972977FFD000A79D3B /* Main.storyboard */; };
@@ -217,6 +219,8 @@
 		8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = "SDK/AzureCommunicationCalling-2.2.1/AzureCommunicationCalling.xcframework"; sourceTree = "<group>"; };
 		8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcsUserIdToken.swift; sourceTree = "<group>"; };
 		8D70160F2982BE9100FDEBFC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = "../../../../../../../Downloads/WindowsAzureMessaging-SDK-Apple/iOS/WindowsAzureMessaging.framework"; sourceTree = "<group>"; };
+		8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = SDK/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		8D99CA2B29A3949200700C78 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		8D99CA2D29A63BE900700C78 /* CitiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiConstants.swift; sourceTree = "<group>"; };
 		8DA82E972977FFD000A79D3B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 				8D4B4F5C29FBDB8B00B77B60 /* AzureCommunicationCalling.xcframework in Frameworks */,
 				8D4B4F4729FBBF7C00B77B60 /* path_provider_foundation.xcframework in Frameworks */,
 				8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */,
+				8D7522932A0916B7001FDB1C /* WindowsAzureMessaging.framework in Frameworks */,
+				8D7522942A0916C1001FDB1C /* WindowsAzureMessaging.framework in Frameworks */,
 				8D4B4F4229FBBF7200B77B60 /* FlutterPluginRegistrant.xcframework in Frameworks */,
 				8DC8DC1029D2FD920047A2D3 /* PIPKit.framework in Frameworks */,
 				8D7015F62981303100FDEBFC /* AzureCommunicationCommon.framework in Frameworks */,
@@ -347,6 +353,7 @@
 		8DFBD2C129756DD6006B0700 = {
 			isa = PBXGroup;
 			children = (
+				8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */,
 				8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */,
 				8DC8DC0729D2FD880047A2D3 /* PIPKit.xcodeproj */,
 				8DD4CEEF29A895AC00242DA0 /* Packages */,
@@ -426,6 +433,7 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */,
 				8D4B4F3A29FBBF7200B77B60 /* App.xcframework */,
 				8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */,
 				8D4B4F3C29FBBF7200B77B60 /* FlutterPluginRegistrant.xcframework */,
@@ -788,6 +796,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = R6345GPK28;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CitiApps/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";
@@ -949,6 +961,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = R6345GPK28;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CitiApps/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";
@@ -991,6 +1007,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = R6345GPK28;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CitiApps/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";

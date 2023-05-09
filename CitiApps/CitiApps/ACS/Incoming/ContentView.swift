@@ -25,7 +25,7 @@ struct ContentView: View {
     }
 
     private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "ACSVideoSample")
-    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOmVhN2VlOWRiLTQxNDYtNGM2Yy04ZmZkLThiZmYzNWJkZDk4Nl8wMDAwMDAxOC02NmNlLTY3M2MtZWFmMy01NDNhMGQwMDlhYzciLCJzY3AiOjE3OTIsImNzaSI6IjE2ODI2Njk2MTgiLCJleHAiOjE2ODI3NTYwMTgsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlYTdlZTlkYi00MTQ2LTRjNmMtOGZmZC04YmZmMzViZGQ5ODYiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjgyNjY5NjE4fQ.r4IByKqjDs37HtaAtb-EAqxToEHr-iY_U3urqDugOngrImg8FCWeD-UYrwo2JW10PVflCro6zq9Y30355_QeEJmWDwkSDY4tr2nUxHzaBY5C5sPY8oQztT5hs7-avzxfAEMS7ZiHCT906CuCV6WGGq0T_Jeycn9AzGc1ByHvJkG9ZmFg6RI_OBxHjegDVERSQ7phro5LR9RBJ7U5DSTJGDmqrJ7SUPWNyV_uRAQRpSLi8KkCm7YGHGrAOGajAi0wzHJtr8wWnn611yB1XK62xgEWZ6PKQ2OLRrSsEdijBdftGlLWtijwuB0X32NRQNRpUEUKUgGzCNnM37GmaYdzYQ"
+    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOmVhN2VlOWRiLTQxNDYtNGM2Yy04ZmZkLThiZmYzNWJkZDk4Nl8wMDAwMDAxOC05YjZlLTliNmUtZmE1ZC01NzNhMGQwMDMyNWYiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODM1NTI1MzIiLCJleHAiOjE2ODM2Mzg5MzIsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlYTdlZTlkYi00MTQ2LTRjNmMtOGZmZC04YmZmMzViZGQ5ODYiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjgzNTUyNTMyfQ.gn09Vl6yuI7I9qJtq5jM9gaqjUGWmYIjhkvWRIlan9HAq-OXK-EFZ3q3m6a7xzXCPJRc5Yf-0hRbHNm_mavL2tR2Dj4gpM6dy76vDtJviMtNO79ORRjPynDBU34Nu_uvez57YFhGKEaQzZ_VpMdAaKf12QwV5iu_FDhUG-RryTvJXZt7GNnm7evf2sC3A9lICrzU94lVQBlyFOWW5WiZw_M9A2bg99eqwaal-RHXCK3w4jkVbicXiR0lXnEYVhKqcK8fqCFyQIBPnyXhtFdrkC-d7lNX4gJjN4ErnuP0AqfI2YRW6_r1Gc6fBDFFY2AAoXS2TpAm3872qdA1snghiA"
 
     @State var callee: String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
     @State var callClient = CallClient()
@@ -285,14 +285,10 @@ struct ContentView: View {
 
     private func createCallAgentOptions() -> CallAgentOptions {
         let options = CallAgentOptions()
-//        #if BETA
         options.callKitOptions = createCallKitOptions()
-//        #endif
-        
         return options
     }
 
-//    #if BETA
     private func createCallKitOptions() -> CallKitOptions {
         let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
         callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
@@ -306,8 +302,6 @@ struct ContentView: View {
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }
-
-//    #endif
 
     public func handlePushNotification(_ pushPayload: PKPushPayload?)
     {
@@ -351,13 +345,15 @@ struct ContentView: View {
     }
 
     private func registerForPushNotification() {
-        print("registerForPushNotification")
         if let callAgent = self.callAgent,
            let pushToken = self.pushToken {
             callAgent.registerPushNotifications(deviceToken: pushToken) { error in
                 if error != nil {
                     self.showAlert = true
                     self.alertMessage = "Failed to register for Push"
+                }
+                else{
+                    print("Register for Push")
                 }
             }
         }
@@ -382,7 +378,6 @@ struct ContentView: View {
         }
 
         if userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? isCallKitInSDKEnabled {
-//            #if BETA
             self.callClient.createCallAgent(userCredential: userCredential,
                                             options: createCallAgentOptions()) { (agent, error) in
                 if error == nil {
@@ -399,12 +394,6 @@ struct ContentView: View {
                 }
                 completionHandler?(error)
             }
-//            #else
-//                self.showAlert = true
-//                self.alertMessage = "ACS CallKit available only in Beta builds"
-//                self.isCallKitInSDKEnabled = false
-//                completionHandler?(CreateCallAgentErrors.callKitInSDKNotSupported)
-//            #endif
         } else {
             self.callClient.createCallAgent(userCredential: userCredential) { (agent, error) in
                 if error == nil {
@@ -463,11 +452,7 @@ struct ContentView: View {
         {
             let camera = deviceManager.cameras.first
             localVideoStream.append(LocalVideoStream(camera: camera!))
-//            #if BETA
             let videoOptions = VideoOptions(outgoingVideoStreams: localVideoStream)
-//            #else
-//            let videoOptions = VideoOptions(localVideoStreams: localVideoStream)
-//            #endif
             options.videoOptions = videoOptions
         }
 
@@ -617,11 +602,7 @@ struct ContentView: View {
 
             localVideoStream.removeAll()
             localVideoStream.append(LocalVideoStream(camera: deviceManager.cameras.first!))
-//            #if BETA
             let videoOptions = VideoOptions(outgoingVideoStreams: localVideoStream)
-//            #else
-//            let videoOptions = VideoOptions(localVideoStreams: localVideoStream)
-//            #endif
             startCallOptions.videoOptions = videoOptions
         }
         let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(self.callee)]
@@ -753,15 +734,9 @@ public class CallObserver: NSObject, CallDelegate, IncomingCallDelegate {
         }
     }
     
-//    #if BETA
     public func call(_ call: Call, didUpdateOutgoingAudioState args: PropertyChangedEventArgs) {
         owner.isMuted = call.isOutgoingAudioMuted
     }
-//    #else
-//    public func call(_ call: Call, didChangeMuteState args: PropertyChangedEventArgs) {
-//        owner.isMuted = call.isMuted
-//    }
-//    #endif
 
     public func call(_ call: Call, didUpdateRemoteParticipant args: ParticipantsUpdatedEventArgs) {
         for participant in args.addedParticipants {

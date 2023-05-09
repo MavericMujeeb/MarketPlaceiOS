@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
         )
-//        self.registerIncomingCallHandler()
+        self.registerIncomingCallHandler()
         
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
@@ -86,10 +86,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-//    func registerIncomingCallHandler () {
-//        let incomingCallController = IncomingCallController()
-//        incomingCallController.resigterIncomingCallClient()
-//    }
+    func registerIncomingCallHandler () {
+        let incomingCallController = ACSIncomingCallConntroller()
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        incomingCallController.resigterIncomingCallClient(appPubs: appDelegate.appPubs)
+    }
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
         let mettingLink = args.value(forKey: "meeting_id") as! String

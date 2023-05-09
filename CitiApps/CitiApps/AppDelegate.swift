@@ -12,13 +12,15 @@ import FluentUI
 import FlutterPluginRegistrant
 import PushKit
 import AzureCommunicationCalling
+import WindowsAzureMessaging
+import UserNotifications
 
 #if canImport(Combine)
 import Combine
 #endif
 
 @main
-class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate {
+class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHubDelegate {
 
     private (set) var appSettings: AppSettings!
     private (set) var authHandler: AADAuthHandler!
@@ -41,13 +43,22 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate {
                 {
                     DispatchQueue.main.async {
                         application.registerForRemoteNotifications()
+                        UNUserNotificationCenter.current().delegate = self
+                        MSNotificationHub.setDelegate(self)
+                        MSNotificationHub.start(connectionString: "Endpoint=sb://ACSCitiPushService.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=u3NgR63Wc9Z1Jklf2YF80MY6v/qkaxslfRctMoZgNGU=", hubName: "ACSCitiPush")
                     }
                 }
             }
         }
         
         initializeDependencies()
+        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func notificationHub(_ notificationHub: MSNotificationHub, didReceivePushNotification message: MSNotificationHubMessage) {
+        print(message.body)
+        print(message.title)
     }
     
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -79,9 +90,8 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate {
     }
     
     
+    
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
-        print("pushCredentials")
-        print(registry.pushToken(for: .voIP))
         appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
     }
 
@@ -112,6 +122,10 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate {
             }
         }
     }
+    
+//    override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+//        print("didReceiveRemoteNotification")
+//    }
 
     override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
