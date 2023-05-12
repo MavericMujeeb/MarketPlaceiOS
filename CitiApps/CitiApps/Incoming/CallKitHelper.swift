@@ -560,6 +560,7 @@ actor CallKitHelper {
                                           options: options,
                                           completionHandler: completionHandler)
         transactOutInCallWithCallKit(action: answerCallAction, outInCallInfo: outInCallInfo)
+        print("acceptCall transactOutInCallWithCallKit")
     }
 
     func reportOutgoingCall(call: Call) {

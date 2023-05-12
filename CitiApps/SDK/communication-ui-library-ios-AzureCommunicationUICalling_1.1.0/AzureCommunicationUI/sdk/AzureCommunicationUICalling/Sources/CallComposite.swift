@@ -65,6 +65,8 @@ public class CallComposite {
                                                                     meetingLink: callConfiguration.meetingLink!, isAudioCall: (callCompositeOptions?.isAudioCall)!, isVideoCall: (callCompositeOptions?.isVideoCall)!)
         setupManagers(with: dependencyContainer)
         PIPKit.show(with: toolkitHostingController)
+        
+        
     }
 
     /// Start call composite experience with joining a Teams meeting.

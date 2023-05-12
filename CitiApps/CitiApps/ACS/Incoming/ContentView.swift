@@ -25,7 +25,7 @@ struct ContentView: View {
     }
 
     private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "ACSVideoSample")
-    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOmVhN2VlOWRiLTQxNDYtNGM2Yy04ZmZkLThiZmYzNWJkZDk4Nl8wMDAwMDAxOC05YjZlLTliNmUtZmE1ZC01NzNhMGQwMDMyNWYiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODM1NTI1MzIiLCJleHAiOjE2ODM2Mzg5MzIsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlYTdlZTlkYi00MTQ2LTRjNmMtOGZmZC04YmZmMzViZGQ5ODYiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjgzNTUyNTMyfQ.gn09Vl6yuI7I9qJtq5jM9gaqjUGWmYIjhkvWRIlan9HAq-OXK-EFZ3q3m6a7xzXCPJRc5Yf-0hRbHNm_mavL2tR2Dj4gpM6dy76vDtJviMtNO79ORRjPynDBU34Nu_uvez57YFhGKEaQzZ_VpMdAaKf12QwV5iu_FDhUG-RryTvJXZt7GNnm7evf2sC3A9lICrzU94lVQBlyFOWW5WiZw_M9A2bg99eqwaal-RHXCK3w4jkVbicXiR0lXnEYVhKqcK8fqCFyQIBPnyXhtFdrkC-d7lNX4gJjN4ErnuP0AqfI2YRW6_r1Gc6fBDFFY2AAoXS2TpAm3872qdA1snghiA"
+    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOmVhN2VlOWRiLTQxNDYtNGM2Yy04ZmZkLThiZmYzNWJkZDk4Nl8wMDAwMDAxOC01OWI3LTkwYmMtNjc2My01NjNhMGQwMDAzNDAiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODM4Njg5MTgiLCJleHAiOjE2ODM5NTUzMTgsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlYTdlZTlkYi00MTQ2LTRjNmMtOGZmZC04YmZmMzViZGQ5ODYiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjgzODY4OTE4fQ.pYjp3r-odtnm18iHo5j6MhtWwNGm8_WIQNmZTqZImn2FqkvAAd3At1MXQaIbOep7ZEfpI4OqxzljbMON6m5XmD5C22Ne2eLI-HKl8bNS354pWwNRassaypeRg_B99muoFlH6bZ7s5fWMMH9BTtKeZ9o2SkPwTSeY6q9Ofnwte4nSwgQVAe39TCidCVMTKKkNlAZpZtPKPHO9-qX7_Zd0JQAciMCIYAGuzRiYODikiSJoPaLtdgpTO8wrnRUxx_mE9nCIwOqFYfx6lRb-xymzJTWfPwKDOhBbSJkFcJ6OLUxQOYD-hObegVLuNt-RFA1GQymql2pkQEeL62meUEtWAw"
 
     @State var callee: String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
     @State var callClient = CallClient()
@@ -67,10 +67,6 @@ struct ContentView: View {
             ZStack{
                 Form {
                     Section {
-                        TextField("Who would you like to call?", text: $callee)
-                        Button(action: startCall) {
-                            Text("Start Call")
-                        }.disabled(callAgent == nil)
                         Button(action: holdCall) {
                             Text(isHeld ? "Resume" : "Hold")
                         }.disabled(call == nil)
@@ -164,7 +160,7 @@ struct ContentView: View {
                     }.frame(maxWidth:.infinity, maxHeight:.infinity,alignment: .bottomTrailing)
                 }
             }
-     .navigationBarTitle("Video Calling Quickstart")
+     .navigationBarTitle("Call Screen")
         }
         .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
             guard let newPushToken = newPushToken else {
@@ -298,7 +294,7 @@ struct ContentView: View {
     func provideCallKitRemoteInfo(callerInfo: CallerInfo) -> CallKitRemoteInfo
     {
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "CALL_TO_PHONENUMBER_BY_APP"
+        callKitRemoteInfo.displayName = "Janet Johnson"
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }

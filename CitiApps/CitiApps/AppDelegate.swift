@@ -14,6 +14,7 @@ import PushKit
 import AzureCommunicationCalling
 import WindowsAzureMessaging
 import UserNotifications
+import SwiftUI
 
 #if canImport(Combine)
 import Combine
@@ -102,14 +103,25 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
         let userDefaults: UserDefaults = .standard
         let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
         if isCallKitInSDKEnabled {
-            #if BETA
             let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
             CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
                 if error == nil {
                     self.appPubs.pushPayload = payload
+                    
+                    if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Main") as? ViewController {
+                        DispatchQueue.main.async {
+                            let incomingContentView = ContentView(appPubs: self.appPubs)
+                            var incomingHostingController = UIHostingController(rootView: incomingContentView)
+                            print("present")
+                            
+                            let rootVC = UIApplication.shared.keyWindow?.rootViewController
+                            rootVC?.present(incomingHostingController, animated: true, completion: nil)
+                            
+                        }
+                    }
+
                 }
             }
-            #endif
         } else {
             let incomingCallReporter = CallKitIncomingCallReporter()
             incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
@@ -122,14 +134,8 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
             }
         }
     }
-    
-//    override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
-//        print("didReceiveRemoteNotification")
-//    }
 
     override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        
-        print("didRegisterForRemoteNotificationsWithDeviceToken")
         // Create a push registry object
         // Set the registry's delegate to self
         voipRegistry.delegate = self
