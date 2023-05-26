@@ -74,13 +74,15 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
     
     let isAudioCall:Bool
     let isVideoCall:Bool
+    let isIncomingCall: Bool
+    
 
     init(logger: Logger,
          store: Store<AppState>,
          networkManager: NetworkManager,
          localizationProvider: LocalizationProviderProtocol,
          accessibilityProvider: AccessibilityProviderProtocol,
-         localOptions: LocalOptions? = nil, isAudioCall:Bool, isVideoCall:Bool) {
+         localOptions: LocalOptions? = nil, isAudioCall:Bool, isVideoCall:Bool, isIncomingCall:Bool) {
         self.logger = logger
         self.store = store
         self.networkManager = networkManager
@@ -89,7 +91,7 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
         self.localOptions = localOptions
         self.isAudioCall = isAudioCall
         self.isVideoCall = isVideoCall
-        
+        self.isIncomingCall = isIncomingCall
     }
 
     // MARK: CompositeViewModels

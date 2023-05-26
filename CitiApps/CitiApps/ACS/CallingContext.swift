@@ -69,9 +69,11 @@ final class CallingContext {
         do {
             let communicationTokenCredential = try await getTokenCredential()
             
-            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall)
+            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall, isIncomingCall: false)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
+            print( joinConfig.callType)
+            
             switch joinConfig.callType {
             case .groupCall:
                 self.callComposite?.launch(

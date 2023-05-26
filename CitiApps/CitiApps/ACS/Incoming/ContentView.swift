@@ -20,12 +20,13 @@ enum CreateCallAgentErrors: Error {
 }
 
 struct ContentView: View {
-    init(appPubs: AppPubs) {
+    init(appPubs: AppPubs, callAgent:CallAgent) {
         self.appPubs = appPubs
+        self.i_callAgent = callAgent
     }
 
     private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "ACSVideoSample")
-    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjEwNiIsIng1dCI6Im9QMWFxQnlfR3hZU3pSaXhuQ25zdE5PU2p2cyIsInR5cCI6IkpXVCJ9.eyJza3lwZWlkIjoiYWNzOmVhN2VlOWRiLTQxNDYtNGM2Yy04ZmZkLThiZmYzNWJkZDk4Nl8wMDAwMDAxOC01OWI3LTkwYmMtNjc2My01NjNhMGQwMDAzNDAiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODM4Njg5MTgiLCJleHAiOjE2ODM5NTUzMTgsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlYTdlZTlkYi00MTQ2LTRjNmMtOGZmZC04YmZmMzViZGQ5ODYiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjgzODY4OTE4fQ.pYjp3r-odtnm18iHo5j6MhtWwNGm8_WIQNmZTqZImn2FqkvAAd3At1MXQaIbOep7ZEfpI4OqxzljbMON6m5XmD5C22Ne2eLI-HKl8bNS354pWwNRassaypeRg_B99muoFlH6bZ7s5fWMMH9BTtKeZ9o2SkPwTSeY6q9Ofnwte4nSwgQVAe39TCidCVMTKKkNlAZpZtPKPHO9-qX7_Zd0JQAciMCIYAGuzRiYODikiSJoPaLtdgpTO8wrnRUxx_mE9nCIwOqFYfx6lRb-xymzJTWfPwKDOhBbSJkFcJ6OLUxQOYD-hObegVLuNt-RFA1GQymql2pkQEeL62meUEtWAw"
+    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjVFODQ4MjE0Qzc3MDczQUU1QzJCREU1Q0NENTQ0ODlEREYyQzRDODQiLCJ4NXQiOiJYb1NDRk1kd2M2NWNLOTVjelZSSW5kOHNUSVEiLCJ0eXAiOiJKV1QifQ.eyJza3lwZWlkIjoiYWNzOmVhN2VlOWRiLTQxNDYtNGM2Yy04ZmZkLThiZmYzNWJkZDk4Nl8wMDAwMDAxOC01OWI3LTkwYmMtNjc2My01NjNhMGQwMDAzNDAiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODQ3NDE2MzEiLCJleHAiOjE2ODQ4MjgwMzEsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlYTdlZTlkYi00MTQ2LTRjNmMtOGZmZC04YmZmMzViZGQ5ODYiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjg0NzQxNjMxfQ.fqg-gbrPYa88dMA3KkrUnqHBXikhoiT_cVFLj70_eCg6ylbvL5r4IldF5D7N3eyTcQhwiY-ZvAylXyEuYUFMyJRGzOhbh4gmYfvvtA8hQO0cJIiZQrouU9qozJbvH9L4tl7BppPvyEPRo7Vwi1P-hAgRCX21ULZggqyO1MAoCGBiEYAkVmq0nM5kSOGpnBLmmSyylif2bL7iQRM0IHatVWWP34HSsiuOfeznR3IrnpEn4dcJuZRyUh6L2P44pevqCQ-I9corStxOM8lex3pFsTGWzPXR8YGbiqwOjgg6wLUE2umJvUit-0wmxDdfo0yZwRK89Ak0qLNKdCQOyh5l2g"
 
     @State var callee: String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
     @State var callClient = CallClient()
@@ -61,50 +62,119 @@ struct ContentView: View {
     @State var pushToken: Data?
 
     var appPubs: AppPubs
-
-    var body: some View {
-        NavigationView {
-            ZStack{
-                Form {
-                    Section {
-                        Button(action: holdCall) {
-                            Text(isHeld ? "Resume" : "Hold")
-                        }.disabled(call == nil)
-                        Button(action: switchMicrophone) {
-                            Text(isMuted ? "UnMute" : "Mute")
-                        }.disabled(call == nil)
-                        Button(action: endCall) {
-                            Text("End Call")
-                        }.disabled(call == nil)
-                        Button(action: toggleLocalVideo) {
-                            HStack {
-                                Text(sendingVideo ? "Turn Off Video" : "Turn On Video")
-                            }
+    var i_callAgent:CallAgent
+    
+    var containerView: some View {
+        VStack{
+            ZStack {
+                ForEach(remoteViews, id:\.self) { renderer in
+                    ZStack{
+                        VStack{
+                            RemoteVideoView(view: renderer)
+                                .frame(width: .infinity, height: .infinity)
+                                .background(Color(.white))
                         }
-                        Toggle("Enable CallKit in SDK", isOn: $isCallKitInSDKEnabled)
-                            .onChange(of: isCallKitInSDKEnabled) { _ in
-                                userDefaults.set(self.isCallKitInSDKEnabled, forKey: "isCallKitInSDKEnabled")
-                                createCallAgent(completionHandler: nil)
-                            }.disabled(call != nil)
-
-                        Toggle("Speaker", isOn: $isSpeakerOn)
-                            .onChange(of: isSpeakerOn) { _ in
-                                switchSpeaker()
-                            }.disabled(call == nil)
-                        TextField("Call State", text: $callState)
-                            .foregroundColor(.red)
+                        if(sendingVideo){
+                            ZStack(alignment:.bottomTrailing){
+                                VStack{
+                                    PreviewVideoStream(view: previewView!)
+                                        .frame(width: 135, height: 160)
+                                        .background(Color(.white))
+                                }.frame(maxWidth:.infinity, maxHeight:.infinity,alignment: .bottomTrailing)
+                                    .clipShape(RoundedCornersShape(radius: 4, corners: [.allCorners]))
+                                cameraSwitchButton
+                            }
+                            
+                        }
                     }
                 }
-                if (isIncomingCall) {
-                    HStack() {
-                        VStack {
-                            Text("Incoming call")
-                                .padding(10)
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                        }
+            }
+        }
+    }
+    
+    
+    
+    func switchCamera() {
+        
+    }
+
+    func openChat() {
+        
+    }
+    
+    func shareScreen() {
+        
+    }
+    var cameraSwitchButton : some View{
+        Button(action: switchCamera) {
+            Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
+                .frame(width: 40, height: 40, alignment: .center)
+        }
+        .font(.system(size: 20))
+        .disabled(call == nil)
+        .foregroundColor(call == nil ? Color.gray : Color.white)
+        .frame(width: 60, height: 60, alignment: .center)
+        .background(Color.clear)
+        .clipShape(RoundedCornersShape(radius: 4, corners: [.allCorners]))
+    }
+    
+    func iconButton(iconName:String, action: @escaping (() -> Void)) -> some View {
+        Button(action: action) {
+            Image(systemName: iconName)
+                .frame(width: 40, height: 40, alignment: .center)
+        }
+        .font(.system(size: 18))
+        .disabled(call == nil)
+        .foregroundColor(call == nil ? Color.gray : Color.black)
+        .frame(width: 60, height: 60, alignment: .center)
+        .background(Color.white)
+        .clipShape(RoundedCornersShape(radius: 4, corners: [.allCorners]))
+    }
+    
+    var controlBarView : some View {
+        Group{
+            HStack{
+                Group {
+                    iconButton(iconName: isMuted ? "mic.slash.fill" : "mic.fill", action: switchMicrophone)
+                    Spacer()
+                    iconButton(iconName: sendingVideo ? "video.fill" : "video.slash.fill", action: toggleLocalVideo)
+                    Spacer()
+                    iconButton(iconName:"message.fill", action: openChat)
+                    Spacer()
+                    iconButton(iconName:"square.and.arrow.up.fill", action: shareScreen)
+                    Spacer()
+                    Button(action: endCall) {
+                        Image(systemName: "phone.down.fill")
+                            .frame(width: 40, height: 40, alignment: .center)
+                    }
+                    .font(.system(size: 18))
+                    .disabled(call == nil)
+                    .foregroundColor(call == nil ? Color.gray : Color.white)
+                    .frame(width: 60, height: 60, alignment: .center)
+                    .background(Color(red: 164/255, green: 46/255, blue: 67/255))
+                    .clipShape(RoundedCornersShape(radius: 4, corners: [.allCorners]))
+                }
+            }
+        }
+        .padding(10)
+        .background(Color.white)
+        .frame(maxHeight: .infinity, alignment: .bottom)
+    }
+    
+    var incomingCallBody: some View {
+        ZStack{
+            if (isIncomingCall) {
+                VStack{
+                    Spacer(minLength: 100)
+                    Text("Incoming Call from...")
+                        .font(.system(size: 20, weight: .bold))
+                    Text("Janet Johnson")
+                        .font(.system(size: 16))
+                    HStack(alignment:.center, spacing: 50) {
                         Button(action: answerIncomingCall) {
                             HStack {
                                 Text("Answer")
+                                    .foregroundColor(.white)
                             }
                             .frame(width:80)
                             .padding(.vertical, 10)
@@ -113,54 +183,35 @@ struct ContentView: View {
                         Button(action: declineIncomingCall) {
                             HStack {
                                 Text("Decline")
+                                    .foregroundColor(.white)
                             }
                             .frame(width:80)
                             .padding(.vertical, 10)
                             .background(Color(.red))
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    .frame(maxHeight: .infinity, alignment: .bottom)
                     .padding(10)
-                    .background(Color.gray)
-                }
-                ZStack{
-                    VStack {
-                        ForEach(remoteViews, id:\.self) { renderer in
-                            ZStack{
-                                VStack{
-                                    RemoteVideoView(view: renderer)
-                                        .frame(width: .infinity, height: .infinity)
-                                        .background(Color(.lightGray))
-                                }
-                            }
-                            Button(action: endCall) {
-                                Text("End Call")
-                            }.disabled(call == nil)
-                            Button(action: toggleLocalVideo) {
-                                HStack {
-                                    Text(sendingVideo ? "Turn Off Video" : "Turn On Video")
-                                }
-                            }
-                            Button(action: switchSpeaker) {
-                                HStack {
-                                    Text(isSpeakerOn ? "Turn Off Speaker" : "Turn On Speaker")
-                                }
-                            }
-                        }
-                    }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    VStack {
-                        if(sendingVideo)
-                        {
-                            VStack{
-                                PreviewVideoStream(view: previewView!)
-                                    .frame(width: 135, height: 240)
-                                    .background(Color(.lightGray))
-                            }
-                        }
-                    }.frame(maxWidth:.infinity, maxHeight:.infinity,alignment: .bottomTrailing)
+                    .background(Color.white)
+                    Spacer()
                 }
             }
-     .navigationBarTitle("Call Screen")
+            else{
+                VStack(alignment: .center, spacing: 0){
+                    containerView
+                    controlBarView
+                }
+            }
+        }
+    }
+
+    func exitAction() {
+        
+    }
+    
+    var body: some View {
+        NavigationView {
+            incomingCallBody
         }
         .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
             guard let newPushToken = newPushToken else {
@@ -179,40 +230,11 @@ struct ContentView: View {
         .onReceive(self.appPubs.$pushPayload, perform: { payload in
             handlePushNotification(payload)
         })
-     .onAppear{
-            isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
-            isSpeakerOn = userDefaults.value(forKey: "isSpeakerOn") as? Bool ?? false
-            AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
-                if granted {
-                    AVCaptureDevice.requestAccess(for: .video) { (videoGranted) in
-                        /* NO OPERATION */
-                    }
-                }
-            }
-
-             if deviceManager == nil {
-                self.callClient.getDeviceManager { (deviceManager, error) in
-                    if (error == nil) {
-                        print("Got device manager instance")
-                        // This app does not support landscape mode
-                        // But iOS still generates the device orientation events
-                        // This is a work-around so that iOS stops generating those events
-                        // And stop sending it to the SDK.
-                        UIDevice.current.endGeneratingDeviceOrientationNotifications()
-                        self.deviceManager = deviceManager
-                    } else {
-                        self.showAlert = true
-                        self.alertMessage = "Failed to get DeviceManager"
-                    }
-                }
-             }
-
-             if callAgent == nil {
-                 createCallAgent(completionHandler: nil)
-             }
-        }
-        .alert(isPresented: $showAlert) { () -> Alert in
-            Alert(title: Text("ERROR"), message: Text(alertMessage), dismissButton: .default(Text("Dismiss")))
+        .onAppear{
+            self.callAgent = self.i_callAgent
+            showIncomingCallBanner(globalIncomingCall)
+            self.deviceManager = globalDeviceManager
+            self.isCallKitInSDKEnabled = true
         }
     }
 
@@ -222,7 +244,6 @@ struct ContentView: View {
         }
 
         if isCallKitInSDKEnabled {
-//            #if BETA
             call.updateOutgoingAudio(mute: !isMuted) { error in
                 if error == nil {
                     isMuted = !isMuted
@@ -231,27 +252,6 @@ struct ContentView: View {
                     self.alertMessage = "Failed to unmute/mute audio"
                 }
             }
-//            #else
-//            if self.isMuted {
-//                call.unmute() { error in
-//                    if error == nil {
-//                        isMuted = false
-//                    } else {
-//                        self.showAlert = true
-//                        self.alertMessage = "Failed to unmute audio"
-//                    }
-//                }
-//            } else {
-//                call.mute() { error in
-//                    if error == nil {
-//                        isMuted = true
-//                    } else {
-//                        self.showAlert = true
-//                        self.alertMessage = "Failed to mute audio"
-//                    }
-//                }
-//            }
-//            #endif
         } else {
             Task {
                 await CallKitObjectManager.getCallKitHelper()!.muteCall(callId:call.id, isMuted: !isMuted) { error in
@@ -301,6 +301,8 @@ struct ContentView: View {
 
     public func handlePushNotification(_ pushPayload: PKPushPayload?)
     {
+        callAgent = globalCallAgent
+        print("handlePushNotification")
         guard let pushPayload = pushPayload else {
             print("Got empty payload")
             return
@@ -380,7 +382,6 @@ struct ContentView: View {
                     CallKitObjectManager.deInitCallKitInApp()
                     self.callAgent = agent
                     self.cxProvider = nil
-                    print("Call agent successfully created.")
                     incomingCallHandler = IncomingCallHandler(contentView: self)
                     self.callAgent!.delegate = incomingCallHandler
                     registerForPushNotification()
@@ -427,6 +428,7 @@ struct ContentView: View {
     }
 
     func showIncomingCallBanner(_ incomingCall: IncomingCall?) {
+        print("showIncomingCallBanner")
         isIncomingCall = true
         self.incomingCall = incomingCall
     }
@@ -452,8 +454,13 @@ struct ContentView: View {
             options.videoOptions = videoOptions
         }
 
+        print("isCallKitInSDKEnabled")
+        print(isCallKitInSDKEnabled)
         if isCallKitInSDKEnabled {
+            print("incomingCall accept")
             incomingCall.accept(options: options) { (call, error) in
+                print(call)
+                print(error)
                 setCallAndObersever(call: call, error: error)
             }
         } else {
@@ -724,6 +731,11 @@ public class CallObserver: NSObject, CallDelegate, IncomingCallDelegate {
         if(call.state == CallState.connected) {
             initialCallParticipant()
         }
+        
+        if(call.state == CallState.disconnected) {
+            let rootVC = UIApplication.shared.keyWindow?.rootViewController
+            rootVC?.dismiss(animated: true)
+        }
 
         Task {
             await CallKitObjectManager.getCallKitHelper()?.reportOutgoingCall(call: call)
@@ -823,4 +835,16 @@ struct RemoteVideoView: UIViewRepresentable {
         return view
     }
     func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct RoundedCornersShape: Shape {
+    let radius: CGFloat
+    let corners: UIRectCorner
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
 }

@@ -100,18 +100,18 @@ class ViewController : UIViewController {
     let storageUserDefaults = UserDefaults.standard
 
     //Added for testing purpose
-    func showIncomingCallView(){
-        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-
-        let incomingContentView = ContentView(appPubs: appDelegate.appPubs)
-        var incomingHostingController = UIHostingController(rootView: incomingContentView)
-        present(incomingHostingController, animated: true, completion: nil)
-    }
+//    func showIncomingCallView(){
+//        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+//
+//        let incomingContentView = ContentView(appPubs: appDelegate.appPubs)
+//        var incomingHostingController = UIHostingController(rootView: incomingContentView)
+//        present(incomingHostingController, animated: true, completion: nil)
+//    }
     
     @IBAction func onLoginAction(_ sender: Any) {
         //Added for testing purpose
-        showIncomingCallView()
-        return
+//        showIncomingCallView()
+//        return
         
         if(self.username.text == "" || self.password.text == "") {
             return
@@ -140,16 +140,14 @@ class ViewController : UIViewController {
         loggedInUser = self.username.text
         userid = users[self.username.text!]?["userid"]
         storageUserDefaults.set(users[self.username.text!]?["name"], forKey: StorageKeys.loginUserName)
-        var userInfo = UserInfoData(name: users[self.username.text!]?["name"], email: users[self.username.text!]?["email"], id: users[self.username.text!]?["userid"])
-        var data = try! JSONEncoder().encode(userInfo)
-        var userStr = String(data: data, encoding: .utf8)
+        let userInfo = UserInfoData(name: users[self.username.text!]?["name"], email: users[self.username.text!]?["email"], id: users[self.username.text!]?["userid"])
+        let data = try! JSONEncoder().encode(userInfo)
+        let userStr = String(data: data, encoding: .utf8)
         flutterMethodChannel(passArgs: userStr);
         
+        self.registerIncomingCallHandler()
+        
         if(handleExternalLinks == true){
-//            let teamsCallingViewController = TeamsCallingViewController()
-//            teamsCallingViewController.teamsLink = self.meetingLink
-//            teamsCallingViewController.startCall()
-            
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             dashViewController.handleExternalLinks = true
             dashViewController.meetingLink = self.meetingLink
@@ -159,6 +157,15 @@ class ViewController : UIViewController {
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
+    }
+    
+    
+    func registerIncomingCallHandler () {
+        storageUserDefaults.set(true, forKey: "isCallKitInSDKEnabled")
+        
+        let incomingCallController = ACSIncomingCallConntroller()
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        incomingCallController.resigterIncomingCallClient(appPubs: appDelegate.appPubs)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -191,10 +198,6 @@ class ViewController : UIViewController {
         
   
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = logoBarButtonItem;
-        
-//        let trailingButton = UIBarButtonItem.init(customView: UIImageView(image: UIImage(systemName: "line.horizontal.3")))
-//
-//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = trailingButton;
     }
     
     func customizeTextFields(){

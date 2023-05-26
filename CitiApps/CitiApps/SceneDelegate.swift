@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
         )
-        self.registerIncomingCallHandler()
+//        self.registerIncomingCallHandler()
         
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in

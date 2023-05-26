@@ -15,10 +15,20 @@ import AzureCommunicationCalling
 import WindowsAzureMessaging
 import UserNotifications
 import SwiftUI
+import AzureCommunicationUICalling
+
 
 #if canImport(Combine)
 import Combine
 #endif
+
+//Use this to initialize call agent on User Login or on app re-open.
+//Register call agent
+
+var globalCallAgent : CallAgent?
+var globalIncomingCall: IncomingCall?
+var globalDeviceManager: DeviceManager?
+
 
 @main
 class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHubDelegate {
@@ -98,7 +108,6 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
 
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
-        print("didReceiveIncomingPushWith")
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
         let userDefaults: UserDefaults = .standard
         let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
@@ -107,19 +116,10 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
             CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
                 if error == nil {
                     self.appPubs.pushPayload = payload
-                    
-                    if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Main") as? ViewController {
-                        DispatchQueue.main.async {
-                            let incomingContentView = ContentView(appPubs: self.appPubs)
-                            var incomingHostingController = UIHostingController(rootView: incomingContentView)
-                            print("present")
-                            
-                            let rootVC = UIApplication.shared.keyWindow?.rootViewController
-                            rootVC?.present(incomingHostingController, animated: true, completion: nil)
-                            
-                        }
-                    }
 
+                    let incomingHostingController = UIHostingController(rootView: incomingCallView)
+                    let rootVC = UIApplication.shared.keyWindow?.rootViewController
+                    rootVC?.present(incomingHostingController, animated: true, completion: nil)
                 }
             }
         } else {

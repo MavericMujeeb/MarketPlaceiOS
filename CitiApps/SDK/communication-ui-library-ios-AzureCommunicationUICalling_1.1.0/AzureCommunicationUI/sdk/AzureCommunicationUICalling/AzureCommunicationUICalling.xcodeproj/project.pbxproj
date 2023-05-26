@@ -126,6 +126,7 @@
 		88B87C572755911B00290DD1 /* CallInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B87C562755911B00290DD1 /* CallInfoModel.swift */; };
 		88F6EE1A2735F5CB001AD3E9 /* ErrorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6EE192735F5CB001AD3E9 /* ErrorReducer.swift */; };
 		88F6EE1C2735F8E8001AD3E9 /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6EE1B2735F8E8001AD3E9 /* ErrorState.swift */; };
+		8D7522AB2A13A9E5001FDB1C /* CallKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7522AA2A13A9E5001FDB1C /* CallKitHelper.swift */; };
 		8D9C69A829DDBD4300234447 /* CallObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C69A729DDBD4300234447 /* CallObserver.swift */; };
 		8DB321632991195D0098B5F2 /* AzureCommunicationUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */; };
 		8DB321642991195D0098B5F2 /* AzureCommunicationUIChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -377,6 +378,7 @@
 		88B87C562755911B00290DD1 /* CallInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallInfoModel.swift; sourceTree = "<group>"; };
 		88F6EE192735F5CB001AD3E9 /* ErrorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorReducer.swift; sourceTree = "<group>"; };
 		88F6EE1B2735F8E8001AD3E9 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
+		8D7522AA2A13A9E5001FDB1C /* CallKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
 		8D9C69A729DDBD4300234447 /* CallObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallObserver.swift; sourceTree = "<group>"; };
 		8DB321622991195D0098B5F2 /* AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationUIChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB32174299121CB0098B5F2 /* FluentUIResources-ios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "FluentUIResources-ios.bundle"; path = "../../../../FluentUIResources-ios.bundle"; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 		8D9C69A629DDBD2F00234447 /* Observer */ = {
 			isa = PBXGroup;
 			children = (
+				8D7522AA2A13A9E5001FDB1C /* CallKitHelper.swift */,
 				8D9C69A729DDBD4300234447 /* CallObserver.swift */,
 			);
 			path = Observer;
@@ -1386,6 +1389,7 @@
 				1B70D52827191073007CC933 /* DeviceExtension.swift in Sources */,
 				FA94AF3F27D68DFD001063A6 /* AccessibilityProvider.swift in Sources */,
 				881D8F7427FCA6B3008EC897 /* AvatarViewManager.swift in Sources */,
+				8D7522AB2A13A9E5001FDB1C /* CallKitHelper.swift in Sources */,
 				1BAD44BC283DAF2100C9E6A9 /* DraggableLocalVideoView.swift in Sources */,
 				50E2D69726EBCD15006B0EF4 /* CompositeParticipantsListCell.swift in Sources */,
 				A8373994261F9D7600D46787 /* CallCompositeOptions.swift in Sources */,

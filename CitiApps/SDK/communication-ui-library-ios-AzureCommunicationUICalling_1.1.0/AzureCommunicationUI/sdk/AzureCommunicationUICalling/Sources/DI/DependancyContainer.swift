@@ -32,7 +32,7 @@ final class DependencyContainer {
 
     func registerDependencies(_ callConfiguration: CallConfiguration,
                               localOptions: LocalOptions?,
-                              callCompositeEventsHandler: CallComposite.Events, isAudioCall:Bool?, isVideoCall:Bool?) {
+                              callCompositeEventsHandler: CallComposite.Events, isAudioCall:Bool?, isVideoCall:Bool?, isIncomingCall:Bool?) {
         
         register(CallingSDKEventsHandler(logger: resolve()) as CallingSDKEventsHandling)
         register(CallingSDKWrapper(logger: resolve(),
@@ -51,12 +51,13 @@ final class DependencyContainer {
         register(AvatarViewManager(store: resolve(),
                                    localParticipantViewData: localOptions?.participantViewData) as
                  AvatarViewManagerProtocol)
+        
         register(CompositeViewModelFactory(logger: resolve(),
                                            store: resolve(),
                                            networkManager: resolve(),
                                            localizationProvider: resolve(),
                                            accessibilityProvider: resolve(),
-                                           localOptions: localOptions, isAudioCall: isAudioCall!, isVideoCall: isVideoCall!) as CompositeViewModelFactoryProtocol)
+                                           localOptions: localOptions, isAudioCall: isAudioCall!, isVideoCall: isVideoCall!, isIncomingCall: true) as CompositeViewModelFactoryProtocol)
         register(CompositeViewFactory(logger: resolve(),
                                       avatarManager: resolve(),
                                       videoViewManager: resolve(),
@@ -75,7 +76,6 @@ final class DependencyContainer {
     }
 
     private func makeStore(displayName: String?, isVideoCall : Bool = false) -> Store<AppState> {
-        print("make store :\(isVideoCall)")
         let middlewaresHandler = CallingMiddlewareHandler(callingService: resolve(), logger: resolve())
         let middlewares: [Middleware] = [
             Middleware<AppState>.liveCallingMiddleware(callingMiddlewareHandler: middlewaresHandler,isVideoCall: isVideoCall)

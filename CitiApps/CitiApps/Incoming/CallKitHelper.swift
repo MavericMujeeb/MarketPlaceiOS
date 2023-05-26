@@ -97,10 +97,8 @@ final class CxProviderDelegateImpl : NSObject, CXProviderDelegate {
     }
 
     private func stopAudio(call: Call) async throws {
-        #if BETA
         try await call.stopAudio(direction: .incoming)
         try await call.stopAudio(direction: .outgoing)
-        #endif
     }
     
     private func startAudio(call: Call) async throws {

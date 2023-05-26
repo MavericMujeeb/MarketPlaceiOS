@@ -52,8 +52,8 @@
 		8DA82EA62978047900A79D3B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82EA52978047900A79D3B /* SearchViewController.swift */; };
 		8DC8DC1029D2FD920047A2D3 /* PIPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC8DC0D29D2FD880047A2D3 /* PIPKit.framework */; };
 		8DC8DC1129D2FD920047A2D3 /* PIPKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC8DC0D29D2FD880047A2D3 /* PIPKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8DD4CEEE29A8954000242DA0 /* Trouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD4CEED29A8954000242DA0 /* Trouter */; };
-		8DD4CEF229A895C100242DA0 /* AzureCommunicationUICommon in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD4CEF129A895C100242DA0 /* AzureCommunicationUICommon */; };
+		8DD220C82A1F6CE4009A3866 /* Trouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220C72A1F6CE4009A3866 /* Trouter */; };
+		8DD220CD2A1F6DC6009A3866 /* AzureCommunicationUICommon in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220CC2A1F6DC6009A3866 /* AzureCommunicationUICommon */; };
 		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
 		8DE0D51B297FC13800201043 /* DashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D51A297FC13800201043 /* DashViewController.swift */; };
 		8DE0D51D297FC16300201043 /* DashScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE0D51C297FC16300201043 /* DashScene.storyboard */; };
@@ -231,7 +231,7 @@
 		8DA82EA32978047400A79D3B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8DA82EA52978047900A79D3B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8DC8DC0729D2FD880047A2D3 /* PIPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PIPKit.xcodeproj; path = "SDK/PIPKit-master/PIPKit.xcodeproj"; sourceTree = "<group>"; };
-		8DD4CEF029A895AC00242DA0 /* AzureCommunicationUICommon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AzureCommunicationUICommon; path = SDK/AzureCommunicationUICommon; sourceTree = "<group>"; };
+		8DD220CB2A1F6DB3009A3866 /* AzureCommunicationUICommon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AzureCommunicationUICommon; path = SDK/AzureCommunicationUICommon; sourceTree = "<group>"; };
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		8DE0D51A297FC13800201043 /* DashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashViewController.swift; sourceTree = "<group>"; };
 		8DE0D51C297FC16300201043 /* DashScene.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashScene.storyboard; sourceTree = "<group>"; };
@@ -284,12 +284,12 @@
 				8D7522932A0916B7001FDB1C /* WindowsAzureMessaging.framework in Frameworks */,
 				8D7522942A0916C1001FDB1C /* WindowsAzureMessaging.framework in Frameworks */,
 				8D4B4F4229FBBF7200B77B60 /* FlutterPluginRegistrant.xcframework in Frameworks */,
+				8DD220CD2A1F6DC6009A3866 /* AzureCommunicationUICommon in Frameworks */,
 				8DC8DC1029D2FD920047A2D3 /* PIPKit.framework in Frameworks */,
 				8D7015F62981303100FDEBFC /* AzureCommunicationCommon.framework in Frameworks */,
-				8DD4CEEE29A8954000242DA0 /* Trouter in Frameworks */,
 				8D0A5FFA298A5A2A002EBBC4 /* AzureCommunicationUIChat.framework in Frameworks */,
 				8DFBD30A297572B5006B0700 /* libFluentUI.a in Frameworks */,
-				8DD4CEF229A895C100242DA0 /* AzureCommunicationUICommon in Frameworks */,
+				8DD220C82A1F6CE4009A3866 /* Trouter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,10 +342,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8DD4CEEF29A895AC00242DA0 /* Packages */ = {
+		8DD220CA2A1F6DB3009A3866 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				8DD4CEF029A895AC00242DA0 /* AzureCommunicationUICommon */,
+				8DD220CB2A1F6DB3009A3866 /* AzureCommunicationUICommon */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -353,10 +353,10 @@
 		8DFBD2C129756DD6006B0700 = {
 			isa = PBXGroup;
 			children = (
+				8DD220CA2A1F6DB3009A3866 /* Packages */,
 				8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */,
 				8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */,
 				8DC8DC0729D2FD880047A2D3 /* PIPKit.xcodeproj */,
-				8DD4CEEF29A895AC00242DA0 /* Packages */,
 				8DFBD34729757A39006B0700 /* AppSettings.xcconfig */,
 				8DFBD30B29757340006B0700 /* MSAL.xcframework */,
 				8D0A5FF1298A5A1C002EBBC4 /* AzureCommunicationUIChat.xcodeproj */,
@@ -500,8 +500,8 @@
 			);
 			name = CitiApps;
 			packageProductDependencies = (
-				8DD4CEED29A8954000242DA0 /* Trouter */,
-				8DD4CEF129A895C100242DA0 /* AzureCommunicationUICommon */,
+				8DD220C72A1F6CE4009A3866 /* Trouter */,
+				8DD220CC2A1F6DC6009A3866 /* AzureCommunicationUICommon */,
 			);
 			productName = CitiApps;
 			productReference = 8DFBD2CA29756DD6006B0700 /* CitiApps.app */;
@@ -532,7 +532,7 @@
 			);
 			mainGroup = 8DFBD2C129756DD6006B0700;
 			packageReferences = (
-				8DD4CEEC29A8954000242DA0 /* XCRemoteSwiftPackageReference "trouter-client-ios" */,
+				8DD220C62A1F6CE4009A3866 /* XCRemoteSwiftPackageReference "trouter-client-ios" */,
 			);
 			productRefGroup = 8DFBD2CB29756DD6006B0700 /* Products */;
 			projectDirPath = "";
@@ -1068,7 +1068,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8DD4CEEC29A8954000242DA0 /* XCRemoteSwiftPackageReference "trouter-client-ios" */ = {
+		8DD220C62A1F6CE4009A3866 /* XCRemoteSwiftPackageReference "trouter-client-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/microsoft/trouter-client-ios";
 			requirement = {
@@ -1079,12 +1079,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8DD4CEED29A8954000242DA0 /* Trouter */ = {
+		8DD220C72A1F6CE4009A3866 /* Trouter */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8DD4CEEC29A8954000242DA0 /* XCRemoteSwiftPackageReference "trouter-client-ios" */;
+			package = 8DD220C62A1F6CE4009A3866 /* XCRemoteSwiftPackageReference "trouter-client-ios" */;
 			productName = Trouter;
 		};
-		8DD4CEF129A895C100242DA0 /* AzureCommunicationUICommon */ = {
+		8DD220CC2A1F6DC6009A3866 /* AzureCommunicationUICommon */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AzureCommunicationUICommon;
 		};
