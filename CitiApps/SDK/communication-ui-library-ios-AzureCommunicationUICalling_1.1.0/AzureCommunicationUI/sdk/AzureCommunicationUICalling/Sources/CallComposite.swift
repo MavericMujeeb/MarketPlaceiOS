@@ -8,6 +8,11 @@ import UIKit
 import SwiftUI
 import FluentUI
 import PIPKit
+import AzureCommunicationCalling
+
+var acs_incomingCallAgent: CallAgent?
+var acs_deviceManager: DeviceManager?
+var acs_incomingCallObject: IncomingCall?
 
 /// The main class representing the entry point for the Call Composite.
 public class CallComposite {
@@ -41,6 +46,12 @@ public class CallComposite {
         localizationOptions = options?.localizationOptions
         callCompositeOptions = options
     }
+    
+    public func setIncomingCallAgent(callAgent: CallAgent?, deviceManager: DeviceManager?, incomingCall: IncomingCall?){
+        acs_incomingCallAgent = callAgent
+        acs_deviceManager = deviceManager
+        acs_incomingCallObject = incomingCall
+    }
 
     deinit {
         logger?.debug("Composite deallocated")
@@ -54,15 +65,22 @@ public class CallComposite {
 
         dependencyContainer.registerDependencies(callConfiguration,
                                                  localOptions: localOptions,
-                                                 callCompositeEventsHandler: events, isAudioCall: callCompositeOptions?.isAudioCall, isVideoCall: callCompositeOptions?.isVideoCall)
+                                                 callCompositeEventsHandler: events,
+                                                 isAudioCall: callCompositeOptions?.isAudioCall,
+                                                 isVideoCall: callCompositeOptions?.isVideoCall,
+                                                 isIncomingCall: true)
+        
         let localizationProvider = dependencyContainer.resolve() as LocalizationProviderProtocol
         setupColorTheming()
         setupLocalization(with: localizationProvider)
+        
         let toolkitHostingController = makeToolkitHostingController(router: dependencyContainer.resolve(),
                                                                     logger: dependencyContainer.resolve(),
                                                                     viewFactory: dependencyContainer.resolve(),
                                                                     isRightToLeft: localizationProvider.isRightToLeft,
-                                                                    meetingLink: callConfiguration.meetingLink!, isAudioCall: (callCompositeOptions?.isAudioCall)!, isVideoCall: (callCompositeOptions?.isVideoCall)!)
+                                                                    meetingLink: callConfiguration.meetingLink!, isAudioCall: (callCompositeOptions?.isAudioCall)!, isVideoCall: (callCompositeOptions?.isVideoCall)!, isIncomingCall: true)
+        
+        print("launch -- setupmanagers")
         setupManagers(with: dependencyContainer)
         PIPKit.show(with: toolkitHostingController)
     }
@@ -120,7 +138,8 @@ public class CallComposite {
                                               logger: Logger,
                                               viewFactory: CompositeViewFactoryProtocol,
                                               isRightToLeft: Bool,
-                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool) -> ContainerUIHostingController {
+                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool, isIncomingCall:Bool) -> ContainerUIHostingController {
+        
         
         let rootView = ContainerView(router: router,
                                      logger: logger,

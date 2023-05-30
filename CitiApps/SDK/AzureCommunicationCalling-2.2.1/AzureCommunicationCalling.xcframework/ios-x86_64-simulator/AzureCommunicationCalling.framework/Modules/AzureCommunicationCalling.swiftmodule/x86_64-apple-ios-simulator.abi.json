@@ -1,0 +1,2305 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCalling",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AzureCommunicationCalling",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CallFeatureFactory",
+        "printedName": "CallFeatureFactory",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(cls:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CallFeatureFactory",
+                "printedName": "AzureCommunicationCalling.CallFeatureFactory<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Metatype",
+                "printedName": "τ_1_0.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_1_0"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC3clsACyxGqd__m_tcSo07ACSCallE0CRbd__lufc",
+            "mangledName": "$s25AzureCommunicationCalling18CallFeatureFactoryC3clsACyxGqd__m_tcSo07ACSCallE0CRbd__lufc",
+            "moduleName": "AzureCommunicationCalling",
+            "genericSig": "<τ_0_0, τ_1_0 where τ_0_0 : AzureCommunicationCalling.CallFeature, τ_1_0 : AzureCommunicationCalling.CallFeature>",
+            "sugared_genericSig": "<T, TCallFeature where T : AzureCommunicationCalling.CallFeature, TCallFeature : AzureCommunicationCalling.CallFeature>",
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "getCallFeatureImpl",
+            "printedName": "getCallFeatureImpl()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Metatype",
+                "printedName": "AzureCommunicationCalling.CallFeature.Type",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeature",
+                    "printedName": "AzureCommunicationCalling.CallFeature",
+                    "usr": "c:objc(cs)ACSCallFeature"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC03getdE4ImplSo07ACSCallE0CmyF",
+            "mangledName": "$s25AzureCommunicationCalling18CallFeatureFactoryC03getdE4ImplSo07ACSCallE0CmyF",
+            "moduleName": "AzureCommunicationCalling",
+            "genericSig": "<τ_0_0 where τ_0_0 : AzureCommunicationCalling.CallFeature>",
+            "sugared_genericSig": "<T where T : AzureCommunicationCalling.CallFeature>",
+            "isOpen": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC",
+        "mangledName": "$s25AzureCommunicationCalling18CallFeatureFactoryC",
+        "moduleName": "AzureCommunicationCalling",
+        "genericSig": "<τ_0_0 where τ_0_0 : AzureCommunicationCalling.CallFeature>",
+        "sugared_genericSig": "<T where T : AzureCommunicationCalling.CallFeature>",
+        "isOpen": true,
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MediaDiagnosticValues",
+        "printedName": "MediaDiagnosticValues",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "speakerNotFunctioning",
+            "printedName": "speakerNotFunctioning",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE21speakerNotFunctioningSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE21speakerNotFunctioningSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE21speakerNotFunctioningSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE21speakerNotFunctioningSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "speakerNotFunctioningDeviceInUse",
+            "printedName": "speakerNotFunctioningDeviceInUse",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE32speakerNotFunctioningDeviceInUseSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE32speakerNotFunctioningDeviceInUseSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE32speakerNotFunctioningDeviceInUseSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE32speakerNotFunctioningDeviceInUseSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "speakerMuted",
+            "printedName": "speakerMuted",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE12speakerMutedSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE12speakerMutedSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE12speakerMutedSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE12speakerMutedSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "speakerVolumeIsZero",
+            "printedName": "speakerVolumeIsZero",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE19speakerVolumeIsZeroSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE19speakerVolumeIsZeroSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE19speakerVolumeIsZeroSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE19speakerVolumeIsZeroSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "noSpeakerDevicesEnumerated",
+            "printedName": "noSpeakerDevicesEnumerated",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE26noSpeakerDevicesEnumeratedSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE26noSpeakerDevicesEnumeratedSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE26noSpeakerDevicesEnumeratedSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE26noSpeakerDevicesEnumeratedSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "speakingWhileMicrophoneIsMuted",
+            "printedName": "speakingWhileMicrophoneIsMuted",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE30speakingWhileMicrophoneIsMutedSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE30speakingWhileMicrophoneIsMutedSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE30speakingWhileMicrophoneIsMutedSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE30speakingWhileMicrophoneIsMutedSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "noMicrophoneDevicesEnumerated",
+            "printedName": "noMicrophoneDevicesEnumerated",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE29noMicrophoneDevicesEnumeratedSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE29noMicrophoneDevicesEnumeratedSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE29noMicrophoneDevicesEnumeratedSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE29noMicrophoneDevicesEnumeratedSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "microphoneNotFunctioningDeviceInUse",
+            "printedName": "microphoneNotFunctioningDeviceInUse",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE35microphoneNotFunctioningDeviceInUseSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE35microphoneNotFunctioningDeviceInUseSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE35microphoneNotFunctioningDeviceInUseSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE35microphoneNotFunctioningDeviceInUseSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "cameraFreeze",
+            "printedName": "cameraFreeze",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE12cameraFreezeSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE12cameraFreezeSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE12cameraFreezeSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE12cameraFreezeSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "cameraStartFailed",
+            "printedName": "cameraStartFailed",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE17cameraStartFailedSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE17cameraStartFailedSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE17cameraStartFailedSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE17cameraStartFailedSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "cameraStartTimedOut",
+            "printedName": "cameraStartTimedOut",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE19cameraStartTimedOutSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE19cameraStartTimedOutSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE19cameraStartTimedOutSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE19cameraStartTimedOutSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "microphoneNotFunctioning",
+            "printedName": "microphoneNotFunctioning",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE24microphoneNotFunctioningSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE24microphoneNotFunctioningSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE24microphoneNotFunctioningSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE24microphoneNotFunctioningSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "microphoneMuteUnexpectedly",
+            "printedName": "microphoneMuteUnexpectedly",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE26microphoneMuteUnexpectedlySbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE26microphoneMuteUnexpectedlySbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE26microphoneMuteUnexpectedlySbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE26microphoneMuteUnexpectedlySbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "cameraPermissionDenied",
+            "printedName": "cameraPermissionDenied",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE22cameraPermissionDeniedSbSgvp",
+            "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE22cameraPermissionDeniedSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE22cameraPermissionDeniedSbSgvg",
+                "mangledName": "$sSo24ACSMediaDiagnosticValuesC25AzureCommunicationCallingE22cameraPermissionDeniedSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)ACSMediaDiagnosticValues",
+        "moduleName": "AzureCommunicationCalling",
+        "isOpen": true,
+        "objc_name": "ACSMediaDiagnosticValues",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NetworkDiagnosticValues",
+        "printedName": "NetworkDiagnosticValues",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "noNetwork",
+            "printedName": "noNetwork",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE9noNetworkSbSgvp",
+            "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE9noNetworkSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE9noNetworkSbSgvg",
+                "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE9noNetworkSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "networkRelaysNotReachable",
+            "printedName": "networkRelaysNotReachable",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE25networkRelaysNotReachableSbSgvp",
+            "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE25networkRelaysNotReachableSbSgvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE25networkRelaysNotReachableSbSgvg",
+                "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE25networkRelaysNotReachableSbSgvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "networkReconnect",
+            "printedName": "networkReconnect",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DiagnosticQuality",
+                "printedName": "AzureCommunicationCalling.DiagnosticQuality",
+                "usr": "c:@E@ACSDiagnosticQuality"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE16networkReconnectSo20ACSDiagnosticQualityVvp",
+            "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE16networkReconnectSo20ACSDiagnosticQualityVvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DiagnosticQuality",
+                    "printedName": "AzureCommunicationCalling.DiagnosticQuality",
+                    "usr": "c:@E@ACSDiagnosticQuality"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE16networkReconnectSo20ACSDiagnosticQualityVvg",
+                "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE16networkReconnectSo20ACSDiagnosticQualityVvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "networkSendQuality",
+            "printedName": "networkSendQuality",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DiagnosticQuality",
+                "printedName": "AzureCommunicationCalling.DiagnosticQuality",
+                "usr": "c:@E@ACSDiagnosticQuality"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE18networkSendQualitySo013ACSDiagnosticI0Vvp",
+            "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE18networkSendQualitySo013ACSDiagnosticI0Vvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DiagnosticQuality",
+                    "printedName": "AzureCommunicationCalling.DiagnosticQuality",
+                    "usr": "c:@E@ACSDiagnosticQuality"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE18networkSendQualitySo013ACSDiagnosticI0Vvg",
+                "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE18networkSendQualitySo013ACSDiagnosticI0Vvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "networkReceiveQuality",
+            "printedName": "networkReceiveQuality",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "DiagnosticQuality",
+                "printedName": "AzureCommunicationCalling.DiagnosticQuality",
+                "usr": "c:@E@ACSDiagnosticQuality"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE21networkReceiveQualitySo013ACSDiagnosticI0Vvp",
+            "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE21networkReceiveQualitySo013ACSDiagnosticI0Vvp",
+            "moduleName": "AzureCommunicationCalling",
+            "isOpen": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DiagnosticQuality",
+                    "printedName": "AzureCommunicationCalling.DiagnosticQuality",
+                    "usr": "c:@E@ACSDiagnosticQuality"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE21networkReceiveQualitySo013ACSDiagnosticI0Vvg",
+                "mangledName": "$sSo26ACSNetworkDiagnosticValuesC25AzureCommunicationCallingE21networkReceiveQualitySo013ACSDiagnosticI0Vvg",
+                "moduleName": "AzureCommunicationCalling",
+                "isOpen": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)ACSNetworkDiagnosticValues",
+        "moduleName": "AzureCommunicationCalling",
+        "isOpen": true,
+        "objc_name": "ACSNetworkDiagnosticValues",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Features",
+        "printedName": "Features",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "recording",
+            "printedName": "recording",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CallFeatureFactory",
+                "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RecordingCallFeature>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RecordingCallFeature",
+                    "printedName": "AzureCommunicationCalling.RecordingCallFeature",
+                    "usr": "c:objc(cs)ACSRecordingCallFeature"
+                  }
+                ],
+                "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE9recordingAC18CallFeatureFactoryCySo012ACSRecordingfG0CGvpZ",
+            "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE9recordingAC18CallFeatureFactoryCySo012ACSRecordingfG0CGvpZ",
+            "moduleName": "AzureCommunicationCalling",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RecordingCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RecordingCallFeature",
+                        "printedName": "AzureCommunicationCalling.RecordingCallFeature",
+                        "usr": "c:objc(cs)ACSRecordingCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE9recordingAC18CallFeatureFactoryCySo012ACSRecordingfG0CGvgZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE9recordingAC18CallFeatureFactoryCySo012ACSRecordingfG0CGvgZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RecordingCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RecordingCallFeature",
+                        "printedName": "AzureCommunicationCalling.RecordingCallFeature",
+                        "usr": "c:objc(cs)ACSRecordingCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE9recordingAC18CallFeatureFactoryCySo012ACSRecordingfG0CGvsZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE9recordingAC18CallFeatureFactoryCySo012ACSRecordingfG0CGvsZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE9recordingAC18CallFeatureFactoryCySo012ACSRecordingfG0CGvMZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE9recordingAC18CallFeatureFactoryCySo012ACSRecordingfG0CGvMZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "transcription",
+            "printedName": "transcription",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CallFeatureFactory",
+                "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TranscriptionCallFeature>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "TranscriptionCallFeature",
+                    "printedName": "AzureCommunicationCalling.TranscriptionCallFeature",
+                    "usr": "c:objc(cs)ACSTranscriptionCallFeature"
+                  }
+                ],
+                "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE13transcriptionAC18CallFeatureFactoryCySo016ACSTranscriptionfG0CGvpZ",
+            "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE13transcriptionAC18CallFeatureFactoryCySo016ACSTranscriptionfG0CGvpZ",
+            "moduleName": "AzureCommunicationCalling",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TranscriptionCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TranscriptionCallFeature",
+                        "printedName": "AzureCommunicationCalling.TranscriptionCallFeature",
+                        "usr": "c:objc(cs)ACSTranscriptionCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE13transcriptionAC18CallFeatureFactoryCySo016ACSTranscriptionfG0CGvgZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE13transcriptionAC18CallFeatureFactoryCySo016ACSTranscriptionfG0CGvgZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TranscriptionCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TranscriptionCallFeature",
+                        "printedName": "AzureCommunicationCalling.TranscriptionCallFeature",
+                        "usr": "c:objc(cs)ACSTranscriptionCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE13transcriptionAC18CallFeatureFactoryCySo016ACSTranscriptionfG0CGvsZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE13transcriptionAC18CallFeatureFactoryCySo016ACSTranscriptionfG0CGvsZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE13transcriptionAC18CallFeatureFactoryCySo016ACSTranscriptionfG0CGvMZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE13transcriptionAC18CallFeatureFactoryCySo016ACSTranscriptionfG0CGvMZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "dominantSpeakers",
+            "printedName": "dominantSpeakers",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CallFeatureFactory",
+                "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DominantSpeakersCallFeature>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DominantSpeakersCallFeature",
+                    "printedName": "AzureCommunicationCalling.DominantSpeakersCallFeature",
+                    "usr": "c:objc(cs)ACSDominantSpeakersCallFeature"
+                  }
+                ],
+                "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE16dominantSpeakersAC18CallFeatureFactoryCySo011ACSDominantfgH0CGvpZ",
+            "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE16dominantSpeakersAC18CallFeatureFactoryCySo011ACSDominantfgH0CGvpZ",
+            "moduleName": "AzureCommunicationCalling",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DominantSpeakersCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DominantSpeakersCallFeature",
+                        "printedName": "AzureCommunicationCalling.DominantSpeakersCallFeature",
+                        "usr": "c:objc(cs)ACSDominantSpeakersCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE16dominantSpeakersAC18CallFeatureFactoryCySo011ACSDominantfgH0CGvgZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE16dominantSpeakersAC18CallFeatureFactoryCySo011ACSDominantfgH0CGvgZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DominantSpeakersCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DominantSpeakersCallFeature",
+                        "printedName": "AzureCommunicationCalling.DominantSpeakersCallFeature",
+                        "usr": "c:objc(cs)ACSDominantSpeakersCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE16dominantSpeakersAC18CallFeatureFactoryCySo011ACSDominantfgH0CGvsZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE16dominantSpeakersAC18CallFeatureFactoryCySo011ACSDominantfgH0CGvsZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE16dominantSpeakersAC18CallFeatureFactoryCySo011ACSDominantfgH0CGvMZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE16dominantSpeakersAC18CallFeatureFactoryCySo011ACSDominantfgH0CGvMZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "teamsCaptions",
+            "printedName": "teamsCaptions",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CallFeatureFactory",
+                "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TeamsCaptionsCallFeature>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "TeamsCaptionsCallFeature",
+                    "printedName": "AzureCommunicationCalling.TeamsCaptionsCallFeature",
+                    "usr": "c:objc(cs)ACSTeamsCaptionsCallFeature"
+                  }
+                ],
+                "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE13teamsCaptionsAC18CallFeatureFactoryCySo08ACSTeamsfgH0CGvpZ",
+            "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE13teamsCaptionsAC18CallFeatureFactoryCySo08ACSTeamsfgH0CGvpZ",
+            "moduleName": "AzureCommunicationCalling",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TeamsCaptionsCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TeamsCaptionsCallFeature",
+                        "printedName": "AzureCommunicationCalling.TeamsCaptionsCallFeature",
+                        "usr": "c:objc(cs)ACSTeamsCaptionsCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE13teamsCaptionsAC18CallFeatureFactoryCySo08ACSTeamsfgH0CGvgZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE13teamsCaptionsAC18CallFeatureFactoryCySo08ACSTeamsfgH0CGvgZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TeamsCaptionsCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TeamsCaptionsCallFeature",
+                        "printedName": "AzureCommunicationCalling.TeamsCaptionsCallFeature",
+                        "usr": "c:objc(cs)ACSTeamsCaptionsCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE13teamsCaptionsAC18CallFeatureFactoryCySo08ACSTeamsfgH0CGvsZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE13teamsCaptionsAC18CallFeatureFactoryCySo08ACSTeamsfgH0CGvsZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE13teamsCaptionsAC18CallFeatureFactoryCySo08ACSTeamsfgH0CGvMZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE13teamsCaptionsAC18CallFeatureFactoryCySo08ACSTeamsfgH0CGvMZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "raiseHand",
+            "printedName": "raiseHand",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CallFeatureFactory",
+                "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RaiseHandCallFeature>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RaiseHandCallFeature",
+                    "printedName": "AzureCommunicationCalling.RaiseHandCallFeature",
+                    "usr": "c:objc(cs)ACSRaiseHandCallFeature"
+                  }
+                ],
+                "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE9raiseHandAC18CallFeatureFactoryCySo08ACSRaisefgH0CGvpZ",
+            "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE9raiseHandAC18CallFeatureFactoryCySo08ACSRaisefgH0CGvpZ",
+            "moduleName": "AzureCommunicationCalling",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RaiseHandCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RaiseHandCallFeature",
+                        "printedName": "AzureCommunicationCalling.RaiseHandCallFeature",
+                        "usr": "c:objc(cs)ACSRaiseHandCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE9raiseHandAC18CallFeatureFactoryCySo08ACSRaisefgH0CGvgZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE9raiseHandAC18CallFeatureFactoryCySo08ACSRaisefgH0CGvgZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RaiseHandCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RaiseHandCallFeature",
+                        "printedName": "AzureCommunicationCalling.RaiseHandCallFeature",
+                        "usr": "c:objc(cs)ACSRaiseHandCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE9raiseHandAC18CallFeatureFactoryCySo08ACSRaisefgH0CGvsZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE9raiseHandAC18CallFeatureFactoryCySo08ACSRaisefgH0CGvsZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE9raiseHandAC18CallFeatureFactoryCySo08ACSRaisefgH0CGvMZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE9raiseHandAC18CallFeatureFactoryCySo08ACSRaisefgH0CGvMZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "diagnostics",
+            "printedName": "diagnostics",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CallFeatureFactory",
+                "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DiagnosticsCallFeature>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DiagnosticsCallFeature",
+                    "printedName": "AzureCommunicationCalling.DiagnosticsCallFeature",
+                    "usr": "c:objc(cs)ACSDiagnosticsCallFeature"
+                  }
+                ],
+                "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE11diagnosticsAC18CallFeatureFactoryCySo014ACSDiagnosticsfG0CGvpZ",
+            "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE11diagnosticsAC18CallFeatureFactoryCySo014ACSDiagnosticsfG0CGvpZ",
+            "moduleName": "AzureCommunicationCalling",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DiagnosticsCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DiagnosticsCallFeature",
+                        "printedName": "AzureCommunicationCalling.DiagnosticsCallFeature",
+                        "usr": "c:objc(cs)ACSDiagnosticsCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE11diagnosticsAC18CallFeatureFactoryCySo014ACSDiagnosticsfG0CGvgZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE11diagnosticsAC18CallFeatureFactoryCySo014ACSDiagnosticsfG0CGvgZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CallFeatureFactory",
+                    "printedName": "AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DiagnosticsCallFeature>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DiagnosticsCallFeature",
+                        "printedName": "AzureCommunicationCalling.DiagnosticsCallFeature",
+                        "usr": "c:objc(cs)ACSDiagnosticsCallFeature"
+                      }
+                    ],
+                    "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE11diagnosticsAC18CallFeatureFactoryCySo014ACSDiagnosticsfG0CGvsZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE11diagnosticsAC18CallFeatureFactoryCySo014ACSDiagnosticsfG0CGvsZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:So11ACSFeaturesC25AzureCommunicationCallingE11diagnosticsAC18CallFeatureFactoryCySo014ACSDiagnosticsfG0CGvMZ",
+                "mangledName": "$sSo11ACSFeaturesC25AzureCommunicationCallingE11diagnosticsAC18CallFeatureFactoryCySo014ACSDiagnosticsfG0CGvMZ",
+                "moduleName": "AzureCommunicationCalling",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "isFromExtension": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)ACSFeatures",
+        "moduleName": "AzureCommunicationCalling",
+        "isOpen": true,
+        "objc_name": "ACSFeatures",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Call",
+        "printedName": "Call",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "feature",
+            "printedName": "feature(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CallFeatureFactory",
+                "printedName": "AzureCommunicationCalling.CallFeatureFactory<τ_0_0>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:25AzureCommunicationCalling18CallFeatureFactoryC"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:So7ACSCallC25AzureCommunicationCallingE7featureyxAC18CallFeatureFactoryCyxGSo0aG0CRbzlF",
+            "mangledName": "$sSo7ACSCallC25AzureCommunicationCallingE7featureyxAC18CallFeatureFactoryCyxGSo0aG0CRbzlF",
+            "moduleName": "AzureCommunicationCalling",
+            "genericSig": "<τ_0_0 where τ_0_0 : AzureCommunicationCalling.CallFeature>",
+            "sugared_genericSig": "<TCallFeature where TCallFeature : AzureCommunicationCalling.CallFeature>",
+            "isOpen": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)ACSCall",
+        "moduleName": "AzureCommunicationCalling",
+        "isOpen": true,
+        "objc_name": "ACSCall",
+        "declAttributes": [
+          "ObjC",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

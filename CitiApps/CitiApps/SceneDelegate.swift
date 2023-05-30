@@ -18,11 +18,10 @@ import Combine
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
     let storageUserDefaults = UserDefaults.standard
+//    private var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
         self.window?.overrideUserInterfaceStyle = .light
         
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
@@ -33,12 +32,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
         )
+//        self.registerIncomingCallHandler()
         
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
             switch call.method {
-                case "joinCallClick":
-                print("joinCallClick")
+            case "joinCallClick":
                 self?.joinTeamsMeeting(result: result, args: call.arguments as! NSDictionary)
             case "startChat":
                 self?.startChat(result: result, args: call.arguments as! NSDictionary)
@@ -51,8 +50,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     return
             }
         })
-        
-      
         
         if let userActivity = connectionOptions.userActivities.first {
             if let incomingURL = userActivity.webpageURL {
@@ -76,6 +73,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
                     DispatchQueue.main.async {
                         let nav = UINavigationController.init(rootViewController: vc)
+                        
+                        
                         nav.navigationBar.backgroundColor = .black
                         self.window?.rootViewController = nav
                         self.window?.makeKeyAndVisible()
@@ -88,18 +87,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
     }
     
+    
+    func registerIncomingCallHandler () {
+        let incomingCallController = ACSIncomingCallConntroller()
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        incomingCallController.resigterIncomingCallClient(appPubs: appDelegate.appPubs)
+    }
+    
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
         let mettingLink = args.value(forKey: "meeting_id") as! String
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
         storageUserDefaults.set("", forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startCall()
-
-//        PIPKit.show(with: PIPACSViewController())
     }
     
     @objc func handleNotification(_ notification : NSNotification){
-        print("handle the chat")
         let info = notification.userInfo
         let isVideoCall = info!["isVideo"] as! Bool
         let teamsVC = TeamsCallingViewController()
@@ -159,6 +162,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       guard let url = URLComponents(string: url) else { return nil }
       return url.queryItems?.first(where: { $0.name == param })?.value
     }
-
 }
-

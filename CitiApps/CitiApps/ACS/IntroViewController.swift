@@ -118,6 +118,8 @@ class TeamsCallingViewController {
                     let responseModel = try jsonDecoder.decode(ParticipantDetails.self, from: data)
                     self.bankerUserName = responseModel.originator?.participantName
                     self.bankerAcsId = responseModel.originator?.acsId
+                    ACSResources.bankerAcsId = self.bankerAcsId
+                    
                     self.custUserName = responseModel.participantList?[0].participantName
                     self.custAcsId = responseModel.participantList?[0].acsId
                     DispatchQueue.main.async {
@@ -145,7 +147,7 @@ class TeamsCallingViewController {
         })
         Task{
             do{
-                await self.startAudioCall(acsId: self.bankerAcsId,isVideoCall: isVideoCall)
+                await self.startAudioCall(acsId: self.bankerAcsId, isVideoCall: isVideoCall)
                 CircleLoader.sharedInstance.hide()
             }
         }

@@ -44,16 +44,16 @@ final class CallingContext {
 
     // MARK: Public API
     func getTokenCredential() async throws -> CommunicationTokenCredential {
-            let token = await fetchInitialToken()
-            callChatToken = token //<---- set the call chat token
-            let tokenCredentialOptions = CommunicationTokenRefreshOptions(initialToken: token, refreshProactively: true, tokenRefresher: self.tokenFetcher)
-            do {
-                let tokenCredential = try CommunicationTokenCredential(withOptions: tokenCredentialOptions)
-                return tokenCredential
-            } catch {
-                print("ERROR: It was not possible to create user credential.")
-                throw error
-            }
+        let token = await fetchInitialToken()
+        callChatToken = token //<---- set the call chat token
+        let tokenCredentialOptions = CommunicationTokenRefreshOptions(initialToken: token, refreshProactively: true, tokenRefresher: self.tokenFetcher)
+        do {
+            let tokenCredential = try CommunicationTokenCredential(withOptions: tokenCredentialOptions)
+            return tokenCredential
+        } catch {
+            print("ERROR: It was not possible to create user credential.")
+            throw error
+        }
     }
 
     @MainActor
@@ -69,9 +69,11 @@ final class CallingContext {
         do {
             let communicationTokenCredential = try await getTokenCredential()
             
-            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall)
+            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall, isIncomingCall: false)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
+            print( joinConfig.callType)
+            
             switch joinConfig.callType {
             case .groupCall:
                 self.callComposite?.launch(

@@ -6,6 +6,6 @@ framework module AzureCommunicationCalling {
 }
 
 module AzureCommunicationCalling.Swift {
-    header "AzureCommunicationCalling-Swift.h"
-    requires objc
+  header "AzureCommunicationCalling-Swift.h"
+  requires objc
 }

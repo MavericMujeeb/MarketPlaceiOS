@@ -10,7 +10,7 @@ import ReplayKit
 import CoreLocation
 import PIPKit
 
-class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerDelegate, CallDelegate{
+class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerDelegate, CallDelegate {
     
     var acsParticipantsIds: Set<String>
     let callingEventsHandler: CallingSDKEventsHandling
@@ -20,6 +20,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     private var callClient: CallClient?
     private var callAgent: CallAgent?
     private var call: Call?
+    private var incomingCall: IncomingCall?
     private var deviceManager: DeviceManager?
     private var localVideoStream: AzureCommunicationCalling.LocalVideoStream?
 
@@ -143,7 +144,6 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     }
     
     func autoDismissCall() async throws{
-        print("autoDismissCall")
         self.callAgent?.dispose()
         print(self.callAgent?.calls.count)
 

@@ -19,6 +19,69 @@ import UIKit
 import FluentUI
 import Flutter
 import PIPKit
+import AzureCommunicationCalling
+import AVFoundation
+import SwiftUI
+
+struct IncomingCallController: UIViewControllerRepresentable {
+    
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
+        
+    }
+    
+    var view: ContentView
+    init(view:ContentView) {
+        self.view = view
+    }
+    
+    func makeUIViewController(context: Context) -> UINavigationController{
+            
+        let childView = UIHostingController(rootView: view)
+        let controller =     UINavigationController(rootViewController:childView)
+        let appearance = UINavigationBarAppearance()
+        let searchController = UISearchController()
+        
+        
+        searchController.searchBar.barStyle = .black
+        
+        appearance.backgroundColor = UIColor(Color(.red))
+        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        
+        controller.navigationBar.topItem?.compactAppearance = appearance
+        controller.navigationBar.topItem?.scrollEdgeAppearance = appearance
+        controller.navigationBar.topItem?.standardAppearance = appearance
+        
+
+        controller.navigationBar.topItem?.title = "navigation bar"
+        controller.navigationBar.prefersLargeTitles = true
+        
+        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Rechercher...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        searchController.searchBar.setValue("Annuler", forKey: "cancelButtonText")
+        
+        
+        searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.searchTextField.leftView?.tintColor = .white
+        
+        let sfConfiguration = UIImage.SymbolConfiguration(pointSize: 30)
+        let barCodeIcon = UIImage(systemName: "barcode.viewfinder")?.withTintColor(.white, renderingMode: .alwaysOriginal).withConfiguration(sfConfiguration)
+    
+
+        searchController.searchBar.setImage(barCodeIcon, for: .bookmark, state:.normal)
+        searchController.obscuresBackgroundDuringPresentation = false
+  
+
+        let attributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(attributes, for: .normal)
+       
+        controller.navigationBar.topItem?.hidesSearchBarWhenScrolling = false
+        controller.navigationBar.topItem?.searchController = searchController
+        
+        return controller
+    }
+    
+}
 
 class ViewController : UIViewController {
     
@@ -34,10 +97,22 @@ class ViewController : UIViewController {
     
     var handleExternalLinks: Bool!
     var meetingLink : String!
-    
     let storageUserDefaults = UserDefaults.standard
+
+    //Added for testing purpose
+//    func showIncomingCallView(){
+//        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+//
+//        let incomingContentView = ContentView(appPubs: appDelegate.appPubs)
+//        var incomingHostingController = UIHostingController(rootView: incomingContentView)
+//        present(incomingHostingController, animated: true, completion: nil)
+//    }
     
     @IBAction func onLoginAction(_ sender: Any) {
+        //Added for testing purpose
+//        showIncomingCallView()
+//        return
+        
         if(self.username.text == "" || self.password.text == "") {
             return
         }
@@ -65,16 +140,14 @@ class ViewController : UIViewController {
         loggedInUser = self.username.text
         userid = users[self.username.text!]?["userid"]
         storageUserDefaults.set(users[self.username.text!]?["name"], forKey: StorageKeys.loginUserName)
-        var userInfo = UserInfoData(name: users[self.username.text!]?["name"], email: users[self.username.text!]?["email"], id: users[self.username.text!]?["userid"])
-        var data = try! JSONEncoder().encode(userInfo)
-        var userStr = String(data: data, encoding: .utf8)
+        let userInfo = UserInfoData(name: users[self.username.text!]?["name"], email: users[self.username.text!]?["email"], id: users[self.username.text!]?["userid"])
+        let data = try! JSONEncoder().encode(userInfo)
+        let userStr = String(data: data, encoding: .utf8)
         flutterMethodChannel(passArgs: userStr);
         
+        self.registerIncomingCallHandler()
+        
         if(handleExternalLinks == true){
-//            let teamsCallingViewController = TeamsCallingViewController()
-//            teamsCallingViewController.teamsLink = self.meetingLink
-//            teamsCallingViewController.startCall()
-            
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             dashViewController.handleExternalLinks = true
             dashViewController.meetingLink = self.meetingLink
@@ -84,6 +157,15 @@ class ViewController : UIViewController {
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
+    }
+    
+    
+    func registerIncomingCallHandler () {
+        storageUserDefaults.set(true, forKey: "isCallKitInSDKEnabled")
+        
+        let incomingCallController = ACSIncomingCallConntroller()
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        incomingCallController.resigterIncomingCallClient(appPubs: appDelegate.appPubs)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -116,10 +198,6 @@ class ViewController : UIViewController {
         
   
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = logoBarButtonItem;
-        
-//        let trailingButton = UIBarButtonItem.init(customView: UIImageView(image: UIImage(systemName: "line.horizontal.3")))
-//
-//        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = trailingButton;
     }
     
     func customizeTextFields(){

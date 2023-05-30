@@ -148,7 +148,7 @@ class CallingSDKEventsHandler: NSObject, CallingSDKEventsHandling {
     }
 }
 
-extension CallingSDKEventsHandler: CallDelegate,
+extension CallingSDKEventsHandler: CallDelegate, IncomingCallDelegate,
     RecordingCallFeatureDelegate,
     TranscriptionCallFeatureDelegate {
         
@@ -160,6 +160,25 @@ extension CallingSDKEventsHandler: CallDelegate,
             addRemoteParticipants(args.addedParticipants)
         }
     }
+    
+    //Event raised when there is an incoming call
+    public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
+        print("didRecieveIncomingCall")
+        
+        incomingCall.accept(options: AcceptCallOptions()) { (call, error) in
+           if (error == nil) {
+               print("Successfully accepted incoming call")
+           } else {
+               print("Failed to accept incoming call")
+           }
+        }
+    }
+
+    //Event raised when incoming call was not answered
+    public func incomingCall(_ incomingCall: IncomingCall, didEnd args: PropertyChangedEventArgs) {
+       print("Incoming call was not answered")
+    }
+
 
     func call(_ call: Call, didChangeState args: PropertyChangedEventArgs) {
         
