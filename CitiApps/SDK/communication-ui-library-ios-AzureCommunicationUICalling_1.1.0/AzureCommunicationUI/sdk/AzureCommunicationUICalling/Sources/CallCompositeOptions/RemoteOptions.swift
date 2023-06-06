@@ -5,7 +5,6 @@
 
 import Foundation
 import AzureCommunicationCommon
-import AzureCommunicationCalling
 
 /// CallComposite Locator for locating call destination
 public enum JoinLocator {
@@ -14,7 +13,6 @@ public enum JoinLocator {
     /// Teams Meeting with string teamsLink URI
     case teamsMeeting(teamsLink: String)
     case audioVideoCall(acsId: String)
-    case incomingCall(callAgent:CallAgent, incomingCall:IncomingCall)
 }
 
 /// Object for remote options for Call Composite

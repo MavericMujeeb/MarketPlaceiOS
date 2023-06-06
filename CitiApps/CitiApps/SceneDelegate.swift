@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let storageUserDefaults = UserDefaults.standard
-//    private var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         self.window?.overrideUserInterfaceStyle = .light
@@ -32,7 +31,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
         )
-//        self.registerIncomingCallHandler()
         
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
@@ -43,6 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self?.startChat(result: result, args: call.arguments as! NSDictionary)
             case "startAudioCall":
                 self?.startAudioCall(result: result, args: call.arguments as! NSDictionary)
+            case "getString":
+                self?.getString(result: result, args: call.arguments as! NSDictionary)
+            case "setString":
+                self?.setString(result: result, args: call.arguments as! NSDictionary)
             case "startVideoCall":
                self?.startVideoCall(result: result, args: call.arguments as! NSDictionary)
                 default:
@@ -126,6 +128,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: false)
     }
+    
+    func setString(result: FlutterResult, args: NSDictionary) {
+        let key = args.value(forKey: "key") as! String
+        let value = args.value(forKey: "value") as! String
+        
+        storageUserDefaults.set(value, forKey: key)
+    }
+    
+    func getString(result: FlutterResult, args: NSDictionary) {
+        let key = args.value(forKey: "key") as! String
+        let value = storageUserDefaults.value(forKey: key) as? String ?? ""
+        
+        result(value)
+    }
+    
     
     private func startVideoCall (result: FlutterResult, args: NSDictionary) {
         let bankerEmailId = args.value(forKey: "user_name") as! String

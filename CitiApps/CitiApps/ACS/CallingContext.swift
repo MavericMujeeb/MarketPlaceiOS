@@ -62,6 +62,8 @@ final class CallingContext {
         //create call
         //launch
         
+        print("startCallComposite -- send global call agent to re-use")
+        
         let joinIdStr = joinConfig.joinId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let uuid = UUID(uuidString: joinIdStr) ?? UUID()
         let displayName = joinConfig.displayName
@@ -69,10 +71,17 @@ final class CallingContext {
         do {
             let communicationTokenCredential = try await getTokenCredential()
             
-            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall, isIncomingCall: false)
+            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
             print( joinConfig.callType)
+            //currently disposing call agent to make the outgoing call works.
+            if globalCallAgent != nil {
+                // Have to dispose existing CallAgent if present
+                // Because we cannot create two CallAgent's
+                globalCallAgent!.dispose()
+                globalCallAgent = nil
+            }
             
             switch joinConfig.callType {
             case .groupCall:

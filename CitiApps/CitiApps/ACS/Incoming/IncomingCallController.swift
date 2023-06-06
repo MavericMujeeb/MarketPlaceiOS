@@ -150,6 +150,9 @@ class ACSIncomingCallConntroller{
                                            print("Call agent successfully created.")
                                            CallKitObjectManager.deInitCallKitInApp()
                                            self.callAgent = agent
+                                           
+                                           globalCallAgent = agent
+                                           
                                            self.cxProvider = nil
                                            incomingCallView = ContentView(appPubs: self.appPubs!, callAgent: self.callAgent!)
 
@@ -222,6 +225,12 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
     }
 
     public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
+        print("didRecieveIncomingCall----")
+        let incomingHostingController = UIHostingController(rootView: contentView)
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+        print("present ------ incoming")
+        rootVC?.present(incomingHostingController, animated: true, completion: nil)
+        
         self.incomingCall = incomingCall
         self.incomingCall!.delegate = self
         
@@ -251,7 +260,6 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         Task {
             await CallKitObjectManager.getCallKitHelper()?.removeIncomingCall(callId: incomingCall.id)
         }
-        print("Coming here")
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
         rootVC?.dismiss(animated: true)
     }

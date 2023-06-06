@@ -99,7 +99,12 @@ struct ContentView: View {
     }
 
     func openChat() {
-        
+        var bankerEmailId = UserDefaults.standard.string(forKey: "loginUserName")
+        var rootVc = UIApplication.shared.keyWindow?.rootViewController
+        let chatController = ChatController(chatAdapter: nil, rootViewController: rootVc)
+        chatController.bankerEmailId = bankerEmailId
+        chatController.isForCall = false
+        chatController.prepareChatComposite()
     }
     
     func shareScreen() {
@@ -428,7 +433,6 @@ struct ContentView: View {
     }
 
     func showIncomingCallBanner(_ incomingCall: IncomingCall?) {
-        print("showIncomingCallBanner")
         isIncomingCall = true
         self.incomingCall = incomingCall
     }
