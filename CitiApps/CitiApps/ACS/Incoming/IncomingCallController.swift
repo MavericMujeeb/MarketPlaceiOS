@@ -154,9 +154,12 @@ class ACSIncomingCallConntroller{
                                            globalCallAgent = agent
                                            
                                            self.cxProvider = nil
+                                           incomingCallView = nil
+                                           self.incomingCallHandler = nil
+                                           
                                            incomingCallView = ContentView(appPubs: self.appPubs!, callAgent: self.callAgent!)
-
                                            self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
+                                           
                                            self.callAgent!.delegate = self.incomingCallHandler
                                            self.registerForPushNotification()
                                        }
@@ -198,7 +201,7 @@ class ACSIncomingCallConntroller{
     func provideCallKitRemoteInfo(callerInfo: CallerInfo) -> CallKitRemoteInfo
     {
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Janet Johnson"
+        callKitRemoteInfo.displayName = "Chantal Kendall"
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }

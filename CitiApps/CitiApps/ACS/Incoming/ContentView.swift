@@ -146,8 +146,9 @@ struct ContentView: View {
                     Spacer()
                     iconButton(iconName:"message.fill", action: openChat)
                     Spacer()
-                    iconButton(iconName:"square.and.arrow.up.fill", action: shareScreen)
-                    Spacer()
+                    
+//                    iconButton(iconName:"square.and.arrow.up.fill", action: shareScreen)
+//                    Spacer()
                     Button(action: endCall) {
                         Image(systemName: "phone.down.fill")
                             .frame(width: 40, height: 40, alignment: .center)

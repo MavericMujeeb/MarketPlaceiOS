@@ -92,9 +92,6 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
         authHandler = AADAuthHandler(appSettings: appSettings)
         
         flutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_contact_center")
-        
-//        GeneratedPluginRegistrant.register(with: self.flutterEngine)
-        
         controller = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
 
         UINavigationBar.appearance().tintColor = .white
@@ -111,22 +108,17 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
-        print("didReceiveIncomingPushWith ---- ")
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
         let userDefaults: UserDefaults = .standard
         let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
-        print(isCallKitInSDKEnabled)
-        print("didReceiveIncomingPushWith")
         if isCallKitInSDKEnabled {
             let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
             CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
                 print(error)
                 if error == nil {
                     self.appPubs.pushPayload = payload
-print("incomingCallView")
                     let incomingHostingController = UIHostingController(rootView: incomingCallView)
                     let rootVC = UIApplication.shared.keyWindow?.rootViewController
-                    print("present ------ incoming")
                     rootVC?.present(incomingHostingController, animated: true, completion: nil)
                 }
             }

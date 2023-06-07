@@ -74,14 +74,14 @@ final class CallingContext {
             let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
-            print( joinConfig.callType)
-            //currently disposing call agent to make the outgoing call works.
-            if globalCallAgent != nil {
-                // Have to dispose existing CallAgent if present
-                // Because we cannot create two CallAgent's
-                globalCallAgent!.dispose()
-                globalCallAgent = nil
-            }
+//            print( joinConfig.callType)
+//            //currently disposing call agent to make the outgoing call works.
+//            if globalCallAgent != nil {
+//                // Have to dispose existing CallAgent if present
+//                // Because we cannot create two CallAgent's
+//                globalCallAgent!.dispose()
+//                globalCallAgent = nil
+//            }
             
             switch joinConfig.callType {
             case .groupCall:
@@ -90,7 +90,7 @@ final class CallingContext {
                         for: .groupCall(groupId: uuid),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    )
+                    ), callAgent: globalCallAgent
                 )
 
             case .teamsMeeting:
@@ -99,7 +99,7 @@ final class CallingContext {
                         for: .teamsMeeting(teamsLink: joinIdStr),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    )
+                    ), callAgent: globalCallAgent
                 )
             case .voiceCall:
                 self.callComposite?.launch(
@@ -107,7 +107,7 @@ final class CallingContext {
                         for: .audioVideoCall(acsId: joinIdStr),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    )
+                    ), callAgent: globalCallAgent
                 )
             }
         } catch {

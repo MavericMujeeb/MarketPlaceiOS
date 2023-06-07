@@ -10,6 +10,7 @@ import FluentUI
 import Flutter
 import PIPKit
 import AzureCommunicationUIChat
+import AzureCommunicationUICalling
 
 #if canImport(Combine)
 import Combine
@@ -26,7 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: myNotificationName, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCallEndNotification(_:)), name: callEndNotification, object: nil)
+
         let acsChannel = FlutterMethodChannel(
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
@@ -109,6 +111,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let isVideoCall = info!["isVideo"] as! Bool
         let teamsVC = TeamsCallingViewController()
         teamsVC.startAudioVideoCall(isVideoCall: isVideoCall)
+    }
+    
+    @objc func handleCallEndNotification(_ notification : NSNotification){
+        //coming here
+        let info = notification.userInfo
+        let registerCallAgent = info!["registerCallAgent"] as! Bool
+        if(registerCallAgent == true){
+            registerIncomingCallHandler()
+        }
     }
     
     

@@ -131,7 +131,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
         do {
             try await call?.hangUp(options: HangUpOptions())
             logger.debug("Call ended successfully")
-            print("Call ended successfully")
+            NotificationCenter.default.post(name: callEndNotification, object: nil, userInfo: ["registerCallAgent" : true])
             if((self.callAgent?.calls.count)! > 0){
                 self.callAgent?.dispose()
             }
@@ -460,6 +460,8 @@ extension CallingSDKWrapper {
     }
 
     private func setupCallAgent() async throws {
+        callAgent = g_callAgent
+        
         guard callAgent == nil else {
             logger.debug("Reusing call agent")
             return
