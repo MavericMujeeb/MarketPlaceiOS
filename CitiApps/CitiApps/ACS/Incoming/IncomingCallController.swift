@@ -150,9 +150,11 @@ class ACSIncomingCallConntroller{
                                            print("Call agent successfully created.")
                                            CallKitObjectManager.deInitCallKitInApp()
                                            self.callAgent = agent
+                                           globalCallAgent = agent
                                            self.cxProvider = nil
+                                           incomingCallView = nil
+                                           self.incomingCallHandler = nil
                                            incomingCallView = ContentView(appPubs: self.appPubs!, callAgent: self.callAgent!)
-
                                            self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
                                            self.callAgent!.delegate = self.incomingCallHandler
                                            self.registerForPushNotification()
@@ -195,7 +197,7 @@ class ACSIncomingCallConntroller{
     func provideCallKitRemoteInfo(callerInfo: CallerInfo) -> CallKitRemoteInfo
     {
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Janet Johnson"
+        callKitRemoteInfo.displayName = "Chantal Kendall"
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }
@@ -222,6 +224,10 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
     }
 
     public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
+        let incomingHostingController = UIHostingController(rootView: contentView)
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+        rootVC?.present(incomingHostingController, animated: true, completion: nil)
+        
         self.incomingCall = incomingCall
         self.incomingCall!.delegate = self
         
@@ -251,7 +257,6 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         Task {
             await CallKitObjectManager.getCallKitHelper()?.removeIncomingCall(callId: incomingCall.id)
         }
-        print("Coming here")
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
         rootVC?.dismiss(animated: true)
     }

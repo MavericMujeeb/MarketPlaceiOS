@@ -9,14 +9,13 @@ import UIKit
 import MSAL
 import Flutter
 import FluentUI
-import FlutterPluginRegistrant
 import PushKit
 import AzureCommunicationCalling
 import WindowsAzureMessaging
 import UserNotifications
 import SwiftUI
 import AzureCommunicationUICalling
-
+import Foundation
 
 #if canImport(Combine)
 import Combine
@@ -56,20 +55,47 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
                         application.registerForRemoteNotifications()
                         UNUserNotificationCenter.current().delegate = self
                         MSNotificationHub.setDelegate(self)
-                        MSNotificationHub.start(connectionString: "Endpoint=sb://ACSCitiPushService.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=u3NgR63Wc9Z1Jklf2YF80MY6v/qkaxslfRctMoZgNGU=", hubName: "ACSCitiPush")
+                        MSNotificationHub.start(connectionString: "Endpoint=sb://ACSCitiPushServiceNew.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=hPhXI6h3xPKb0MhtNq60mM9hsXVtC1Ia8ty6R4V4Dc8=", hubName: "ACSCitiPushServiceNew")
                     }
                 }
             }
         }
         
         initializeDependencies()
-        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func notificationHub(_ notificationHub: MSNotificationHub, didReceivePushNotification message: MSNotificationHubMessage) {
-        print(message.body)
-        print(message.title)
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+
+        // create the alert
+        let alert = UIAlertController(title: "New Message", message: message.body , preferredStyle: UIAlertController.Style.alert)
+
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {action in
+            rootVC?.dismiss(animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.destructive, handler: {action in
+            
+            rootVC?.dismiss(animated: true)
+            //open chat screen
+            let storageUserDefaults = UserDefaults.standard
+            var bankerEmailId = storageUserDefaults.value(forKey: StorageKeys.bankerEmailId) as! String
+
+            let chatController = ChatController(chatAdapter: nil, rootViewController: rootVC)
+            chatController.bankerEmailId = bankerEmailId
+            chatController.isForCall = false
+            chatController.prepareChatComposite()
+            
+        }))
+
+        // show the alert
+        rootVC?.present(alert, animated: true)
+    }
+    
+    func openChatScreen () {
+        
     }
     
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -91,9 +117,6 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
         authHandler = AADAuthHandler(appSettings: appSettings)
         
         flutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_contact_center")
-        
-        GeneratedPluginRegistrant.register(with: self.flutterEngine)
-        
         controller = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
 
         UINavigationBar.appearance().tintColor = .white
@@ -116,7 +139,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
             CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
                 if error == nil {
                     self.appPubs.pushPayload = payload
-
+                    
                     let incomingHostingController = UIHostingController(rootView: incomingCallView)
                     let rootVC = UIApplication.shared.keyWindow?.rootViewController
                     rootVC?.present(incomingHostingController, animated: true, completion: nil)

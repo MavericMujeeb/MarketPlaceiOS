@@ -10,6 +10,7 @@ import FluentUI
 import Flutter
 import PIPKit
 import AzureCommunicationUIChat
+import AzureCommunicationUICalling
 
 #if canImport(Combine)
 import Combine
@@ -27,7 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: myNotificationName, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCallEndNotification(_:)), name: callEndNotification, object: nil)
+
         let acsChannel = FlutterMethodChannel(
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
@@ -43,6 +45,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self?.startChat(result: result, args: call.arguments as! NSDictionary)
             case "startAudioCall":
                 self?.startAudioCall(result: result, args: call.arguments as! NSDictionary)
+            case "getString":
+                self?.getString(result: result, args: call.arguments as! NSDictionary)
+            case "setString":
+                self?.setString(result: result, args: call.arguments as! NSDictionary)
             case "startVideoCall":
                self?.startVideoCall(result: result, args: call.arguments as! NSDictionary)
                 default:
@@ -109,6 +115,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         teamsVC.startAudioVideoCall(isVideoCall: isVideoCall)
     }
     
+    @objc func handleCallEndNotification(_ notification : NSNotification){
+        //coming here
+        let info = notification.userInfo
+        let registerCallAgent = info!["registerCallAgent"] as! Bool
+        if(registerCallAgent == true){
+            registerIncomingCallHandler()
+        }
+    }
+    
     
     
     private func startChat (result: FlutterResult, args: NSDictionary) {
@@ -126,6 +141,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: false)
     }
+    
+    func setString(result: FlutterResult, args: NSDictionary) {
+        let key = args.value(forKey: "key") as! String
+        let value = args.value(forKey: "value") as! String
+        
+        storageUserDefaults.set(value, forKey: key)
+    }
+    
+    func getString(result: FlutterResult, args: NSDictionary) {
+        let key = args.value(forKey: "key") as! String
+        let value = storageUserDefaults.value(forKey: key) as? String ?? ""
+        
+        result(value)
+    }
+    
     
     private func startVideoCall (result: FlutterResult, args: NSDictionary) {
         let bankerEmailId = args.value(forKey: "user_name") as! String

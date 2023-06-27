@@ -62,6 +62,8 @@ final class CallingContext {
         //create call
         //launch
         
+        print("startCallComposite -- send global call agent to re-use")
+        
         let joinIdStr = joinConfig.joinId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let uuid = UUID(uuidString: joinIdStr) ?? UUID()
         let displayName = joinConfig.displayName
@@ -72,7 +74,6 @@ final class CallingContext {
             let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall, isIncomingCall: false)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
-            print( joinConfig.callType)
             
             switch joinConfig.callType {
             case .groupCall:
@@ -81,7 +82,7 @@ final class CallingContext {
                         for: .groupCall(groupId: uuid),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    )
+                    ), callAgent: globalCallAgent
                 )
 
             case .teamsMeeting:
@@ -90,7 +91,7 @@ final class CallingContext {
                         for: .teamsMeeting(teamsLink: joinIdStr),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    )
+                    ), callAgent: globalCallAgent
                 )
             case .voiceCall:
                 self.callComposite?.launch(
@@ -98,7 +99,7 @@ final class CallingContext {
                         for: .audioVideoCall(acsId: joinIdStr),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    )
+                    ), callAgent: globalCallAgent
                 )
             }
         } catch {
