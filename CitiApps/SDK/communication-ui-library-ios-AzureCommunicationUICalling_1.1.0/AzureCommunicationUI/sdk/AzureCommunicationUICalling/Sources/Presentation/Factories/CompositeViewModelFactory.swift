@@ -81,7 +81,7 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
          networkManager: NetworkManager,
          localizationProvider: LocalizationProviderProtocol,
          accessibilityProvider: AccessibilityProviderProtocol,
-         localOptions: LocalOptions? = nil, isAudioCall:Bool, isVideoCall:Bool) {
+         localOptions: LocalOptions? = nil, isAudioCall:Bool, isVideoCall:Bool, isIncomingCall:Bool) {
         self.logger = logger
         self.store = store
         self.networkManager = networkManager

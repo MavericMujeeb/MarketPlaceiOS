@@ -90,6 +90,7 @@ struct ContentView: View {
             }
         }
         .edgesIgnoringSafeArea(.top)
+
     }
     
     
@@ -205,7 +206,6 @@ struct ContentView: View {
                     containerView
                         .navigationTitle("Chantal Kendall")
                         .navigationBarTitleDisplayMode(.inline)
-                    
                     controlBarView
                 }
             }
@@ -303,6 +303,7 @@ struct ContentView: View {
         //get banker display name
         let callKitRemoteInfo = CallKitRemoteInfo()
         callKitRemoteInfo.displayName = "Chantal Kendall"
+
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }

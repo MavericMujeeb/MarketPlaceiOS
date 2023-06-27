@@ -13,6 +13,7 @@ import AzureCommunicationCalling
 var g_callAgent: CallAgent?
 public let callEndNotification = Notification.Name("acs_call_end")
 
+
 /// The main class representing the entry point for the Call Composite.
 public class CallComposite {
 
@@ -46,6 +47,7 @@ public class CallComposite {
         callCompositeOptions = options
     }
     
+
     deinit {
         logger?.debug("Composite deallocated")
     }
@@ -62,6 +64,7 @@ public class CallComposite {
                                                  isAudioCall: callCompositeOptions?.isAudioCall,
                                                  isVideoCall: callCompositeOptions?.isVideoCall
         )
+
         
         let localizationProvider = dependencyContainer.resolve() as LocalizationProviderProtocol
         setupColorTheming()
@@ -73,6 +76,7 @@ public class CallComposite {
                                                                     isRightToLeft: localizationProvider.isRightToLeft,
                                                                     meetingLink: callConfiguration.meetingLink!, isAudioCall: (callCompositeOptions?.isAudioCall)!, isVideoCall: (callCompositeOptions?.isVideoCall)!)
         
+
         setupManagers(with: dependencyContainer)
         PIPKit.show(with: toolkitHostingController)
     }
@@ -130,7 +134,8 @@ public class CallComposite {
                                               logger: Logger,
                                               viewFactory: CompositeViewFactoryProtocol,
                                               isRightToLeft: Bool,
-                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool) -> ContainerUIHostingController {
+                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool, isIncomingCall:Bool) -> ContainerUIHostingController {
+        
         
         
         let rootView = ContainerView(router: router,

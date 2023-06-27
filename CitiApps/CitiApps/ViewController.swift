@@ -147,6 +147,7 @@ class ViewController : UIViewController {
         
         self.registerIncomingCallHandler()
         self.registerChatClient()
+
         
         if(handleExternalLinks == true){
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
@@ -167,7 +168,7 @@ class ViewController : UIViewController {
         chatController.initChatClient()
     }
     
-    
+
     func registerIncomingCallHandler () {
         storageUserDefaults.set(true, forKey: "isCallKitInSDKEnabled")
         

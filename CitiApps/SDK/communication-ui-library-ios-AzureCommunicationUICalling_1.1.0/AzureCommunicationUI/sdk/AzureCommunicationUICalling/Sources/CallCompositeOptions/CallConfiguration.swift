@@ -5,6 +5,7 @@
 
 import Foundation
 import AzureCommunicationCommon
+import AzureCommunicationCalling
 
 struct CallConfiguration {
     let groupId: UUID?

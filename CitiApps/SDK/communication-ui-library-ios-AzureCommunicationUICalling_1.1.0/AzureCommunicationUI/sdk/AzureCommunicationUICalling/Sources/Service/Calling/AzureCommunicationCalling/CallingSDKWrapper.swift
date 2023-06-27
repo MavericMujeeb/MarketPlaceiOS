@@ -20,6 +20,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     private var callClient: CallClient?
     private var callAgent: CallAgent?
     private var call: Call?
+    private var incomingCall: IncomingCall?
     private var deviceManager: DeviceManager?
     private var localVideoStream: AzureCommunicationCalling.LocalVideoStream?
 

@@ -66,8 +66,6 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     }
     
     func notificationHub(_ notificationHub: MSNotificationHub, didReceivePushNotification message: MSNotificationHubMessage) {
-        print("didReceivePushNotification")
-
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
 
         // create the alert
@@ -130,9 +128,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
         appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
     }
-    
-   
-    
+
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
@@ -141,9 +137,9 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
         if isCallKitInSDKEnabled {
             let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
             CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
-                print(error)
                 if error == nil {
                     self.appPubs.pushPayload = payload
+                    
                     let incomingHostingController = UIHostingController(rootView: incomingCallView)
                     let rootVC = UIApplication.shared.keyWindow?.rootViewController
                     rootVC?.present(incomingHostingController, animated: true, completion: nil)

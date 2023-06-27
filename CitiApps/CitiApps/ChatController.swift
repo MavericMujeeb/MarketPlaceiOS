@@ -287,7 +287,7 @@ class ChatController  {
         let task = URLSession.shared.dataTask(with: request){
             data, response, error in
             CircleLoader.sharedInstance.hide()
-  
+            
             if let data = data, let string = String(data: data, encoding: .utf8){
                 do {
                     let jsonDecoder = JSONDecoder()

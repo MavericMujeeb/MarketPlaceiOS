@@ -71,17 +71,9 @@ final class CallingContext {
         do {
             let communicationTokenCredential = try await getTokenCredential()
             
-            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall)
+            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall, isIncomingCall: false)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
-//            print( joinConfig.callType)
-//            //currently disposing call agent to make the outgoing call works.
-//            if globalCallAgent != nil {
-//                // Have to dispose existing CallAgent if present
-//                // Because we cannot create two CallAgent's
-//                globalCallAgent!.dispose()
-//                globalCallAgent = nil
-//            }
             
             switch joinConfig.callType {
             case .groupCall:
