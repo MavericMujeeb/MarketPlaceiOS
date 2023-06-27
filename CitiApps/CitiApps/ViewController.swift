@@ -146,6 +146,7 @@ class ViewController : UIViewController {
         flutterMethodChannel(passArgs: userStr);
         
         self.registerIncomingCallHandler()
+        self.registerChatClient()
         
         if(handleExternalLinks == true){
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
@@ -157,6 +158,13 @@ class ViewController : UIViewController {
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
+    }
+    
+    
+    func registerChatClient() {
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+        let chatController = ChatController(rootViewController: rootVC)
+        chatController.initChatClient()
     }
     
     

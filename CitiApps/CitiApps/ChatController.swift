@@ -11,6 +11,7 @@ import AzureCommunicationCommon
 import AzureCommunicationUIChat
 import UIKit
 
+var chatClient: ChatClient?
 
 class ChatController  {
     
@@ -35,20 +36,129 @@ class ChatController  {
     func prepareChatComposite() {
         self.callParticipantDetailsAPI()
     }
+
+    func initChatClient(){
+        CircleLoader.sharedInstance.show()
+        let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+       
+        guard let url = try? URL(string: fullUrl) else {
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url){
+            data, response, error in
+            CircleLoader.sharedInstance.hide()
+            if let data = data, let string = String(data: data, encoding: .utf8){
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let responseModel = try jsonDecoder.decode(AcsUserIdToken.self, from: data)
+                    self.custUserToken = responseModel.customerUserToken
+                    self.bankerUserToken = responseModel.bankerUserToken
+                    self.registerChatClient()
+                } catch {
+                    print("Response Data error -> ")
+                    print(error)
+                }
+                print("Response Data string -> ")
+                print(string)
+            }
+        }
+        task.resume()
+    }
     
-    func initializeChatComposite() {
-        
+    func registerChatClient() {
         do{
             let credential = try CommunicationTokenCredential(
                 token: self.bankerUserToken
             )
             let options = AzureCommunicationChatClientOptions()
             
-            let chatClient = try ChatClient(
+            chatClient = try ChatClient(
                 endpoint: self.commServEndPointURL,
                 credential: credential,
                 withOptions: options
             )
+            
+            let appPubs = (UIApplication.shared.delegate as! AppDelegate).appPubs
+            let token = appPubs.pushToken
+
+            let semaphore = DispatchSemaphore(value: 0)
+
+            chatClient?.startPushNotifications(deviceToken: (token?.hexString)!) { result in
+                switch result {
+                case .success:
+                    print("startPushNotifications success")
+//                    chatClient?.register(event: .chatMessageReceived, handler: { response in
+//                        switch response {
+//                        case let .chatMessageReceivedEvent(event):
+//                            print("Received a message ---- 12121212: \(event.message)")
+//                        default:
+//                            return
+//                        }
+//                    })
+                case let .failure(error):
+                    print("Add the code to do things when you failed to start Push Notifications")
+                    print(error.message)
+                }
+                semaphore.signal()
+            }
+            semaphore.wait()
+            
+//            print("chatClient?.startRealTimeNotifications")
+//            chatClient?.startRealTimeNotifications{result in
+//                switch result {
+//                    case .success:
+//                    print("chatClient?.success")
+//                        chatClient?.register(event: .chatMessageReceived, handler: { response in
+//                            print("chatMessageReceived -- response")
+//                            switch response {
+//                            case let .chatMessageReceivedEvent(event):
+//                                print("Received a message: \(event.message)")
+//
+//                                // create the alert
+//                                let alert = UIAlertController(title: "New Message", message: event.message, preferredStyle: UIAlertController.Style.alert)
+//
+//                                // add the actions (buttons)
+//                                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {action in
+//                                    self.rootViewController?.dismiss(animated: true)
+//                                }))
+//
+//                                alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.destructive, handler: {action in
+//
+//                                    self.rootViewController?.dismiss(animated: true)
+//                                    //open chat screen
+//                                    let storageUserDefaults = UserDefaults.standard
+//                                    var bankerEmailId = storageUserDefaults.value(forKey: StorageKeys.bankerEmailId) as! String
+//
+//                                    self.bankerEmailId = bankerEmailId
+//                                    self.isForCall = false
+//                                    self.prepareChatComposite()
+//
+//                                }))
+//                                // show the alert
+//                                self.rootViewController?.present(alert, animated: true)
+//                            default:
+//                                return
+//                            }
+//                        })
+//                    case .failure:
+//                        print("Failed to start real-time notifications.")
+//                    }
+//            }
+        }
+        catch {
+            print("init eroor")
+            //hanle the error
+        }
+    }
+    
+    func initializeChatComposite() {
+        
+        do{
+            if(chatClient == nil){
+                initChatClient()
+            }
+            
             let request = CreateChatThreadRequest(
                 topic: "30-min meeting",
                 participants: [
@@ -59,7 +169,7 @@ class ChatController  {
                 ]
             )
             
-            chatClient.create(thread: request) { result, _ in
+            chatClient?.create(thread: request) { result, _ in
                 switch result {
                 case let .success(result):
                     self.startChatComposite()
@@ -177,12 +287,7 @@ class ChatController  {
         let task = URLSession.shared.dataTask(with: request){
             data, response, error in
             CircleLoader.sharedInstance.hide()
-           
-            print("callParticipantDetailsAPI")
-            print(data)
-            print(response)
-            print(error)
-            
+  
             if let data = data, let string = String(data: data, encoding: .utf8){
                 do {
                     let jsonDecoder = JSONDecoder()
@@ -192,7 +297,6 @@ class ChatController  {
                     self.custUserName = responseModel.participantList?[0].participantName
                     self.custAcsId = responseModel.participantList?[0].acsId
                     self.threadId = responseModel.participantList?[0].threadId
-                    print("callUserTokenAPI")
                     self.callUserTokenAPI()
                 } catch {
                     print("Response Data error -> ")
@@ -203,5 +307,12 @@ class ChatController  {
             }
         }
         task.resume()
+    }
+}
+extension Data {
+    var hexString: String {
+        let hexString = map { String(format: "%02.2hhx", $0) }.joined()
+        print("hexString")
+        return hexString
     }
 }

@@ -15,7 +15,7 @@ import WindowsAzureMessaging
 import UserNotifications
 import SwiftUI
 import AzureCommunicationUICalling
-
+import Foundation
 
 #if canImport(Combine)
 import Combine
@@ -55,22 +55,49 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
                         application.registerForRemoteNotifications()
                         UNUserNotificationCenter.current().delegate = self
                         MSNotificationHub.setDelegate(self)
-                        MSNotificationHub.start(connectionString: "Endpoint=sb://ACSCitiPushService.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=u3NgR63Wc9Z1Jklf2YF80MY6v/qkaxslfRctMoZgNGU=", hubName: "ACSCitiPush")
+                        MSNotificationHub.start(connectionString: "Endpoint=sb://ACSCitiPushServiceNew.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=hPhXI6h3xPKb0MhtNq60mM9hsXVtC1Ia8ty6R4V4Dc8=", hubName: "ACSCitiPushServiceNew")
                     }
                 }
             }
         }
         
         initializeDependencies()
-        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func notificationHub(_ notificationHub: MSNotificationHub, didReceivePushNotification message: MSNotificationHubMessage) {
-        
         print("didReceivePushNotification")
-        print(message.body)
-        print(message.title)
+
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+
+        // create the alert
+        let alert = UIAlertController(title: "New Message", message: message.body , preferredStyle: UIAlertController.Style.alert)
+
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {action in
+            rootVC?.dismiss(animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.destructive, handler: {action in
+            
+            rootVC?.dismiss(animated: true)
+            //open chat screen
+            let storageUserDefaults = UserDefaults.standard
+            var bankerEmailId = storageUserDefaults.value(forKey: StorageKeys.bankerEmailId) as! String
+
+            let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
+            chatController.bankerEmailId = bankerEmailId
+            chatController.isForCall = false
+            chatController.prepareChatComposite()
+            
+        }))
+
+        // show the alert
+        rootVC?.present(alert, animated: true)
+    }
+    
+    func openChatScreen () {
+        
     }
     
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
