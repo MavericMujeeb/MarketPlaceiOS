@@ -146,6 +146,8 @@ class ViewController : UIViewController {
         flutterMethodChannel(passArgs: userStr);
         
         self.registerIncomingCallHandler()
+        self.registerChatClient()
+
         
         if(handleExternalLinks == true){
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
@@ -160,6 +162,13 @@ class ViewController : UIViewController {
     }
     
     
+    func registerChatClient() {
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+        let chatController = ChatController(rootViewController: rootVC)
+        chatController.initChatClient()
+    }
+    
+
     func registerIncomingCallHandler () {
         storageUserDefaults.set(true, forKey: "isCallKitInSDKEnabled")
         

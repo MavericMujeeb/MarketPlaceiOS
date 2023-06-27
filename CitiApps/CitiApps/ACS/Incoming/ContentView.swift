@@ -26,8 +26,7 @@ struct ContentView: View {
     }
 
     private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "ACSVideoSample")
-    private let token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjVFODQ4MjE0Qzc3MDczQUU1QzJCREU1Q0NENTQ0ODlEREYyQzRDODQiLCJ4NXQiOiJYb1NDRk1kd2M2NWNLOTVjelZSSW5kOHNUSVEiLCJ0eXAiOiJKV1QifQ.eyJza3lwZWlkIjoiYWNzOmVhN2VlOWRiLTQxNDYtNGM2Yy04ZmZkLThiZmYzNWJkZDk4Nl8wMDAwMDAxOC01OWI3LTkwYmMtNjc2My01NjNhMGQwMDAzNDAiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODQ3NDE2MzEiLCJleHAiOjE2ODQ4MjgwMzEsInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6InZvaXAsY2hhdCIsInJlc291cmNlSWQiOiJlYTdlZTlkYi00MTQ2LTRjNmMtOGZmZC04YmZmMzViZGQ5ODYiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjg0NzQxNjMxfQ.fqg-gbrPYa88dMA3KkrUnqHBXikhoiT_cVFLj70_eCg6ylbvL5r4IldF5D7N3eyTcQhwiY-ZvAylXyEuYUFMyJRGzOhbh4gmYfvvtA8hQO0cJIiZQrouU9qozJbvH9L4tl7BppPvyEPRo7Vwi1P-hAgRCX21ULZggqyO1MAoCGBiEYAkVmq0nM5kSOGpnBLmmSyylif2bL7iQRM0IHatVWWP34HSsiuOfeznR3IrnpEn4dcJuZRyUh6L2P44pevqCQ-I9corStxOM8lex3pFsTGWzPXR8YGbiqwOjgg6wLUE2umJvUit-0wmxDdfo0yZwRK89Ak0qLNKdCQOyh5l2g"
-
+    private let token = ""
     @State var callee: String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
     @State var callClient = CallClient()
     @State var callAgent: CallAgent?
@@ -90,16 +89,23 @@ struct ContentView: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(.top)
+
     }
     
     
     
     func switchCamera() {
-        
+        print("switchCamera action -- TODO")
     }
 
     func openChat() {
-        
+        var bankerEmailId = UserDefaults.standard.string(forKey: "loginUserName")
+        var rootVc = UIApplication.shared.keyWindow?.rootViewController
+        let chatController = ChatController(chatAdapter: nil, rootViewController: rootVc)
+        chatController.bankerEmailId = bankerEmailId
+        chatController.isForCall = false
+        chatController.prepareChatComposite()
     }
     
     func shareScreen() {
@@ -141,8 +147,6 @@ struct ContentView: View {
                     Spacer()
                     iconButton(iconName:"message.fill", action: openChat)
                     Spacer()
-                    iconButton(iconName:"square.and.arrow.up.fill", action: shareScreen)
-                    Spacer()
                     Button(action: endCall) {
                         Image(systemName: "phone.down.fill")
                             .frame(width: 40, height: 40, alignment: .center)
@@ -168,7 +172,7 @@ struct ContentView: View {
                     Spacer(minLength: 100)
                     Text("Incoming Call from...")
                         .font(.system(size: 20, weight: .bold))
-                    Text("Janet Johnson")
+                    Text("Chantal Kendall")
                         .font(.system(size: 16))
                     HStack(alignment:.center, spacing: 50) {
                         Button(action: answerIncomingCall) {
@@ -198,7 +202,10 @@ struct ContentView: View {
             }
             else{
                 VStack(alignment: .center, spacing: 0){
+                    Spacer()
                     containerView
+                        .navigationTitle("Chantal Kendall")
+                        .navigationBarTitleDisplayMode(.inline)
                     controlBarView
                 }
             }
@@ -293,8 +300,10 @@ struct ContentView: View {
     
     func provideCallKitRemoteInfo(callerInfo: CallerInfo) -> CallKitRemoteInfo
     {
+        //get banker display name
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Janet Johnson"
+        callKitRemoteInfo.displayName = "Chantal Kendall"
+
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }
@@ -428,7 +437,6 @@ struct ContentView: View {
     }
 
     func showIncomingCallBanner(_ incomingCall: IncomingCall?) {
-        print("showIncomingCallBanner")
         isIncomingCall = true
         self.incomingCall = incomingCall
     }

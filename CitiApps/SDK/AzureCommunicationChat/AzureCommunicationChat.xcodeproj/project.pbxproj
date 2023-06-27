@@ -13,8 +13,8 @@
 		817A92C127BC3A7000D2268E /* TrouterSettingsUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817A92C027BC3A7000D2268E /* TrouterSettingsUnitTest.swift */; };
 		8D3AE9B5298819EF009DD389 /* AzureCommunicationCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9B4298819EF009DD389 /* AzureCommunicationCommon.framework */; };
 		8D3AE9B6298819EF009DD389 /* AzureCommunicationCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9B4298819EF009DD389 /* AzureCommunicationCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D3AE9B9298819F4009DD389 /* AzureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9B8298819F4009DD389 /* AzureCore.framework */; };
-		8D3AE9BA298819F5009DD389 /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9B8298819F4009DD389 /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D931C542A4557EC00B602DB /* AzureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D931C532A4557EC00B602DB /* AzureCore.framework */; };
+		8D931C552A4557EC00B602DB /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D931C532A4557EC00B602DB /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D10C3BCE25A63F7800A181E3 /* listParticipants.json in Resources */ = {isa = PBXBuildFile; fileRef = D10C3BCD25A63F7800A181E3 /* listParticipants.json */; };
 		D10C3BD425A660AF00A181E3 /* listMessages.json in Resources */ = {isa = PBXBuildFile; fileRef = D10C3BD325A660AF00A181E3 /* listMessages.json */; };
 		D10C3BDA25A66D4D00A181E3 /* listThreads.json in Resources */ = {isa = PBXBuildFile; fileRef = D10C3BD925A66D4D00A181E3 /* listThreads.json */; };
@@ -251,7 +251,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8D3AE9B6298819EF009DD389 /* AzureCommunicationCommon.framework in Embed Frameworks */,
-				8D3AE9BA298819F5009DD389 /* AzureCore.framework in Embed Frameworks */,
+				8D931C552A4557EC00B602DB /* AzureCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +345,7 @@
 		8D3AE9B8298819F4009DD389 /* AzureCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D8BDCF12984263B00C19C87 /* AzureCommunicationChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AzureCommunicationChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D8BDCF22984264C00C19C87 /* AzureCommunicationCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D931C532A4557EC00B602DB /* AzureCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D10C3BCD25A63F7800A181E3 /* listParticipants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = listParticipants.json; sourceTree = "<group>"; };
 		D10C3BD325A660AF00A181E3 /* listMessages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = listMessages.json; sourceTree = "<group>"; };
 		D10C3BD925A66D4D00A181E3 /* listThreads.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = listThreads.json; sourceTree = "<group>"; };
@@ -419,7 +420,7 @@
 			buildActionMask = 0;
 			files = (
 				8D3AE9B5298819EF009DD389 /* AzureCommunicationCommon.framework in Frameworks */,
-				8D3AE9B9298819F4009DD389 /* AzureCore.framework in Frameworks */,
+				8D931C542A4557EC00B602DB /* AzureCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +438,7 @@
 		0A74765A2522918800819FC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D931C532A4557EC00B602DB /* AzureCore.framework */,
 				8D3AE9B8298819F4009DD389 /* AzureCore.framework */,
 				8D3AE9B4298819EF009DD389 /* AzureCommunicationCommon.framework */,
 				8D3AE9422987777E009DD389 /* AzureCore.framework */,

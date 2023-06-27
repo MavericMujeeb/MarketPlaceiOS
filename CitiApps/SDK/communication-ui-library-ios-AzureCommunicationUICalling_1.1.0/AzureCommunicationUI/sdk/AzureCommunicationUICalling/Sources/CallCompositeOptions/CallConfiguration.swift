@@ -35,11 +35,6 @@ struct CallConfiguration {
             self.meetingLink = ""
             self.acsId = acsUserId
             self.compositeCallType = .audioVideoMeeting
-        case .incomingCall:
-            self.groupId = nil
-            self.meetingLink = ""
-            self.acsId = nil
-            self.compositeCallType = .audioVideoMeeting
             
         }
         self.credential = credential

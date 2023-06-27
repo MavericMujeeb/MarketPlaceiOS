@@ -74,7 +74,6 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
     
     let isAudioCall:Bool
     let isVideoCall:Bool
-    let isIncomingCall: Bool
     
 
     init(logger: Logger,
@@ -91,7 +90,6 @@ class CompositeViewModelFactory: CompositeViewModelFactoryProtocol {
         self.localOptions = localOptions
         self.isAudioCall = isAudioCall
         self.isVideoCall = isVideoCall
-        self.isIncomingCall = isIncomingCall
     }
 
     // MARK: CompositeViewModels
