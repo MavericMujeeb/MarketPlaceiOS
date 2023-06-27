@@ -83,7 +83,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
             let storageUserDefaults = UserDefaults.standard
             var bankerEmailId = storageUserDefaults.value(forKey: StorageKeys.bankerEmailId) as! String
 
-            let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
+            let chatController = ChatController(chatAdapter: nil, rootViewController: rootVC)
             chatController.bankerEmailId = bankerEmailId
             chatController.isForCall = false
             chatController.prepareChatComposite()

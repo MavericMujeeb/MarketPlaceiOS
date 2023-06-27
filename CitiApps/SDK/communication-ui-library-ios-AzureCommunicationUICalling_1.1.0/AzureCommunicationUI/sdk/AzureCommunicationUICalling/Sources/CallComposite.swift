@@ -134,7 +134,7 @@ public class CallComposite {
                                               logger: Logger,
                                               viewFactory: CompositeViewFactoryProtocol,
                                               isRightToLeft: Bool,
-                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool, isIncomingCall:Bool) -> ContainerUIHostingController {
+                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool) -> ContainerUIHostingController {
         
         
         
