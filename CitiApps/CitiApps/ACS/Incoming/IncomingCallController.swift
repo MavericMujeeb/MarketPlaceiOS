@@ -36,17 +36,18 @@ class ACSIncomingCallConntroller{
     let storageUserDefaults = UserDefaults.standard
     
     var custUserName:String! = UserDefaults.standard.string(forKey: "loginUserName")
-    var bankerEmailId:String! = "chantalkendall@27r4l5.onmicrosoft.com"
+    var bankerEmailId:String! = UserDefaults.standard.string(forKey: "bankerEmailId")
     
-    var custAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
-    var bankerAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-8f91-eaf3-543a0d000ff3"
+    var custAcsId:String = ""
+    var bankerAcsId:String = ""
 
+    var bankerUserName:String! = ""
     
     func resigterIncomingCallClient (appPubs:AppPubs) {
         self.appPubs = appPubs
         self.pushToken = self.appPubs?.pushToken
-        self.custUserName = UserDefaults.standard.string(forKey: "loginUserName")
-        getCustomerCommunicationToken()
+        //self.custUserName = UserDefaults.standard.string(forKey: "loginUserName")
+        callParticipantDetailsAPI()
     }
     
     
@@ -80,6 +81,8 @@ class ACSIncomingCallConntroller{
                     let responseModel = try jsonDecoder.decode(ParticipantDetails.self, from: data)
                     self.bankerAcsId = (responseModel.originator?.acsId)!
                     self.custAcsId = (responseModel.participantList?[0].acsId)!
+                    
+                    self.bankerUserName = responseModel.originator?.participantName
                     
                     self.getCustomerCommunicationToken()
                     
@@ -197,7 +200,7 @@ class ACSIncomingCallConntroller{
     func provideCallKitRemoteInfo(callerInfo: CallerInfo) -> CallKitRemoteInfo
     {
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Chantal Kendall"
+        callKitRemoteInfo.displayName = self.bankerUserName
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }
