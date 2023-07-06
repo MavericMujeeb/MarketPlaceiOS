@@ -206,10 +206,6 @@
                                 <color key="textColor" name="FluentColors/gray400"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="video.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Z8k-ax-iP6">
-                                <rect key="frame" x="78" y="519" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -222,7 +218,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="video.fill" catalog="system" width="128" height="81"/>
         <namedColor name="FluentColors/gray400">
             <color red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

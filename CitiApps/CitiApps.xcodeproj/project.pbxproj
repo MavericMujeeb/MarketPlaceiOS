@@ -15,17 +15,10 @@
 		8D3AE9BC29881A08009DD389 /* AzureCommunicationChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9932988197E009DD389 /* AzureCommunicationChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D3AE9BF29881A19009DD389 /* AzureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9AE298819A1009DD389 /* AzureCore.framework */; };
 		8D3AE9C029881A1A009DD389 /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9AE298819A1009DD389 /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D4B4F4229FBBF7200B77B60 /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3C29FBBF7200B77B60 /* FlutterPluginRegistrant.xcframework */; };
 		8D4B4F4329FBBF7700B77B60 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3A29FBBF7200B77B60 /* App.xcframework */; };
 		8D4B4F4429FBBF7700B77B60 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3A29FBBF7200B77B60 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D4B4F4529FBBF7900B77B60 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */; };
 		8D4B4F4629FBBF7900B77B60 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D4B4F4729FBBF7C00B77B60 /* path_provider_foundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3B29FBBF7200B77B60 /* path_provider_foundation.xcframework */; };
-		8D4B4F4829FBBF7D00B77B60 /* path_provider_foundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3B29FBBF7200B77B60 /* path_provider_foundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D4B4F4929FBBF7E00B77B60 /* shared_preferences_foundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3729FBBF7200B77B60 /* shared_preferences_foundation.xcframework */; };
-		8D4B4F4A29FBBF7F00B77B60 /* shared_preferences_foundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3729FBBF7200B77B60 /* shared_preferences_foundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D4B4F4B29FBBF8000B77B60 /* webview_flutter_wkwebview.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3829FBBF7200B77B60 /* webview_flutter_wkwebview.xcframework */; };
-		8D4B4F4C29FBBF8100B77B60 /* webview_flutter_wkwebview.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3829FBBF7200B77B60 /* webview_flutter_wkwebview.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D4B4F5029FBBFD000B77B60 /* IncomingCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */; };
 		8D4B4F5129FBBFD000B77B60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F4F29FBBFD000B77B60 /* ContentView.swift */; };
 		8D4B4F5329FBC41F00B77B60 /* CallKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */; };
@@ -50,6 +43,7 @@
 		8DA82EA02978046A00A79D3B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82E9F2978046A00A79D3B /* LoginViewController.swift */; };
 		8DA82EA42978047400A79D3B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82EA32978047400A79D3B /* ProfileViewController.swift */; };
 		8DA82EA62978047900A79D3B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82EA52978047900A79D3B /* SearchViewController.swift */; };
+		8DC727832A52EC8F00D247A7 /* IncomingCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */; };
 		8DC8DC1029D2FD920047A2D3 /* PIPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC8DC0D29D2FD880047A2D3 /* PIPKit.framework */; };
 		8DC8DC1129D2FD920047A2D3 /* PIPKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC8DC0D29D2FD880047A2D3 /* PIPKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DD220C82A1F6CE4009A3866 /* Trouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220C72A1F6CE4009A3866 /* Trouter */; };
@@ -184,12 +178,9 @@
 			files = (
 				8D4B4F4629FBBF7900B77B60 /* Flutter.xcframework in Embed Frameworks */,
 				8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */,
-				8D4B4F4829FBBF7D00B77B60 /* path_provider_foundation.xcframework in Embed Frameworks */,
-				8D4B4F4C29FBBF8100B77B60 /* webview_flutter_wkwebview.xcframework in Embed Frameworks */,
 				8D0A5FFB298A5A2A002EBBC4 /* AzureCommunicationUIChat.framework in Embed Frameworks */,
 				8D4B4F4429FBBF7700B77B60 /* App.xcframework in Embed Frameworks */,
 				8D7015F72981303100FDEBFC /* AzureCommunicationCommon.framework in Embed Frameworks */,
-				8D4B4F4A29FBBF7F00B77B60 /* shared_preferences_foundation.xcframework in Embed Frameworks */,
 				8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */,
 				8D3AE9C029881A1A009DD389 /* AzureCore.framework in Embed Frameworks */,
 				8DC8DC1129D2FD920047A2D3 /* PIPKit.framework in Embed Frameworks */,
@@ -207,12 +198,8 @@
 		8D2FD7E0299680D10097B59D /* CircleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLoader.swift; sourceTree = "<group>"; };
 		8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCommunicationChat.xcodeproj; path = SDK/AzureCommunicationChat/AzureCommunicationChat.xcodeproj; sourceTree = "<group>"; };
 		8D3AE9A8298819A1009DD389 /* AzureCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCore.xcodeproj; path = SDK/AzureCore/AzureCore.xcodeproj; sourceTree = "<group>"; };
-		8D4B4F3729FBBF7200B77B60 /* shared_preferences_foundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared_preferences_foundation.xcframework; path = Flutter/shared_preferences_foundation.xcframework; sourceTree = "<group>"; };
-		8D4B4F3829FBBF7200B77B60 /* webview_flutter_wkwebview.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = webview_flutter_wkwebview.xcframework; path = Flutter/webview_flutter_wkwebview.xcframework; sourceTree = "<group>"; };
 		8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Flutter.xcframework; sourceTree = "<group>"; };
 		8D4B4F3A29FBBF7200B77B60 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/App.xcframework; sourceTree = "<group>"; };
-		8D4B4F3B29FBBF7200B77B60 /* path_provider_foundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = path_provider_foundation.xcframework; path = Flutter/path_provider_foundation.xcframework; sourceTree = "<group>"; };
-		8D4B4F3C29FBBF7200B77B60 /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = Flutter/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
 		8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingCallController.swift; path = CitiApps/ACS/Incoming/IncomingCallController.swift; sourceTree = SOURCE_ROOT; };
 		8D4B4F4F29FBBFD000B77B60 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = CitiApps/ACS/Incoming/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
@@ -230,6 +217,7 @@
 		8DA82E9F2978046A00A79D3B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8DA82EA32978047400A79D3B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8DA82EA52978047900A79D3B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallView.swift; sourceTree = "<group>"; };
 		8DC8DC0729D2FD880047A2D3 /* PIPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PIPKit.xcodeproj; path = "SDK/PIPKit-master/PIPKit.xcodeproj"; sourceTree = "<group>"; };
 		8DD220CB2A1F6DB3009A3866 /* AzureCommunicationUICommon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AzureCommunicationUICommon; path = SDK/AzureCommunicationUICommon; sourceTree = "<group>"; };
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
@@ -275,15 +263,11 @@
 				8D3AE9BB29881A08009DD389 /* AzureCommunicationChat.framework in Frameworks */,
 				8D4B4F4329FBBF7700B77B60 /* App.xcframework in Frameworks */,
 				8D4B4F4529FBBF7900B77B60 /* Flutter.xcframework in Frameworks */,
-				8D4B4F4929FBBF7E00B77B60 /* shared_preferences_foundation.xcframework in Frameworks */,
-				8D4B4F4B29FBBF8000B77B60 /* webview_flutter_wkwebview.xcframework in Frameworks */,
 				8D7015F82981303200FDEBFC /* AzureCommunicationUICalling.framework in Frameworks */,
 				8D4B4F5C29FBDB8B00B77B60 /* AzureCommunicationCalling.xcframework in Frameworks */,
-				8D4B4F4729FBBF7C00B77B60 /* path_provider_foundation.xcframework in Frameworks */,
 				8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */,
 				8D7522932A0916B7001FDB1C /* WindowsAzureMessaging.framework in Frameworks */,
 				8D7522942A0916C1001FDB1C /* WindowsAzureMessaging.framework in Frameworks */,
-				8D4B4F4229FBBF7200B77B60 /* FlutterPluginRegistrant.xcframework in Frameworks */,
 				8DD220CD2A1F6DC6009A3866 /* AzureCommunicationUICommon in Frameworks */,
 				8DC8DC1029D2FD920047A2D3 /* PIPKit.framework in Frameworks */,
 				8D7015F62981303100FDEBFC /* AzureCommunicationCommon.framework in Frameworks */,
@@ -329,6 +313,7 @@
 				8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */,
 				8D4B4F4F29FBBFD000B77B60 /* ContentView.swift */,
 				8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */,
+				8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */,
 			);
 			path = Incoming;
 			sourceTree = "<group>";
@@ -436,10 +421,6 @@
 				8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */,
 				8D4B4F3A29FBBF7200B77B60 /* App.xcframework */,
 				8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */,
-				8D4B4F3C29FBBF7200B77B60 /* FlutterPluginRegistrant.xcframework */,
-				8D4B4F3B29FBBF7200B77B60 /* path_provider_foundation.xcframework */,
-				8D4B4F3729FBBF7200B77B60 /* shared_preferences_foundation.xcframework */,
-				8D4B4F3829FBBF7200B77B60 /* webview_flutter_wkwebview.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -699,6 +680,7 @@
 				8DFBD334297578DA006B0700 /* InviteViewController.swift in Sources */,
 				8DFBD34429757924006B0700 /* PaddingContainer.swift in Sources */,
 				8DFBD332297578D3006B0700 /* IntroViewController.swift in Sources */,
+				8DC727832A52EC8F00D247A7 /* IncomingCallView.swift in Sources */,
 				8DA82EA42978047400A79D3B /* ProfileViewController.swift in Sources */,
 				8D4B4F5129FBBFD000B77B60 /* ContentView.swift in Sources */,
 				8DA82E9E2978046500A79D3B /* HomeViewController.swift in Sources */,

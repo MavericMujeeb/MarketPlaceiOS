@@ -128,21 +128,37 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
         appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
     }
+    
+    func registerIncomingCallClient() {
+        let incomingCallController = ACSIncomingCallConntroller()
+        incomingCallController.resigterIncomingCallClient(appPubs: appPubs)
+    }
+    
+
+    func provideCallKitRemoteInfo(callerInfo: CallerInfo) -> CallKitRemoteInfo
+    {
+        let callKitRemoteInfo = CallKitRemoteInfo()
+        callKitRemoteInfo.displayName = "Chantal Kendall"
+        callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
+        return callKitRemoteInfo
+    }
 
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
         let userDefaults: UserDefaults = .standard
         let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
+        
+        
+        
         if isCallKitInSDKEnabled {
             let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
+            callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
+
             CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
                 if error == nil {
+                    userDefaults.setValue("call_accepted", forKey: "call_status")
                     self.appPubs.pushPayload = payload
-                    
-                    let incomingHostingController = UIHostingController(rootView: incomingCallView)
-                    let rootVC = UIApplication.shared.keyWindow?.rootViewController
-                    rootVC?.present(incomingHostingController, animated: true, completion: nil)
                 }
             }
         } else {

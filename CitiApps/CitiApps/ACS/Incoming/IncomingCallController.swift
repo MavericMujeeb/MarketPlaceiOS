@@ -18,7 +18,7 @@ struct IncomingCallScreen: View{
     }
 }
 
-var incomingCallView: ContentView?
+var incomingCallView: IncomingCallView?
 
 class ACSIncomingCallConntroller{
     
@@ -157,25 +157,25 @@ class ACSIncomingCallConntroller{
                                            self.cxProvider = nil
                                            incomingCallView = nil
                                            self.incomingCallHandler = nil
-                                           incomingCallView = ContentView(appPubs: self.appPubs!, callAgent: self.callAgent!)
+                                           incomingCallView = IncomingCallView(appPubs: self.appPubs!, callAgent: self.callAgent!)
                                            self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
                                            self.callAgent!.delegate = self.incomingCallHandler
                                            self.registerForPushNotification()
                                        }
                                    }
                                } else {
-                                   self.callClient.createCallAgent(userCredential: userCredential) { (agent, error) in
-                                       if error == nil {
-                                           print("Call agent successfully created (without CallKit)")
-                                           self.callAgent = agent
-                                           incomingCallView = ContentView(appPubs: self.appPubs!, callAgent: self.callAgent!)
-                                           self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
-                                           self.callAgent!.delegate = self.incomingCallHandler
-                                           let _ = CallKitObjectManager.getOrCreateCXProvider()
-                                           CallKitObjectManager.getCXProviderImpl().setCallAgent(callAgent: self.callAgent!)
-                                           self.registerForPushNotification()
-                                       }
-                                   }
+//                                   self.callClient.createCallAgent(userCredential: userCredential) { (agent, error) in
+//                                       if error == nil {
+//                                           print("Call agent successfully created (without CallKit)")
+//                                           self.callAgent = agent
+//                                           incomingCallView = incomingCallView(appPubs: self.appPubs!, callAgent: self.callAgent!)
+//                                           self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
+//                                           self.callAgent!.delegate = self.incomingCallHandler
+//                                           let _ = CallKitObjectManager.getOrCreateCXProvider()
+//                                           CallKitObjectManager.getCXProviderImpl().setCallAgent(callAgent: self.callAgent!)
+//                                           self.registerForPushNotification()
+//                                       }
+//                                   }
                                }
                            }
                        }
@@ -219,16 +219,17 @@ class ACSIncomingCallConntroller{
 }
 
 final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelegate {
-    public var contentView: ContentView?
+    public var contentView: IncomingCallView?
     private var incomingCall: IncomingCall?
 
-    init(contentView: ContentView?) {
+    init(contentView: IncomingCallView?) {
         self.contentView = contentView
     }
 
     public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
         let incomingHostingController = UIHostingController(rootView: contentView)
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
+        incomingHostingController.modalPresentationStyle = .fullScreen
         rootVC?.present(incomingHostingController, animated: true, completion: nil)
         
         self.incomingCall = incomingCall

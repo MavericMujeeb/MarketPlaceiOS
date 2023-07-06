@@ -38,6 +38,7 @@ final class CallKitObjectManager {
         providerConfig.maximumCallsPerCallGroup = 1
         providerConfig.includesCallsInRecents = true
         providerConfig.supportedHandleTypes = [.phoneNumber, .generic]
+        
         return providerConfig
     }
 
