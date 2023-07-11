@@ -176,7 +176,7 @@ class ChatViewController : UIViewController{
         "\"participantName\":\"\(self.custUserName!)\"" +
         "}"
         
-        let fullUrl: String = "https://acsinfo.azurewebsites.net/api/participantDetails"
+        let fullUrl: String = "https://acsinfonodb.azurewebsites.net/api/participantDetails"
         
         guard let url = try? URL(string: fullUrl) else {
             return
