@@ -291,16 +291,19 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         if let addedCall = args.addedCalls.first {
             // This happens when call was accepted via CallKit and not from the app
             // We need to set the call instances and auto-navigate to call in progress screen.
-            if addedCall.direction == .incoming {
-                addedCall.hangUp(options: HangUpOptions()) { (error) in
-                    if (error != nil) {
-                        print("ERROR: It was not possible to hangup the call.")
-                    }
-                    else{
-                        print("Success -- end")
-                    }
-                }
-            }
+            
+            //ADDED FOR TESTING --
+            
+//            if addedCall.direction == .incoming {
+//                addedCall.hangUp(options: HangUpOptions()) { (error) in
+//                    if (error != nil) {
+//                        print("ERROR: It was not possible to hangup the call.")
+//                    }
+//                    else{
+//                        print("Success -- end")
+//                    }
+//                }
+//            }
         }
     }
 }
