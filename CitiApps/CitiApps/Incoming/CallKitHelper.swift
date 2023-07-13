@@ -33,6 +33,7 @@ final class CallKitObjectManager {
     private static var userDefaults: UserDefaults = .standard
 
     static func createCXProvideConfiguration() -> CXProviderConfiguration {
+        print("CallKitObjectManager")
         let providerConfig = CXProviderConfiguration()
         providerConfig.supportsVideo = true
         providerConfig.maximumCallsPerCallGroup = 1
@@ -43,6 +44,7 @@ final class CallKitObjectManager {
     }
 
     static func getOrCreateCXProvider() -> CXProvider? {
+        print("getOrCreateCXProvider")
         if userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false {
             return nil
         }
@@ -77,6 +79,7 @@ final class CxProviderDelegateImpl : NSObject, CXProviderDelegate {
     private var callAgent: CallAgent?
     
     init(with callKitHelper: CallKitHelper) {
+        print("CxProviderDelegateImpl------------")
         self.callKitHelper = callKitHelper
     }
 
@@ -408,6 +411,7 @@ class CallKitIncomingCallReporter {
                             callerDisplayName: String,
                             videoEnabled: Bool,
                             completionHandler: @escaping (Error?) -> Void) {
+        print("reportIncomingCall")
         let handleType: CXHandle.HandleType = caller is PhoneNumberIdentifier ? .phoneNumber : .generic
         let handle = CXHandle(type: handleType, value: caller.rawId)
         let callUpdate = createCallUpdate(isVideoEnabled: videoEnabled, localizedCallerName: callerDisplayName, handle: handle)
@@ -456,6 +460,7 @@ actor CallKitHelper {
     }
 
     func addIncomingCall(incomingCall: IncomingCall) {
+        print("addIncomingCall")
         incomingCallMap[incomingCall.id.uppercased()] = incomingCall
         self.incomingCallSemaphore?.signal()
     }
@@ -553,13 +558,14 @@ actor CallKitHelper {
     func acceptCall(callId: String,
                     options: AcceptCallOptions?,
                     completionHandler: @escaping (Call?, Error?) -> Void) {
+        print("acceptCall transactOutInCallWithCallKit")
+
         let callId = UUID(uuidString: callId.uppercased())!
         let answerCallAction = CXAnswerCallAction(call: callId)
         let outInCallInfo = OutInCallInfo(participants: nil,
                                           options: options,
                                           completionHandler: completionHandler)
         transactOutInCallWithCallKit(action: answerCallAction, outInCallInfo: outInCallInfo)
-        print("acceptCall transactOutInCallWithCallKit")
     }
 
     func reportOutgoingCall(call: Call) {

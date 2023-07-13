@@ -113,8 +113,9 @@ class DashboardViewController : UIViewController {
         serviceViewController.title = "Services"
         
         //Loading Market place tab from Flutter Module
-        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine        
-        let flutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
+        let flutterViewController = (UIApplication.shared.delegate as! AppDelegate).controller as FlutterViewController
+//        let flutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
 
         flutterViewController.title = "Contact"
         flutterViewController.tabBarController?.hidesBottomBarWhenPushed = true

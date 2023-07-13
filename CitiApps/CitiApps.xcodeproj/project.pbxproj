@@ -31,26 +31,26 @@
 		8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2E729757183006B0700 /* AzureCommunicationUICalling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; };
 		8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D7016102982BE9100FDEBFC /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70160F2982BE9100FDEBFC /* LoginViewModel.swift */; };
 		8D7522932A0916B7001FDB1C /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */; };
 		8D7522942A0916C1001FDB1C /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */; };
 		8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2B29A3949200700C78 /* ChatController.swift */; };
 		8D99CA2E29A63BE900700C78 /* CitiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2D29A63BE900700C78 /* CitiConstants.swift */; };
 		8DA82E982977FFD000A79D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DA82E972977FFD000A79D3B /* Main.storyboard */; };
 		8DA82E9A297803F600A79D3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82E99297803F600A79D3B /* SceneDelegate.swift */; };
-		8DA82E9C2978044B00A79D3B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82E9B2978044B00A79D3B /* DashboardViewController.swift */; };
-		8DA82E9E2978046500A79D3B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82E9D2978046500A79D3B /* HomeViewController.swift */; };
-		8DA82EA02978046A00A79D3B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82E9F2978046A00A79D3B /* LoginViewController.swift */; };
-		8DA82EA42978047400A79D3B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82EA32978047400A79D3B /* ProfileViewController.swift */; };
-		8DA82EA62978047900A79D3B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA82EA52978047900A79D3B /* SearchViewController.swift */; };
 		8DC727832A52EC8F00D247A7 /* IncomingCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */; };
 		8DC8DC1029D2FD920047A2D3 /* PIPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC8DC0D29D2FD880047A2D3 /* PIPKit.framework */; };
 		8DC8DC1129D2FD920047A2D3 /* PIPKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC8DC0D29D2FD880047A2D3 /* PIPKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DCFCBA02A57FAF800F1D293 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCB9F2A57FAF800F1D293 /* DashboardViewController.swift */; };
+		8DCFCBA62A57FB4400F1D293 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA12A57FB4300F1D293 /* SearchViewController.swift */; };
+		8DCFCBA72A57FB4400F1D293 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA22A57FB4300F1D293 /* ProfileViewController.swift */; };
+		8DCFCBA82A57FB4400F1D293 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA32A57FB4300F1D293 /* LoginViewModel.swift */; };
+		8DCFCBA92A57FB4400F1D293 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA42A57FB4400F1D293 /* LoginViewController.swift */; };
+		8DCFCBAA2A57FB4400F1D293 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA52A57FB4400F1D293 /* HomeViewController.swift */; };
+		8DCFCBAC2A57FB6500F1D293 /* DashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBAB2A57FB6500F1D293 /* DashViewController.swift */; };
+		8DCFCBAF2A58311E00F1D293 /* IncomingCallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBAE2A58311E00F1D293 /* IncomingCallViewModel.swift */; };
 		8DD220C82A1F6CE4009A3866 /* Trouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220C72A1F6CE4009A3866 /* Trouter */; };
 		8DD220CD2A1F6DC6009A3866 /* AzureCommunicationUICommon in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220CC2A1F6DC6009A3866 /* AzureCommunicationUICommon */; };
 		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
-		8DE0D51B297FC13800201043 /* DashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D51A297FC13800201043 /* DashViewController.swift */; };
-		8DE0D51D297FC16300201043 /* DashScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE0D51C297FC16300201043 /* DashScene.storyboard */; };
 		8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */; };
 		8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D129756DD6006B0700 /* ViewController.swift */; };
 		8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D629756DD8006B0700 /* Assets.xcassets */; };
@@ -205,24 +205,24 @@
 		8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
 		8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = "SDK/AzureCommunicationCalling-2.2.1/AzureCommunicationCalling.xcframework"; sourceTree = "<group>"; };
 		8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcsUserIdToken.swift; sourceTree = "<group>"; };
-		8D70160F2982BE9100FDEBFC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = "../../../../../../../Downloads/WindowsAzureMessaging-SDK-Apple/iOS/WindowsAzureMessaging.framework"; sourceTree = "<group>"; };
 		8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = SDK/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		8D99CA2B29A3949200700C78 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		8D99CA2D29A63BE900700C78 /* CitiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiConstants.swift; sourceTree = "<group>"; };
 		8DA82E972977FFD000A79D3B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8DA82E99297803F600A79D3B /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8DA82E9B2978044B00A79D3B /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		8DA82E9D2978046500A79D3B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		8DA82E9F2978046A00A79D3B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		8DA82EA32978047400A79D3B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		8DA82EA52978047900A79D3B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallView.swift; sourceTree = "<group>"; };
 		8DC8DC0729D2FD880047A2D3 /* PIPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PIPKit.xcodeproj; path = "SDK/PIPKit-master/PIPKit.xcodeproj"; sourceTree = "<group>"; };
+		8DCFCB9F2A57FAF800F1D293 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		8DCFCBA12A57FB4300F1D293 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8DCFCBA22A57FB4300F1D293 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8DCFCBA32A57FB4300F1D293 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		8DCFCBA42A57FB4400F1D293 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8DCFCBA52A57FB4400F1D293 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8DCFCBAB2A57FB6500F1D293 /* DashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashViewController.swift; sourceTree = "<group>"; };
+		8DCFCBAE2A58311E00F1D293 /* IncomingCallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallViewModel.swift; sourceTree = "<group>"; };
 		8DD220CB2A1F6DB3009A3866 /* AzureCommunicationUICommon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AzureCommunicationUICommon; path = SDK/AzureCommunicationUICommon; sourceTree = "<group>"; };
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		8DE0D51A297FC13800201043 /* DashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashViewController.swift; sourceTree = "<group>"; };
-		8DE0D51C297FC16300201043 /* DashScene.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DashScene.storyboard; sourceTree = "<group>"; };
 		8DE0D53029804FA200201043 /* CitiApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CitiApps.entitlements; sourceTree = "<group>"; };
 		8DFBD2CA29756DD6006B0700 /* CitiApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -314,8 +314,10 @@
 				8D4B4F4F29FBBFD000B77B60 /* ContentView.swift */,
 				8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */,
 				8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */,
+				8DCFCBAE2A58311E00F1D293 /* IncomingCallViewModel.swift */,
 			);
-			path = Incoming;
+			name = Incoming;
+			path = ../Incoming;
 			sourceTree = "<group>";
 		};
 		8DC8DC0829D2FD880047A2D3 /* Products */ = {
@@ -325,6 +327,40 @@
 				8DC8DC0F29D2FD880047A2D3 /* Example.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8DCFCB9D2A57F9B400F1D293 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8D0A6076298BE498002EBBC4 /* UserInfoData.swift */,
+				8DE0D518297FB44E00201043 /* AppSettings.swift */,
+				8D2FD7E0299680D10097B59D /* CircleLoader.swift */,
+				8D99CA2D29A63BE900700C78 /* CitiConstants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		8DCFCB9E2A57F9E700F1D293 /* ACSData */ = {
+			isa = PBXGroup;
+			children = (
+				8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */,
+			);
+			path = ACSData;
+			sourceTree = "<group>";
+		};
+		8DCFCBAD2A57FDEF00F1D293 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DFBD2D129756DD6006B0700 /* ViewController.swift */,
+				8DCFCBAB2A57FB6500F1D293 /* DashViewController.swift */,
+				8DCFCBA52A57FB4400F1D293 /* HomeViewController.swift */,
+				8DCFCBA42A57FB4400F1D293 /* LoginViewController.swift */,
+				8DCFCBA32A57FB4300F1D293 /* LoginViewModel.swift */,
+				8DCFCBA22A57FB4300F1D293 /* ProfileViewController.swift */,
+				8DCFCBA12A57FB4300F1D293 /* SearchViewController.swift */,
+				8DCFCB9F2A57FAF800F1D293 /* DashboardViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		8DD220CA2A1F6DB3009A3866 /* Packages */ = {
@@ -367,24 +403,15 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
-				8D4B4F4D29FBBF8D00B77B60 /* Incoming */,
-				8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */,
-				8D99CA2D29A63BE900700C78 /* CitiConstants.swift */,
-				8D2FD7E0299680D10097B59D /* CircleLoader.swift */,
-				8D0A6076298BE498002EBBC4 /* UserInfoData.swift */,
 				8DE0D53029804FA200201043 /* CitiApps.entitlements */,
-				8DE0D518297FB44E00201043 /* AppSettings.swift */,
-				8DFBD3592976AB93006B0700 /* Marketplace */,
+				8DCFCBAD2A57FDEF00F1D293 /* ViewControllers */,
+				8DCFCB9D2A57F9B400F1D293 /* Utils */,
 				8DFBD3532976A9E2006B0700 /* ACS */,
 				8DA82E99297803F600A79D3B /* SceneDelegate.swift */,
 				8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */,
-				8DFBD2D129756DD6006B0700 /* ViewController.swift */,
 				8DFBD2D629756DD8006B0700 /* Assets.xcassets */,
 				8DA82E972977FFD000A79D3B /* Main.storyboard */,
 				8DFBD2DB29756DD8006B0700 /* Info.plist */,
-				8DE0D51C297FC16300201043 /* DashScene.storyboard */,
-				8D70160F2982BE9100FDEBFC /* LoginViewModel.swift */,
-				8D99CA2B29A3949200700C78 /* ChatController.swift */,
 			);
 			path = CitiApps;
 			sourceTree = "<group>";
@@ -428,6 +455,9 @@
 		8DFBD3532976A9E2006B0700 /* ACS */ = {
 			isa = PBXGroup;
 			children = (
+				8D4B4F4D29FBBF8D00B77B60 /* Incoming */,
+				8DCFCB9E2A57F9E700F1D293 /* ACSData */,
+				8D99CA2B29A3949200700C78 /* ChatController.swift */,
 				8DFBD33B297578F5006B0700 /* IconTextField.swift */,
 				8DFBD339297578F0006B0700 /* BusyOverlay.swift */,
 				8DFBD337297578E6006B0700 /* StartCallViewController.swift */,
@@ -448,19 +478,6 @@
 				8DFBD34529757929006B0700 /* ThemeColor.swift */,
 			);
 			path = ACS;
-			sourceTree = "<group>";
-		};
-		8DFBD3592976AB93006B0700 /* Marketplace */ = {
-			isa = PBXGroup;
-			children = (
-				8DA82EA52978047900A79D3B /* SearchViewController.swift */,
-				8DA82EA32978047400A79D3B /* ProfileViewController.swift */,
-				8DA82E9F2978046A00A79D3B /* LoginViewController.swift */,
-				8DA82E9D2978046500A79D3B /* HomeViewController.swift */,
-				8DA82E9B2978044B00A79D3B /* DashboardViewController.swift */,
-				8DE0D51A297FC13800201043 /* DashViewController.swift */,
-			);
-			path = Marketplace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -653,7 +670,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DE0D51D297FC16300201043 /* DashScene.storyboard in Resources */,
 				8DA82E982977FFD000A79D3B /* Main.storyboard in Resources */,
 				8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */,
 			);
@@ -666,25 +682,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DA82EA62978047900A79D3B /* SearchViewController.swift in Sources */,
-				8DA82EA02978046A00A79D3B /* LoginViewController.swift in Sources */,
+				8DCFCBAF2A58311E00F1D293 /* IncomingCallViewModel.swift in Sources */,
+				8DCFCBA92A57FB4400F1D293 /* LoginViewController.swift in Sources */,
 				8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */,
 				8DFBD338297578E6006B0700 /* StartCallViewController.swift in Sources */,
+				8DCFCBAA2A57FB4400F1D293 /* HomeViewController.swift in Sources */,
 				8DFBD33A297578F0006B0700 /* BusyOverlay.swift in Sources */,
 				8D4B4F5329FBC41F00B77B60 /* CallKitHelper.swift in Sources */,
 				8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */,
 				8DFBD33E29757913006B0700 /* Data+Extensions.swift in Sources */,
 				8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */,
-				8D7016102982BE9100FDEBFC /* LoginViewModel.swift in Sources */,
 				8DFBD336297578E0006B0700 /* JoinCallViewController.swift in Sources */,
 				8DFBD334297578DA006B0700 /* InviteViewController.swift in Sources */,
 				8DFBD34429757924006B0700 /* PaddingContainer.swift in Sources */,
 				8DFBD332297578D3006B0700 /* IntroViewController.swift in Sources */,
 				8DC727832A52EC8F00D247A7 /* IncomingCallView.swift in Sources */,
-				8DA82EA42978047400A79D3B /* ProfileViewController.swift in Sources */,
+				8DCFCBA62A57FB4400F1D293 /* SearchViewController.swift in Sources */,
+				8DCFCBA82A57FB4400F1D293 /* LoginViewModel.swift in Sources */,
 				8D4B4F5129FBBFD000B77B60 /* ContentView.swift in Sources */,
-				8DA82E9E2978046500A79D3B /* HomeViewController.swift in Sources */,
-				8DE0D51B297FC13800201043 /* DashViewController.swift in Sources */,
 				8DFBD3282975788B006B0700 /* TokenService.swift in Sources */,
 				8D99CA2E29A63BE900700C78 /* CitiConstants.swift in Sources */,
 				8D4B4F5029FBBFD000B77B60 /* IncomingCallController.swift in Sources */,
@@ -695,15 +710,17 @@
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,
 				8DFBD32C297578B9006B0700 /* JoinCallConfig.swift in Sources */,
 				8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */,
+				8DCFCBA72A57FB4400F1D293 /* ProfileViewController.swift in Sources */,
 				8DFBD330297578C8006B0700 /* LinkMetadataManager.swift in Sources */,
-				8DA82E9C2978044B00A79D3B /* DashboardViewController.swift in Sources */,
 				8DFBD34029757918006B0700 /* FluentUiExtensions.swift in Sources */,
 				8DFBD34629757929006B0700 /* ThemeColor.swift in Sources */,
 				8DFBD33C297578F5006B0700 /* IconTextField.swift in Sources */,
+				8DCFCBAC2A57FB6500F1D293 /* DashViewController.swift in Sources */,
 				8DFBD32A297578B3006B0700 /* CallingContext.swift in Sources */,
 				8DFBD32629757880006B0700 /* UserDetails.swift in Sources */,
 				8DFBD32E297578C0006B0700 /* JoinCallType.swift in Sources */,
 				8DA82E9A297803F600A79D3B /* SceneDelegate.swift in Sources */,
+				8DCFCBA02A57FAF800F1D293 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

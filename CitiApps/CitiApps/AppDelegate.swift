@@ -36,7 +36,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     private (set) var authHandler: AADAuthHandler!
     private (set) var tokenService: TokenService!
     
-    lazy var flutterEngine = FlutterEngine()
+    var flutterEngine = FlutterEngine()
     var controller : FlutterViewController!
     
     let appPubs = AppPubs()
@@ -55,15 +55,16 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
                         application.registerForRemoteNotifications()
                         UNUserNotificationCenter.current().delegate = self
                         MSNotificationHub.setDelegate(self)
-                        MSNotificationHub.start(connectionString: "Endpoint=sb://ACSCitiPushServiceNew.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=hPhXI6h3xPKb0MhtNq60mM9hsXVtC1Ia8ty6R4V4Dc8=", hubName: "ACSCitiPushServiceNew")
+                        MSNotificationHub.start(connectionString: ACSResources.acs_notificationHub_endpoint, hubName: ACSResources.acs_notificationHub_namespace)
                     }
                 }
             }
         }
         
-        initializeDependencies()
+        initFlutterEngine()
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+  
     
     func notificationHub(_ notificationHub: MSNotificationHub, didReceivePushNotification message: MSNotificationHubMessage) {
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
@@ -89,15 +90,10 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
             chatController.prepareChatComposite()
             
         }))
-
         // show the alert
         rootVC?.present(alert, animated: true)
     }
-    
-    func openChatScreen () {
-        
-    }
-    
+
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if let scheme = url.scheme,
             scheme.localizedCaseInsensitiveCompare("com.citi.acsdemo") == .orderedSame,
@@ -112,17 +108,15 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     }
 
     // MARK: Private Functions
-    private func initializeDependencies() {
+    private func initFlutterEngine() {
         appSettings = AppSettings()
         authHandler = AADAuthHandler(appSettings: appSettings)
-        
         flutterEngine.run(withEntrypoint: nil, initialRoute: "/screen_contact_center")
         controller = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
 
         UINavigationBar.appearance().tintColor = .white
         UITabBar.appearance().tintColor = .white
     }
-    
     
     
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
@@ -142,26 +136,27 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }
-
+    
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
+        print("didReceiveIncomingPushWith ------ ")
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
         let userDefaults: UserDefaults = .standard
         let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
         
         
-        
         if isCallKitInSDKEnabled {
+            print("Coming here ---- isCallKitInSDKEnabled")
             let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
             callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
 
             CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
                 if error == nil {
-                    userDefaults.setValue("call_accepted", forKey: "call_status")
                     self.appPubs.pushPayload = payload
                 }
             }
         } else {
+            print("Coming here ---- 232323")
             let incomingCallReporter = CallKitIncomingCallReporter()
             incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
                                                    caller: callNotification.from,
@@ -175,10 +170,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     }
 
     override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // Create a push registry object
-        // Set the registry's delegate to self
         voipRegistry.delegate = self
-        // Set the push type to VoIP
         voipRegistry.desiredPushTypes = [PKPushType.voIP]
     }
 }

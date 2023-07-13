@@ -12,7 +12,7 @@ import SwiftUI
 
 
 struct IncomingCallScreen: View{
-    
+
     var body: some View {
         EmptyView()
     }
@@ -54,6 +54,8 @@ class ACSIncomingCallConntroller{
     func callParticipantDetailsAPI() {
         CircleLoader.sharedInstance.show()
         
+        self.bankerEmailId = "chantal@acsteamsciti.onmicrosoft.com"
+        self.custUserName = "Janet Johnson"
         let reqBody = "{" +
         "\"originatorId\":\"\(self.bankerEmailId!)\"," +
         "\"participantName\":\"\(self.custUserName!)\"" +
@@ -150,7 +152,6 @@ class ACSIncomingCallConntroller{
                                if (self.isCallKitInSDKEnabled!) {
                                    self.callClient.createCallAgent(userCredential: userCredential, options: self.createCallAgentOptions()) { (agent, error) in
                                        if error == nil {
-                                           print("Call agent successfully created.")
                                            CallKitObjectManager.deInitCallKitInApp()
                                            self.callAgent = agent
                                            globalCallAgent = agent
@@ -218,6 +219,20 @@ class ACSIncomingCallConntroller{
     }
 }
 
+
+
+final class IncomingCallBackgroundHandler: NSObject, CallAgentDelegate, IncomingCallDelegate {
+    private var incomingCall: IncomingCall?
+    
+    public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
+        self.incomingCall = incomingCall
+        self.incomingCall!.delegate = self
+        
+        
+    }
+    
+}
+
 final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelegate {
     public var contentView: IncomingCallView?
     private var incomingCall: IncomingCall?
@@ -231,13 +246,13 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
         incomingHostingController.modalPresentationStyle = .fullScreen
         rootVC?.present(incomingHostingController, animated: true, completion: nil)
-        
+
         self.incomingCall = incomingCall
         self.incomingCall!.delegate = self
-        
+
         globalCallAgent = callAgent
         globalIncomingCall = incomingCall
-        
+
         contentView?.showIncomingCallBanner(self.incomingCall!)
         Task {
             await CallKitObjectManager.getCallKitHelper()?.addIncomingCall(incomingCall: self.incomingCall!)
@@ -248,7 +263,7 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
                                                videoEnabled: self.incomingCall!.isVideoEnabled,
                                                completionHandler: { error in
             if error == nil {
-                print("Incoming call was reported successfully")
+                print("Incoming call was reportd successfully")
             } else {
                 print("Incoming call was not reported successfully")
             }
@@ -256,9 +271,11 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
     }
 
     func incomingCall(_ incomingCall: IncomingCall, didEnd args: PropertyChangedEventArgs) {
-        contentView?.isIncomingCall = false
+        contentView?.incomingCallViewModel.isIncomingCall = false
         self.incomingCall = nil
         Task {
+            print("incomingCall.id -- did end")
+            print(incomingCall.id)
             await CallKitObjectManager.getCallKitHelper()?.removeIncomingCall(callId: incomingCall.id)
         }
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
@@ -275,7 +292,14 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
             // This happens when call was accepted via CallKit and not from the app
             // We need to set the call instances and auto-navigate to call in progress screen.
             if addedCall.direction == .incoming {
-                contentView?.isIncomingCall = false
+                addedCall.hangUp(options: HangUpOptions()) { (error) in
+                    if (error != nil) {
+                        print("ERROR: It was not possible to hangup the call.")
+                    }
+                    else{
+                        print("Success -- end")
+                    }
+                }
             }
         }
     }

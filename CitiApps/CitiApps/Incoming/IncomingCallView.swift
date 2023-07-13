@@ -20,6 +20,8 @@ import AzureCommunicationUICalling
 
 struct IncomingCallView: View {
     
+    @StateObject var incomingCallViewModel : IncomingCallViewModel = IncomingCallViewModel()
+    
     init(appPubs: AppPubs, callAgent:CallAgent) {
         self.appPubs = appPubs
         self.i_callAgent = callAgent
@@ -44,7 +46,7 @@ struct IncomingCallView: View {
     @State var remoteViews:[RendererView] = []
     @State var remoteParticipant: RemoteParticipant?
     @State var remoteVideoSize:String = "Unknown"
-    @State var isIncomingCall:Bool = false
+//    @State var isIncomingCall:Bool = false
     @State var showAlert = false
     @State var alertMessage = ""
     @State var userDefaults: UserDefaults = .standard
@@ -176,13 +178,13 @@ struct IncomingCallView: View {
             }
             self.showAlert = true
             self.alertMessage = rejectError.localizedDescription
-            isIncomingCall = false
+            incomingCallViewModel.isIncomingCall = false
         }
     }
     
     
     func answerIncomingCall() {
-        isIncomingCall = false
+        incomingCallViewModel.isIncomingCall = false
         let options = AcceptCallOptions()
         guard let incomingCall = self.incomingCall else {
             return
@@ -193,6 +195,8 @@ struct IncomingCallView: View {
         }
 
         localVideoStream.removeAll()
+        
+        
 
         if(sendingVideo)
         {
@@ -203,9 +207,11 @@ struct IncomingCallView: View {
         }
 
         if isCallKitInSDKEnabled {
+            print("call --- accept")
+            print(incomingCall)
             incomingCall.accept(options: options) { (call, error) in
+                print("accept()")
                 print(call)
-                print(error)
                 setCallAndObersever(call: call, error: error)
             }
         } else {
@@ -302,9 +308,11 @@ struct IncomingCallView: View {
     func openChat() {
         var bankerEmailId = UserDefaults.standard.string(forKey: "loginUserName")
         var rootVc = UIApplication.shared.keyWindow?.rootViewController
+        print("rootVc")
         let chatController = ChatController(chatAdapter: nil, rootViewController: rootVc)
-        chatController.bankerEmailId = bankerEmailId
+        chatController.bankerEmailId = "chantal@acsteamsciti.onmicrosoft.com"
         chatController.isForCall = false
+        print("prepareChatComposite")
         chatController.prepareChatComposite()
     }
     
@@ -438,7 +446,7 @@ struct IncomingCallView: View {
     {
         //get banker display name
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Chantal Kendall"
+        callKitRemoteInfo.displayName = "Chantal Kendall - 1"
 
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
@@ -473,7 +481,8 @@ struct IncomingCallView: View {
     }
     
     func showIncomingCallBanner(_ incomingCall: IncomingCall?) {
-        isIncomingCall = true
+        incomingCallViewModel.setIsIncomingCall(incoming: true)
+        print(incomingCallViewModel.isIncomingCall)
         self.incomingCall = incomingCall
     }
 
@@ -587,7 +596,7 @@ struct IncomingCallView: View {
         ZStack{
             VStack(spacing: 24){
                 titleView
-                if isIncomingCall {
+                if incomingCallViewModel.isIncomingCall {
                     incomingCallBody
                 }
                 else{
@@ -605,6 +614,7 @@ struct IncomingCallView: View {
             }
         }
         .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
+            print("On Receive $pushToken")
             guard let newPushToken = newPushToken else {
                 print("Got empty token")
                 return
