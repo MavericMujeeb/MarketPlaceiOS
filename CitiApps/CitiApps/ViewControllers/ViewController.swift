@@ -225,6 +225,16 @@ class ViewController : UIViewController {
         
         acsChannel.invokeMethod("loginUserDetails", arguments: passArgs)
     }
+    
+    func setACSValues() {
+        UserDefaults.standard.set(ACSResources.bankerAcsId, forKey: StorageKeys.bankerAcsId)
+        UserDefaults.standard.set(ACSResources.bankerUserName, forKey: StorageKeys.bankerUserName)
+        UserDefaults.standard.set(ACSResources.bankerUserEmail, forKey: StorageKeys.bankerUserEmail)
+        UserDefaults.standard.set(ACSResources.customerAcsId, forKey: StorageKeys.customerAcsId)
+        UserDefaults.standard.set(ACSResources.customerUserName, forKey: StorageKeys.customerUserName)
+        UserDefaults.standard.set(ACSResources.customerUserEmail, forKey: StorageKeys.customerUserEmail)
+        UserDefaults.standard.set(ACSResources.threadId, forKey: StorageKeys.threadId)
+    }
 }
 
 extension ViewController : UITextFieldDelegate{}

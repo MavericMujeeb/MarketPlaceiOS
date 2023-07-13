@@ -38,10 +38,10 @@ class ACSIncomingCallConntroller{
     var custUserName:String! = UserDefaults.standard.string(forKey: "loginUserName")
     var bankerEmailId:String! = UserDefaults.standard.string(forKey: "bankerEmailId")
     
-    var custAcsId:String = ""
-    var bankerAcsId:String = ""
+    var custAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
+    var bankerAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-8f91-eaf3-543a0d000ff3"
 
-    var bankerUserName:String! = ""
+    var bankerUserName:String! = "Chantal Kendall"
     
     func resigterIncomingCallClient (appPubs:AppPubs) {
         self.appPubs = appPubs
@@ -52,16 +52,13 @@ class ACSIncomingCallConntroller{
     
     
     func callParticipantDetailsAPI() {
-        CircleLoader.sharedInstance.show()
-        
-        self.bankerEmailId = "chantal@acsteamsciti.onmicrosoft.com"
-        self.custUserName = "Janet Johnson"
+        self.bankerEmailId = self.bankerEmailId ?? ACSResources.bankerUserEmail
         let reqBody = "{" +
         "\"originatorId\":\"\(self.bankerEmailId!)\"," +
         "\"participantName\":\"\(self.custUserName!)\"" +
         "}"
 
-        let fullUrl: String = "https://acsinfo.azurewebsites.net/api/participantDetails"
+        let fullUrl: String = ACSResources.acs_chat_participantdetails_api
         
         guard let url = try? URL(string: fullUrl) else {
             return
@@ -100,7 +97,10 @@ class ACSIncomingCallConntroller{
     }
     
     func getCustomerCommunicationToken () {
-        CircleLoader.sharedInstance.show()
+   
+        print(self.bankerAcsId)
+        print(self.custAcsId)
+        
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
         let task = URLSession.shared.dataTask(with: URL(string: fullUrl)!){
             data, response, error in
