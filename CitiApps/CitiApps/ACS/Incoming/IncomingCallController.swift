@@ -12,13 +12,13 @@ import SwiftUI
 
 
 struct IncomingCallScreen: View{
-    
+
     var body: some View {
         EmptyView()
     }
 }
 
-var incomingCallView: ContentView?
+var incomingCallView: IncomingCallView?
 
 class ACSIncomingCallConntroller{
     
@@ -53,7 +53,6 @@ class ACSIncomingCallConntroller{
     
     func callParticipantDetailsAPI() {
         self.bankerEmailId = self.bankerEmailId ?? ACSResources.bankerUserEmail
-       
         let reqBody = "{" +
         "\"originatorId\":\"\(self.bankerEmailId!)\"," +
         "\"participantName\":\"\(self.custUserName!)\"" +
@@ -153,32 +152,31 @@ class ACSIncomingCallConntroller{
                                if (self.isCallKitInSDKEnabled!) {
                                    self.callClient.createCallAgent(userCredential: userCredential, options: self.createCallAgentOptions()) { (agent, error) in
                                        if error == nil {
-                                           print("Call agent successfully created.")
                                            CallKitObjectManager.deInitCallKitInApp()
                                            self.callAgent = agent
                                            globalCallAgent = agent
                                            self.cxProvider = nil
                                            incomingCallView = nil
                                            self.incomingCallHandler = nil
-                                           incomingCallView = ContentView(appPubs: self.appPubs!, callAgent: self.callAgent!)
+                                           incomingCallView = IncomingCallView(appPubs: self.appPubs!, callAgent: self.callAgent!)
                                            self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
                                            self.callAgent!.delegate = self.incomingCallHandler
                                            self.registerForPushNotification()
                                        }
                                    }
                                } else {
-                                   self.callClient.createCallAgent(userCredential: userCredential) { (agent, error) in
-                                       if error == nil {
-                                           print("Call agent successfully created (without CallKit)")
-                                           self.callAgent = agent
-                                           incomingCallView = ContentView(appPubs: self.appPubs!, callAgent: self.callAgent!)
-                                           self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
-                                           self.callAgent!.delegate = self.incomingCallHandler
-                                           let _ = CallKitObjectManager.getOrCreateCXProvider()
-                                           CallKitObjectManager.getCXProviderImpl().setCallAgent(callAgent: self.callAgent!)
-                                           self.registerForPushNotification()
-                                       }
-                                   }
+//                                   self.callClient.createCallAgent(userCredential: userCredential) { (agent, error) in
+//                                       if error == nil {
+//                                           print("Call agent successfully created (without CallKit)")
+//                                           self.callAgent = agent
+//                                           incomingCallView = incomingCallView(appPubs: self.appPubs!, callAgent: self.callAgent!)
+//                                           self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
+//                                           self.callAgent!.delegate = self.incomingCallHandler
+//                                           let _ = CallKitObjectManager.getOrCreateCXProvider()
+//                                           CallKitObjectManager.getCXProviderImpl().setCallAgent(callAgent: self.callAgent!)
+//                                           self.registerForPushNotification()
+//                                       }
+//                                   }
                                }
                            }
                        }
@@ -221,26 +219,41 @@ class ACSIncomingCallConntroller{
     }
 }
 
+
+
+final class IncomingCallBackgroundHandler: NSObject, CallAgentDelegate, IncomingCallDelegate {
+    private var incomingCall: IncomingCall?
+    
+    public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
+        self.incomingCall = incomingCall
+        self.incomingCall!.delegate = self
+        
+        
+    }
+    
+}
+
 final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelegate {
-    public var contentView: ContentView?
+    public var contentView: IncomingCallView?
     private var incomingCall: IncomingCall?
 
-    init(contentView: ContentView?) {
+    init(contentView: IncomingCallView?) {
         self.contentView = contentView
     }
 
     public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
-        let incomingHostingController = UIHostingController(rootView: contentView)
-        let rootVC = UIApplication.shared.keyWindow?.rootViewController
-        rootVC?.present(incomingHostingController, animated: true, completion: nil)
-        
+//        let incomingHostingController = UIHostingController(rootView: contentView)
+//        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+//        incomingHostingController.modalPresentationStyle = .fullScreen
+//        rootVC?.present(incomingHostingController, animated: true, completion: nil)
+
         self.incomingCall = incomingCall
         self.incomingCall!.delegate = self
-        
+
         globalCallAgent = callAgent
         globalIncomingCall = incomingCall
-        
-        contentView?.showIncomingCallBanner(self.incomingCall!)
+
+//        contentView?.showIncomingCallBanner(self.incomingCall!)
         Task {
             await CallKitObjectManager.getCallKitHelper()?.addIncomingCall(incomingCall: self.incomingCall!)
         }
@@ -250,7 +263,7 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
                                                videoEnabled: self.incomingCall!.isVideoEnabled,
                                                completionHandler: { error in
             if error == nil {
-                print("Incoming call was reported successfully")
+                print("Incoming call was reportd successfully")
             } else {
                 print("Incoming call was not reported successfully")
             }
@@ -258,9 +271,11 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
     }
 
     func incomingCall(_ incomingCall: IncomingCall, didEnd args: PropertyChangedEventArgs) {
-        contentView?.isIncomingCall = false
+        contentView?.incomingCallViewModel.isIncomingCall = false
         self.incomingCall = nil
         Task {
+            print("incomingCall.id -- did end")
+            print(incomingCall.id)
             await CallKitObjectManager.getCallKitHelper()?.removeIncomingCall(callId: incomingCall.id)
         }
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
@@ -276,8 +291,16 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         if let addedCall = args.addedCalls.first {
             // This happens when call was accepted via CallKit and not from the app
             // We need to set the call instances and auto-navigate to call in progress screen.
+            
+            //ADDED FOR TESTING --
+            
             if addedCall.direction == .incoming {
-                contentView?.isIncomingCall = false
+                let incomingHostingController = UIHostingController(rootView: contentView)
+                let rootVC = UIApplication.shared.keyWindow?.rootViewController
+                incomingHostingController.modalPresentationStyle = .fullScreen
+                rootVC?.present(incomingHostingController, animated: true, completion: nil)
+                
+                acceptedCall = addedCall as! Call
             }
         }
     }

@@ -5,6 +5,7 @@
 
 import SwiftUI
 
+
 struct Icon: View {
     var name: CompositeIcon
     var size: CGFloat

@@ -99,20 +99,7 @@ class ViewController : UIViewController {
     var meetingLink : String!
     let storageUserDefaults = UserDefaults.standard
 
-    //Added for testing purpose
-//    func showIncomingCallView(){
-//        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-//
-//        let incomingContentView = ContentView(appPubs: appDelegate.appPubs)
-//        var incomingHostingController = UIHostingController(rootView: incomingContentView)
-//        present(incomingHostingController, animated: true, completion: nil)
-//    }
-    
     @IBAction func onLoginAction(_ sender: Any) {
-        //Added for testing purpose
-//        showIncomingCallView()
-//        return
-        
         if(self.username.text == "" || self.password.text == "") {
             return
         }
@@ -229,10 +216,8 @@ class ViewController : UIViewController {
     }
     
     func flutterMethodChannel (passArgs: String?) {
-        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
-        let controller : FlutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+        let controller : FlutterViewController = (UIApplication.shared.delegate as! AppDelegate).controller
 
-        
         let acsChannel = FlutterMethodChannel(
             name: CitiConstants.method_channel_name,
             binaryMessenger: controller.binaryMessenger

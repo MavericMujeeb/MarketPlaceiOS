@@ -13,6 +13,9 @@ import Foundation
 import PushKit
 import os.log
 import CallKit
+import FluentUI
+import ReplayKit
+import AzureCommunicationUICalling
 
 enum CreateCallAgentErrors: Error {
     case noToken
@@ -62,28 +65,39 @@ struct ContentView: View {
 
     var appPubs: AppPubs
     var i_callAgent:CallAgent
+    @State var callStatus: String = ""
     
     var containerView: some View {
         VStack{
             ZStack {
-                ForEach(remoteViews, id:\.self) { renderer in
-                    ZStack{
-                        VStack{
-                            RemoteVideoView(view: renderer)
-                                .frame(width: .infinity, height: .infinity)
-                                .background(Color(.white))
-                        }
-                        if(sendingVideo){
-                            ZStack(alignment:.bottomTrailing){
-                                VStack{
-                                    PreviewVideoStream(view: previewView!)
-                                        .frame(width: 135, height: 160)
-                                        .background(Color(.white))
-                                }.frame(maxWidth:.infinity, maxHeight:.infinity,alignment: .bottomTrailing)
-                                    .clipShape(RoundedCornersShape(radius: 4, corners: [.allCorners]))
-                                cameraSwitchButton
+                if remoteViews.count > 0 {
+                    ForEach(remoteViews, id:\.self) { renderer in
+                        ZStack{
+                            VStack{
+                                RemoteVideoView(view: renderer)
+                                    .frame(width: .infinity, height: .infinity)
+                                    .background(Color(.white))
                             }
-                            
+                            if(sendingVideo){
+                                ZStack(alignment:.bottomTrailing){
+                                    VStack{
+                                        PreviewVideoStream(view: previewView!)
+                                            .frame(width: 135, height: 160)
+                                            .background(Color(.white))
+                                    }.frame(maxWidth:.infinity, maxHeight:.infinity,alignment: .bottomTrailing)
+                                        .clipShape(RoundedCornersShape(radius: 4, corners: [.allCorners]))
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+                else{
+                    VStack{
+                        ZStack{
+                            HStack{
+                                CompositeAvatar(displayName: "Chantal Kendall", avatarImage: UIImage(systemName: "person.fill"), isSpeaking: true)
+                            }
                         }
                     }
                 }
@@ -93,10 +107,8 @@ struct ContentView: View {
 
     }
     
-    
-    
-    func switchCamera() {
-        print("switchCamera action -- TODO")
+
+    func switchCamera (){
     }
 
     func openChat() {
@@ -122,6 +134,7 @@ struct ContentView: View {
         .frame(width: 60, height: 60, alignment: .center)
         .background(Color.clear)
         .clipShape(RoundedCornersShape(radius: 4, corners: [.allCorners]))
+        .padding(-4)
     }
     
     func iconButton(iconName:String, action: @escaping (() -> Void)) -> some View {
@@ -201,13 +214,7 @@ struct ContentView: View {
                 }
             }
             else{
-                VStack(alignment: .center, spacing: 0){
-                    Spacer()
-                    containerView
-                        .navigationTitle("Chantal Kendall")
-                        .navigationBarTitleDisplayMode(.inline)
-                    controlBarView
-                }
+                mainBody
             }
         }
     }
@@ -216,8 +223,61 @@ struct ContentView: View {
         
     }
     
+    
+    var localVideoView: some View {
+        VStack{
+            ZStack{
+                HStack{
+                    if remoteViews.count > 0 {
+                        ForEach(remoteViews, id:\.self) { renderer in
+                            ZStack{
+                                RemoteVideoView(view: renderer)
+                                    .frame(width: .infinity, height: .infinity)
+                                if(sendingVideo){
+                                    ZStack(alignment:.bottomTrailing){
+                                        VStack{
+                                            PreviewVideoStream(view: previewView!)
+                                                .frame(width: 140, height: 160)
+                                                .clipShape(RoundedCornersShape(radius: 10, corners: [.allCorners]))
+                                        }.frame(maxWidth:.infinity, maxHeight:.infinity, alignment: .bottomTrailing)
+                                            .clipShape(RoundedCornersShape(radius: 10, corners: [.allCorners]))
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        VStack{
+                            ZStack{
+                                HStack{
+                                    CompositeAvatar(displayName: "Chantal Kendall", avatarImage: UIImage(systemName: "person.fill"), isSpeaking: true)
+                                        .frame(width: .infinity, height: .infinity)
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    
+    var mainBody: some View {
+        GeometryReader { geometry in
+            VStack(alignment: .center, spacing: 0) {
+                CallingTitleView()
+                    .frame(height: geometry.size.height / 10)
+                localVideoView
+                controlBarView
+                    .frame(height: geometry.size.height / 10)
+            }
+        }
+    }
+    
     var body: some View {
-        NavigationView {
+        ZStack {
             incomingCallBody
         }
         .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
@@ -302,7 +362,7 @@ struct ContentView: View {
     {
         //get banker display name
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Chantal Kendall"
+        callKitRemoteInfo.displayName = "Chantal Kendall - 3"
 
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
@@ -391,7 +451,7 @@ struct ContentView: View {
                     CallKitObjectManager.deInitCallKitInApp()
                     self.callAgent = agent
                     self.cxProvider = nil
-                    incomingCallHandler = IncomingCallHandler(contentView: self)
+//                    incomingCallHandler = IncomingCallHandler(contentView: self)
                     self.callAgent!.delegate = incomingCallHandler
                     registerForPushNotification()
                 } else {
@@ -405,7 +465,7 @@ struct ContentView: View {
                 if error == nil {
                     self.callAgent = agent
                     print("Call agent successfully created (without CallKit)")
-                    incomingCallHandler = IncomingCallHandler(contentView: self)
+//                    incomingCallHandler = IncomingCallHandler(contentView: self)
                     self.callAgent!.delegate = incomingCallHandler
                     let _ = CallKitObjectManager.getOrCreateCXProvider()
                     CallKitObjectManager.getCXProviderImpl().setCallAgent(callAgent: callAgent!)
@@ -643,9 +703,9 @@ struct ContentView: View {
     func setCallAndObersever(call:Call!, error:Error?) {
         if (error == nil) {
             self.call = call
-            self.callObserver = CallObserver(self)
+//            self.callObserver = CallObserver(self)
             self.call!.delegate = self.callObserver
-            self.remoteParticipantObserver = RemoteParticipantObserver(self)
+//            self.remoteParticipantObserver = RemoteParticipantObserver(self)
             switchSpeaker()
         } else {
             print("Failed to get call object")
@@ -675,175 +735,175 @@ struct ContentView: View {
     }
 }
 
-public class RemoteVideoStreamData : NSObject, RendererDelegate {
-    public func videoStreamRenderer(didFailToStart renderer: VideoStreamRenderer) {
-        owner.errorMessage = "Renderer failed to start"
-    }
+//public class RemoteVideoStreamData : NSObject, RendererDelegate {
+//    public func videoStreamRenderer(didFailToStart renderer: VideoStreamRenderer) {
+//        owner.errorMessage = "Renderer failed to start"
+//    }
+//
+//    private var owner:ContentView
+//    let stream:RemoteVideoStream
+//    var renderer:VideoStreamRenderer? {
+//        didSet {
+//            if renderer != nil {
+//                renderer!.delegate = self
+//            }
+//        }
+//    }
+//
+//    var views:[RendererView] = []
+//    init(view:ContentView, stream:RemoteVideoStream) {
+//        owner = view
+//        self.stream = stream
+//    }
+//
+//    public func videoStreamRenderer(didRenderFirstFrame renderer: VideoStreamRenderer) {
+//        let size:StreamSize = renderer.size
+//        owner.remoteVideoSize = String(size.width) + " X " + String(size.height)
+//    }
+//}
 
-    private var owner:ContentView
-    let stream:RemoteVideoStream
-    var renderer:VideoStreamRenderer? {
-        didSet {
-            if renderer != nil {
-                renderer!.delegate = self
-            }
-        }
-    }
+//public class CallObserver: NSObject, CallDelegate, IncomingCallDelegate {
+//    private var owner: ContentView
+//    private var callKitHelper: CallKitHelper?
+//
+//    init(_ view:ContentView) {
+//        owner = view
+//    }
+//
+//    public func call(_ call: Call, didChangeState args: PropertyChangedEventArgs) {
+//        switch call.state {
+//        case .connected:
+//            owner.callState = "Connected"
+//        case .connecting:
+//            owner.callState = "Connecting"
+//        case .disconnected:
+//            owner.callState = "Disconnected"
+//        case .disconnecting:
+//            owner.callState = "Disconnecting"
+//        case .inLobby:
+//            owner.callState = "InLobby"
+//        case .localHold:
+//            owner.callState = "LocalHold"
+//        case .remoteHold:
+//            owner.callState = "RemoteHold"
+//        case .ringing:
+//            owner.callState = "Ringing"
+//        case .earlyMedia:
+//            owner.callState = "EarlyMedia"
+//        case .none:
+//            owner.callState = "None"
+//        default:
+//            owner.callState = "Default"
+//        }
+//
+//        if(call.state == CallState.connected) {
+//            initialCallParticipant()
+//        }
+//
+//        if(call.state == CallState.disconnected) {
+//            let rootVC = UIApplication.shared.keyWindow?.rootViewController
+//            rootVC?.dismiss(animated: true)
+//        }
+//
+//        Task {
+//            await CallKitObjectManager.getCallKitHelper()?.reportOutgoingCall(call: call)
+//        }
+//    }
+//
+//    public func call(_ call: Call, didUpdateOutgoingAudioState args: PropertyChangedEventArgs) {
+//        owner.isMuted = call.isOutgoingAudioMuted
+//    }
+//
+//    public func call(_ call: Call, didUpdateRemoteParticipant args: ParticipantsUpdatedEventArgs) {
+//        for participant in args.addedParticipants {
+//            participant.delegate = owner.remoteParticipantObserver
+//            for stream in participant.videoStreams {
+//                if !owner.remoteVideoStreamData.isEmpty {
+//                    return
+//                }
+//                let data:RemoteVideoStreamData = RemoteVideoStreamData(view: owner, stream: stream)
+//                let scalingMode = ScalingMode.fit
+//                data.renderer = try! VideoStreamRenderer(remoteVideoStream: stream)
+//                let view:RendererView = try! data.renderer!.createView(withOptions: CreateViewOptions(scalingMode:scalingMode))
+//                data.views.append(view)
+//                self.owner.remoteViews.append(view)
+//                owner.remoteVideoStreamData[stream.id] = data
+//            }
+//            owner.remoteParticipant = participant
+//        }
+//    }
+//
+//    public func initialCallParticipant() {
+//        for participant in owner.call!.remoteParticipants {
+//            participant.delegate = owner.remoteParticipantObserver
+//            for stream in participant.videoStreams {
+//                renderRemoteStream(stream)
+//            }
+//            owner.remoteParticipant = participant
+//        }
+//    }
+//
+//    public func renderRemoteStream(_ stream: RemoteVideoStream!) {
+//        if !owner.remoteVideoStreamData.isEmpty {
+//            return
+//        }
+//        let data:RemoteVideoStreamData = RemoteVideoStreamData(view: owner, stream: stream)
+//        let scalingMode = ScalingMode.fit
+//        data.renderer = try! VideoStreamRenderer(remoteVideoStream: stream)
+//        let view:RendererView = try! data.renderer!.createView(withOptions: CreateViewOptions(scalingMode:scalingMode))
+//        self.owner.remoteViews.append(view)
+//        owner.remoteVideoStreamData[stream.id] = data
+//    }
+//}
+//
+//public class RemoteParticipantObserver : NSObject, RemoteParticipantDelegate {
+//    private var owner:ContentView
+//    init(_ view:ContentView) {
+//        owner = view
+//    }
+//
+//    public func renderRemoteStream(_ stream: RemoteVideoStream!) {
+//        let data:RemoteVideoStreamData = RemoteVideoStreamData(view: owner, stream: stream)
+//        let scalingMode = ScalingMode.fit
+//        do {
+//            data.renderer = try VideoStreamRenderer(remoteVideoStream: stream)
+//            let view:RendererView = try data.renderer!.createView(withOptions: CreateViewOptions(scalingMode:scalingMode))
+//            self.owner.remoteViews.append(view)
+//            owner.remoteVideoStreamData[stream.id] = data
+//        } catch let error as NSError {
+//            self.owner.alertMessage = error.localizedDescription
+//            self.owner.showAlert = true
+//        }
+//    }
+//
+//    public func remoteParticipant(_ remoteParticipant: RemoteParticipant, didUpdateVideoStreams args: RemoteVideoStreamsEventArgs) {
+//        for stream in args.addedRemoteVideoStreams {
+//            renderRemoteStream(stream)
+//        }
+//        for _ in args.removedRemoteVideoStreams {
+//            for data in owner.remoteVideoStreamData.values {
+//                data.renderer?.dispose()
+//            }
+//            owner.remoteViews.removeAll()
+//        }
+//    }
+//}
 
-    var views:[RendererView] = []
-    init(view:ContentView, stream:RemoteVideoStream) {
-        owner = view
-        self.stream = stream
-    }
-
-    public func videoStreamRenderer(didRenderFirstFrame renderer: VideoStreamRenderer) {
-        let size:StreamSize = renderer.size
-        owner.remoteVideoSize = String(size.width) + " X " + String(size.height)
-    }
-}
-
-public class CallObserver: NSObject, CallDelegate, IncomingCallDelegate {
-    private var owner: ContentView
-    private var callKitHelper: CallKitHelper?
-    
-    init(_ view:ContentView) {
-        owner = view
-    }
-
-    public func call(_ call: Call, didChangeState args: PropertyChangedEventArgs) {
-        switch call.state {
-        case .connected:
-            owner.callState = "Connected"
-        case .connecting:
-            owner.callState = "Connecting"
-        case .disconnected:
-            owner.callState = "Disconnected"
-        case .disconnecting:
-            owner.callState = "Disconnecting"
-        case .inLobby:
-            owner.callState = "InLobby"
-        case .localHold:
-            owner.callState = "LocalHold"
-        case .remoteHold:
-            owner.callState = "RemoteHold"
-        case .ringing:
-            owner.callState = "Ringing"
-        case .earlyMedia:
-            owner.callState = "EarlyMedia"
-        case .none:
-            owner.callState = "None"
-        default:
-            owner.callState = "Default"
-        }
-
-        if(call.state == CallState.connected) {
-            initialCallParticipant()
-        }
-        
-        if(call.state == CallState.disconnected) {
-            let rootVC = UIApplication.shared.keyWindow?.rootViewController
-            rootVC?.dismiss(animated: true)
-        }
-
-        Task {
-            await CallKitObjectManager.getCallKitHelper()?.reportOutgoingCall(call: call)
-        }
-    }
-    
-    public func call(_ call: Call, didUpdateOutgoingAudioState args: PropertyChangedEventArgs) {
-        owner.isMuted = call.isOutgoingAudioMuted
-    }
-
-    public func call(_ call: Call, didUpdateRemoteParticipant args: ParticipantsUpdatedEventArgs) {
-        for participant in args.addedParticipants {
-            participant.delegate = owner.remoteParticipantObserver
-            for stream in participant.videoStreams {
-                if !owner.remoteVideoStreamData.isEmpty {
-                    return
-                }
-                let data:RemoteVideoStreamData = RemoteVideoStreamData(view: owner, stream: stream)
-                let scalingMode = ScalingMode.fit
-                data.renderer = try! VideoStreamRenderer(remoteVideoStream: stream)
-                let view:RendererView = try! data.renderer!.createView(withOptions: CreateViewOptions(scalingMode:scalingMode))
-                data.views.append(view)
-                self.owner.remoteViews.append(view)
-                owner.remoteVideoStreamData[stream.id] = data
-            }
-            owner.remoteParticipant = participant
-        }
-    }
-
-    public func initialCallParticipant() {
-        for participant in owner.call!.remoteParticipants {
-            participant.delegate = owner.remoteParticipantObserver
-            for stream in participant.videoStreams {
-                renderRemoteStream(stream)
-            }
-            owner.remoteParticipant = participant
-        }
-    }
-
-    public func renderRemoteStream(_ stream: RemoteVideoStream!) {
-        if !owner.remoteVideoStreamData.isEmpty {
-            return
-        }
-        let data:RemoteVideoStreamData = RemoteVideoStreamData(view: owner, stream: stream)
-        let scalingMode = ScalingMode.fit
-        data.renderer = try! VideoStreamRenderer(remoteVideoStream: stream)
-        let view:RendererView = try! data.renderer!.createView(withOptions: CreateViewOptions(scalingMode:scalingMode))
-        self.owner.remoteViews.append(view)
-        owner.remoteVideoStreamData[stream.id] = data
-    }
-}
-
-public class RemoteParticipantObserver : NSObject, RemoteParticipantDelegate {
-    private var owner:ContentView
-    init(_ view:ContentView) {
-        owner = view
-    }
-
-    public func renderRemoteStream(_ stream: RemoteVideoStream!) {
-        let data:RemoteVideoStreamData = RemoteVideoStreamData(view: owner, stream: stream)
-        let scalingMode = ScalingMode.fit
-        do {
-            data.renderer = try VideoStreamRenderer(remoteVideoStream: stream)
-            let view:RendererView = try data.renderer!.createView(withOptions: CreateViewOptions(scalingMode:scalingMode))
-            self.owner.remoteViews.append(view)
-            owner.remoteVideoStreamData[stream.id] = data
-        } catch let error as NSError {
-            self.owner.alertMessage = error.localizedDescription
-            self.owner.showAlert = true
-        }
-    }
-
-    public func remoteParticipant(_ remoteParticipant: RemoteParticipant, didUpdateVideoStreams args: RemoteVideoStreamsEventArgs) {
-        for stream in args.addedRemoteVideoStreams {
-            renderRemoteStream(stream)
-        }
-        for _ in args.removedRemoteVideoStreams {
-            for data in owner.remoteVideoStreamData.values {
-                data.renderer?.dispose()
-            }
-            owner.remoteViews.removeAll()
-        }
-    }
-}
-
-struct PreviewVideoStream: UIViewRepresentable {
-    let view:RendererView
-    func makeUIView(context: Context) -> UIView {
-        return view
-    }
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct RemoteVideoView: UIViewRepresentable {
-    let view:RendererView
-    func makeUIView(context: Context) -> UIView {
-        return view
-    }
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
+//struct PreviewVideoStream: UIViewRepresentable {
+//    let view:RendererView
+//    func makeUIView(context: Context) -> UIView {
+//        return view
+//    }
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct RemoteVideoView: UIViewRepresentable {
+//    let view:RendererView
+//    func makeUIView(context: Context) -> UIView {
+//        return view
+//    }
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
 
 struct RoundedCornersShape: Shape {
     let radius: CGFloat
@@ -855,4 +915,65 @@ struct RoundedCornersShape: Shape {
                                 cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
     }
+}
+
+struct CallingTitleView: View {
+    let viewHeight: CGFloat = 44
+    let padding: CGFloat = 34.0
+    let verticalSpacing: CGFloat = 0
+
+    @Environment(\.sizeCategory) var sizeCategory: ContentSizeCategory
+    @Environment(\.presentationMode) var presentation
+
+    var body: some View {
+        VStack(spacing: verticalSpacing) {
+            ZStack(alignment: .leading) {
+                Button(action: {
+                    self.presentation.wrappedValue.dismiss()
+
+                }) {
+                    Image(systemName: "arrow.left")
+                        .foregroundColor(.black)
+                        .padding(20)
+                }
+                
+                HStack {
+                    Spacer()
+                    VStack {
+                        Text("Chantal Kendall")
+                            .foregroundColor(.black)
+                            .lineLimit(1)
+                            .minimumScaleFactor(sizeCategory.isAccessibilityCategory ? 0.4 : 1)
+                            .accessibilityAddTraits(.isHeader)
+                    }
+                    Spacer()
+                }.accessibilitySortPriority(1)
+                 .padding(padding)
+            }.frame(height: viewHeight)
+            Divider()
+        }
+    }
+}
+
+struct CompositeAvatar: View {
+    var displayName: String?
+    var avatarImage: UIImage?
+    var isSpeaking: Bool
+    var avatarSize: MSFAvatarSize = .xxlarge
+    var body: some View {
+        let isNameEmpty = displayName == nil
+        || displayName?.trimmingCharacters(in: .whitespaces).isEmpty == true
+        return Avatar(style: isNameEmpty ? .outlined : .default,
+                      size: avatarSize,
+                      image: avatarImage,
+                      primaryText: displayName)
+        .ringColor(.gray)
+            .isRingVisible(isSpeaking)
+            .accessibilityHidden(true)
+    }
+}
+
+enum CameraDevice {
+    case front
+    case back
 }
