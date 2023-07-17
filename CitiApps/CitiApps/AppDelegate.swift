@@ -26,6 +26,7 @@ import Combine
 
 var globalCallAgent : CallAgent?
 var globalIncomingCall: IncomingCall?
+var acceptedCall : Call?
 var globalDeviceManager: DeviceManager?
 
 

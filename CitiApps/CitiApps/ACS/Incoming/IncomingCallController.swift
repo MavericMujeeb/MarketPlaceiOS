@@ -242,10 +242,10 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
     }
 
     public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
-        let incomingHostingController = UIHostingController(rootView: contentView)
-        let rootVC = UIApplication.shared.keyWindow?.rootViewController
-        incomingHostingController.modalPresentationStyle = .fullScreen
-        rootVC?.present(incomingHostingController, animated: true, completion: nil)
+//        let incomingHostingController = UIHostingController(rootView: contentView)
+//        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+//        incomingHostingController.modalPresentationStyle = .fullScreen
+//        rootVC?.present(incomingHostingController, animated: true, completion: nil)
 
         self.incomingCall = incomingCall
         self.incomingCall!.delegate = self
@@ -253,7 +253,7 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         globalCallAgent = callAgent
         globalIncomingCall = incomingCall
 
-        contentView?.showIncomingCallBanner(self.incomingCall!)
+//        contentView?.showIncomingCallBanner(self.incomingCall!)
         Task {
             await CallKitObjectManager.getCallKitHelper()?.addIncomingCall(incomingCall: self.incomingCall!)
         }
@@ -294,16 +294,14 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
             
             //ADDED FOR TESTING --
             
-//            if addedCall.direction == .incoming {
-//                addedCall.hangUp(options: HangUpOptions()) { (error) in
-//                    if (error != nil) {
-//                        print("ERROR: It was not possible to hangup the call.")
-//                    }
-//                    else{
-//                        print("Success -- end")
-//                    }
-//                }
-//            }
+            if addedCall.direction == .incoming {
+                let incomingHostingController = UIHostingController(rootView: contentView)
+                let rootVC = UIApplication.shared.keyWindow?.rootViewController
+                incomingHostingController.modalPresentationStyle = .fullScreen
+                rootVC?.present(incomingHostingController, animated: true, completion: nil)
+                
+                acceptedCall = addedCall as! Call
+            }
         }
     }
 }

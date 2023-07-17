@@ -633,7 +633,9 @@ struct IncomingCallView: View {
         })
         .onAppear{
             self.callAgent = self.i_callAgent
-            showIncomingCallBanner(globalIncomingCall)
+            self.incomingCall = globalIncomingCall
+            self.call = acceptedCall
+            setCallAndObersever(call: call, error: nil)
             self.deviceManager = globalDeviceManager
             self.isCallKitInSDKEnabled = true
         }
