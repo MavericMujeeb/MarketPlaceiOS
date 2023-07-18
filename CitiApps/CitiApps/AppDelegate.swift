@@ -140,14 +140,12 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
-        print("didReceiveIncomingPushWith ------ ")
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
         let userDefaults: UserDefaults = .standard
         let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
         
         
         if isCallKitInSDKEnabled {
-            print("Coming here ---- isCallKitInSDKEnabled")
             let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
             callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
 
@@ -157,7 +155,6 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
                 }
             }
         } else {
-            print("Coming here ---- 232323")
             let incomingCallReporter = CallKitIncomingCallReporter()
             incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
                                                    caller: callNotification.from,

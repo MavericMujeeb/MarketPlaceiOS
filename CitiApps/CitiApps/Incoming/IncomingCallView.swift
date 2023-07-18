@@ -53,6 +53,7 @@ struct IncomingCallView: View {
     @State var isCallKitInSDKEnabled = false
     @State var isSpeakerOn:Bool = false
     @State var isMuted:Bool = false
+    @State var isSharingScreen:Bool = false
     @State var isHeld: Bool = false
     
     @State var callState: String = "None"
@@ -259,6 +260,21 @@ struct IncomingCallView: View {
         }
     }
     
+//    func stopLocalVideoStream () async throws {
+//        if (sendingVideo) {
+//            call.stopVideo(stream: localVideoStream.first!) { (error) in
+//                if (error != nil) {
+//                    print("Cannot stop video")
+//                } else {
+//                    self.sendingVideo = false
+//                    self.previewView = nil
+//                    self.previewRenderer!.dispose()
+//                    self.previewRenderer = nil
+//                }
+//            }
+//        }
+//    }
+    
     private func createLocalVideoPreview() -> Bool {
         guard let deviceManager = self.deviceManager else {
             self.showAlert = true
@@ -308,12 +324,32 @@ struct IncomingCallView: View {
     func openChat() {
         var bankerEmailId = UserDefaults.standard.string(forKey: "loginUserName")
         var rootVc = UIApplication.shared.keyWindow?.rootViewController
-        print("rootVc")
+        
         let chatController = ChatController(chatAdapter: nil, rootViewController: rootVc)
-        chatController.bankerEmailId = "chantal@acsteamsciti.onmicrosoft.com"
+        chatController.bankerEmailId = ACSResources.bankerUserEmail
         chatController.isForCall = false
-        print("prepareChatComposite")
+        
         chatController.prepareChatComposite()
+    }
+    
+    func toggleScreenShare () {
+//        do{
+//            try await stopLocalVideoStream()
+//        }
+//        catch{
+//           //
+//        }
+//
+        //TODO::Screen Share
+        AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { response in
+            if response{
+                isSharingScreen = true
+//                self.toggleSendingScreenShareOutgoingVideo()
+            }
+            else{
+                //Access denied
+            }
+        })
     }
     
     func endCall() {
@@ -374,11 +410,15 @@ struct IncomingCallView: View {
         IconButton(buttonAction: openChat, iconName: "chat-icon", iconSize: 30, iconColor: .black)
     }
     
+    var screenShareButton: some View {
+        IconButton(buttonAction: toggleScreenShare, iconName: isSharingScreen ? "screenshare_stop" : "screenshare_start", iconSize: 30, iconColor: .black)
+    }
+    
     var hangUpButton: some View {
         IconButton(buttonAction: endCall, iconName: "call-end", iconSize: 30, iconColor: .white)
     }
     
-    
+
     var bottomControlBarView : some View {
         Group{
             HStack {
@@ -387,6 +427,8 @@ struct IncomingCallView: View {
                 micButton
                 Spacer()
                 chatButton
+                Spacer()
+                screenShareButton
                 Spacer()
                 hangUpButton
                     .background(Color("hangup-color"))
