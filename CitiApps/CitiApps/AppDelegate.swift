@@ -68,31 +68,42 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
   
     
     func notificationHub(_ notificationHub: MSNotificationHub, didReceivePushNotification message: MSNotificationHubMessage) {
-        let rootVC = UIApplication.shared.keyWindow?.rootViewController
-
-        // create the alert
-        let alert = UIAlertController(title: "New Message", message: message.body , preferredStyle: UIAlertController.Style.alert)
-
-        // add the actions (buttons)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {action in
-            rootVC?.dismiss(animated: true)
-        }))
         
-        alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.destructive, handler: {action in
+        CitiConstants.isFromNotification = true
+        
+        var rootVC = UIApplication.shared.keyWindow?.rootViewController
+        
+        
+        if(rootVC is UINavigationController){
+            rootVC = (rootVC as! UINavigationController).visibleViewController!
+        }
+        if(rootVC is DashboardViewController) {
+            // create the alert
+            let alert = UIAlertController(title: "New Message", message: message.body , preferredStyle: UIAlertController.Style.alert)
             
-            rootVC?.dismiss(animated: true)
-            //open chat screen
-            let storageUserDefaults = UserDefaults.standard
-            var bankerEmailId = storageUserDefaults.value(forKey: StorageKeys.bankerEmailId) as! String
-
-            let chatController = ChatController(chatAdapter: nil, rootViewController: rootVC)
-            chatController.bankerEmailId = bankerEmailId
-            chatController.isForCall = false
-            chatController.prepareChatComposite()
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {action in
+                rootVC?.dismiss(animated: true)
+            }))
             
-        }))
-        // show the alert
-        rootVC?.present(alert, animated: true)
+            alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.destructive, handler: {action in
+                
+                rootVC?.dismiss(animated: true)
+                //open chat screen
+                let storageUserDefaults = UserDefaults.standard
+                var bankerEmailId = storageUserDefaults.string(forKey: StorageKeys.bankerEmailId) ?? ACSResources.bankerUserEmail
+                var customerUserName = storageUserDefaults.string(forKey: StorageKeys.loginUserName) ?? ACSResources.customerUserName
+                
+                let chatController = ChatController(chatAdapter: nil, rootViewController: rootVC)
+                chatController.bankerEmailId = bankerEmailId
+                chatController.custUserName = customerUserName
+                chatController.isForCall = false
+                chatController.prepareChatComposite()
+                
+            }))
+            // show the alert
+            rootVC?.present(alert, animated: true)
+        }
     }
 
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {

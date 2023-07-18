@@ -7,6 +7,7 @@
 
 struct CitiConstants {
     static let method_channel_name: String = "com.maveric.citiacsdemo"
+    static var isFromNotification: Bool = false
 }
 
 struct StorageKeys {

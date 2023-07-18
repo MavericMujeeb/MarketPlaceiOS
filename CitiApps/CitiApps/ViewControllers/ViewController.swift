@@ -144,6 +144,7 @@ class ViewController : UIViewController {
         }
         else{
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
+            dashViewController.isFromNotificationTray = CitiConstants.isFromNotification
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
     }
