@@ -332,7 +332,27 @@ struct IncomingCallView: View {
         chatController.prepareChatComposite()
     }
     
+    
+    @State var screenShareProducer: ScreenSharingProducer?
+    @State var outgoingVideoSender: RawOutgoingVideoSender?
+    
     func toggleScreenShare () {
+        print("toggleScreenShare --- tapped")
+        guard let call = self.call else {
+            return
+        }
+        if(sendingVideo) {
+            call.stopVideo(stream: localVideoStream.first!) { (error) in
+                if(error != nil) {
+                    print("localvideo stream stopped")
+                }
+                else{
+                    print("localvideo stream stopped")
+                    incomingCallViewModel.startScreenRecording(acsCall: call)
+                }
+            }
+        }
+        
 //        do{
 //            try await stopLocalVideoStream()
 //        }
@@ -678,6 +698,7 @@ struct IncomingCallView: View {
             self.incomingCall = globalIncomingCall
             self.call = acceptedCall
             setCallAndObersever(call: call, error: nil)
+            incomingCallViewModel.setIncomingCallObject(call: self.call)
             self.deviceManager = globalDeviceManager
             self.isCallKitInSDKEnabled = true
         }

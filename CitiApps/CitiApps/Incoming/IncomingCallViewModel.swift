@@ -10,18 +10,44 @@ import RealityKit
 import AzureCommunicationCalling
 import Combine
 import ReplayKit
+import PIPKit
+
 
 class IncomingCallViewModel : NSObject, ObservableObject{
     @Published var isIncomingCall:Bool = false
+    @Published var call:Call?
  
     func setIsIncomingCall(incoming:Bool) {
         self.isIncomingCall = incoming
+    }
+    
+    func setIncomingCallObject(call:Call?){
+        self.call = call
     }
     
     var screenShareProducer: ScreenSharingProducer?
     var outgoingVideoSender: RawOutgoingVideoSender?
     var isSharingScreen : Bool = false
     
+    
+    func startScreenRecording (acsCall: Call) {
+//        guard let call = acsCall else {
+//            return
+//        }
+        
+        self.screenShareProducer = ScreenSharingProducer()
+        self.screenShareProducer?.onReadyCallback = { [weak self] in
+            guard let producer = self?.screenShareProducer else { return }
+
+            self?.outgoingVideoSender = RawOutgoingVideoSender(frameProducer: producer)
+            self?.outgoingVideoSender?.startSending(to: acsCall)
+        }
+        self.screenShareProducer?.startRecording()
+        
+        DispatchQueue.main.async {
+            PIPKit.visibleViewController?.startPIPMode()
+        }
+    }
     
     
     func toggleSendingScreenShareOutgoingVideo(acsCall:Call?) {
