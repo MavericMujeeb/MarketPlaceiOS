@@ -144,7 +144,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     func provideCallKitRemoteInfo(callerInfo: CallerInfo) -> CallKitRemoteInfo
     {
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Chantal Kendall"
+        callKitRemoteInfo.displayName = ACSResources.bankerUserName
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }

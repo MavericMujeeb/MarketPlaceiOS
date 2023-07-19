@@ -41,7 +41,7 @@ class ACSIncomingCallConntroller{
     var custAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
     var bankerAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-8f91-eaf3-543a0d000ff3"
 
-    var bankerUserName:String! = "Chantal Kendall"
+    var bankerUserName:String! = ACSResources.bankerUserName
     
     func resigterIncomingCallClient (appPubs:AppPubs) {
         self.appPubs = appPubs
