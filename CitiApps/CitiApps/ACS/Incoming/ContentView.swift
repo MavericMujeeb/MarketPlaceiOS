@@ -96,7 +96,7 @@ struct ContentView: View {
                     VStack{
                         ZStack{
                             HStack{
-                                CompositeAvatar(displayName: "Chantal Kendall", avatarImage: UIImage(systemName: "person.fill"), isSpeaking: true)
+                                CompositeAvatar(displayName: ACSResources.bankerUserName, avatarImage: UIImage(systemName: "person.fill"), isSpeaking: true)
                             }
                         }
                     }
@@ -185,7 +185,7 @@ struct ContentView: View {
                     Spacer(minLength: 100)
                     Text("Incoming Call from...")
                         .font(.system(size: 20, weight: .bold))
-                    Text("Chantal Kendall")
+                    Text(ACSResources.bankerUserName)
                         .font(.system(size: 16))
                     HStack(alignment:.center, spacing: 50) {
                         Button(action: answerIncomingCall) {
@@ -251,7 +251,7 @@ struct ContentView: View {
                         VStack{
                             ZStack{
                                 HStack{
-                                    CompositeAvatar(displayName: "Chantal Kendall", avatarImage: UIImage(systemName: "person.fill"), isSpeaking: true)
+                                    CompositeAvatar(displayName: ACSResources.bankerUserName, avatarImage: UIImage(systemName: "person.fill"), isSpeaking: true)
                                         .frame(width: .infinity, height: .infinity)
                                 }
                             }
@@ -362,8 +362,7 @@ struct ContentView: View {
     {
         //get banker display name
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Chantal Kendall - 3"
-
+        callKitRemoteInfo.displayName = ACSResources.bankerUserName
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }
@@ -940,7 +939,7 @@ struct CallingTitleView: View {
                 HStack {
                     Spacer()
                     VStack {
-                        Text("Chantal Kendall")
+                        Text(ACSResources.bankerUserName)
                             .foregroundColor(.black)
                             .lineLimit(1)
                             .minimumScaleFactor(sizeCategory.isAccessibilityCategory ? 0.4 : 1)

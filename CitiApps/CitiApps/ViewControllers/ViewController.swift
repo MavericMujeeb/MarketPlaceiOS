@@ -6,7 +6,7 @@
 //
 
 var users = [
-    "janetjohnsonfamily83@gmail.com": ["name":"Janet Johnson","email":"janetjohnsonfamily83@gmail.com","userid":"a2194b29-07bb-48bb-8607-6151334cf904"],
+    "janetjohnsonfamily83@gmail.com": ["name":"Veronica Stephens","email":"janetjohnsonfamily83@gmail.com","userid":"a2194b29-07bb-48bb-8607-6151334cf904"],
     "johnwilliamsfamily9@gmail.com": ["name":"Johnson williams","email":"johnwilliamsfamily9@gmail.com","userid":"8294e32a-d846-440d-b875-87b171b80787"],
 ]
 
@@ -144,6 +144,7 @@ class ViewController : UIViewController {
         }
         else{
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
+            dashViewController.isFromNotificationTray = CitiConstants.isFromNotification
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
     }
@@ -205,7 +206,7 @@ class ViewController : UIViewController {
 
         password.isSecureTextEntry = true
         
-        username.text = "janetjohnsonfamily83@gmail.com"
+        username.text = ACSResources.customerUserEmail
     }
     
     override func viewDidLoad() {

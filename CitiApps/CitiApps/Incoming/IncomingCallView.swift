@@ -93,7 +93,7 @@ struct IncomingCallView: View {
     var avatarView: some View {
         GeometryReader{ geometry in
             VStack(alignment: .center, spacing: 5) {
-                AvatarIcon(displayName: "Chantal Kendall",
+                AvatarIcon(displayName: ACSResources.bankerUserName,
                     isSpeaking: false,
                            avatarSize: .xxlarge)
                 Spacer().frame(height: 10)
@@ -111,7 +111,7 @@ struct IncomingCallView: View {
             Image("video-off")
                 .renderingMode(.template)
                 .foregroundColor(.gray)
-            Text("Chantal Kendall")
+            Text(ACSResources.bankerUserName)
                 .font(.system(size: 20))
                 .lineLimit(1)
                 .foregroundColor(Color(.gray))
@@ -259,21 +259,6 @@ struct IncomingCallView: View {
             }
         }
     }
-    
-//    func stopLocalVideoStream () async throws {
-//        if (sendingVideo) {
-//            call.stopVideo(stream: localVideoStream.first!) { (error) in
-//                if (error != nil) {
-//                    print("Cannot stop video")
-//                } else {
-//                    self.sendingVideo = false
-//                    self.previewView = nil
-//                    self.previewRenderer!.dispose()
-//                    self.previewRenderer = nil
-//                }
-//            }
-//        }
-//    }
     
     private func createLocalVideoPreview() -> Bool {
         guard let deviceManager = self.deviceManager else {
@@ -511,7 +496,7 @@ struct IncomingCallView: View {
     {
         //get banker display name
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Chantal Kendall - 1"
+        callKitRemoteInfo.displayName = ACSResources.bankerUserName
 
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
@@ -625,7 +610,7 @@ struct IncomingCallView: View {
             Spacer(minLength: 50)
             Text("Incoming Call from...")
                 .font(.system(size: 20, weight: .bold))
-            Text("Chantal Kendall")
+            Text(ACSResources.bankerUserName)
                 .font(.system(size: 16))
             HStack(alignment:.center, spacing: 50) {
                 Button(action: answerIncomingCall) {

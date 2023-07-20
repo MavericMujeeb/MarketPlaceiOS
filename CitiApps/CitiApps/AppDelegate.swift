@@ -68,31 +68,41 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
   
     
     func notificationHub(_ notificationHub: MSNotificationHub, didReceivePushNotification message: MSNotificationHubMessage) {
-        let rootVC = UIApplication.shared.keyWindow?.rootViewController
-
-        // create the alert
-        let alert = UIAlertController(title: "New Message", message: message.body , preferredStyle: UIAlertController.Style.alert)
-
-        // add the actions (buttons)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {action in
-            rootVC?.dismiss(animated: true)
-        }))
+        CitiConstants.isFromNotification = true
         
-        alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.destructive, handler: {action in
+        var rootVC = UIApplication.shared.keyWindow?.rootViewController
+        
+        
+        if(rootVC is UINavigationController){
+            rootVC = (rootVC as! UINavigationController).visibleViewController!
+        }
+        if(rootVC is DashboardViewController) {
+            // create the alert
+            let alert = UIAlertController(title: "New Message", message: message.body , preferredStyle: UIAlertController.Style.alert)
             
-            rootVC?.dismiss(animated: true)
-            //open chat screen
-            let storageUserDefaults = UserDefaults.standard
-            var bankerEmailId = storageUserDefaults.value(forKey: StorageKeys.bankerEmailId) as! String
-
-            let chatController = ChatController(chatAdapter: nil, rootViewController: rootVC)
-            chatController.bankerEmailId = bankerEmailId
-            chatController.isForCall = false
-            chatController.prepareChatComposite()
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {action in
+                rootVC?.dismiss(animated: true)
+            }))
             
-        }))
-        // show the alert
-        rootVC?.present(alert, animated: true)
+            alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.destructive, handler: {action in
+                
+                rootVC?.dismiss(animated: true)
+                //open chat screen
+                let storageUserDefaults = UserDefaults.standard
+                var bankerEmailId = storageUserDefaults.string(forKey: StorageKeys.bankerEmailId) ?? ACSResources.bankerUserEmail
+                var customerUserName = storageUserDefaults.string(forKey: StorageKeys.loginUserName) ?? ACSResources.customerUserName
+                
+                let chatController = ChatController(chatAdapter: nil, rootViewController: rootVC)
+                chatController.bankerEmailId = bankerEmailId
+                chatController.custUserName = customerUserName
+                chatController.isForCall = false
+                chatController.prepareChatComposite()
+                
+            }))
+            // show the alert
+            rootVC?.present(alert, animated: true)
+        }
     }
 
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -133,19 +143,21 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     func provideCallKitRemoteInfo(callerInfo: CallerInfo) -> CallKitRemoteInfo
     {
         let callKitRemoteInfo = CallKitRemoteInfo()
-        callKitRemoteInfo.displayName = "Chantal Kendall"
+        callKitRemoteInfo.displayName = ACSResources.bankerUserName
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }
     
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
+        print("didReceiveIncomingPushWith ------ ")
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
         let userDefaults: UserDefaults = .standard
         let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
         
         
         if isCallKitInSDKEnabled {
+            print("Coming here ---- isCallKitInSDKEnabled")
             let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
             callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
 
@@ -155,6 +167,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
                 }
             }
         } else {
+            print("Coming here ---- 232323")
             let incomingCallReporter = CallKitIncomingCallReporter()
             incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
                                                    caller: callNotification.from,

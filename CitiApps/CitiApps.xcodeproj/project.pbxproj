@@ -30,10 +30,6 @@
 		8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D7522932A0916B7001FDB1C /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */; };
 		8D7522942A0916C1001FDB1C /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */; };
-		8D9095B22A6521290063795F /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9095AF2A6521200063795F /* App.xcframework */; };
-		8D9095B32A65212A0063795F /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9095AF2A6521200063795F /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D9095B42A65212B0063795F /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9095AE2A6521200063795F /* Flutter.xcframework */; };
-		8D9095B52A65212B0063795F /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9095AE2A6521200063795F /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2B29A3949200700C78 /* ChatController.swift */; };
 		8D99CA2E29A63BE900700C78 /* CitiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2D29A63BE900700C78 /* CitiConstants.swift */; };
 		8DA82E982977FFD000A79D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DA82E972977FFD000A79D3B /* Main.storyboard */; };
@@ -52,6 +48,10 @@
 		8DD220C82A1F6CE4009A3866 /* Trouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220C72A1F6CE4009A3866 /* Trouter */; };
 		8DD220CD2A1F6DC6009A3866 /* AzureCommunicationUICommon in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220CC2A1F6DC6009A3866 /* AzureCommunicationUICommon */; };
 		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
+		8DF9C43E2A695DC800A86E3A /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */; };
+		8DF9C43F2A695DC800A86E3A /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DF9C4402A695DC900A86E3A /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43B2A695DBF00A86E3A /* App.xcframework */; };
+		8DF9C4412A695DC900A86E3A /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43B2A695DBF00A86E3A /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */; };
 		8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D129756DD6006B0700 /* ViewController.swift */; };
 		8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D629756DD8006B0700 /* Assets.xcassets */; };
@@ -177,14 +177,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8D9095B52A65212B0063795F /* Flutter.xcframework in Embed Frameworks */,
 				8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */,
 				8D0A5FFB298A5A2A002EBBC4 /* AzureCommunicationUIChat.framework in Embed Frameworks */,
-				8D9095B32A65212A0063795F /* App.xcframework in Embed Frameworks */,
 				8D7015F72981303100FDEBFC /* AzureCommunicationCommon.framework in Embed Frameworks */,
 				8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */,
 				8D3AE9C029881A1A009DD389 /* AzureCore.framework in Embed Frameworks */,
 				8DC8DC1129D2FD920047A2D3 /* PIPKit.framework in Embed Frameworks */,
+				8DF9C43F2A695DC800A86E3A /* Flutter.xcframework in Embed Frameworks */,
+				8DF9C4412A695DC900A86E3A /* App.xcframework in Embed Frameworks */,
 				8D3AE9BC29881A08009DD389 /* AzureCommunicationChat.framework in Embed Frameworks */,
 				8D4B4F5D29FBDB8C00B77B60 /* AzureCommunicationCalling.xcframework in Embed Frameworks */,
 			);
@@ -207,8 +207,6 @@
 		8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcsUserIdToken.swift; sourceTree = "<group>"; };
 		8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = "../../../../../../../Downloads/WindowsAzureMessaging-SDK-Apple/iOS/WindowsAzureMessaging.framework"; sourceTree = "<group>"; };
 		8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = SDK/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
-		8D9095AE2A6521200063795F /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Flutter.xcframework; sourceTree = "<group>"; };
-		8D9095AF2A6521200063795F /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/App.xcframework; sourceTree = "<group>"; };
 		8D99CA2B29A3949200700C78 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		8D99CA2D29A63BE900700C78 /* CitiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiConstants.swift; sourceTree = "<group>"; };
 		8DA82E972977FFD000A79D3B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -226,6 +224,8 @@
 		8DD220CB2A1F6DB3009A3866 /* AzureCommunicationUICommon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AzureCommunicationUICommon; path = SDK/AzureCommunicationUICommon; sourceTree = "<group>"; };
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		8DE0D53029804FA200201043 /* CitiApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CitiApps.entitlements; sourceTree = "<group>"; };
+		8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Flutter.xcframework; sourceTree = "<group>"; };
+		8DF9C43B2A695DBF00A86E3A /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/App.xcframework; sourceTree = "<group>"; };
 		8DFBD2CA29756DD6006B0700 /* CitiApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFBD2D129756DD6006B0700 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -261,10 +261,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D9095B42A65212B0063795F /* Flutter.xcframework in Frameworks */,
+				8DF9C43E2A695DC800A86E3A /* Flutter.xcframework in Frameworks */,
 				8D3AE9BF29881A19009DD389 /* AzureCore.framework in Frameworks */,
+				8DF9C4402A695DC900A86E3A /* App.xcframework in Frameworks */,
 				8D3AE9BB29881A08009DD389 /* AzureCommunicationChat.framework in Frameworks */,
-				8D9095B22A6521290063795F /* App.xcframework in Frameworks */,
 				8D7015F82981303200FDEBFC /* AzureCommunicationUICalling.framework in Frameworks */,
 				8D4B4F5C29FBDB8B00B77B60 /* AzureCommunicationCalling.xcframework in Frameworks */,
 				8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */,
@@ -448,8 +448,8 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8D9095AF2A6521200063795F /* App.xcframework */,
-				8D9095AE2A6521200063795F /* Flutter.xcframework */,
+				8DF9C43B2A695DBF00A86E3A /* App.xcframework */,
+				8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */,
 				8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */,
 			);
 			name = Frameworks;

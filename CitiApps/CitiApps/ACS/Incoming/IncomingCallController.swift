@@ -41,7 +41,7 @@ class ACSIncomingCallConntroller{
     var custAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
     var bankerAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-8f91-eaf3-543a0d000ff3"
 
-    var bankerUserName:String! = "Chantal Kendall"
+    var bankerUserName:String! = ACSResources.bankerUserName
     
     func resigterIncomingCallClient (appPubs:AppPubs) {
         self.appPubs = appPubs
@@ -53,10 +53,6 @@ class ACSIncomingCallConntroller{
     
     func callParticipantDetailsAPI() {
         self.bankerEmailId = self.bankerEmailId ?? ACSResources.bankerUserEmail
-        
-        print("bankerEmailId")
-        print(ACSResources.bankerUserEmail)
-        
         let reqBody = "{" +
         "\"originatorId\":\"\(self.bankerEmailId!)\"," +
         "\"participantName\":\"\(self.custUserName!)\"" +
@@ -159,7 +155,6 @@ class ACSIncomingCallConntroller{
                                    print("createCallAgent")
                                    self.callClient.createCallAgent(userCredential: userCredential, options: self.createCallAgentOptions()) { (agent, error) in
                                        if error == nil {
-                                           print("createCallAgent -- -success")
                                            CallKitObjectManager.deInitCallKitInApp()
                                            self.callAgent = agent
                                            globalCallAgent = agent
@@ -282,6 +277,8 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         contentView?.incomingCallViewModel.isIncomingCall = false
         self.incomingCall = nil
         Task {
+            print("incomingCall.id -- did end")
+            print(incomingCall.id)
             await CallKitObjectManager.getCallKitHelper()?.removeIncomingCall(callId: incomingCall.id)
         }
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
@@ -297,14 +294,14 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         if let addedCall = args.addedCalls.first {
             // This happens when call was accepted via CallKit and not from the app
             // We need to set the call instances and auto-navigate to call in progress screen.
+            
+            //ADDED FOR TESTING --
+            
             if addedCall.direction == .incoming {
                 acceptedCall = addedCall as! Call
-
                 let incomingHostingController = ContainerUIHostingController(rootView: contentView!)
                 incomingHostingController.modalPresentationStyle = .fullScreen
-                print("PIPKit Show")
                 PIPKit.show(with: incomingHostingController)
-                
             }
         }
     }

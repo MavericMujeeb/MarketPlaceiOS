@@ -7,6 +7,7 @@
 
 struct CitiConstants {
     static let method_channel_name: String = "com.maveric.citiacsdemo"
+    static var isFromNotification: Bool = false
 }
 
 struct StorageKeys {
@@ -26,12 +27,12 @@ struct StorageKeys {
 struct ACSResources {
     
     static var bankerAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-8f91-eaf3-543a0d000ff3"
-    static var bankerUserName:String = "Chantal Kendall"
+    static var bankerUserName:String = "Richard Jones"
     static var bankerUserEmail:String = "chantal@acsteamsciti.onmicrosoft.com"
     static var customerAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_00000018-59b7-90bc-6763-563a0d000340"
-    static var customerUserName:String = "Janet Johnson"
+    static var customerUserName:String = "Veronica Stephens"
     static var customerUserEmail:String = "janetjohnsonfamily83@gmail.com"
-    static var threadId:String = "19:8c5b187a89f8430ab999711e926e76e8@thread.v2"
+    static var threadId:String = "19:c8d2af06cd16484988b7f78ea8b7fe04@thread.v2"
     
     static let acs_token_fetch_api:String = "https://acstokenfuncapp.azurewebsites.net/api/acschatcallingfunction/"
     static let acs_chat_participantdetails_api:String = "https://acsinfonodb.azurewebsites.net/api/participantDetails"

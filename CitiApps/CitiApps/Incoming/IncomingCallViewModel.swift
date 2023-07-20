@@ -13,9 +13,11 @@ import ReplayKit
 import PIPKit
 
 
+
 class IncomingCallViewModel : NSObject, ObservableObject{
     @Published var isIncomingCall:Bool = false
     @Published var call:Call?
+
  
     func setIsIncomingCall(incoming:Bool) {
         self.isIncomingCall = incoming
