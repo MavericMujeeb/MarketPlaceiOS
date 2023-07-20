@@ -15,6 +15,7 @@
 		8D3AE9BC29881A08009DD389 /* AzureCommunicationChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9932988197E009DD389 /* AzureCommunicationChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D3AE9BF29881A19009DD389 /* AzureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9AE298819A1009DD389 /* AzureCore.framework */; };
 		8D3AE9C029881A1A009DD389 /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9AE298819A1009DD389 /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4100BF2A694752001473F5 /* ContainerHostingController.swift */; };
 		8D4B4F5029FBBFD000B77B60 /* IncomingCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */; };
 		8D4B4F5129FBBFD000B77B60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F4F29FBBFD000B77B60 /* ContentView.swift */; };
 		8D4B4F5329FBC41F00B77B60 /* CallKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */; };
@@ -198,6 +199,7 @@
 		8D2FD7E0299680D10097B59D /* CircleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLoader.swift; sourceTree = "<group>"; };
 		8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCommunicationChat.xcodeproj; path = SDK/AzureCommunicationChat/AzureCommunicationChat.xcodeproj; sourceTree = "<group>"; };
 		8D3AE9A8298819A1009DD389 /* AzureCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCore.xcodeproj; path = SDK/AzureCore/AzureCore.xcodeproj; sourceTree = "<group>"; };
+		8D4100BF2A694752001473F5 /* ContainerHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerHostingController.swift; sourceTree = "<group>"; };
 		8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingCallController.swift; path = CitiApps/ACS/Incoming/IncomingCallController.swift; sourceTree = SOURCE_ROOT; };
 		8D4B4F4F29FBBFD000B77B60 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = CitiApps/ACS/Incoming/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */,
 				8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */,
 				8DCFCBAE2A58311E00F1D293 /* IncomingCallViewModel.swift */,
+				8D4100BF2A694752001473F5 /* ContainerHostingController.swift */,
 			);
 			name = Incoming;
 			path = ../Incoming;
@@ -710,6 +713,7 @@
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,
 				8DFBD32C297578B9006B0700 /* JoinCallConfig.swift in Sources */,
 				8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */,
+				8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */,
 				8DCFCBA72A57FB4400F1D293 /* ProfileViewController.swift in Sources */,
 				8DFBD330297578C8006B0700 /* LinkMetadataManager.swift in Sources */,
 				8DFBD34029757918006B0700 /* FluentUiExtensions.swift in Sources */,
