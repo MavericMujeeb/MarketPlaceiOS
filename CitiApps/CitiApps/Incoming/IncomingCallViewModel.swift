@@ -31,10 +31,6 @@ class IncomingCallViewModel : NSObject, ObservableObject{
     
     
     func startScreenRecording (acsCall: Call) {
-//        guard let call = acsCall else {
-//            return
-//        }
-        
         self.screenShareProducer = ScreenSharingProducer()
         self.screenShareProducer?.onReadyCallback = { [weak self] in
             guard let producer = self?.screenShareProducer else { return }
@@ -47,6 +43,17 @@ class IncomingCallViewModel : NSObject, ObservableObject{
         DispatchQueue.main.async {
             PIPKit.visibleViewController?.startPIPMode()
         }
+    }
+    
+    
+    func stopScreenRecording() {
+        if isSharingScreen {
+            screenShareProducer?.stopRecording()
+            outgoingVideoSender?.stopSending()
+            outgoingVideoSender = nil
+            screenShareProducer = nil
+        }
+        isSharingScreen.toggle()
     }
     
     
@@ -68,8 +75,7 @@ class IncomingCallViewModel : NSObject, ObservableObject{
                 self?.outgoingVideoSender = RawOutgoingVideoSender(frameProducer: producer)
                 self?.outgoingVideoSender?.startSending(to: call)
             }
-
-
+            
             screenShareProducer?.startRecording()
 //            DispatchQueue.main.async {
 //                PIPKit.visibleViewController?.startPIPMode()

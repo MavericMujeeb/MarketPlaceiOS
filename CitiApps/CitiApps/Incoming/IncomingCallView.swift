@@ -336,11 +336,27 @@ struct IncomingCallView: View {
     @State var screenShareProducer: ScreenSharingProducer?
     @State var outgoingVideoSender: RawOutgoingVideoSender?
     
+    
+    func stopScreenShare () {
+        //stop screen recording
+        isSharingScreen = false
+        incomingCallViewModel.stopScreenRecording()
+        if(sendingVideo){
+            //if previoustly streaming local video then resume local video
+            createLocalVideoPreview()
+        }
+    }
+    
     func toggleScreenShare () {
-        print("toggleScreenShare --- tapped")
         guard let call = self.call else {
             return
         }
+        //If screen is already presented : stop sharing the screenn
+        if(isSharingScreen){
+            stopScreenShare()
+            return
+        }
+        
         if(sendingVideo) {
             call.stopVideo(stream: localVideoStream.first!) { (error) in
                 if(error != nil) {
@@ -348,28 +364,15 @@ struct IncomingCallView: View {
                 }
                 else{
                     print("localvideo stream stopped")
+                    isSharingScreen = true
                     incomingCallViewModel.startScreenRecording(acsCall: call)
                 }
             }
         }
-        
-//        do{
-//            try await stopLocalVideoStream()
-//        }
-//        catch{
-//           //
-//        }
-//
-        //TODO::Screen Share
-        AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { response in
-            if response{
-                isSharingScreen = true
-//                self.toggleSendingScreenShareOutgoingVideo()
-            }
-            else{
-                //Access denied
-            }
-        })
+        else {
+            isSharingScreen = true
+            incomingCallViewModel.startScreenRecording(acsCall: call)
+        }
     }
     
     func endCall() {

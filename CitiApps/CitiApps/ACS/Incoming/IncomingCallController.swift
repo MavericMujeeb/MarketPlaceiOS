@@ -9,7 +9,7 @@ import Foundation
 import AzureCommunicationCalling
 import AVFoundation
 import SwiftUI
-
+import PIPKit
 
 struct IncomingCallScreen: View{
 
@@ -53,6 +53,10 @@ class ACSIncomingCallConntroller{
     
     func callParticipantDetailsAPI() {
         self.bankerEmailId = self.bankerEmailId ?? ACSResources.bankerUserEmail
+        
+        print("bankerEmailId")
+        print(ACSResources.bankerUserEmail)
+        
         let reqBody = "{" +
         "\"originatorId\":\"\(self.bankerEmailId!)\"," +
         "\"participantName\":\"\(self.custUserName!)\"" +
@@ -101,6 +105,8 @@ class ACSIncomingCallConntroller{
         print(self.bankerAcsId)
         print(self.custAcsId)
         
+        print("getCustomerCommunicationToken --- error")
+        
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
         let task = URLSession.shared.dataTask(with: URL(string: fullUrl)!){
             data, response, error in
@@ -113,7 +119,7 @@ class ACSIncomingCallConntroller{
                     self.storageUserDefaults.set(self.acsToken, forKey: StorageKeys.acsToken)
                     self.createCallAgent()
                 } catch {
-                    print("Response Data error -> ")
+                    print("getCustomerCommunicationToken Response Data error herererererer-> ")
                     print(error)
                 }
             }
@@ -150,8 +156,10 @@ class ACSIncomingCallConntroller{
                                }
                                
                                if (self.isCallKitInSDKEnabled!) {
+                                   print("createCallAgent")
                                    self.callClient.createCallAgent(userCredential: userCredential, options: self.createCallAgentOptions()) { (agent, error) in
                                        if error == nil {
+                                           print("createCallAgent -- -success")
                                            CallKitObjectManager.deInitCallKitInApp()
                                            self.callAgent = agent
                                            globalCallAgent = agent
@@ -274,8 +282,6 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         contentView?.incomingCallViewModel.isIncomingCall = false
         self.incomingCall = nil
         Task {
-            print("incomingCall.id -- did end")
-            print(incomingCall.id)
             await CallKitObjectManager.getCallKitHelper()?.removeIncomingCall(callId: incomingCall.id)
         }
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
@@ -291,17 +297,17 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         if let addedCall = args.addedCalls.first {
             // This happens when call was accepted via CallKit and not from the app
             // We need to set the call instances and auto-navigate to call in progress screen.
-            
-            //ADDED FOR TESTING --
-            
             if addedCall.direction == .incoming {
-                let incomingHostingController = UIHostingController(rootView: contentView)
-                let rootVC = UIApplication.shared.keyWindow?.rootViewController
-                incomingHostingController.modalPresentationStyle = .fullScreen
-                rootVC?.present(incomingHostingController, animated: true, completion: nil)
-                
                 acceptedCall = addedCall as! Call
+
+                let incomingHostingController = ContainerUIHostingController(rootView: contentView!)
+                incomingHostingController.modalPresentationStyle = .fullScreen
+                print("PIPKit Show")
+                PIPKit.show(with: incomingHostingController)
+                
             }
         }
     }
 }
+
+class IncomingCallViewController : UIViewController, PIPUsable{}
