@@ -53,6 +53,7 @@ struct IncomingCallView: View {
     @State var isCallKitInSDKEnabled = false
     @State var isSpeakerOn:Bool = false
     @State var isMuted:Bool = false
+    @State var isSharingScreen:Bool = false
     @State var isHeld: Bool = false
     
     @State var callState: String = "None"
@@ -308,12 +309,55 @@ struct IncomingCallView: View {
     func openChat() {
         var bankerEmailId = UserDefaults.standard.string(forKey: "loginUserName")
         var rootVc = UIApplication.shared.keyWindow?.rootViewController
-        print("rootVc")
+        
         let chatController = ChatController(chatAdapter: nil, rootViewController: rootVc)
         chatController.bankerEmailId = ACSResources.bankerUserEmail
         chatController.isForCall = false
-        print("prepareChatComposite")
+        
         chatController.prepareChatComposite()
+    }
+    
+    
+    @State var screenShareProducer: ScreenSharingProducer?
+    @State var outgoingVideoSender: RawOutgoingVideoSender?
+    
+    
+    func stopScreenShare () {
+        //stop screen recording
+        isSharingScreen = false
+        incomingCallViewModel.stopScreenRecording()
+        if(sendingVideo){
+            //if previoustly streaming local video then resume local video
+            createLocalVideoPreview()
+        }
+    }
+    
+    func toggleScreenShare () {
+        guard let call = self.call else {
+            return
+        }
+        //If screen is already presented : stop sharing the screenn
+        if(isSharingScreen){
+            stopScreenShare()
+            return
+        }
+        
+        if(sendingVideo) {
+            call.stopVideo(stream: localVideoStream.first!) { (error) in
+                if(error != nil) {
+                    print("localvideo stream stopped")
+                }
+                else{
+                    print("localvideo stream stopped")
+                    isSharingScreen = true
+                    incomingCallViewModel.startScreenRecording(acsCall: call)
+                }
+            }
+        }
+        else {
+            isSharingScreen = true
+            incomingCallViewModel.startScreenRecording(acsCall: call)
+        }
     }
     
     func endCall() {
@@ -374,11 +418,15 @@ struct IncomingCallView: View {
         IconButton(buttonAction: openChat, iconName: "chat-icon", iconSize: 30, iconColor: .black)
     }
     
+    var screenShareButton: some View {
+        IconButton(buttonAction: toggleScreenShare, iconName: isSharingScreen ? "screenshare_stop" : "screenshare_start", iconSize: 30, iconColor: .black)
+    }
+    
     var hangUpButton: some View {
         IconButton(buttonAction: endCall, iconName: "call-end", iconSize: 30, iconColor: .white)
     }
     
-    
+
     var bottomControlBarView : some View {
         Group{
             HStack {
@@ -387,6 +435,8 @@ struct IncomingCallView: View {
                 micButton
                 Spacer()
                 chatButton
+                Spacer()
+                screenShareButton
                 Spacer()
                 hangUpButton
                     .background(Color("hangup-color"))
@@ -636,6 +686,7 @@ struct IncomingCallView: View {
             self.incomingCall = globalIncomingCall
             self.call = acceptedCall
             setCallAndObersever(call: call, error: nil)
+            incomingCallViewModel.setIncomingCallObject(call: self.call)
             self.deviceManager = globalDeviceManager
             self.isCallKitInSDKEnabled = true
         }

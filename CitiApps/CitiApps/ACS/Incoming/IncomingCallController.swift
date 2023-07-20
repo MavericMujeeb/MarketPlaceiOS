@@ -9,7 +9,7 @@ import Foundation
 import AzureCommunicationCalling
 import AVFoundation
 import SwiftUI
-
+import PIPKit
 
 struct IncomingCallScreen: View{
 
@@ -101,6 +101,8 @@ class ACSIncomingCallConntroller{
         print(self.bankerAcsId)
         print(self.custAcsId)
         
+        print("getCustomerCommunicationToken --- error")
+        
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
         let task = URLSession.shared.dataTask(with: URL(string: fullUrl)!){
             data, response, error in
@@ -113,7 +115,7 @@ class ACSIncomingCallConntroller{
                     self.storageUserDefaults.set(self.acsToken, forKey: StorageKeys.acsToken)
                     self.createCallAgent()
                 } catch {
-                    print("Response Data error -> ")
+                    print("getCustomerCommunicationToken Response Data error herererererer-> ")
                     print(error)
                 }
             }
@@ -150,6 +152,7 @@ class ACSIncomingCallConntroller{
                                }
                                
                                if (self.isCallKitInSDKEnabled!) {
+                                   print("createCallAgent")
                                    self.callClient.createCallAgent(userCredential: userCredential, options: self.createCallAgentOptions()) { (agent, error) in
                                        if error == nil {
                                            CallKitObjectManager.deInitCallKitInApp()
@@ -295,13 +298,13 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
             //ADDED FOR TESTING --
             
             if addedCall.direction == .incoming {
-                let incomingHostingController = UIHostingController(rootView: contentView)
-                let rootVC = UIApplication.shared.keyWindow?.rootViewController
-                incomingHostingController.modalPresentationStyle = .fullScreen
-                rootVC?.present(incomingHostingController, animated: true, completion: nil)
-                
                 acceptedCall = addedCall as! Call
+                let incomingHostingController = ContainerUIHostingController(rootView: contentView!)
+                incomingHostingController.modalPresentationStyle = .fullScreen
+                PIPKit.show(with: incomingHostingController)
             }
         }
     }
 }
+
+class IncomingCallViewController : UIViewController, PIPUsable{}

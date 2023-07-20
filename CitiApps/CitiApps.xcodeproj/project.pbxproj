@@ -15,10 +15,7 @@
 		8D3AE9BC29881A08009DD389 /* AzureCommunicationChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9932988197E009DD389 /* AzureCommunicationChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D3AE9BF29881A19009DD389 /* AzureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9AE298819A1009DD389 /* AzureCore.framework */; };
 		8D3AE9C029881A1A009DD389 /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3AE9AE298819A1009DD389 /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D4B4F4329FBBF7700B77B60 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3A29FBBF7200B77B60 /* App.xcframework */; };
-		8D4B4F4429FBBF7700B77B60 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3A29FBBF7200B77B60 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D4B4F4529FBBF7900B77B60 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */; };
-		8D4B4F4629FBBF7900B77B60 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4100BF2A694752001473F5 /* ContainerHostingController.swift */; };
 		8D4B4F5029FBBFD000B77B60 /* IncomingCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */; };
 		8D4B4F5129FBBFD000B77B60 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F4F29FBBFD000B77B60 /* ContentView.swift */; };
 		8D4B4F5329FBC41F00B77B60 /* CallKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */; };
@@ -51,6 +48,10 @@
 		8DD220C82A1F6CE4009A3866 /* Trouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220C72A1F6CE4009A3866 /* Trouter */; };
 		8DD220CD2A1F6DC6009A3866 /* AzureCommunicationUICommon in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220CC2A1F6DC6009A3866 /* AzureCommunicationUICommon */; };
 		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
+		8DF9C43E2A695DC800A86E3A /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */; };
+		8DF9C43F2A695DC800A86E3A /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DF9C4402A695DC900A86E3A /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43B2A695DBF00A86E3A /* App.xcframework */; };
+		8DF9C4412A695DC900A86E3A /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43B2A695DBF00A86E3A /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */; };
 		8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D129756DD6006B0700 /* ViewController.swift */; };
 		8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D629756DD8006B0700 /* Assets.xcassets */; };
@@ -176,14 +177,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8D4B4F4629FBBF7900B77B60 /* Flutter.xcframework in Embed Frameworks */,
 				8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */,
 				8D0A5FFB298A5A2A002EBBC4 /* AzureCommunicationUIChat.framework in Embed Frameworks */,
-				8D4B4F4429FBBF7700B77B60 /* App.xcframework in Embed Frameworks */,
 				8D7015F72981303100FDEBFC /* AzureCommunicationCommon.framework in Embed Frameworks */,
 				8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */,
 				8D3AE9C029881A1A009DD389 /* AzureCore.framework in Embed Frameworks */,
 				8DC8DC1129D2FD920047A2D3 /* PIPKit.framework in Embed Frameworks */,
+				8DF9C43F2A695DC800A86E3A /* Flutter.xcframework in Embed Frameworks */,
+				8DF9C4412A695DC900A86E3A /* App.xcframework in Embed Frameworks */,
 				8D3AE9BC29881A08009DD389 /* AzureCommunicationChat.framework in Embed Frameworks */,
 				8D4B4F5D29FBDB8C00B77B60 /* AzureCommunicationCalling.xcframework in Embed Frameworks */,
 			);
@@ -198,8 +199,7 @@
 		8D2FD7E0299680D10097B59D /* CircleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLoader.swift; sourceTree = "<group>"; };
 		8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCommunicationChat.xcodeproj; path = SDK/AzureCommunicationChat/AzureCommunicationChat.xcodeproj; sourceTree = "<group>"; };
 		8D3AE9A8298819A1009DD389 /* AzureCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCore.xcodeproj; path = SDK/AzureCore/AzureCore.xcodeproj; sourceTree = "<group>"; };
-		8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Flutter.xcframework; sourceTree = "<group>"; };
-		8D4B4F3A29FBBF7200B77B60 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/App.xcframework; sourceTree = "<group>"; };
+		8D4100BF2A694752001473F5 /* ContainerHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerHostingController.swift; sourceTree = "<group>"; };
 		8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingCallController.swift; path = CitiApps/ACS/Incoming/IncomingCallController.swift; sourceTree = SOURCE_ROOT; };
 		8D4B4F4F29FBBFD000B77B60 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = CitiApps/ACS/Incoming/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
@@ -224,6 +224,8 @@
 		8DD220CB2A1F6DB3009A3866 /* AzureCommunicationUICommon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AzureCommunicationUICommon; path = SDK/AzureCommunicationUICommon; sourceTree = "<group>"; };
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		8DE0D53029804FA200201043 /* CitiApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CitiApps.entitlements; sourceTree = "<group>"; };
+		8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Flutter.xcframework; sourceTree = "<group>"; };
+		8DF9C43B2A695DBF00A86E3A /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/App.xcframework; sourceTree = "<group>"; };
 		8DFBD2CA29756DD6006B0700 /* CitiApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFBD2D129756DD6006B0700 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -259,10 +261,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DF9C43E2A695DC800A86E3A /* Flutter.xcframework in Frameworks */,
 				8D3AE9BF29881A19009DD389 /* AzureCore.framework in Frameworks */,
+				8DF9C4402A695DC900A86E3A /* App.xcframework in Frameworks */,
 				8D3AE9BB29881A08009DD389 /* AzureCommunicationChat.framework in Frameworks */,
-				8D4B4F4329FBBF7700B77B60 /* App.xcframework in Frameworks */,
-				8D4B4F4529FBBF7900B77B60 /* Flutter.xcframework in Frameworks */,
 				8D7015F82981303200FDEBFC /* AzureCommunicationUICalling.framework in Frameworks */,
 				8D4B4F5C29FBDB8B00B77B60 /* AzureCommunicationCalling.xcframework in Frameworks */,
 				8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */,
@@ -315,6 +317,7 @@
 				8D4B4F4E29FBBFD000B77B60 /* IncomingCallController.swift */,
 				8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */,
 				8DCFCBAE2A58311E00F1D293 /* IncomingCallViewModel.swift */,
+				8D4100BF2A694752001473F5 /* ContainerHostingController.swift */,
 			);
 			name = Incoming;
 			path = ../Incoming;
@@ -445,9 +448,9 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8DF9C43B2A695DBF00A86E3A /* App.xcframework */,
+				8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */,
 				8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */,
-				8D4B4F3A29FBBF7200B77B60 /* App.xcframework */,
-				8D4B4F3929FBBF7200B77B60 /* Flutter.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,
 				8DFBD32C297578B9006B0700 /* JoinCallConfig.swift in Sources */,
 				8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */,
+				8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */,
 				8DCFCBA72A57FB4400F1D293 /* ProfileViewController.swift in Sources */,
 				8DFBD330297578C8006B0700 /* LinkMetadataManager.swift in Sources */,
 				8DFBD34029757918006B0700 /* FluentUiExtensions.swift in Sources */,
@@ -811,8 +815,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -976,8 +980,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1022,8 +1026,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

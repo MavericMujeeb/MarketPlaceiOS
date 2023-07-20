@@ -363,7 +363,6 @@ struct ContentView: View {
         //get banker display name
         let callKitRemoteInfo = CallKitRemoteInfo()
         callKitRemoteInfo.displayName = ACSResources.bankerUserName
-
         callKitRemoteInfo.handle = CXHandle(type: .generic, value: "VALUE_TO_CXHANDLE")
         return callKitRemoteInfo
     }

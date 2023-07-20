@@ -68,7 +68,6 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
   
     
     func notificationHub(_ notificationHub: MSNotificationHub, didReceivePushNotification message: MSNotificationHubMessage) {
-        
         CitiConstants.isFromNotification = true
         
         var rootVC = UIApplication.shared.keyWindow?.rootViewController
