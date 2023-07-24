@@ -159,7 +159,9 @@ struct IncomingCallView: View {
                         avatarView
                     }
                     if sendingVideo {
-                        DraggableLocalVideoView(containerBounds:  geometry.frame(in: .local), previewView:previewView, orientation: $orientation, screenSize: getSizeClass())
+                        if !isSharingScreen {
+                            DraggableLocalVideoView(containerBounds:  geometry.frame(in: .local), previewView:previewView, orientation: $orientation, screenSize: getSizeClass())
+                        }
                     }
                 }
             }
@@ -307,6 +309,9 @@ struct IncomingCallView: View {
     }
     
     func openChat() {
+        if(isSharingScreen){
+            incomingCallViewModel.stopScreenRecording()
+        }
         var bankerEmailId = UserDefaults.standard.string(forKey: "loginUserName")
         var rootVc = UIApplication.shared.keyWindow?.rootViewController
         
@@ -324,8 +329,8 @@ struct IncomingCallView: View {
     
     func stopScreenShare () {
         //stop screen recording
-        isSharingScreen = false
         incomingCallViewModel.stopScreenRecording()
+        isSharingScreen.toggle()
         if(sendingVideo){
             //if previoustly streaming local video then resume local video
             createLocalVideoPreview()
@@ -348,7 +353,6 @@ struct IncomingCallView: View {
                     print("localvideo stream stopped")
                 }
                 else{
-                    print("localvideo stream stopped")
                     isSharingScreen = true
                     incomingCallViewModel.startScreenRecording(acsCall: call)
                 }
@@ -361,6 +365,10 @@ struct IncomingCallView: View {
     }
     
     func endCall() {
+        if isSharingScreen {
+            incomingCallViewModel.stopScreenRecording()
+            isSharingScreen.toggle()
+        }
         if self.isCallKitInSDKEnabled {
             self.call!.hangUp(options: HangUpOptions()) { (error) in
                 if (error != nil) {

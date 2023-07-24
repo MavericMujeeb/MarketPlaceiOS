@@ -28,6 +28,7 @@ class ACSIncomingCallConntroller{
     var deviceManager: DeviceManager?
     var acsToken:String?
     var isCallKitInSDKEnabled:Bool?
+    var isRegisterForIncomingCallNotification:Bool = false
     var incomingCallHandler:IncomingCallHandler?
     var cxProvider: CXProvider?
     var pushToken: Data?
@@ -47,7 +48,63 @@ class ACSIncomingCallConntroller{
         self.appPubs = appPubs
         self.pushToken = self.appPubs?.pushToken
         //self.custUserName = UserDefaults.standard.string(forKey: "loginUserName")
-        callParticipantDetailsAPI()
+        self.isRegisterForIncomingCallNotification = storageUserDefaults.value(forKey: "incomingCallRegistered") as? Bool ?? false
+
+//        if self.isRegisterForIncomingCallNotification == false {
+            callParticipantDetailsAPI()
+//        }
+    }
+    
+    /*
+     * Function to create call agent if incoming call is received when app is closed.
+     */
+    func registerCallAgent(appPubs:AppPubs, completion: @escaping (Bool) -> Void) {
+        self.acsToken =  self.storageUserDefaults.value(forKey: StorageKeys.acsToken) as! String
+        
+        self.appPubs = appPubs
+        self.pushToken = self.appPubs?.pushToken
+        
+        DispatchQueue.global().async {
+            self.callClient.getDeviceManager { (deviceManager, error) in
+                if (error == nil) {
+                    globalDeviceManager = deviceManager
+                    
+                    //Communication token credential
+                    var userCredential: CommunicationTokenCredential
+                    do {
+                        userCredential = try CommunicationTokenCredential(token: self.acsToken!)
+                    } catch {
+                        return
+                    }
+                    
+                    //create call agent
+                    self.callClient.createCallAgent(userCredential: userCredential, options: self.createCallAgentOptions()) { (agent, error) in
+                        if error == nil {
+                            //denit callkit
+                            CallKitObjectManager.deInitCallKitInApp()
+                            //assign global call agent globally
+                            globalCallAgent = agent
+                            
+                            self.callAgent = agent
+                            self.cxProvider = nil
+                            self.incomingCallHandler = nil
+                            
+                            //set incoming call view globally
+                            incomingCallView = nil
+                            incomingCallView = IncomingCallView(appPubs: self.appPubs!, callAgent: self.callAgent!)
+                            self.incomingCallHandler = IncomingCallHandler(contentView: incomingCallView)
+                            self.callAgent!.delegate = self.incomingCallHandler
+                            //send success message
+                            completion(true)
+                        }
+                        else{
+                            //send failure message
+                            completion(false)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     
@@ -97,12 +154,6 @@ class ACSIncomingCallConntroller{
     }
     
     func getCustomerCommunicationToken () {
-   
-        print(self.bankerAcsId)
-        print(self.custAcsId)
-        
-        print("getCustomerCommunicationToken --- error")
-        
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
         let task = URLSession.shared.dataTask(with: URL(string: fullUrl)!){
             data, response, error in
@@ -115,13 +166,14 @@ class ACSIncomingCallConntroller{
                     self.storageUserDefaults.set(self.acsToken, forKey: StorageKeys.acsToken)
                     self.createCallAgent()
                 } catch {
-                    print("getCustomerCommunicationToken Response Data error herererererer-> ")
                     print(error)
                 }
             }
         }
         task.resume()
     }
+    
+    
     
     func createCallAgent() {
         isCallKitInSDKEnabled = storageUserDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
@@ -152,7 +204,6 @@ class ACSIncomingCallConntroller{
                                }
                                
                                if (self.isCallKitInSDKEnabled!) {
-                                   print("createCallAgent")
                                    self.callClient.createCallAgent(userCredential: userCredential, options: self.createCallAgentOptions()) { (agent, error) in
                                        if error == nil {
                                            CallKitObjectManager.deInitCallKitInApp()
@@ -196,6 +247,8 @@ class ACSIncomingCallConntroller{
                 if error == nil {
                     print("registered for push notifications - call agent & call kit")
                     CircleLoader.sharedInstance.hide()
+                    self.storageUserDefaults.setValue(true, forKey: "incomingCallRegistered")
+                    //if call is in progress push the incoming call view
                 }
             }
         }
@@ -230,8 +283,6 @@ final class IncomingCallBackgroundHandler: NSObject, CallAgentDelegate, Incoming
     public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
         self.incomingCall = incomingCall
         self.incomingCall!.delegate = self
-        
-        
     }
     
 }
@@ -245,10 +296,6 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
     }
 
     public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
-//        let incomingHostingController = UIHostingController(rootView: contentView)
-//        let rootVC = UIApplication.shared.keyWindow?.rootViewController
-//        incomingHostingController.modalPresentationStyle = .fullScreen
-//        rootVC?.present(incomingHostingController, animated: true, completion: nil)
 
         self.incomingCall = incomingCall
         self.incomingCall!.delegate = self
@@ -256,7 +303,6 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         globalCallAgent = callAgent
         globalIncomingCall = incomingCall
 
-//        contentView?.showIncomingCallBanner(self.incomingCall!)
         Task {
             await CallKitObjectManager.getCallKitHelper()?.addIncomingCall(incomingCall: self.incomingCall!)
         }
@@ -277,8 +323,6 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         contentView?.incomingCallViewModel.isIncomingCall = false
         self.incomingCall = nil
         Task {
-            print("incomingCall.id -- did end")
-            print(incomingCall.id)
             await CallKitObjectManager.getCallKitHelper()?.removeIncomingCall(callId: incomingCall.id)
         }
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
@@ -298,6 +342,9 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
             //ADDED FOR TESTING --
             
             if addedCall.direction == .incoming {
+                print("didUpdateCalls")
+                print(contentView)
+                
                 acceptedCall = addedCall as! Call
                 let incomingHostingController = ContainerUIHostingController(rootView: contentView!)
                 incomingHostingController.modalPresentationStyle = .fullScreen
