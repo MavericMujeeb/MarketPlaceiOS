@@ -15,7 +15,7 @@ import PIPKit
 
 
 class IncomingCallViewModel : NSObject, ObservableObject{
-    @Published var isIncomingCall:Bool = false
+    @Published var isIncomingCall:Bool = true
     @Published var call:Call?
 
  
@@ -45,10 +45,17 @@ class IncomingCallViewModel : NSObject, ObservableObject{
         DispatchQueue.main.async {
             PIPKit.visibleViewController?.startPIPMode()
         }
+        isSharingScreen.toggle()
     }
     
+    func stopPipMode(){
+        DispatchQueue.main.async {
+            PIPKit.visibleViewController?.stopPIPMode()
+        }
+    }
     
     func stopScreenRecording() {
+        stopPipMode()
         if isSharingScreen {
             screenShareProducer?.stopRecording()
             outgoingVideoSender?.stopSending()

@@ -18,13 +18,17 @@ import CallKit
 import ReplayKit
 import AzureCommunicationUICalling
 
+enum CreateCallAgentErrors: Error {
+    case noToken
+    case callKitInSDKNotSupported
+}
+
 struct IncomingCallView: View {
     
     @StateObject var incomingCallViewModel : IncomingCallViewModel = IncomingCallViewModel()
     
-    init(appPubs: AppPubs, callAgent:CallAgent) {
+    init(appPubs: AppPubs) {
         self.appPubs = appPubs
-        self.i_callAgent = callAgent
     }
 
     private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "ACSVideoSample")
@@ -46,7 +50,6 @@ struct IncomingCallView: View {
     @State var remoteViews:[RendererView] = []
     @State var remoteParticipant: RemoteParticipant?
     @State var remoteVideoSize:String = "Unknown"
-//    @State var isIncomingCall:Bool = false
     @State var showAlert = false
     @State var alertMessage = ""
     @State var userDefaults: UserDefaults = .standard
@@ -64,12 +67,69 @@ struct IncomingCallView: View {
     @State var pushToken: Data?
 
     var appPubs: AppPubs
-    var i_callAgent:CallAgent
     @State var callStatus: String = ""
     
     @State private var orientation: UIDeviceOrientation = UIDevice.current.orientation
     @Environment(\.horizontalSizeClass) var widthSizeClass: UserInterfaceSizeClass?
     @Environment(\.verticalSizeClass) var heightSizeClass: UserInterfaceSizeClass?
+    
+    
+    var body: some View{
+        ZStack{
+            VStack(spacing: 24){
+                titleView
+                if incomingCallViewModel.isIncomingCall {
+                    incomingCallBody
+                }
+                else{
+                    GeometryReader { geometry in
+                        ZStack(alignment: .bottomLeading) {
+                            VStack( spacing: 24 ){
+                                ZStack(alignment: .bottom){
+                                    previewAreaView
+                                    bottomControlBarView
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
+            guard let newPushToken = newPushToken else {
+                return
+            }
+
+            if let existingToken = self.pushToken {
+                if existingToken != newPushToken {
+                    self.pushToken = newPushToken
+                }
+            } else {
+                self.pushToken = newPushToken
+            }
+        })
+        .onReceive(self.appPubs.$pushPayload, perform: { payload in
+            handlePushNotification(payload)
+        })
+        .onAppear{
+            AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
+                if granted {
+                    AVCaptureDevice.requestAccess(for: .video) { (videoGranted) in
+                        /* NO OPERATION */
+                    }
+                }
+            }
+            if deviceManager == nil {
+                self.callClient.getDeviceManager { (deviceManager, error) in
+                    if(error == nil){
+                        UIDevice.current.endGeneratingDeviceOrientationNotifications()
+                        self.deviceManager = deviceManager
+                    }
+                }
+
+            }
+        }
+    }
     
     var titleView: some View{
         VStack(spacing: 0) {
@@ -134,8 +194,6 @@ struct IncomingCallView: View {
         }
     }
     
-    
-    
     var remoteVideoView: some View {
         ForEach(remoteViews, id:\.self) { renderer in
             ZStack{
@@ -159,7 +217,9 @@ struct IncomingCallView: View {
                         avatarView
                     }
                     if sendingVideo {
-                        DraggableLocalVideoView(containerBounds:  geometry.frame(in: .local), previewView:previewView, orientation: $orientation, screenSize: getSizeClass())
+                        if !isSharingScreen {
+                            DraggableLocalVideoView(containerBounds:  geometry.frame(in: .local), previewView:previewView, orientation: $orientation, screenSize: getSizeClass())
+                        }
                     }
                 }
             }
@@ -185,6 +245,7 @@ struct IncomingCallView: View {
     
     
     func answerIncomingCall() {
+        
         incomingCallViewModel.isIncomingCall = false
         let options = AcceptCallOptions()
         guard let incomingCall = self.incomingCall else {
@@ -196,8 +257,6 @@ struct IncomingCallView: View {
         }
 
         localVideoStream.removeAll()
-        
-        
 
         if(sendingVideo)
         {
@@ -207,21 +266,8 @@ struct IncomingCallView: View {
             options.videoOptions = videoOptions
         }
 
-        if isCallKitInSDKEnabled {
-            print("call --- accept")
-            print(incomingCall)
-            incomingCall.accept(options: options) { (call, error) in
-                print("accept()")
-                print(call)
-                setCallAndObersever(call: call, error: error)
-            }
-        } else {
-            Task {
-                await CallKitObjectManager.getCallKitHelper()!.acceptCall(callId: incomingCall.id,
-                                                                           options: options) { call, error in
-                    setCallAndObersever(call: call, error: error)
-                }
-            }
+        incomingCall.accept(options: options) { (call, error) in
+            setCallAndObersever(call: call, error: error)
         }
     }
     
@@ -280,26 +326,13 @@ struct IncomingCallView: View {
         guard let call = self.call else {
             return
         }
-
-        if isCallKitInSDKEnabled {
-            call.updateOutgoingAudio(mute: !isMuted) { error in
-                if error == nil {
-                    isMuted = !isMuted
-                } else {
-                    self.showAlert = true
-                    self.alertMessage = "Failed to unmute/mute audio"
-                }
-            }
-        } else {
-            Task {
-                await CallKitObjectManager.getCallKitHelper()!.muteCall(callId:call.id, isMuted: !isMuted) { error in
-                    if error == nil {
-                        isMuted = !isMuted
-                    } else {
-                        self.showAlert = true
-                        self.alertMessage = "Failed to mute the call (without CallKit)"
-                    }
-                }
+        
+        call.updateOutgoingAudio(mute: !isMuted) { error in
+            if error == nil {
+                isMuted = !isMuted
+            } else {
+                self.showAlert = true
+                self.alertMessage = "Failed to unmute/mute audio"
             }
         }
         
@@ -307,8 +340,10 @@ struct IncomingCallView: View {
     }
     
     func openChat() {
-        var bankerEmailId = UserDefaults.standard.string(forKey: "loginUserName")
-        var rootVc = UIApplication.shared.keyWindow?.rootViewController
+        if(isSharingScreen){
+            incomingCallViewModel.stopScreenRecording()
+        }
+        let rootVc = UIApplication.shared.keyWindow?.rootViewController
         
         let chatController = ChatController(chatAdapter: nil, rootViewController: rootVc)
         chatController.bankerEmailId = ACSResources.bankerUserEmail
@@ -324,8 +359,8 @@ struct IncomingCallView: View {
     
     func stopScreenShare () {
         //stop screen recording
-        isSharingScreen = false
         incomingCallViewModel.stopScreenRecording()
+        isSharingScreen.toggle()
         if(sendingVideo){
             //if previoustly streaming local video then resume local video
             createLocalVideoPreview()
@@ -348,7 +383,6 @@ struct IncomingCallView: View {
                     print("localvideo stream stopped")
                 }
                 else{
-                    print("localvideo stream stopped")
                     isSharingScreen = true
                     incomingCallViewModel.startScreenRecording(acsCall: call)
                 }
@@ -361,23 +395,20 @@ struct IncomingCallView: View {
     }
     
     func endCall() {
-        if self.isCallKitInSDKEnabled {
-            self.call!.hangUp(options: HangUpOptions()) { (error) in
-                if (error != nil) {
-                    print("ERROR: It was not possible to hangup the call.")
-                }
-            }
-        } else {
-            Task {
-                await CallKitObjectManager.getCallKitHelper()!.endCall(callId: self.call!.id) { error in
-                    if (error != nil) {
-                        print("ERROR: It was not possible to hangup the call.")
-                    }
-                }
+        if isSharingScreen {
+            incomingCallViewModel.stopScreenRecording()
+            isSharingScreen.toggle()
+        }
+        
+        self.call!.hangUp(options: HangUpOptions()) { (error) in
+            if (error != nil) {
+                print("ERROR: It was not possible to hangup the call.")
             }
         }
+        
         self.previewRenderer?.dispose()
         self.remoteRenderer?.dispose()
+        
         sendingVideo = false
         isSpeakerOn = false
     }
@@ -394,6 +425,7 @@ struct IncomingCallView: View {
     }
     
     func setCallAndObersever(call:Call!, error:Error?) {
+        incomingCallViewModel.isIncomingCall = false
         if (error == nil) {
             self.call = call
             self.callObserver = CallObserver(self)
@@ -450,9 +482,6 @@ struct IncomingCallView: View {
     
     public func handlePushNotification(_ pushPayload: PKPushPayload?)
     {
-        callAgent = globalCallAgent
-        print("handlePushNotification")
-        print(pushPayload)
         guard let pushPayload = pushPayload else {
             print("Got empty payload")
             return
@@ -532,8 +561,11 @@ struct IncomingCallView: View {
     
     func showIncomingCallBanner(_ incomingCall: IncomingCall?) {
         incomingCallViewModel.setIsIncomingCall(incoming: true)
-        print(incomingCallViewModel.isIncomingCall)
         self.incomingCall = incomingCall
+    }
+    
+    func hideIncomingCallBanner() {
+        incomingCallViewModel.setIsIncomingCall(incoming: false)
     }
 
     func callRemoved(_ call: Call) {
@@ -552,9 +584,12 @@ struct IncomingCallView: View {
     }
     
     private func createCallAgent(completionHandler: ((Error?) -> Void)?) {
+        print("inside createCallAgent")
+        let acsToken =  self.userDefaults.value(forKey: StorageKeys.acsToken) as! String
+
         var userCredential: CommunicationTokenCredential
         do {
-            userCredential = try CommunicationTokenCredential(token: token)
+            userCredential = try CommunicationTokenCredential(token: acsToken)
         } catch {
             self.showAlert = true
             self.alertMessage = "Failed to create CommunicationTokenCredential"
@@ -569,38 +604,22 @@ struct IncomingCallView: View {
             callAgent = nil
         }
 
-        if userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? isCallKitInSDKEnabled {
-            self.callClient.createCallAgent(userCredential: userCredential,
-                                            options: createCallAgentOptions()) { (agent, error) in
-                if error == nil {
-                    CallKitObjectManager.deInitCallKitInApp()
-                    self.callAgent = agent
-                    self.cxProvider = nil
-                    incomingCallHandler = IncomingCallHandler(contentView: self)
-                    self.callAgent!.delegate = incomingCallHandler
-                    registerForPushNotification()
-                } else {
-                    self.showAlert = true
-                    self.alertMessage = "Failed to create CallAgent (with CallKit)"
-                }
-                completionHandler?(error)
+        self.callClient.createCallAgent(userCredential: userCredential,
+                                        options: createCallAgentOptions()) { (agent, error) in
+            if error == nil {
+                CallKitObjectManager.deInitCallKitInApp()
+                self.callAgent = agent
+                self.cxProvider = nil
+                incomingCallHandler = IncomingCallHandler(contentView: self)
+                self.callAgent!.delegate = incomingCallHandler
+                print("IncomingCallHandler registered")
+                registerForPushNotification()
+            } else {
+                print("Failed to create CallAgent (with CallKit)")
+                self.showAlert = true
+                self.alertMessage = "Failed to create CallAgent (with CallKit)"
             }
-        } else {
-            self.callClient.createCallAgent(userCredential: userCredential) { (agent, error) in
-                if error == nil {
-                    self.callAgent = agent
-                    print("Call agent successfully created (without CallKit)")
-                    incomingCallHandler = IncomingCallHandler(contentView: self)
-                    self.callAgent!.delegate = incomingCallHandler
-                    let _ = CallKitObjectManager.getOrCreateCXProvider()
-                    CallKitObjectManager.getCXProviderImpl().setCallAgent(callAgent: callAgent!)
-                    registerForPushNotification()
-                } else {
-                    self.showAlert = true
-                    self.alertMessage = "Failed to create CallAgent (without CallKit)"
-                }
-                completionHandler?(error)
-            }
+            completionHandler?(error)
         }
     }
     
@@ -639,56 +658,6 @@ struct IncomingCallView: View {
             .padding(10)
             .background(Color.white)
             Spacer()
-        }
-    }
-    
-    var body: some View{
-        ZStack{
-            VStack(spacing: 24){
-                titleView
-                if incomingCallViewModel.isIncomingCall {
-                    incomingCallBody
-                }
-                else{
-                    GeometryReader { geometry in
-                        ZStack(alignment: .bottomLeading) {
-                            VStack( spacing: 24 ){
-                                ZStack(alignment: .bottom){
-                                    previewAreaView
-                                    bottomControlBarView
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
-            print("On Receive $pushToken")
-            guard let newPushToken = newPushToken else {
-                print("Got empty token")
-                return
-            }
-
-            if let existingToken = self.pushToken {
-                if existingToken != newPushToken {
-                    self.pushToken = newPushToken
-                }
-            } else {
-                self.pushToken = newPushToken
-            }
-        })
-        .onReceive(self.appPubs.$pushPayload, perform: { payload in
-            handlePushNotification(payload)
-        })
-        .onAppear{
-            self.callAgent = self.i_callAgent
-            self.incomingCall = globalIncomingCall
-            self.call = acceptedCall
-            setCallAndObersever(call: call, error: nil)
-            incomingCallViewModel.setIncomingCallObject(call: self.call)
-            self.deviceManager = globalDeviceManager
-            self.isCallKitInSDKEnabled = true
         }
     }
 }
@@ -1072,4 +1041,16 @@ struct RemoteVideoView: UIViewRepresentable {
         return view
     }
     func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct RoundedCornersShape: Shape {
+    let radius: CGFloat
+    let corners: UIRectCorner
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
 }

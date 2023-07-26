@@ -16,19 +16,11 @@ import UserNotifications
 import SwiftUI
 import AzureCommunicationUICalling
 import Foundation
+import PIPKit
 
 #if canImport(Combine)
 import Combine
 #endif
-
-//Use this to initialize call agent on User Login or on app re-open.
-//Register call agent
-
-var globalCallAgent : CallAgent?
-var globalIncomingCall: IncomingCall?
-var acceptedCall : Call?
-var globalDeviceManager: DeviceManager?
-
 
 @main
 class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHubDelegate {
@@ -148,34 +140,22 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
         return callKitRemoteInfo
     }
     
+    
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
-        print("didReceiveIncomingPushWith ------ ")
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
         let userDefaults: UserDefaults = .standard
-        let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
         
-        
-        if isCallKitInSDKEnabled {
-            print("Coming here ---- isCallKitInSDKEnabled")
-            let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
-            callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
-
-            CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
-                if error == nil {
-                    self.appPubs.pushPayload = payload
-                }
-            }
-        } else {
-            print("Coming here ---- 232323")
-            let incomingCallReporter = CallKitIncomingCallReporter()
-            incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
-                                                   caller: callNotification.from,
-                                                   callerDisplayName: callNotification.fromDisplayName,
-                                                    videoEnabled: callNotification.incomingWithVideo) { error in
-                if error == nil {
-                    self.appPubs.pushPayload = payload
-                }
+       //TODO :: create call agent before triggering incoming call alert. otherwise app will crash
+        let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
+        callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
+        CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
+            if error == nil {
+                self.appPubs.pushPayload = payload
+                let incomingHostingController = ContainerUIHostingController(rootView: IncomingCallView(appPubs: self.appPubs))
+                incomingHostingController.modalPresentationStyle = .fullScreen
+                var rootVC = UIApplication.shared.keyWindow?.rootViewController
+                rootVC?.present(incomingHostingController, animated: true)
             }
         }
     }
