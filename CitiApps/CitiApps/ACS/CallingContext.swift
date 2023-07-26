@@ -82,7 +82,7 @@ final class CallingContext {
                         for: .groupCall(groupId: uuid),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    ), callAgent: globalCallAgent
+                    )
                 )
 
             case .teamsMeeting:
@@ -91,7 +91,7 @@ final class CallingContext {
                         for: .teamsMeeting(teamsLink: joinIdStr),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    ), callAgent: globalCallAgent
+                    )
                 )
             case .voiceCall:
                 self.callComposite?.launch(
@@ -99,7 +99,7 @@ final class CallingContext {
                         for: .audioVideoCall(acsId: joinIdStr),
                         credential: communicationTokenCredential,
                         displayName: displayName
-                    ), callAgent: globalCallAgent
+                    )
                 )
             }
         } catch {

@@ -18,6 +18,11 @@ import CallKit
 import ReplayKit
 import AzureCommunicationUICalling
 
+enum CreateCallAgentErrors: Error {
+    case noToken
+    case callKitInSDKNotSupported
+}
+
 struct IncomingCallView: View {
     
     @StateObject var incomingCallViewModel : IncomingCallViewModel = IncomingCallViewModel()
@@ -240,6 +245,7 @@ struct IncomingCallView: View {
     
     
     func answerIncomingCall() {
+        
         incomingCallViewModel.isIncomingCall = false
         let options = AcceptCallOptions()
         guard let incomingCall = self.incomingCall else {
@@ -260,17 +266,8 @@ struct IncomingCallView: View {
             options.videoOptions = videoOptions
         }
 
-        if isCallKitInSDKEnabled {
-            incomingCall.accept(options: options) { (call, error) in
-                setCallAndObersever(call: call, error: error)
-            }
-        } else {
-            Task {
-                await CallKitObjectManager.getCallKitHelper()!.acceptCall(callId: incomingCall.id,
-                                                                           options: options) { call, error in
-                    setCallAndObersever(call: call, error: error)
-                }
-            }
+        incomingCall.accept(options: options) { (call, error) in
+            setCallAndObersever(call: call, error: error)
         }
     }
     
@@ -402,23 +399,16 @@ struct IncomingCallView: View {
             incomingCallViewModel.stopScreenRecording()
             isSharingScreen.toggle()
         }
-        if self.isCallKitInSDKEnabled {
-            self.call!.hangUp(options: HangUpOptions()) { (error) in
-                if (error != nil) {
-                    print("ERROR: It was not possible to hangup the call.")
-                }
-            }
-        } else {
-            Task {
-                await CallKitObjectManager.getCallKitHelper()!.endCall(callId: self.call!.id) { error in
-                    if (error != nil) {
-                        print("ERROR: It was not possible to hangup the call.")
-                    }
-                }
+        
+        self.call!.hangUp(options: HangUpOptions()) { (error) in
+            if (error != nil) {
+                print("ERROR: It was not possible to hangup the call.")
             }
         }
+        
         self.previewRenderer?.dispose()
         self.remoteRenderer?.dispose()
+        
         sendingVideo = false
         isSpeakerOn = false
     }
@@ -435,6 +425,7 @@ struct IncomingCallView: View {
     }
     
     func setCallAndObersever(call:Call!, error:Error?) {
+        incomingCallViewModel.isIncomingCall = false
         if (error == nil) {
             self.call = call
             self.callObserver = CallObserver(self)
@@ -570,8 +561,11 @@ struct IncomingCallView: View {
     
     func showIncomingCallBanner(_ incomingCall: IncomingCall?) {
         incomingCallViewModel.setIsIncomingCall(incoming: true)
-        print(incomingCallViewModel.isIncomingCall)
         self.incomingCall = incomingCall
+    }
+    
+    func hideIncomingCallBanner() {
+        incomingCallViewModel.setIsIncomingCall(incoming: false)
     }
 
     func callRemoved(_ call: Call) {
@@ -1047,4 +1041,16 @@ struct RemoteVideoView: UIViewRepresentable {
         return view
     }
     func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct RoundedCornersShape: Shape {
+    let radius: CGFloat
+    let corners: UIRectCorner
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
 }

@@ -15,7 +15,7 @@ import PIPKit
 
 
 class IncomingCallViewModel : NSObject, ObservableObject{
-    @Published var isIncomingCall:Bool = false
+    @Published var isIncomingCall:Bool = true
     @Published var call:Call?
 
  

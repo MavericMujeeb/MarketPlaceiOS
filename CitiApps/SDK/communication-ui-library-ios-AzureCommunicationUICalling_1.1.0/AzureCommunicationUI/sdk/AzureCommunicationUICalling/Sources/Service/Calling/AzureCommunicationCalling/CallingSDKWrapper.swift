@@ -461,7 +461,6 @@ extension CallingSDKWrapper {
     }
 
     private func setupCallAgent() async throws {
-        callAgent = g_callAgent
         
         guard callAgent == nil else {
             logger.debug("Reusing call agent")

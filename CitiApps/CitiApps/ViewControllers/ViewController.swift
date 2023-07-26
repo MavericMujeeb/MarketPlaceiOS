@@ -29,8 +29,8 @@ struct IncomingCallController: UIViewControllerRepresentable {
         
     }
     
-    var view: ContentView
-    init(view:ContentView) {
+    var view: IncomingCallView
+    init(view:IncomingCallView) {
         self.view = view
     }
     
