@@ -16,6 +16,7 @@ import UserNotifications
 import SwiftUI
 import AzureCommunicationUICalling
 import Foundation
+import PIPKit
 
 #if canImport(Combine)
 import Combine
@@ -131,7 +132,6 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     
     
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
-        print("pushRegistry didUpdate")
         appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
     }
     
@@ -152,40 +152,66 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
+        let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
+        let userDefaults: UserDefaults = .standard
+        
+       //TODO :: create call agent before triggering incoming call alert. otherwise app will crash
+        let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
+        callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
+        CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
+            if error == nil {
+                self.appPubs.pushPayload = payload
+                let incomingHostingController = ContainerUIHostingController(rootView: IncomingCallView(appPubs: self.appPubs))
+                incomingHostingController.modalPresentationStyle = .fullScreen
+                
+                PIPKit.show(with: incomingHostingController)
+//                var rootVC = UIApplication.shared.keyWindow?.rootViewController
+//                rootVC?.present(incomingHostingController, animated: true)
+            }
+        }
+        
 //        if(globalCallAgent == nil){
 //            let incomingCallController = ACSIncomingCallConntroller()
 //            incomingCallController.registerCallAgent(appPubs: appPubs) { result in
 //                if(result == true){
+//                    print("Global call agent created")
 //                   //TODO :: create call agent before triggering incoming call alert. otherwise app will crash
+//                    let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
+//                    callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
+//
+//                    print("Report incoming call to callkit")
+//                    CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
+//                        if error == nil {
+//                            print("No error")
+//                            print("callNotification")
+//                            print(callNotification)
+//                            self.appPubs.pushPayload = payload
+//                        }
+//                    }
 //                }
 //            }
 //        }
 //        else{
-            let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
-            let userDefaults: UserDefaults = .standard
-            let isCallKitInSDKEnabled = userDefaults.value(forKey: "isCallKitInSDKEnabled") as? Bool ?? false
-            
-            
-            if isCallKitInSDKEnabled {
-                let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
-                callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
-
-                CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
-                    if error == nil {
-                        self.appPubs.pushPayload = payload
-                    }
-                }
-            } else {
-                let incomingCallReporter = CallKitIncomingCallReporter()
-                incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
-                                                       caller: callNotification.from,
-                                                       callerDisplayName: callNotification.fromDisplayName,
-                                                        videoEnabled: callNotification.incomingWithVideo) { error in
-                    if error == nil {
-                        self.appPubs.pushPayload = payload
-                    }
-                }
-            }
+//            if isCallKitInSDKEnabled {
+//                let callKitOptions = CallKitOptions(with: CallKitObjectManager.createCXProvideConfiguration())
+//                callKitOptions.provideRemoteInfo = self.provideCallKitRemoteInfo
+//
+//                CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
+//                    if error == nil {
+//                        self.appPubs.pushPayload = payload
+//                    }
+//                }
+//            } else {
+//                let incomingCallReporter = CallKitIncomingCallReporter()
+//                incomingCallReporter.reportIncomingCall(callId: callNotification.callId.uuidString,
+//                                                       caller: callNotification.from,
+//                                                       callerDisplayName: callNotification.fromDisplayName,
+//                                                        videoEnabled: callNotification.incomingWithVideo) { error in
+//                    if error == nil {
+//                        self.appPubs.pushPayload = payload
+//                    }
+//                }
+//            }
 //        }
     }
 
