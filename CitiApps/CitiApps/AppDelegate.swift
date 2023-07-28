@@ -154,8 +154,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
                 self.appPubs.pushPayload = payload
                 let incomingHostingController = ContainerUIHostingController(rootView: IncomingCallView(appPubs: self.appPubs))
                 incomingHostingController.modalPresentationStyle = .fullScreen
-                var rootVC = UIApplication.shared.keyWindow?.rootViewController
-                rootVC?.present(incomingHostingController, animated: true)
+                PIPKit.show(with: incomingHostingController)
             }
         }
     }
