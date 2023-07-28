@@ -41,6 +41,10 @@ class ACSIncomingCallConntroller{
     var bankerAcsId:String = ""
     var bankerUserName:String! = ACSResources.bankerUserName
     
+    //Calling UI Library
+    var callingContext: CallingContext!
+    var tokenService: TokenService!
+    
     func resigterIncomingCallClient (appPubs:AppPubs) {
         self.appPubs = appPubs
         self.pushToken = self.appPubs?.pushToken
@@ -48,6 +52,32 @@ class ACSIncomingCallConntroller{
         if self.isRegisterForIncomingCallNotification == false {
             callParticipantDetailsAPI()
         }
+    }
+    
+    func startCall(isVideoCall : Bool) {
+        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+        CircleLoader.sharedInstance.show()
+        let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+       
+        self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: fullUrl, getAuthTokenFunction: { () -> String? in
+           
+            return appDelegate.authHandler.authToken
+        })
+        Task{
+            do{
+                await self.startAudioCall(acsId: self.bankerAcsId, isVideoCall: isVideoCall)
+                CircleLoader.sharedInstance.hide()
+            }
+        }
+    }
+    
+    func startAudioCall(acsId:String,isVideoCall : Bool = false) async {
+        let isAudioCall = isVideoCall ? false : true
+        let displayName =  users[loggedInUser]?["name"]  ?? ""
+        let incomingCallConfig = JoinCallConfig(joinId: "", displayName: displayName, callType: .incomingCall, isAudioCall: isAudioCall, isVideoCall: isVideoCall, isIncomingCall: true)
+        self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCustomerCommunicationToken)
+        self.callingContext.displayName = displayName
+        await self.callingContext.startCallComposite(incomingCallConfig)
     }
     
     func callParticipantDetailsAPI() {

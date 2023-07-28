@@ -58,12 +58,6 @@ final class CallingContext {
 
     @MainActor
     func startCallComposite(_ joinConfig: JoinCallConfig) async {
-        //token
-        //create call
-        //launch
-        
-        print("startCallComposite -- send global call agent to re-use")
-        
         let joinIdStr = joinConfig.joinId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let uuid = UUID(uuidString: joinIdStr) ?? UUID()
         let displayName = joinConfig.displayName
@@ -71,7 +65,7 @@ final class CallingContext {
         do {
             let communicationTokenCredential = try await getTokenCredential()
             
-            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall, isIncomingCall: false)
+            let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall, isIncomingCall: joinConfig.isIncomingCall)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
 
             
@@ -101,9 +95,21 @@ final class CallingContext {
                         displayName: displayName
                     )
                 )
+            case .incomingCall:
+                self.callComposite?.launch(
+                    remoteOptions: RemoteOptions(
+                        for: .incomingCall,
+                        credential: communicationTokenCredential,
+                        displayName: displayName
+                    )
+                )
             }
         } catch {
             print("ERROR: Cannot start or join a call due to user credential creating error: \(error.localizedDescription).")
         }
+    }
+    
+    func startIncomingCallComposite() {
+        
     }
 }

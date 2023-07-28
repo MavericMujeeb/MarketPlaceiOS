@@ -83,11 +83,20 @@ struct IncomingCallView: View {
                 }
                 else{
                     GeometryReader { geometry in
-                        ZStack(alignment: .bottomLeading) {
-                            VStack( spacing: 24 ){
-                                ZStack(alignment: .bottom){
-                                    previewAreaView
-                                    bottomControlBarView
+                        if call == nil {
+                            VStack{
+                                ProgressView("loading...")
+                                .frame(width: 120, height: 120, alignment: .center)
+                                .font(.system(size: 100))
+                            }
+                        }
+                        else{
+                            ZStack(alignment: .bottomLeading) {
+                                VStack( spacing: 24 ){
+                                    ZStack(alignment: .bottom){
+                                        previewAreaView
+                                        bottomControlBarView
+                                    }
                                 }
                             }
                         }

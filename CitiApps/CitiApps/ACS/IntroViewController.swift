@@ -157,7 +157,7 @@ class TeamsCallingViewController {
         print("\(#function):\(isVideoCall)")
         let isAudioCall = isVideoCall ? false : true
         let displayName =  users[loggedInUser]?["name"]  ?? ""
-        let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall, isAudioCall: isAudioCall, isVideoCall: isVideoCall)
+        let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall, isAudioCall: isAudioCall, isVideoCall: isVideoCall, isIncomingCall: false)
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCustomerCommunicationToken)
         self.callingContext.displayName = displayName
         self.callingContext.userId = userid
@@ -166,7 +166,7 @@ class TeamsCallingViewController {
     
     func joinCall() async {
         let displayName =  users[loggedInUser]?["name"]  ?? ""
-        let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting, isAudioCall: false, isVideoCall: false)
+        let callConfig = JoinCallConfig(joinId: teamsLink, displayName: displayName, callType: .teamsMeeting, isAudioCall: false, isVideoCall: false, isIncomingCall: false)
         self.callingContext = CallingContext(tokenFetcher: self.tokenService.getCommunicationToken)
         self.callingContext.displayName = displayName
         self.callingContext.userId = userid

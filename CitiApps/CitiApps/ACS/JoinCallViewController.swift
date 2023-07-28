@@ -69,6 +69,10 @@ class JoinCallViewController: UIViewController {
                 typeTitle.text = "Call"
                 joinIdTextField.placeholder = kTeamsLinkPlaceHolder
                 joinIdTextField.image = nil
+            case .incomingCall:
+                typeTitle.text = "Incoming Call"
+                joinIdTextField.placeholder = kTeamsLinkPlaceHolder
+                joinIdTextField.image = nil
             }
         }
         Task{
@@ -169,6 +173,8 @@ class JoinCallViewController: UIViewController {
                 promptInvalidJoinIdInput(value: fieldValue)
                 return false
             }
+        case .incomingCall:
+            return true
         }
         return true
     }
@@ -213,6 +219,8 @@ class JoinCallViewController: UIViewController {
             alertMessage = value.isEmpty ? "Teams link required" : "We can't find that meeting\nCheck the link and try again"
         case .voiceCall:
             alertMessage = value.isEmpty ? "ACS user id required" : "We can't find that meeting\nCheck the link and try again"
+        case .incomingCall:
+            alertMessage = value.isEmpty ? "ACS user id required" : "We can't find that meeting\nCheck the link and try again"
         }
         let notification = FluentUI.NotificationView()
         notification.setup(style: .dangerToast, message: alertMessage)
@@ -225,7 +233,7 @@ class JoinCallViewController: UIViewController {
         guard let joinId = joinIdTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return
         }
-        let callConfig = JoinCallConfig(joinId: joinId, displayName: displayName ?? "", callType: joinCallType, isAudioCall: true, isVideoCall: true)
+        let callConfig = JoinCallConfig(joinId: joinId, displayName: displayName ?? "", callType: joinCallType, isAudioCall: true, isVideoCall: true, isIncomingCall: false)
         self.dismiss(animated: true)
         busyOverlay.present()
         await self.callingContext.startCallComposite(callConfig)
@@ -250,6 +258,10 @@ class JoinCallViewController: UIViewController {
                 joinIdTextField.image = UIImage(named: "linkIcon")
             case .voiceCall:
                 typeTitle.text = "Call"
+                joinIdTextField.placeholder = kGroupIdPlaceHolder
+                joinIdTextField.image = nil
+            case .incomingCall:
+                typeTitle.text = "Incoming Call"
                 joinIdTextField.placeholder = kGroupIdPlaceHolder
                 joinIdTextField.image = nil
             }

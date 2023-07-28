@@ -11,4 +11,5 @@ struct JoinCallConfig {
     let callType: JoinCallType
     let isAudioCall: Bool!
     let isVideoCall: Bool!
+    let isIncomingCall: Bool!
 }

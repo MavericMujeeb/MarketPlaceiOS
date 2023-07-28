@@ -46,6 +46,7 @@
 		8DCFCBAF2A58311E00F1D293 /* IncomingCallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBAE2A58311E00F1D293 /* IncomingCallViewModel.swift */; };
 		8DD220C82A1F6CE4009A3866 /* Trouter in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220C72A1F6CE4009A3866 /* Trouter */; };
 		8DD220CD2A1F6DC6009A3866 /* AzureCommunicationUICommon in Frameworks */ = {isa = PBXBuildFile; productRef = 8DD220CC2A1F6DC6009A3866 /* AzureCommunicationUICommon */; };
+		8DD2CFEE2A72723E00C5005B /* DummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2CFED2A72723E00C5005B /* DummyView.swift */; };
 		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
 		8DF9C43E2A695DC800A86E3A /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */; };
 		8DF9C43F2A695DC800A86E3A /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -220,6 +221,7 @@
 		8DCFCBAB2A57FB6500F1D293 /* DashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashViewController.swift; sourceTree = "<group>"; };
 		8DCFCBAE2A58311E00F1D293 /* IncomingCallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallViewModel.swift; sourceTree = "<group>"; };
 		8DD220CB2A1F6DB3009A3866 /* AzureCommunicationUICommon */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AzureCommunicationUICommon; path = SDK/AzureCommunicationUICommon; sourceTree = "<group>"; };
+		8DD2CFED2A72723E00C5005B /* DummyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyView.swift; sourceTree = "<group>"; };
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		8DE0D53029804FA200201043 /* CitiApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CitiApps.entitlements; sourceTree = "<group>"; };
 		8DF9C43A2A695DBF00A86E3A /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Flutter.xcframework; sourceTree = "<group>"; };
@@ -371,6 +373,13 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
+		8DD2CFEA2A726CDC00C5005B /* CallingUILibrary */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CallingUILibrary;
+			sourceTree = "<group>";
+		};
 		8DFBD2C129756DD6006B0700 = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +412,7 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
+				8DD2CFEA2A726CDC00C5005B /* CallingUILibrary */,
 				8DE0D53029804FA200201043 /* CitiApps.entitlements */,
 				8DCFCBAD2A57FDEF00F1D293 /* ViewControllers */,
 				8DCFCB9D2A57F9B400F1D293 /* Utils */,
@@ -412,6 +422,7 @@
 				8DFBD2D629756DD8006B0700 /* Assets.xcassets */,
 				8DA82E972977FFD000A79D3B /* Main.storyboard */,
 				8DFBD2DB29756DD8006B0700 /* Info.plist */,
+				8DD2CFED2A72723E00C5005B /* DummyView.swift */,
 			);
 			path = CitiApps;
 			sourceTree = "<group>";
@@ -527,6 +538,33 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				"zh-Hant-TW",
+				"zh-Hans",
+				ja,
+				"it-IT",
+				"en-GB",
+				es,
+				"ru-RU",
+				it,
+				"tr-TR",
+				"es-ES",
+				"fr-FR",
+				"ja-JP",
+				"ko-KR",
+				ko,
+				"zh-Hant",
+				tr,
+				"pt-BR",
+				"nl-NL",
+				ru,
+				"en-US",
+				"de-DE",
+				fr,
+				nl,
+				pt,
+				"zh-Hans-CN",
+				zh,
 			);
 			mainGroup = 8DFBD2C129756DD6006B0700;
 			packageReferences = (
@@ -707,6 +745,7 @@
 				8DFBD32429757878006B0700 /* AADAuthHandler.swift in Sources */,
 				8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */,
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,
+				8DD2CFEE2A72723E00C5005B /* DummyView.swift in Sources */,
 				8DFBD32C297578B9006B0700 /* JoinCallConfig.swift in Sources */,
 				8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */,
 				8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */,

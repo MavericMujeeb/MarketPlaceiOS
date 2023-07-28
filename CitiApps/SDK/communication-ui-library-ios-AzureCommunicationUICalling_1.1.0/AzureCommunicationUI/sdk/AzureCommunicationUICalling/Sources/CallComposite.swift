@@ -127,6 +127,36 @@ public class CallComposite {
         self.avatarViewManager = nil
         self.remoteParticipantsManager = nil
     }
+    
+    /*
+     Function to create incoming call view controller
+     */
+//    private func makeIncomingCallHostingController(router: NavigationRouter,
+//                                                   logger: Logger,
+//                                                   viewFactory: CompositeViewFactoryProtocol,
+//                                                   isRightToLeft: Bool,
+//                                                   isAudioCall:Bool,
+//                                                   isVideoCall:Bool) -> ContainerUIHostingController{
+//        
+//        let rootView = IncomingContainerView(router: router,
+//                                     logger: logger,
+//                                     viewFactory: viewFactory,
+//                                     isRightToLeft: isRightToLeft,
+//                                     isAudioCall: isAudioCall,
+//                                     isVideoCall: isVideoCall)
+//        
+//        let toolkitHostingController = ContainerUIHostingController(rootView: rootView,
+//                                                                    callComposite: self,
+//                                                                    isRightToLeft: isRightToLeft)
+//        
+//        router.setDismissComposite { [weak toolkitHostingController, weak self] in
+//            toolkitHostingController?.dismissSelf()
+//            PIPKit.dismiss(animated: true)
+//            self?.cleanUpManagers()
+//        }
+//
+//        return toolkitHostingController
+//    }
 
     private func makeToolkitHostingController(router: NavigationRouter,
                                               logger: Logger,
