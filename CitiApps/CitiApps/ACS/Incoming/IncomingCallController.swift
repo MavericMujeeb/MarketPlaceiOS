@@ -203,20 +203,24 @@ final class IncomingCallHandler: NSObject, CallAgentDelegate, IncomingCallDelega
         Task {
             await CallKitObjectManager.getCallKitHelper()?.removeIncomingCall(callId: incomingCall.id)
         }
+        PIPKit.dismiss(animated: true)
+        self.contentView = nil
     }
     
     
     func callAgent(_ callAgent: CallAgent, didUpdateCalls args: CallsUpdatedEventArgs) {
         if let removedCall = args.removedCalls.first {
+            print("didUpdateCalls")
             contentView?.callRemoved(removedCall)
             self.incomingCall = nil
+            PIPKit.dismiss(animated: true)
+            self.contentView = nil
         }
 
         if let addedCall = args.addedCalls.first {
             // This happens when call was accepted via CallKit and not from the app
             // We need to set the call instances and auto-navigate to call in progress screen.
             if addedCall.direction == .incoming {
-                contentView?.hideIncomingCallBanner()
                 contentView?.setCallAndObersever(call: addedCall, error: nil)
             }
         }

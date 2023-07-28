@@ -10,7 +10,6 @@ import SwiftUI
 import PIPKit
 
 class ContainerUIHostingController: UIHostingController<ContainerUIHostingController.Root>, PIPUsable {
-//    private let cancelBag = CancelBag()
 
     init(rootView: IncomingCallView) {
         super.init(rootView: Root(containerView: rootView))
@@ -22,13 +21,10 @@ class ContainerUIHostingController: UIHostingController<ContainerUIHostingContro
 
     struct Root: View {
         let containerView: IncomingCallView
-
         var body: some View {
             containerView
         }
     }
-
-    // MARK: Prefers Home Indicator Auto Hidden
 }
 
  extension ContainerUIHostingController: UIViewControllerTransitioningDelegate {}
