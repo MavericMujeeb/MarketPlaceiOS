@@ -72,7 +72,6 @@ public final class PIPKit {
         
         let windowScene = UIApplication.shared
                         .connectedScenes
-                        .filter { $0.activationState == .foregroundActive }
                         .first
         if let windowScene = windowScene as? UIWindowScene {
             let popupWindow = PIPKitWindow(windowScene: windowScene)

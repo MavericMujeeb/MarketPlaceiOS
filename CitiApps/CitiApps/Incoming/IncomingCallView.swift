@@ -30,7 +30,7 @@ struct IncomingCallView: View {
     init(appPubs: AppPubs) {
         self.appPubs = appPubs
     }
-
+    
     private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "ACSVideoSample")
     private let token = ""
     @State var callee: String = ""
@@ -78,10 +78,7 @@ struct IncomingCallView: View {
         ZStack{
             VStack(spacing: 24){
                 titleView
-                if incomingCallViewModel.isIncomingCall {
-                    incomingCallBody
-                }
-                else{
+                if self.call != nil {
                     GeometryReader { geometry in
                         if call == nil {
                             VStack{
@@ -102,6 +99,9 @@ struct IncomingCallView: View {
                         }
                     }
                 }
+                else {
+                    incomingCallBody
+                }
             }
         }
         .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
@@ -121,13 +121,6 @@ struct IncomingCallView: View {
             handlePushNotification(payload)
         })
         .onAppear{
-            AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
-                if granted {
-                    AVCaptureDevice.requestAccess(for: .video) { (videoGranted) in
-                        /* NO OPERATION */
-                    }
-                }
-            }
             if deviceManager == nil {
                 self.callClient.getDeviceManager { (deviceManager, error) in
                     if(error == nil){
@@ -248,14 +241,11 @@ struct IncomingCallView: View {
             }
             self.showAlert = true
             self.alertMessage = rejectError.localizedDescription
-            incomingCallViewModel.isIncomingCall = false
         }
     }
     
     
     func answerIncomingCall() {
-        
-        incomingCallViewModel.isIncomingCall = false
         let options = AcceptCallOptions()
         guard let incomingCall = self.incomingCall else {
             return
@@ -434,7 +424,6 @@ struct IncomingCallView: View {
     }
     
     func setCallAndObersever(call:Call!, error:Error?) {
-        incomingCallViewModel.isIncomingCall = false
         if (error == nil) {
             self.call = call
             self.callObserver = CallObserver(self)
@@ -569,15 +558,18 @@ struct IncomingCallView: View {
     }
     
     func showIncomingCallBanner(_ incomingCall: IncomingCall?) {
-        incomingCallViewModel.setIsIncomingCall(incoming: true)
         self.incomingCall = incomingCall
     }
     
-    func hideIncomingCallBanner() {
-        incomingCallViewModel.setIsIncomingCall(incoming: false)
-    }
 
     func callRemoved(_ call: Call) {
+        print("call removed called")
+        if callAgent != nil {
+            // Have to dispose existing CallAgent if present
+            // Because we cannot create two CallAgent's
+            callAgent!.dispose()
+            callAgent = nil
+        }
         self.call = nil
         self.incomingCall = nil
         self.remoteRenderer?.dispose()
@@ -587,6 +579,7 @@ struct IncomingCallView: View {
         self.previewRenderer?.dispose()
         sendingVideo = false
         Task {
+            print("endCall -- callkit")
             await CallKitObjectManager.getCallKitHelper()?.endCall(callId: call.id) { error in
             }
         }
@@ -697,15 +690,6 @@ public class RemoteVideoStreamData : NSObject, RendererDelegate {
         owner.remoteVideoSize = String(size.width) + " X " + String(size.height)
     }
 }
-
-//struct IncomingCallView_Previews: PreviewProvider {
-////    static var appPubs:AppPubs
-////    static var callAgent: CallAgent = CallAgent()
-//
-//    static var previews: some View {
-//        IncomingCallView()
-//    }
-//}
 
 struct IconButton: View {
     
@@ -947,10 +931,10 @@ public class CallObserver: NSObject, CallDelegate, IncomingCallDelegate {
             initialCallParticipant()
         }
         
-        if(call.state == CallState.disconnected) {
-            let rootVC = UIApplication.shared.keyWindow?.rootViewController
-            rootVC?.dismiss(animated: true)
-        }
+//        if(call.state == CallState.disconnected) {
+//            let rootVC = UIApplication.shared.keyWindow?.rootViewController
+//            rootVC?.dismiss(animated: true)
+//        }
 
         Task {
             await CallKitObjectManager.getCallKitHelper()?.reportOutgoingCall(call: call)
