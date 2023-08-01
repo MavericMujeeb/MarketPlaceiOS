@@ -61,7 +61,8 @@ public class CallComposite {
                                                  localOptions: localOptions,
                                                  callCompositeEventsHandler: events,
                                                  isAudioCall: callCompositeOptions?.isAudioCall,
-                                                 isVideoCall: callCompositeOptions?.isVideoCall
+                                                 isVideoCall: callCompositeOptions?.isVideoCall,
+                                                 isIncomingCall: callCompositeOptions?.isIncomingCall
         )
 
         
@@ -73,7 +74,11 @@ public class CallComposite {
                                                                     logger: dependencyContainer.resolve(),
                                                                     viewFactory: dependencyContainer.resolve(),
                                                                     isRightToLeft: localizationProvider.isRightToLeft,
-                                                                    meetingLink: callConfiguration.meetingLink!, isAudioCall: (callCompositeOptions?.isAudioCall)!, isVideoCall: (callCompositeOptions?.isVideoCall)!)
+                                                                    meetingLink: callConfiguration.meetingLink!,
+                                                                    isAudioCall: (callCompositeOptions?.isAudioCall)!,
+                                                                    isVideoCall: (callCompositeOptions?.isVideoCall)!,
+                                                                    isIncomingCall: (callCompositeOptions?.isVideoCall)!
+        )
         
 
         setupManagers(with: dependencyContainer)
@@ -162,7 +167,7 @@ public class CallComposite {
                                               logger: Logger,
                                               viewFactory: CompositeViewFactoryProtocol,
                                               isRightToLeft: Bool,
-                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool) -> ContainerUIHostingController {
+                                              meetingLink: String, isAudioCall:Bool, isVideoCall:Bool, isIncomingCall:Bool) -> ContainerUIHostingController {
         
         
         
@@ -170,7 +175,7 @@ public class CallComposite {
                                      logger: logger,
                                      viewFactory: viewFactory,
                                      isRightToLeft: isRightToLeft,
-                                     meetingLink: meetingLink, isAudioCall: isAudioCall, isVideoCall: isVideoCall)
+                                     meetingLink: meetingLink, isAudioCall: isAudioCall, isVideoCall: isVideoCall, isIncomingCall: isIncomingCall)
         let toolkitHostingController = ContainerUIHostingController(rootView: rootView,
                                                                     callComposite: self,
                                                                     isRightToLeft: isRightToLeft)

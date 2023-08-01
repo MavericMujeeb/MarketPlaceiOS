@@ -27,6 +27,7 @@
 		8D7015F92981303200FDEBFC /* AzureCommunicationUICalling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD2E729757183006B0700 /* AzureCommunicationUICalling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; };
 		8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D70C0C52A779A3000A546BB /* ACSCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70C0C42A779A3000A546BB /* ACSCallController.swift */; };
 		8D7522932A0916B7001FDB1C /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */; };
 		8D7522942A0916C1001FDB1C /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */; };
 		8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2B29A3949200700C78 /* ChatController.swift */; };
@@ -204,6 +205,7 @@
 		8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
 		8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = "SDK/AzureCommunicationCalling-2.2.1/AzureCommunicationCalling.xcframework"; sourceTree = "<group>"; };
 		8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcsUserIdToken.swift; sourceTree = "<group>"; };
+		8D70C0C42A779A3000A546BB /* ACSCallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSCallController.swift; sourceTree = "<group>"; };
 		8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = "../../../../../../../Downloads/WindowsAzureMessaging-SDK-Apple/iOS/WindowsAzureMessaging.framework"; sourceTree = "<group>"; };
 		8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = SDK/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		8D99CA2B29A3949200700C78 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */,
 				8DCFCBAE2A58311E00F1D293 /* IncomingCallViewModel.swift */,
 				8D4100BF2A694752001473F5 /* ContainerHostingController.swift */,
+				8D70C0C42A779A3000A546BB /* ACSCallController.swift */,
 			);
 			name = Incoming;
 			path = ../Incoming;
@@ -386,9 +389,9 @@
 				8DD220CA2A1F6DB3009A3866 /* Packages */,
 				8D7522922A0916B6001FDB1C /* WindowsAzureMessaging.framework */,
 				8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */,
-				8DC8DC0729D2FD880047A2D3 /* PIPKit.xcodeproj */,
 				8DFBD34729757A39006B0700 /* AppSettings.xcconfig */,
 				8DFBD30B29757340006B0700 /* MSAL.xcframework */,
+				8DC8DC0729D2FD880047A2D3 /* PIPKit.xcodeproj */,
 				8D0A5FF1298A5A1C002EBBC4 /* AzureCommunicationUIChat.xcodeproj */,
 				8D3AE9A8298819A1009DD389 /* AzureCore.xcodeproj */,
 				8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */,
@@ -746,6 +749,7 @@
 				8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */,
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,
 				8DD2CFEE2A72723E00C5005B /* DummyView.swift in Sources */,
+				8D70C0C52A779A3000A546BB /* ACSCallController.swift in Sources */,
 				8DFBD32C297578B9006B0700 /* JoinCallConfig.swift in Sources */,
 				8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */,
 				8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */,

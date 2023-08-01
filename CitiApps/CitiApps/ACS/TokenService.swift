@@ -20,6 +20,15 @@ class TokenService {
     
     func getCustomerCommunicationToken(completionHandler: @escaping (String?, Error?) -> Void) {
         CircleLoader.sharedInstance.show()
+        
+        if !tokenString.isEmpty{
+            print("tokenString")
+            print(tokenString)
+            completionHandler(self.tokenString, nil)
+            CircleLoader.sharedInstance.hide()
+            return
+        }
+        
         guard let url = URL(string: communicationTokenFetchUrl),
               url.host != nil else {
             assertionFailure(

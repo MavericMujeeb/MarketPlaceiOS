@@ -62,6 +62,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     }
 
     func startCall(isCameraPreferred: Bool, isAudioPreferred: Bool) async throws {
+        print("startCall --- ")
         try await setupCall()
         logger.debug("Reset Subjects in callingEventsHandler")
         if let callingEventsHandler = self.callingEventsHandler
@@ -77,6 +78,7 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     }
 
     func joinCall(isCameraPreferred: Bool, isAudioPreferred: Bool) async throws {
+        print("Coming here")
         logger.debug( "Joining call")
         let joinCallOptions = JoinCallOptions()
         let startCallOptions = StartCallOptions()
@@ -464,7 +466,7 @@ extension CallingSDKWrapper {
     }
 
     private func setupCallAgent() async throws {
-        
+        print("setupCallAgent")
         guard callAgent == nil else {
             logger.debug("Reusing call agent")
             return
@@ -479,9 +481,11 @@ extension CallingSDKWrapper {
                 userCredential: callConfiguration.credential,
                 options: options
             )
+            print("Call agent successfully created.")
             self.logger.debug("Call agent successfully created.")
             self.callAgent = callAgent
         } catch {
+            print("It was not possible to create a call agent.")
             logger.error("It was not possible to create a call agent.")
             throw error
         }
@@ -606,9 +610,6 @@ final class RawOutgoingVideoSender: NSObject {
         super.init()
 
         let videoFormat = VideoFormat()
-        
-        print(UIScreen.main.nativeBounds.width.self)
-        print(UIScreen.main.nativeBounds.height.self)
         videoFormat.width = 890
         videoFormat.height = 1900
         videoFormat.pixelFormat = .nv12

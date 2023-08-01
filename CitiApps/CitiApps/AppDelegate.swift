@@ -152,9 +152,9 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
         CallClient.reportIncomingCallFromKillState(with: callNotification, callKitOptions: callKitOptions) { error in
             if error == nil {
                 self.appPubs.pushPayload = payload
-                let incomingHostingController = ContainerUIHostingController(rootView: IncomingCallView(appPubs: self.appPubs))
-                incomingHostingController.modalPresentationStyle = .fullScreen
-                PIPKit.show(with: incomingHostingController)
+                //Step - 1
+                let acsCallController = ACSCallController(appPubs: self.appPubs)
+                acsCallController.startCall(isVideoCall: true)
             }
         }
     }

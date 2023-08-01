@@ -162,9 +162,7 @@ extension CallingSDKEventsHandler: CallDelegate, IncomingCallDelegate,
     }
     
     //Event raised when there is an incoming call
-    public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {
-        print("didRecieveIncomingCall")
-        
+    public func callAgent(_ callAgent: CallAgent, didRecieveIncomingCall incomingCall: IncomingCall) {        
         incomingCall.accept(options: AcceptCallOptions()) { (call, error) in
            if (error == nil) {
                print("Successfully accepted incoming call")

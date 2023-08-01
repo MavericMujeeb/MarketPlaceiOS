@@ -17,6 +17,7 @@ struct ContainerView: View {
     let meetingLink: String
     let isAudioCall:Bool
     let isVideoCall:Bool
+    let isIncomingCall:Bool
 
     var body: some View {
         Group {
