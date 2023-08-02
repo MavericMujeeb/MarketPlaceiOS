@@ -25,7 +25,6 @@ final class CallingContext {
     var callChatToken: String!
 
     // MARK: Initialization
-
     init(tokenFetcher: @escaping TokenFetcher) {
         self.tokenFetcher = tokenFetcher
     }
