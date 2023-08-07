@@ -7,15 +7,24 @@ import Foundation
 import AzureCore
 import AzureCommunicationChat
 
+var acs_users = [
+    "6959db5c-bf24-427e-94ee-42c208ec5878": ["name":"Richard Jones","userid":"6959db5c-bf24-427e-94ee-42c208ec5878"]
+]
+
 extension ChatParticipant {
     func toParticipantInfoModel(_ localParticipantId: String) -> ParticipantInfoModel {
-        print("current display name is :\(self.displayName)")
-        print("current identifier is :\(self.id)")
-        print("isLocalParticipant :\(id.stringValue) and localParticipantId :\(localParticipantId)")
+        var displayName = ""
+        var isLocalParticipant = true
+        
+        if(acs_users[id.stringValue] != nil){
+            displayName = acs_users[id.stringValue]?["name"] ?? "Unknown user"
+            isLocalParticipant = false
+        }
+        
         return ParticipantInfoModel(
             identifier: self.id,
-            displayName: self.displayName ?? "",
-            isLocalParticipant: id.stringValue == localParticipantId,
+            displayName: self.displayName ?? displayName,
+            isLocalParticipant: isLocalParticipant,
             sharedHistoryTime: self.shareHistoryTime ?? Iso8601Date())
     }
 }

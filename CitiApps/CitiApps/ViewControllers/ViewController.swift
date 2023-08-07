@@ -6,6 +6,7 @@
 //
 
 var users = [
+    
     "veronicastephens838@gmail.com": ["name":"Veronica Stephens","email":"veronicastephens838@gmail.com","userid":"fc123292-abe0-4629-982e-1cfe16759cbb"],
     "johnwilliamsfamily9@gmail.com": ["name":"Johnson williams","email":"johnwilliamsfamily9@gmail.com","userid":"8294e32a-d846-440d-b875-87b171b80787"],
 ]
@@ -136,13 +137,13 @@ class ViewController : UIViewController {
         self.registerChatClient()
 
         
-        if(handleExternalLinks == true){
+        if(handleExternalLinks == true) {
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             dashViewController.handleExternalLinks = true
             dashViewController.meetingLink = self.meetingLink
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
-        else{
+        else {
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             dashViewController.isFromNotificationTray = CitiConstants.isFromNotification
             self.navigationController?.pushViewController(dashViewController, animated: false)

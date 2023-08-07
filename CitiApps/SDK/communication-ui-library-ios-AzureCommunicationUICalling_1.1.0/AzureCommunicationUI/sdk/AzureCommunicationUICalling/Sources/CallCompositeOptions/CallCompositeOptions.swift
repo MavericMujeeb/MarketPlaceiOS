@@ -8,7 +8,12 @@ import UIKit
 
 public var loggedInUserName=""
 public var loggedInUserId=""
+public var loggedClientACSId=""
 public var communincationTokenString:String!
+
+var users = [
+    "6959db5c-bf24-427e-94ee-42c208ec5878": ["name":"Richard Jones","userid":"6959db5c-bf24-427e-94ee-42c208ec5878"],
+]
 
 /// User-configurable options for creating CallComposite.
 public struct CallCompositeOptions {
