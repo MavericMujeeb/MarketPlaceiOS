@@ -23,66 +23,6 @@ import AzureCommunicationCalling
 import AVFoundation
 import SwiftUI
 
-struct IncomingCallController: UIViewControllerRepresentable {
-    
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-        
-    }
-    
-    var view: IncomingCallView
-    init(view:IncomingCallView) {
-        self.view = view
-    }
-    
-    func makeUIViewController(context: Context) -> UINavigationController{
-            
-        let childView = UIHostingController(rootView: view)
-        let controller =     UINavigationController(rootViewController:childView)
-        let appearance = UINavigationBarAppearance()
-        let searchController = UISearchController()
-        
-        
-        searchController.searchBar.barStyle = .black
-        
-        appearance.backgroundColor = UIColor(Color(.red))
-        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
-        
-        controller.navigationBar.topItem?.compactAppearance = appearance
-        controller.navigationBar.topItem?.scrollEdgeAppearance = appearance
-        controller.navigationBar.topItem?.standardAppearance = appearance
-        
-
-        controller.navigationBar.topItem?.title = "navigation bar"
-        controller.navigationBar.prefersLargeTitles = true
-        
-        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Rechercher...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        searchController.searchBar.setValue("Annuler", forKey: "cancelButtonText")
-        
-        
-        searchController.searchBar.showsBookmarkButton = true
-        searchController.searchBar.searchTextField.leftView?.tintColor = .white
-        
-        let sfConfiguration = UIImage.SymbolConfiguration(pointSize: 30)
-        let barCodeIcon = UIImage(systemName: "barcode.viewfinder")?.withTintColor(.white, renderingMode: .alwaysOriginal).withConfiguration(sfConfiguration)
-    
-
-        searchController.searchBar.setImage(barCodeIcon, for: .bookmark, state:.normal)
-        searchController.obscuresBackgroundDuringPresentation = false
-  
-
-        let attributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(attributes, for: .normal)
-       
-        controller.navigationBar.topItem?.hidesSearchBarWhenScrolling = false
-        controller.navigationBar.topItem?.searchController = searchController
-        
-        return controller
-    }
-    
-}
-
 class LoginViewController : UIViewController {
     
     @IBOutlet weak var username: UITextField!
@@ -179,7 +119,6 @@ class LoginViewController : UIViewController {
         }
     }
     
-    
     func customizeNavBar(){
         let logoImageView = UIImageView.init()
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -266,24 +205,23 @@ extension UITextField {
     }
     
     func togglePasswordVisibility() {
-            isSecureTextEntry = !isSecureTextEntry
+        isSecureTextEntry = !isSecureTextEntry
+        if let existingText = text, isSecureTextEntry {
+            /* When toggling to secure text, all text will be purged if the user
+             continues typing unless we intervene. This is prevented by first
+             deleting the existing text and then recovering the original text. */
+            deleteBackward()
 
-            if let existingText = text, isSecureTextEntry {
-                /* When toggling to secure text, all text will be purged if the user
-                 continues typing unless we intervene. This is prevented by first
-                 deleting the existing text and then recovering the original text. */
-                deleteBackward()
-
-                if let textRange = textRange(from: beginningOfDocument, to: endOfDocument) {
-                    replace(textRange, withText: existingText)
-                }
-            }
-
-            /* Reset the selected text range since the cursor can end up in the wrong
-             position after a toggle because the text might vary in width */
-            if let existingSelectedTextRange = selectedTextRange {
-                selectedTextRange = nil
-                selectedTextRange = existingSelectedTextRange
+            if let textRange = textRange(from: beginningOfDocument, to: endOfDocument) {
+                replace(textRange, withText: existingText)
             }
         }
+
+        /* Reset the selected text range since the cursor can end up in the wrong
+         position after a toggle because the text might vary in width */
+        if let existingSelectedTextRange = selectedTextRange {
+            selectedTextRange = nil
+            selectedTextRange = existingSelectedTextRange
+        }
+    }
 }
