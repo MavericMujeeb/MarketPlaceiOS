@@ -1,0 +1,36 @@
+
+App Thinning Size Report for All Variants of CitiApps
+
+Variant: CitiApps-11F72AFD-A9BC-4B5B-A174-5A467EBA5588.ipa
+Supported variant descriptors: [device: iPad8,5, os-version: 16.0], [device: iPad13,8, os-version: 16.0], [device: iPad7,2, os-version: 16.0], [device: iPad7,3, os-version: 16.0], [device: iPad14,2, os-version: 16.0], [device: iPad13,4, os-version: 16.0], [device: iPad14,1, os-version: 16.0], [device: iPad8,11, os-version: 16.0], [device: iPad14,3-B, os-version: 16.0], [device: iPad8,3, os-version: 16.0], [device: iPad13,1, os-version: 16.0], [device: iPad8,4, os-version: 16.0], [device: iPad11,4, os-version: 16.0], [device: iPad8,9, os-version: 16.0], [device: iPad13,11, os-version: 16.0], [device: iPad8,12, os-version: 16.0], [device: iPad6,3, os-version: 16.0], [device: iPad6,4, os-version: 16.0], [device: MacFamily20,1, os-version: 16.0], [device: iPad13,16, os-version: 16.0], [device: iPad13,17, os-version: 16.0], [device: iPad8,7, os-version: 16.0], [device: iPad8,10, os-version: 16.0], [device: iPad8,8, os-version: 16.0], [device: iPad8,1, os-version: 16.0], [device: iPad8,6, os-version: 16.0], [device: iPad13,5, os-version: 16.0], [device: iPad14,3-A, os-version: 16.0], [device: iPad13,9, os-version: 16.0], [device: iPad13,6, os-version: 16.0], [device: iPad13,10, os-version: 16.0], [device: iPad11,1, os-version: 16.0], [device: iPad11,3, os-version: 16.0], [device: iPad14,6-B, os-version: 16.0], [device: iPad14,4-A, os-version: 16.0], [device: iPad14,5-B, os-version: 16.0], [device: iPad11,2, os-version: 16.0], [device: iPad7,1, os-version: 16.0], [device: iPad14,5-A, os-version: 16.0], [device: iPad13,7, os-version: 16.0], [device: iPad13,2, os-version: 16.0], [device: iPad8,2, os-version: 16.0], [device: iPad7,4, os-version: 16.0], [device: iPad14,6-A, os-version: 16.0], and [device: iPad14,4-B, os-version: 16.0]
+App + On Demand Resources size: 36.5 MB compressed, 113.3 MB uncompressed
+App size: 36.5 MB compressed, 113.3 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: CitiApps-1A3B1E11-6C1E-4997-B96F-BEE0452DF113.ipa
+Supported variant descriptors: [device: iPad6,12, os-version: 16.0], [device: iPad6,11, os-version: 16.0], [device: iPad7,6, os-version: 16.0], [device: iPad7,11, os-version: 16.0], [device: iPad12,2, os-version: 16.0], [device: iPad11,7, os-version: 16.0], [device: iPad13,18, os-version: 16.0], [device: iPad6,8, os-version: 16.0], [device: iPad12,1, os-version: 16.0], [device: iPad7,12, os-version: 16.0], [device: iPad11,6, os-version: 16.0], [device: iPad6,7, os-version: 16.0], [device: iPad7,5, os-version: 16.0], and [device: iPad13,19, os-version: 16.0]
+App + On Demand Resources size: 36.5 MB compressed, 113.3 MB uncompressed
+App size: 36.5 MB compressed, 113.3 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: CitiApps-686A5E83-AAB5-4E54-864D-9367F60340B3.ipa
+Supported variant descriptors: [device: iPhone14,3, os-version: 16.0], [device: iPhone15,2, os-version: 16.0], [device: iPhone14,8, os-version: 16.0], [device: iPhone14,5, os-version: 16.0], [device: iPhone12,5, os-version: 16.0], [device: iPhone11,2, os-version: 16.0], [device: iPhone10,3, os-version: 16.0], [device: iPhone10,6, os-version: 16.0], [device: iPhone14,2, os-version: 16.0], [device: iPhone14,7, os-version: 16.0], [device: iPhone11,4, os-version: 16.0], [device: iPhone14,4, os-version: 16.0], [device: iPhone13,1, os-version: 16.0], [device: iPhone10,5, os-version: 16.0], [device: iPhone13,2, os-version: 16.0], [device: iPhone13,3, os-version: 16.0], [device: iPhone10,2, os-version: 16.0], [device: iPhone11,6, os-version: 16.0], [device: iPhone13,4, os-version: 16.0], [device: iPhone12,3, os-version: 16.0], and [device: iPhone15,3, os-version: 16.0]
+App + On Demand Resources size: 36.5 MB compressed, 113.3 MB uncompressed
+App size: 36.5 MB compressed, 113.3 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: CitiApps-F67E4063-19AF-409F-9997-C526E53679EE.ipa
+Supported variant descriptors: [device: iPhone12,8, os-version: 16.0], [device: iPhone10,4, os-version: 16.0], [device: iPhone10,1, os-version: 16.0], [device: iPhone12,1, os-version: 16.0], [device: iPhone14,6, os-version: 16.0], and [device: iPhone11,8, os-version: 16.0]
+App + On Demand Resources size: 36.5 MB compressed, 113.3 MB uncompressed
+App size: 36.5 MB compressed, 113.3 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: CitiApps.ipa
+Supported variant descriptors: Universal
+App + On Demand Resources size: 36.8 MB compressed, 114 MB uncompressed
+App size: 36.8 MB compressed, 114 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed

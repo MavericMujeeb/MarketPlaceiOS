@@ -1,0 +1,84 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AzureCommunicationCalling
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+@_exported import AzureCommunicationCalling
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+extension AzureCommunicationCalling.MediaDiagnosticValues {
+  public var speakerNotFunctioning: Swift.Bool? {
+    get
+  }
+  public var speakerNotFunctioningDeviceInUse: Swift.Bool? {
+    get
+  }
+  public var speakerMuted: Swift.Bool? {
+    get
+  }
+  public var speakerVolumeIsZero: Swift.Bool? {
+    get
+  }
+  public var noSpeakerDevicesEnumerated: Swift.Bool? {
+    get
+  }
+  public var speakingWhileMicrophoneIsMuted: Swift.Bool? {
+    get
+  }
+  public var noMicrophoneDevicesEnumerated: Swift.Bool? {
+    get
+  }
+  public var microphoneNotFunctioningDeviceInUse: Swift.Bool? {
+    get
+  }
+  public var cameraFreeze: Swift.Bool? {
+    get
+  }
+  public var cameraStartFailed: Swift.Bool? {
+    get
+  }
+  public var cameraStartTimedOut: Swift.Bool? {
+    get
+  }
+  public var microphoneNotFunctioning: Swift.Bool? {
+    get
+  }
+  public var microphoneMuteUnexpectedly: Swift.Bool? {
+    get
+  }
+  public var cameraPermissionDenied: Swift.Bool? {
+    get
+  }
+}
+extension AzureCommunicationCalling.NetworkDiagnosticValues {
+  public var noNetwork: Swift.Bool? {
+    get
+  }
+  public var networkRelaysNotReachable: Swift.Bool? {
+    get
+  }
+  public var networkReconnect: AzureCommunicationCalling.DiagnosticQuality {
+    get
+  }
+  public var networkSendQuality: AzureCommunicationCalling.DiagnosticQuality {
+    get
+  }
+  public var networkReceiveQuality: AzureCommunicationCalling.DiagnosticQuality {
+    get
+  }
+}
+extension AzureCommunicationCalling.Features {
+  public static var recording: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RecordingCallFeature>
+  public static var transcription: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TranscriptionCallFeature>
+  public static var dominantSpeakers: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DominantSpeakersCallFeature>
+  public static var teamsCaptions: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.TeamsCaptionsCallFeature>
+  public static var raiseHand: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.RaiseHandCallFeature>
+  public static var diagnostics: AzureCommunicationCalling.CallFeatureFactory<AzureCommunicationCalling.DiagnosticsCallFeature>
+}
+@_hasMissingDesignatedInitializers public class CallFeatureFactory<T> where T : AzureCommunicationCalling.CallFeature {
+  @objc deinit
+}
+extension AzureCommunicationCalling.Call {
+  public func feature<TCallFeature>(_ factory: AzureCommunicationCalling.CallFeatureFactory<TCallFeature>) -> TCallFeature where TCallFeature : AzureCommunicationCalling.CallFeature
+}
