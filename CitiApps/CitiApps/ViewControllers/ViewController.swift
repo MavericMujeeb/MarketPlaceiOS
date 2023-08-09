@@ -6,7 +6,6 @@
 //
 
 var users = [
-    
     "veronicastephens838@gmail.com": ["name":"Veronica Stephens","email":"veronicastephens838@gmail.com","userid":"fc123292-abe0-4629-982e-1cfe16759cbb"],
     "johnwilliamsfamily9@gmail.com": ["name":"Johnson williams","email":"johnwilliamsfamily9@gmail.com","userid":"8294e32a-d846-440d-b875-87b171b80787"],
 ]
@@ -84,7 +83,7 @@ struct IncomingCallController: UIViewControllerRepresentable {
     
 }
 
-class ViewController : UIViewController {
+class LoginViewController : UIViewController {
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -161,7 +160,7 @@ class ViewController : UIViewController {
     func registerIncomingCallHandler () {
         storageUserDefaults.set(true, forKey: "isCallKitInSDKEnabled")
         
-        let incomingCallController = ACSIncomingCallConntroller()
+        let incomingCallController = ACSIncomingCallController()
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         incomingCallController.resigterIncomingCallClient(appPubs: appDelegate.appPubs)
     }
@@ -239,7 +238,7 @@ class ViewController : UIViewController {
     }
 }
 
-extension ViewController : UITextFieldDelegate{}
+extension LoginViewController : UITextFieldDelegate{}
 
 extension UITextField {
     

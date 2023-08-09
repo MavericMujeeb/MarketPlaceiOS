@@ -73,7 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     meetingFinalLink = splitJoinUrl?[0]
 
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+                    let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! LoginViewController
                     vc.handleExternalLinks = true
                     vc.meetingLink = meetingFinalLink
 
@@ -95,7 +95,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func registerIncomingCallHandler () {
-        let incomingCallController = ACSIncomingCallConntroller()
+        let incomingCallController = ACSIncomingCallController()
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         incomingCallController.resigterIncomingCallClient(appPubs: appDelegate.appPubs)
     }
@@ -179,7 +179,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             meetingFinalLink = splitJoinUrl?[0]
 
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! LoginViewController
             vc.handleExternalLinks = true
             vc.meetingLink = meetingFinalLink
 

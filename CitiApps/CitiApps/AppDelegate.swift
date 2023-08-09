@@ -127,7 +127,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
     }
     
     func registerIncomingCallClient() {
-        let incomingCallController = ACSIncomingCallConntroller()
+        let incomingCallController = ACSIncomingCallController()
         incomingCallController.resigterIncomingCallClient(appPubs: appPubs)
     }
     
@@ -174,5 +174,3 @@ class AppPubs {
     @Published var pushPayload: PKPushPayload?
     @Published var pushToken: Data?
 }
-
-
