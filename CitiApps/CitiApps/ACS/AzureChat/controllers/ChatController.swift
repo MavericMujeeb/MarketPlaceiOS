@@ -267,8 +267,7 @@ class ChatController  {
     
     func callParticipantDetailsAPI() {
         CircleLoader.sharedInstance.show()
-        print(self.bankerEmailId)
-        print(self.custUserName)
+        
         let reqBody = "{" +
         "\"originatorId\":\"\(self.bankerEmailId!)\"," +
         "\"participantName\":\"\(self.custUserName!)\"" +

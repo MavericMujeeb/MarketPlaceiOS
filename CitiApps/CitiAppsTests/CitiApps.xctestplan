@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "0346A396-2850-42C5-9E19-DCD3C3322399",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CitiApps.xcodeproj",
+        "identifier" : "8DE6538C2A8E079900EEF3BE",
+        "name" : "CitiAppsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

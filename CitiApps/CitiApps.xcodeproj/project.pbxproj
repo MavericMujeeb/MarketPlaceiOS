@@ -16,6 +16,9 @@
 		8D4B4F5329FBC41F00B77B60 /* CallKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */; };
 		8D4B4F5C29FBDB8B00B77B60 /* AzureCommunicationCalling.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */; };
 		8D4B4F5D29FBDB8C00B77B60 /* AzureCommunicationCalling.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D5554012A84C296002D6D3B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5554002A84C296002D6D3B /* NetworkManager.swift */; };
+		8D55540A2A86412F002D6D3B /* ACSTeamsCallingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5554092A86412F002D6D3B /* ACSTeamsCallingController.swift */; };
+		8D5554112A866F8A002D6D3B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5554102A866F89002D6D3B /* StorageManager.swift */; };
 		8D5BCDD729B8A97C0009A8B6 /* AcsUserIdToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */; };
 		8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; };
 		8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -50,6 +53,9 @@
 		8DCFCBAC2A57FB6500F1D293 /* DashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBAB2A57FB6500F1D293 /* DashViewController.swift */; };
 		8DCFCBAF2A58311E00F1D293 /* ScreenSharingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBAE2A58311E00F1D293 /* ScreenSharingController.swift */; };
 		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
+		8DE653902A8E079900EEF3BE /* CitiAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6538F2A8E079900EEF3BE /* CitiAppsTests.swift */; };
+		8DE653992A8E0B0100EEF3BE /* ScheduledMeetingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE653982A8E0B0100EEF3BE /* ScheduledMeetingTests.swift */; };
+		8DE6539B2A8E0B3F00EEF3BE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6539A2A8E0B3F00EEF3BE /* MockData.swift */; };
 		8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */; };
 		8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D129756DD6006B0700 /* ViewController.swift */; };
 		8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D629756DD8006B0700 /* Assets.xcassets */; };
@@ -165,6 +171,13 @@
 			remoteGlobalIDString = A8659FC52602A22000C807DE;
 			remoteInfo = AzureCommunicationUICalling;
 		};
+		8DE653912A8E079900EEF3BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DFBD2C229756DD6006B0700 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DFBD2C929756DD6006B0700;
+			remoteInfo = CitiApps;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -202,6 +215,10 @@
 		8D4100BF2A694752001473F5 /* ContainerHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerHostingController.swift; sourceTree = "<group>"; };
 		8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
 		8D4B4F5A29FBDB8700B77B60 /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AzureCommunicationCalling.xcframework; sourceTree = "<group>"; };
+		8D5554002A84C296002D6D3B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8D5554092A86412F002D6D3B /* ACSTeamsCallingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSTeamsCallingController.swift; sourceTree = "<group>"; };
+		8D5554102A866F89002D6D3B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		8D5554152A8CA65F002D6D3B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcsUserIdToken.swift; sourceTree = "<group>"; };
 		8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = "../../../../../../../Downloads/WindowsAzureMessaging-SDK-Apple/iOS/WindowsAzureMessaging.framework"; sourceTree = "<group>"; };
 		8D99CA2B29A3949200700C78 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
@@ -224,6 +241,11 @@
 		8DCFCBAE2A58311E00F1D293 /* ScreenSharingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSharingController.swift; sourceTree = "<group>"; };
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		8DE0D53029804FA200201043 /* CitiApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CitiApps.entitlements; sourceTree = "<group>"; };
+		8DE6538D2A8E079900EEF3BE /* CitiAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DE6538F2A8E079900EEF3BE /* CitiAppsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiAppsTests.swift; sourceTree = "<group>"; };
+		8DE653972A8E07EF00EEF3BE /* CitiApps.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CitiApps.xctestplan; sourceTree = "<group>"; };
+		8DE653982A8E0B0100EEF3BE /* ScheduledMeetingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledMeetingTests.swift; sourceTree = "<group>"; };
+		8DE6539A2A8E0B3F00EEF3BE /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		8DFBD2CA29756DD6006B0700 /* CitiApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFBD2D129756DD6006B0700 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +275,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8DE6538A2A8E079900EEF3BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DFBD2C729756DD6006B0700 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +333,8 @@
 		8D0954972A821EF000DC6D33 /* AzureCalling */ = {
 			isa = PBXGroup;
 			children = (
+				8D55540B2A864E9D002D6D3B /* AzureAdhocCalling */,
+				8D5554052A864100002D6D3B /* AzureTeamsCalling */,
 				8D4B4F4D29FBBF8D00B77B60 /* AzureIncomingCalling */,
 				8DFBD331297578D3006B0700 /* IntroViewController.swift */,
 				8DFBD333297578DA006B0700 /* InviteViewController.swift */,
@@ -341,7 +372,9 @@
 		8D09549C2A83629800DC6D33 /* AzureChat */ = {
 			isa = PBXGroup;
 			children = (
-				8D99CA2B29A3949200700C78 /* ChatController.swift */,
+				8D5554042A862BF5002D6D3B /* views */,
+				8D5554032A862BF1002D6D3B /* models */,
+				8D5554022A862BDF002D6D3B /* controllers */,
 			);
 			path = AzureChat;
 			sourceTree = "<group>";
@@ -429,6 +462,107 @@
 			path = AzureIncomingCalling;
 			sourceTree = "<group>";
 		};
+		8D5553FF2A84C289002D6D3B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8D5554002A84C296002D6D3B /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8D5554022A862BDF002D6D3B /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8D99CA2B29A3949200700C78 /* ChatController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		8D5554032A862BF1002D6D3B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		8D5554042A862BF5002D6D3B /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		8D5554052A864100002D6D3B /* AzureTeamsCalling */ = {
+			isa = PBXGroup;
+			children = (
+				8D5554082A864118002D6D3B /* views */,
+				8D5554072A864113002D6D3B /* models */,
+				8D5554062A86410C002D6D3B /* controllers */,
+			);
+			path = AzureTeamsCalling;
+			sourceTree = "<group>";
+		};
+		8D5554062A86410C002D6D3B /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8D5554092A86412F002D6D3B /* ACSTeamsCallingController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		8D5554072A864113002D6D3B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		8D5554082A864118002D6D3B /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		8D55540B2A864E9D002D6D3B /* AzureAdhocCalling */ = {
+			isa = PBXGroup;
+			children = (
+				8D55540E2A864EBD002D6D3B /* views */,
+				8D55540D2A864EB7002D6D3B /* models */,
+				8D55540C2A864EAA002D6D3B /* controllers */,
+			);
+			path = AzureAdhocCalling;
+			sourceTree = "<group>";
+		};
+		8D55540C2A864EAA002D6D3B /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		8D55540D2A864EB7002D6D3B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		8D55540E2A864EBD002D6D3B /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		8D55540F2A866F67002D6D3B /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				8D5554102A866F89002D6D3B /* StorageManager.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		8DB11E3F2A838AF700E111CE /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +630,17 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		8DE6538E2A8E079900EEF3BE /* CitiAppsTests */ = {
+			isa = PBXGroup;
+			children = (
+				8DE6538F2A8E079900EEF3BE /* CitiAppsTests.swift */,
+				8DE653972A8E07EF00EEF3BE /* CitiApps.xctestplan */,
+				8DE653982A8E0B0100EEF3BE /* ScheduledMeetingTests.swift */,
+				8DE6539A2A8E0B3F00EEF3BE /* MockData.swift */,
+			);
+			path = CitiAppsTests;
+			sourceTree = "<group>";
+		};
 		8DFBD2C129756DD6006B0700 = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +649,7 @@
 				8D0954BE2A83631C00DC6D33 /* OtherPackages */,
 				8D09549D2A8362E200DC6D33 /* AzureSDK */,
 				8DFBD2CC29756DD6006B0700 /* CitiApps */,
+				8DE6538E2A8E079900EEF3BE /* CitiAppsTests */,
 				8DFBD2CB29756DD6006B0700 /* Products */,
 				8DFBD30429757296006B0700 /* Frameworks */,
 			);
@@ -513,6 +659,7 @@
 			isa = PBXGroup;
 			children = (
 				8DFBD2CA29756DD6006B0700 /* CitiApps.app */,
+				8DE6538D2A8E079900EEF3BE /* CitiAppsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -537,6 +684,7 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D5554152A8CA65F002D6D3B /* XCTest.framework */,
 				8DB11EA72A839F9D00E111CE /* App.xcframework */,
 				8DB11EA82A839F9D00E111CE /* Flutter.xcframework */,
 				8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */,
@@ -547,6 +695,8 @@
 		8DFBD3532976A9E2006B0700 /* ACS */ = {
 			isa = PBXGroup;
 			children = (
+				8D55540F2A866F67002D6D3B /* Storage */,
+				8D5553FF2A84C289002D6D3B /* Network */,
 				8D09549C2A83629800DC6D33 /* AzureChat */,
 				8D0954982A82207000DC6D33 /* Utils */,
 				8D0954972A821EF000DC6D33 /* AzureCalling */,
@@ -558,6 +708,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8DE6538C2A8E079900EEF3BE /* CitiAppsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DE653932A8E079900EEF3BE /* Build configuration list for PBXNativeTarget "CitiAppsTests" */;
+			buildPhases = (
+				8DE653892A8E079900EEF3BE /* Sources */,
+				8DE6538A2A8E079900EEF3BE /* Frameworks */,
+				8DE6538B2A8E079900EEF3BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8DE653922A8E079900EEF3BE /* PBXTargetDependency */,
+			);
+			name = CitiAppsTests;
+			productName = CitiAppsTests;
+			productReference = 8DE6538D2A8E079900EEF3BE /* CitiAppsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8DFBD2C929756DD6006B0700 /* CitiApps */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DFBD2DE29756DD8006B0700 /* Build configuration list for PBXNativeTarget "CitiApps" */;
@@ -586,9 +754,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					8DE6538C2A8E079900EEF3BE = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 8DFBD2C929756DD6006B0700;
+					};
 					8DFBD2C929756DD6006B0700 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -641,6 +813,7 @@
 			projectRoot = "";
 			targets = (
 				8DFBD2C929756DD6006B0700 /* CitiApps */,
+				8DE6538C2A8E079900EEF3BE /* CitiAppsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -740,6 +913,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8DE6538B2A8E079900EEF3BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DFBD2C829756DD6006B0700 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -752,6 +932,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8DE653892A8E079900EEF3BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DE653902A8E079900EEF3BE /* CitiAppsTests.swift in Sources */,
+				8DE6539B2A8E0B3F00EEF3BE /* MockData.swift in Sources */,
+				8DE653992A8E0B0100EEF3BE /* ScheduledMeetingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DFBD2C629756DD6006B0700 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -768,6 +958,7 @@
 				8DFBD336297578E0006B0700 /* JoinCallViewController.swift in Sources */,
 				8DFBD334297578DA006B0700 /* InviteViewController.swift in Sources */,
 				8DFBD34429757924006B0700 /* PaddingContainer.swift in Sources */,
+				8D5554012A84C296002D6D3B /* NetworkManager.swift in Sources */,
 				8DFBD332297578D3006B0700 /* IntroViewController.swift in Sources */,
 				8DC727832A52EC8F00D247A7 /* IncomingCallView.swift in Sources */,
 				8DCFCBA62A57FB4400F1D293 /* SearchViewController.swift in Sources */,
@@ -780,6 +971,7 @@
 				8DFBD32429757878006B0700 /* AADAuthHandler.swift in Sources */,
 				8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */,
 				8DFBD3422975791C006B0700 /* LayoutHelpers.swift in Sources */,
+				8D55540A2A86412F002D6D3B /* ACSTeamsCallingController.swift in Sources */,
 				8DFBD32C297578B9006B0700 /* JoinCallConfig.swift in Sources */,
 				8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */,
 				8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */,
@@ -787,6 +979,7 @@
 				8DFBD330297578C8006B0700 /* LinkMetadataManager.swift in Sources */,
 				8DFBD34029757918006B0700 /* FluentUiExtensions.swift in Sources */,
 				8DFBD34629757929006B0700 /* ThemeColor.swift in Sources */,
+				8D5554112A866F8A002D6D3B /* StorageManager.swift in Sources */,
 				8D0954C32A836A6300DC6D33 /* IncomingCallHandler.swift in Sources */,
 				8DFBD33C297578F5006B0700 /* IconTextField.swift in Sources */,
 				8DCFCBAC2A57FB6500F1D293 /* DashViewController.swift in Sources */,
@@ -799,6 +992,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8DE653922A8E079900EEF3BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DFBD2C929756DD6006B0700 /* CitiApps */;
+			targetProxy = 8DE653912A8E079900EEF3BE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8D4B4F5E29FBF5B100B77B60 /* Beta */ = {
@@ -899,9 +1100,69 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = CitiAdhocACS;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Beta;
+		};
+		8DE653942A8E079900EEF3BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R6345GPK28;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citiacsdemo.CitiAppsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CitiApps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CitiApps";
+			};
+			name = Debug;
+		};
+		8DE653952A8E079900EEF3BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R6345GPK28;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citiacsdemo.CitiAppsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CitiApps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CitiApps";
+			};
+			name = Release;
+		};
+		8DE653962A8E079900EEF3BE /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R6345GPK28;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citiacsdemo.CitiAppsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CitiApps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CitiApps";
 			};
 			name = Beta;
 		};
@@ -1064,9 +1325,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = CitiAdhocACS;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1082,6 +1346,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = R6345GPK28;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SDK",
@@ -1112,15 +1377,28 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = CitiAdhocACS;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8DE653932A8E079900EEF3BE /* Build configuration list for PBXNativeTarget "CitiAppsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DE653942A8E079900EEF3BE /* Debug */,
+				8DE653952A8E079900EEF3BE /* Release */,
+				8DE653962A8E079900EEF3BE /* Beta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8DFBD2C529756DD6006B0700 /* Build configuration list for PBXProject "CitiApps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
