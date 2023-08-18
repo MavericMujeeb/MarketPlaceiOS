@@ -1,0 +1,4 @@
+framework module AzureCommunicationChat {
+  header "AzureCommunicationChat-Swift.h"
+  requires objc
+}

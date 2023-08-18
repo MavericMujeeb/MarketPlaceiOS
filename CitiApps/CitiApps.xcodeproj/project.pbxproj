@@ -49,6 +49,8 @@
 		8DF021C62A8F444900CDB5C6 /* libFluentUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021C52A8F443E00CDB5C6 /* libFluentUI.a */; };
 		8DF021C92A8F500E00CDB5C6 /* Trouter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021C72A8F500700CDB5C6 /* Trouter.xcframework */; };
 		8DF021CA2A8F500E00CDB5C6 /* Trouter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021C72A8F500700CDB5C6 /* Trouter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DF021E42A8F75FD00CDB5C6 /* AzureCommunicationChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021E02A8F75F000CDB5C6 /* AzureCommunicationChat.framework */; };
+		8DF021E52A8F75FD00CDB5C6 /* AzureCommunicationChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021E02A8F75F000CDB5C6 /* AzureCommunicationChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */; };
 		8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D129756DD6006B0700 /* ViewController.swift */; };
 		8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D629756DD8006B0700 /* Assets.xcassets */; };
@@ -100,6 +102,7 @@
 				8DB11EAC2A839FC100E111CE /* Flutter.xcframework in Embed Frameworks */,
 				8DF021B72A8F43CB00CDB5C6 /* AzureCore.framework in Embed Frameworks */,
 				8DF021BB2A8F43D200CDB5C6 /* PIPKit.framework in Embed Frameworks */,
+				8DF021E52A8F75FD00CDB5C6 /* AzureCommunicationChat.framework in Embed Frameworks */,
 				8DF021B32A8F43C700CDB5C6 /* AzureCommunicationUICalling.framework in Embed Frameworks */,
 				8DF021B92A8F43CF00CDB5C6 /* MSAL.xcframework in Embed Frameworks */,
 				8DB11EAA2A839FBA00E111CE /* App.xcframework in Embed Frameworks */,
@@ -146,6 +149,7 @@
 		8DF021A52A8F43B700CDB5C6 /* AzureCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCore.framework; path = AzureFramework/AzureCore.framework; sourceTree = "<group>"; };
 		8DF021BD2A8F443D00CDB5C6 /* FluentUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FluentUI.xcodeproj; path = "SDK/fluentui-apple-0.3.9_main_0.3/ios/FluentUI.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		8DF021C72A8F500700CDB5C6 /* Trouter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Trouter.xcframework; path = AzureFramework/Trouter.xcframework; sourceTree = "<group>"; };
+		8DF021E02A8F75F000CDB5C6 /* AzureCommunicationChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationChat.framework; path = AzureFramework/AzureCommunicationChat.framework; sourceTree = "<group>"; };
 		8DFBD2CA29756DD6006B0700 /* CitiApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFBD2D129756DD6006B0700 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 				8DB11EAB2A839FC100E111CE /* Flutter.xcframework in Frameworks */,
 				8DF021C62A8F444900CDB5C6 /* libFluentUI.a in Frameworks */,
 				8DB11EA92A839FBA00E111CE /* App.xcframework in Frameworks */,
+				8DF021E42A8F75FD00CDB5C6 /* AzureCommunicationChat.framework in Frameworks */,
 				8DF021AE2A8F43C400CDB5C6 /* AzureCommunicationCalling.xcframework in Frameworks */,
 				8DF021B62A8F43CB00CDB5C6 /* AzureCore.framework in Frameworks */,
 				8DF021BA2A8F43D200CDB5C6 /* PIPKit.framework in Frameworks */,
@@ -377,6 +382,7 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8DF021E02A8F75F000CDB5C6 /* AzureCommunicationChat.framework */,
 				8DF021C72A8F500700CDB5C6 /* Trouter.xcframework */,
 				8DF0219F2A8F43B700CDB5C6 /* AzureCommunicationCalling.xcframework */,
 				8DF021A32A8F43B700CDB5C6 /* AzureCommunicationCommon.framework */,
