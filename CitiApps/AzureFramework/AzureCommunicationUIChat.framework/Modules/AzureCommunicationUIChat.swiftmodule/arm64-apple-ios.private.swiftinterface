@@ -1,0 +1,70 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)
+// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AzureCommunicationUIChat
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AzureCommunicationChat
+import AzureCommunicationCommon
+import AzureCore
+import Combine
+import CoreGraphics
+import FluentUI
+import Foundation
+import Swift
+import SwiftUI
+import UIKit
+import UniformTypeIdentifiers
+import WebKit
+import _Concurrency
+import _StringProcessing
+import os
+public struct ChatCompositeErrorCode {
+  public static let joinFailed: Swift.String
+  public static let sendMessageFailed: Swift.String
+  public static let startEventNotificationsFailed: Swift.String
+  public static let fetchMessagesFailed: Swift.String
+  public static let requestParticipantsFetchFailed: Swift.String
+  public static let sendReadReceiptFailed: Swift.String
+  public static let sendTypingIndicatorFailed: Swift.String
+  public static let disconnectFailed: Swift.String
+}
+public struct ChatCompositeError : Swift.Error {
+  public let code: Swift.String
+  public var error: (any Swift.Error)?
+}
+extension AzureCommunicationUIChat.ChatCompositeError : Swift.Equatable {
+  public static func == (lhs: AzureCommunicationUIChat.ChatCompositeError, rhs: AzureCommunicationUIChat.ChatCompositeError) -> Swift.Bool
+}
+public let myNotificationName: Foundation.Notification.Name
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class ChatCompositeViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) public var onCloseChatCompositeViewcompletion: (() -> Swift.Void)?
+  @_Concurrency.MainActor(unsafe) public init(with chatAdapter: AzureCommunicationUIChat.ChatAdapter, showCallButtons: Swift.Bool = true)
+  @objc deinit
+}
+public struct LocalizationOptions {
+  public init(locale: Foundation.Locale, localizableFilename: Swift.String = "Localizable", layoutDirection: SwiftUI.LayoutDirection = .leftToRight)
+}
+public struct ChatCompositeView : SwiftUI.View {
+  public init(with chatAdapter: AzureCommunicationUIChat.ChatAdapter)
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s24AzureCommunicationUIChat17ChatCompositeViewV4bodyQrvp", 0) __
+}
+public class ChatAdapter {
+  @_hasMissingDesignatedInitializers public class Events {
+    public var onError: ((AzureCommunicationUIChat.ChatCompositeError) -> Swift.Void)?
+    @objc deinit
+  }
+  final public let events: AzureCommunicationUIChat.ChatAdapter.Events
+  public init(endpoint: Swift.String, identifier: any AzureCommunicationCommon.CommunicationIdentifier, credential: AzureCommunicationCommon.CommunicationTokenCredential, threadId: Swift.String, displayName: Swift.String? = nil)
+  @objc deinit
+  public func connect(completionHandler: ((Swift.Result<Swift.Void, AzureCommunicationUIChat.ChatCompositeError>) -> Swift.Void)?)
+  #if compiler(>=5.3) && $AsyncAwait
+  public func connect() async throws
+  #endif
+  public func disconnect(completionHandler: @escaping ((Swift.Result<Swift.Void, AzureCommunicationUIChat.ChatCompositeError>) -> Swift.Void))
+  #if compiler(>=5.3) && $AsyncAwait
+  public func disconnect() async throws
+  #endif
+}

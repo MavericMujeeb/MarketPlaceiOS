@@ -1,0 +1,150 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)
+// swift-module-flags: -target arm64-apple-ios15.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name AzureCommunicationUICalling
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AVFAudio
+import AVFoundation
+import AzureCommunicationCalling
+import AzureCommunicationChat
+import AzureCommunicationCommon
+import AzureCommunicationUIChat
+import CallKit
+import Combine
+import CoreLocation
+import FluentUI
+import Foundation
+import Network
+import PIPKit
+import ReplayKit
+import Swift
+import SwiftUI
+import Trouter
+import UIKit
+import _Concurrency
+import _StringProcessing
+import os.log
+import os
+public let callEndNotification: Foundation.Notification.Name
+public class CallComposite {
+  @_hasMissingDesignatedInitializers public class Events {
+    public var onError: ((AzureCommunicationUICalling.CallCompositeError) -> Swift.Void)?
+    public var onRemoteParticipantJoined: (([any AzureCommunicationCommon.CommunicationIdentifier]) -> Swift.Void)?
+    @objc deinit
+  }
+  final public let events: AzureCommunicationUICalling.CallComposite.Events
+  public init(withOptions options: AzureCommunicationUICalling.CallCompositeOptions? = nil)
+  @objc deinit
+  public func launch(remoteOptions: AzureCommunicationUICalling.RemoteOptions, localOptions: AzureCommunicationUICalling.LocalOptions? = nil)
+  public func set(remoteParticipantViewData: AzureCommunicationUICalling.ParticipantViewData, for identifier: any AzureCommunicationCommon.CommunicationIdentifier, completionHandler: ((Swift.Result<Swift.Void, AzureCommunicationUICalling.SetParticipantViewDataError>) -> Swift.Void)? = nil)
+}
+public var loggedInUserName: Swift.String
+public var loggedInUserId: Swift.String
+public var loggedClientACSId: Swift.String
+public var communincationTokenString: Swift.String!
+public struct CallCompositeOptions {
+  public init(theme: (any AzureCommunicationUICalling.ThemeOptions)? = nil, localization: AzureCommunicationUICalling.LocalizationOptions? = nil, name: Swift.String!, userId: Swift.String!, token: Swift.String!, isAudio: Swift.Bool!, isVideo: Swift.Bool!, isIncomingCall: Swift.Bool!)
+}
+public struct SupportedLocale {
+  public static let zh: Foundation.Locale
+  public static let zhHans: Foundation.Locale
+  public static let zhHansCN: Foundation.Locale
+  public static let zhHant: Foundation.Locale
+  public static let zhHantTW: Foundation.Locale
+  public static let nl: Foundation.Locale
+  public static let nlNL: Foundation.Locale
+  public static let en: Foundation.Locale
+  public static let enGB: Foundation.Locale
+  public static let enUS: Foundation.Locale
+  public static let fr: Foundation.Locale
+  public static let frFR: Foundation.Locale
+  public static let de: Foundation.Locale
+  public static let deDE: Foundation.Locale
+  public static let it: Foundation.Locale
+  public static let itIT: Foundation.Locale
+  public static let ja: Foundation.Locale
+  public static let jaJP: Foundation.Locale
+  public static let ko: Foundation.Locale
+  public static let koKR: Foundation.Locale
+  public static let pt: Foundation.Locale
+  public static let ptBR: Foundation.Locale
+  public static let ru: Foundation.Locale
+  public static let ruRU: Foundation.Locale
+  public static let es: Foundation.Locale
+  public static let esES: Foundation.Locale
+  public static let tr: Foundation.Locale
+  public static let trTR: Foundation.Locale
+  public static var values: [Foundation.Locale] {
+    get
+  }
+}
+public struct LocalizationOptions {
+  public init(locale: Foundation.Locale, localizableFilename: Swift.String = "Localizable", layoutDirection: SwiftUI.LayoutDirection = .leftToRight)
+}
+public protocol ThemeOptions {
+  var colorSchemeOverride: UIKit.UIUserInterfaceStyle { get }
+  var primaryColor: UIKit.UIColor { get }
+  var primaryColorTint10: UIKit.UIColor { get }
+  var primaryColorTint20: UIKit.UIColor { get }
+  var primaryColorTint30: UIKit.UIColor { get }
+}
+extension AzureCommunicationUICalling.ThemeOptions {
+  public var colorSchemeOverride: UIKit.UIUserInterfaceStyle {
+    get
+  }
+  public var primaryColor: UIKit.UIColor {
+    get
+  }
+  public var primaryColorTint10: UIKit.UIColor {
+    get
+  }
+  public var primaryColorTint20: UIKit.UIColor {
+    get
+  }
+  public var primaryColorTint30: UIKit.UIColor {
+    get
+  }
+}
+public enum JoinLocator {
+  case groupCall(groupId: Foundation.UUID)
+  case teamsMeeting(teamsLink: Swift.String)
+  case audioVideoCall(acsId: Swift.String)
+}
+public struct RemoteOptions {
+  public let locator: AzureCommunicationUICalling.JoinLocator
+  public let credential: AzureCommunicationCommon.CommunicationTokenCredential
+  public let displayName: Swift.String?
+  public init(for locator: AzureCommunicationUICalling.JoinLocator, credential: AzureCommunicationCommon.CommunicationTokenCredential, displayName: Swift.String? = nil)
+}
+public struct LocalOptions {
+  public init(participantViewData: AzureCommunicationUICalling.ParticipantViewData? = nil, setupScreenViewData: AzureCommunicationUICalling.SetupScreenViewData? = nil)
+}
+public struct ParticipantViewData {
+  public init(avatar: UIKit.UIImage? = nil, displayName: Swift.String? = nil)
+}
+public struct SetupScreenViewData {
+  public init(title: Swift.String, subtitle: Swift.String? = nil)
+}
+public enum SetParticipantViewDataError : Swift.String, Swift.Error {
+  case participantNotInCall
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct CallCompositeErrorCode {
+  public static let callJoin: Swift.String
+  public static let callEnd: Swift.String
+  public static let cameraFailure: Swift.String
+  public static let tokenExpired: Swift.String
+}
+public struct CallCompositeError {
+  public let code: Swift.String
+  public let error: (any Swift.Error)?
+}
+extension AzureCommunicationUICalling.CallCompositeError : Swift.Equatable {
+  public static func == (lhs: AzureCommunicationUICalling.CallCompositeError, rhs: AzureCommunicationUICalling.CallCompositeError) -> Swift.Bool
+}
+extension AzureCommunicationUICalling.SetParticipantViewDataError : Swift.Equatable {}
+extension AzureCommunicationUICalling.SetParticipantViewDataError : Swift.Hashable {}
+extension AzureCommunicationUICalling.SetParticipantViewDataError : Swift.RawRepresentable {}

@@ -1,0 +1,11 @@
+framework module PIPKit {
+  umbrella header "PIPKit.h"
+
+  export *
+  module * { export * }
+}
+
+module PIPKit.Swift {
+  header "PIPKit-Swift.h"
+  requires objc
+}
