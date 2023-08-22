@@ -73,6 +73,8 @@
 		8DECEF012A948C380064A166 /* LocalizationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEED72A948C370064A166 /* LocalizationProviderTests.swift */; };
 		8DECEF022A948C380064A166 /* CompositeViewModelFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEED92A948C370064A166 /* CompositeViewModelFactoryTests.swift */; };
 		8DECEF042A9499130064A166 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEF032A9499130064A166 /* MockData.swift */; };
+		8DECEF1B2A94DDC70064A166 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEF1A2A94DDC70064A166 /* StorageManager.swift */; };
+		8DECEF1D2A94DDD50064A166 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEF1C2A94DDD50064A166 /* NetworkManager.swift */; };
 		8DF021A62A8F43B700CDB5C6 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF0219E2A8F43B700CDB5C6 /* WindowsAzureMessaging.framework */; };
 		8DF021AE2A8F43C400CDB5C6 /* AzureCommunicationCalling.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF0219F2A8F43B700CDB5C6 /* AzureCommunicationCalling.xcframework */; };
 		8DF021AF2A8F43C400CDB5C6 /* AzureCommunicationCalling.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF0219F2A8F43B700CDB5C6 /* AzureCommunicationCalling.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -216,6 +218,8 @@
 		8DECEED72A948C370064A166 /* LocalizationProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationProviderTests.swift; sourceTree = "<group>"; };
 		8DECEED92A948C370064A166 /* CompositeViewModelFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeViewModelFactoryTests.swift; sourceTree = "<group>"; };
 		8DECEF032A9499130064A166 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		8DECEF1A2A94DDC70064A166 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		8DECEF1C2A94DDD50064A166 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8DF0219E2A8F43B700CDB5C6 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = AzureFramework/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		8DF0219F2A8F43B700CDB5C6 /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = AzureFramework/AzureCommunicationCalling.xcframework; sourceTree = "<group>"; };
 		8DF021A02A8F43B700CDB5C6 /* AzureCommunicationUICalling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationUICalling.framework; path = AzureFramework/AzureCommunicationUICalling.framework; sourceTree = "<group>"; };
@@ -593,6 +597,15 @@
 			path = Factories;
 			sourceTree = "<group>";
 		};
+		8DECEF192A94DDB90064A166 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEF1A2A94DDC70064A166 /* StorageManager.swift */,
+				8DECEF1C2A94DDD50064A166 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		8DF021BC2A8F442800CDB5C6 /* FluentUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +675,7 @@
 		8DFBD3532976A9E2006B0700 /* ACS */ = {
 			isa = PBXGroup;
 			children = (
+				8DECEF192A94DDB90064A166 /* Managers */,
 				8D09549C2A83629800DC6D33 /* AzureChat */,
 				8D0954982A82207000DC6D33 /* Utils */,
 				8D0954972A821EF000DC6D33 /* AzureCalling */,
@@ -830,6 +844,7 @@
 				8DFBD33A297578F0006B0700 /* BusyOverlay.swift in Sources */,
 				8D4B4F5329FBC41F00B77B60 /* CallKitHelper.swift in Sources */,
 				8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */,
+				8DECEF1B2A94DDC70064A166 /* StorageManager.swift in Sources */,
 				8DFBD33E29757913006B0700 /* Data+Extensions.swift in Sources */,
 				8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */,
 				8DFBD336297578E0006B0700 /* JoinCallViewController.swift in Sources */,
@@ -840,6 +855,7 @@
 				8DCFCBA62A57FB4400F1D293 /* SearchViewController.swift in Sources */,
 				8D09549A2A83625B00DC6D33 /* IncomingCallController.swift in Sources */,
 				8DCFCBA82A57FB4400F1D293 /* LoginViewModel.swift in Sources */,
+				8DECEF1D2A94DDD50064A166 /* NetworkManager.swift in Sources */,
 				8DFBD3282975788B006B0700 /* TokenService.swift in Sources */,
 				8D99CA2E29A63BE900700C78 /* CitiConstants.swift in Sources */,
 				8D0A6077298BE4A0002EBBC4 /* UserInfoData.swift in Sources */,
