@@ -33,6 +33,46 @@
 		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
 		8DECEE862A9352980064A166 /* libFluentUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DECEE852A9352980064A166 /* libFluentUI.a */; };
 		8DECEE882A935A6C0064A166 /* FluentUIResources-ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8DECEE872A935A6C0064A166 /* FluentUIResources-ios.bundle */; };
+		8DECEE902A937E000064A166 /* CitiAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEE8F2A937E000064A166 /* CitiAppsTests.swift */; };
+		8DECEE9B2A937E9A0064A166 /* DeeplinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEE9A2A937E9A0064A166 /* DeeplinkTests.swift */; };
+		8DECEE9D2A937EAF0064A166 /* AzureCallingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEE9C2A937EAF0064A166 /* AzureCallingTests.swift */; };
+		8DECEE9F2A9380460064A166 /* AzureChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEE9E2A9380460064A166 /* AzureChatTests.swift */; };
+		8DECEEA12A9380560064A166 /* AzureGraphApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEA02A9380560064A166 /* AzureGraphApiTests.swift */; };
+		8DECEEDA2A948C370064A166 /* ChatViewModelMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEA62A948C370064A166 /* ChatViewModelMocking.swift */; };
+		8DECEEDC2A948C370064A166 /* LoggerMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEA82A948C370064A166 /* LoggerMocking.swift */; };
+		8DECEEE02A948C370064A166 /* ChatSDKWrapperMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEAC2A948C370064A166 /* ChatSDKWrapperMocking.swift */; };
+		8DECEEE12A948C370064A166 /* ChatServiceMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEAD2A948C370064A166 /* ChatServiceMocking.swift */; };
+		8DECEEE22A948C370064A166 /* LocalizationProviderMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEAE2A948C370064A166 /* LocalizationProviderMocking.swift */; };
+		8DECEEE32A948C370064A166 /* ReducerMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEB02A948C370064A166 /* ReducerMocking.swift */; };
+		8DECEEE42A948C370064A166 /* ChatServiceEventHandlerMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEB12A948C370064A166 /* ChatServiceEventHandlerMocking.swift */; };
+		8DECEEE52A948C370064A166 /* ChatActionHandlerMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEB22A948C370064A166 /* ChatActionHandlerMocking.swift */; };
+		8DECEEE62A948C370064A166 /* MiddlewareMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEB32A948C370064A166 /* MiddlewareMocking.swift */; };
+		8DECEEE72A948C370064A166 /* RepositoryHandlerMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEB42A948C370064A166 /* RepositoryHandlerMocking.swift */; };
+		8DECEEE82A948C370064A166 /* StoreFactoryMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEB52A948C370064A166 /* StoreFactoryMocking.swift */; };
+		8DECEEE92A948C370064A166 /* MessageRepositoryManagerMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEB62A948C370064A166 /* MessageRepositoryManagerMocking.swift */; };
+		8DECEEEA2A948C370064A166 /* DiagnosticConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEB82A948C370064A166 /* DiagnosticConfigTests.swift */; };
+		8DECEEEC2A948C370064A166 /* MessageRepositoryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEBB2A948C370064A166 /* MessageRepositoryManagerTests.swift */; };
+		8DECEEEE2A948C380064A166 /* ErrorManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEBD2A948C370064A166 /* ErrorManagerTests.swift */; };
+		8DECEEF02A948C380064A166 /* ChatServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEC02A948C370064A166 /* ChatServiceTests.swift */; };
+		8DECEEF12A948C380064A166 /* ChatSDKEventsHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEC12A948C370064A166 /* ChatSDKEventsHandlerTests.swift */; };
+		8DECEEF22A948C380064A166 /* NavigationRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEC22A948C370064A166 /* NavigationRouterTests.swift */; };
+		8DECEEF32A948C380064A166 /* ChatServiceEventHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEC52A948C370064A166 /* ChatServiceEventHandlerTests.swift */; };
+		8DECEEF42A948C380064A166 /* RepositoryMiddlewareHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEC62A948C370064A166 /* RepositoryMiddlewareHandlerTests.swift */; };
+		8DECEEF52A948C380064A166 /* ChatMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEC72A948C370064A166 /* ChatMiddlewareTests.swift */; };
+		8DECEEF62A948C380064A166 /* ChatActionHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEC82A948C370064A166 /* ChatActionHandlerTests.swift */; };
+		8DECEEF72A948C380064A166 /* RepositoryMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEEC92A948C370064A166 /* RepositoryMiddlewareTests.swift */; };
+		8DECEEF82A948C380064A166 /* ChatReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEECB2A948C370064A166 /* ChatReducerTests.swift */; };
+		8DECEEF92A948C380064A166 /* LifeCycleReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEECC2A948C370064A166 /* LifeCycleReducerTests.swift */; };
+		8DECEEFA2A948C380064A166 /* ParticipantsReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEECD2A948C370064A166 /* ParticipantsReducerTests.swift */; };
+		8DECEEFB2A948C380064A166 /* AppStateReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEECE2A948C370064A166 /* AppStateReducerTests.swift */; };
+		8DECEEFC2A948C380064A166 /* NavigationReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEECF2A948C370064A166 /* NavigationReducerTests.swift */; };
+		8DECEEFD2A948C380064A166 /* ErrorReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEED02A948C370064A166 /* ErrorReducerTests.swift */; };
+		8DECEEFE2A948C380064A166 /* RepositoryReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEED12A948C370064A166 /* RepositoryReducerTests.swift */; };
+		8DECEEFF2A948C380064A166 /* ChatViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEED42A948C370064A166 /* ChatViewModelTests.swift */; };
+		8DECEF002A948C380064A166 /* MessageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEED52A948C370064A166 /* MessageViewModelTests.swift */; };
+		8DECEF012A948C380064A166 /* LocalizationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEED72A948C370064A166 /* LocalizationProviderTests.swift */; };
+		8DECEF022A948C380064A166 /* CompositeViewModelFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEED92A948C370064A166 /* CompositeViewModelFactoryTests.swift */; };
+		8DECEF042A9499130064A166 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECEF032A9499130064A166 /* MockData.swift */; };
 		8DF021A62A8F43B700CDB5C6 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF0219E2A8F43B700CDB5C6 /* WindowsAzureMessaging.framework */; };
 		8DF021AE2A8F43C400CDB5C6 /* AzureCommunicationCalling.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF0219F2A8F43B700CDB5C6 /* AzureCommunicationCalling.xcframework */; };
 		8DF021AF2A8F43C400CDB5C6 /* AzureCommunicationCalling.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF0219F2A8F43B700CDB5C6 /* AzureCommunicationCalling.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -74,6 +114,16 @@
 		8DFBD34429757924006B0700 /* PaddingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD34329757924006B0700 /* PaddingContainer.swift */; };
 		8DFBD34629757929006B0700 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD34529757929006B0700 /* ThemeColor.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8DECEE912A937E000064A166 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DFBD2C229756DD6006B0700 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DFBD2C929756DD6006B0700;
+			remoteInfo = CitiApps;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		AEC984292979B3BE0071A49D /* Embed Frameworks */ = {
@@ -125,6 +175,47 @@
 		8DE0D53029804FA200201043 /* CitiApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CitiApps.entitlements; sourceTree = "<group>"; };
 		8DECEE852A9352980064A166 /* libFluentUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFluentUI.a; sourceTree = "<group>"; };
 		8DECEE872A935A6C0064A166 /* FluentUIResources-ios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "FluentUIResources-ios.bundle"; path = "SDK/FluentUIResources-ios.bundle"; sourceTree = SOURCE_ROOT; };
+		8DECEE8D2A937E000064A166 /* CitiAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DECEE8F2A937E000064A166 /* CitiAppsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiAppsTests.swift; sourceTree = "<group>"; };
+		8DECEE9A2A937E9A0064A166 /* DeeplinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkTests.swift; sourceTree = "<group>"; };
+		8DECEE9C2A937EAF0064A166 /* AzureCallingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureCallingTests.swift; sourceTree = "<group>"; };
+		8DECEE9E2A9380460064A166 /* AzureChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureChatTests.swift; sourceTree = "<group>"; };
+		8DECEEA02A9380560064A166 /* AzureGraphApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureGraphApiTests.swift; sourceTree = "<group>"; };
+		8DECEEA62A948C370064A166 /* ChatViewModelMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModelMocking.swift; sourceTree = "<group>"; };
+		8DECEEA82A948C370064A166 /* LoggerMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerMocking.swift; sourceTree = "<group>"; };
+		8DECEEAC2A948C370064A166 /* ChatSDKWrapperMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatSDKWrapperMocking.swift; sourceTree = "<group>"; };
+		8DECEEAD2A948C370064A166 /* ChatServiceMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatServiceMocking.swift; sourceTree = "<group>"; };
+		8DECEEAE2A948C370064A166 /* LocalizationProviderMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationProviderMocking.swift; sourceTree = "<group>"; };
+		8DECEEB02A948C370064A166 /* ReducerMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerMocking.swift; sourceTree = "<group>"; };
+		8DECEEB12A948C370064A166 /* ChatServiceEventHandlerMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatServiceEventHandlerMocking.swift; sourceTree = "<group>"; };
+		8DECEEB22A948C370064A166 /* ChatActionHandlerMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatActionHandlerMocking.swift; sourceTree = "<group>"; };
+		8DECEEB32A948C370064A166 /* MiddlewareMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareMocking.swift; sourceTree = "<group>"; };
+		8DECEEB42A948C370064A166 /* RepositoryHandlerMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryHandlerMocking.swift; sourceTree = "<group>"; };
+		8DECEEB52A948C370064A166 /* StoreFactoryMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreFactoryMocking.swift; sourceTree = "<group>"; };
+		8DECEEB62A948C370064A166 /* MessageRepositoryManagerMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRepositoryManagerMocking.swift; sourceTree = "<group>"; };
+		8DECEEB82A948C370064A166 /* DiagnosticConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticConfigTests.swift; sourceTree = "<group>"; };
+		8DECEEBB2A948C370064A166 /* MessageRepositoryManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRepositoryManagerTests.swift; sourceTree = "<group>"; };
+		8DECEEBD2A948C370064A166 /* ErrorManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorManagerTests.swift; sourceTree = "<group>"; };
+		8DECEEC02A948C370064A166 /* ChatServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatServiceTests.swift; sourceTree = "<group>"; };
+		8DECEEC12A948C370064A166 /* ChatSDKEventsHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatSDKEventsHandlerTests.swift; sourceTree = "<group>"; };
+		8DECEEC22A948C370064A166 /* NavigationRouterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouterTests.swift; sourceTree = "<group>"; };
+		8DECEEC52A948C370064A166 /* ChatServiceEventHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatServiceEventHandlerTests.swift; sourceTree = "<group>"; };
+		8DECEEC62A948C370064A166 /* RepositoryMiddlewareHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryMiddlewareHandlerTests.swift; sourceTree = "<group>"; };
+		8DECEEC72A948C370064A166 /* ChatMiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMiddlewareTests.swift; sourceTree = "<group>"; };
+		8DECEEC82A948C370064A166 /* ChatActionHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatActionHandlerTests.swift; sourceTree = "<group>"; };
+		8DECEEC92A948C370064A166 /* RepositoryMiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryMiddlewareTests.swift; sourceTree = "<group>"; };
+		8DECEECB2A948C370064A166 /* ChatReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatReducerTests.swift; sourceTree = "<group>"; };
+		8DECEECC2A948C370064A166 /* LifeCycleReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCycleReducerTests.swift; sourceTree = "<group>"; };
+		8DECEECD2A948C370064A166 /* ParticipantsReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsReducerTests.swift; sourceTree = "<group>"; };
+		8DECEECE2A948C370064A166 /* AppStateReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateReducerTests.swift; sourceTree = "<group>"; };
+		8DECEECF2A948C370064A166 /* NavigationReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationReducerTests.swift; sourceTree = "<group>"; };
+		8DECEED02A948C370064A166 /* ErrorReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorReducerTests.swift; sourceTree = "<group>"; };
+		8DECEED12A948C370064A166 /* RepositoryReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryReducerTests.swift; sourceTree = "<group>"; };
+		8DECEED42A948C370064A166 /* ChatViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModelTests.swift; sourceTree = "<group>"; };
+		8DECEED52A948C370064A166 /* MessageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewModelTests.swift; sourceTree = "<group>"; };
+		8DECEED72A948C370064A166 /* LocalizationProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationProviderTests.swift; sourceTree = "<group>"; };
+		8DECEED92A948C370064A166 /* CompositeViewModelFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositeViewModelFactoryTests.swift; sourceTree = "<group>"; };
+		8DECEF032A9499130064A166 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		8DF0219E2A8F43B700CDB5C6 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = AzureFramework/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		8DF0219F2A8F43B700CDB5C6 /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = AzureFramework/AzureCommunicationCalling.xcframework; sourceTree = "<group>"; };
 		8DF021A02A8F43B700CDB5C6 /* AzureCommunicationUICalling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationUICalling.framework; path = AzureFramework/AzureCommunicationUICalling.framework; sourceTree = "<group>"; };
@@ -162,6 +253,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8DECEE8A2A937E000064A166 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DFBD2C729756DD6006B0700 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +409,190 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		8DECEE8E2A937E000064A166 /* CitiAppsTests */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEE992A937E5A0064A166 /* ACSGraphApiTests */,
+				8DECEE982A937E520064A166 /* ChatTests */,
+				8DECEE972A937E490064A166 /* CallingTests */,
+				8DECEE8F2A937E000064A166 /* CitiAppsTests.swift */,
+				8DECEF032A9499130064A166 /* MockData.swift */,
+			);
+			path = CitiAppsTests;
+			sourceTree = "<group>";
+		};
+		8DECEE972A937E490064A166 /* CallingTests */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEE9A2A937E9A0064A166 /* DeeplinkTests.swift */,
+				8DECEE9C2A937EAF0064A166 /* AzureCallingTests.swift */,
+			);
+			path = CallingTests;
+			sourceTree = "<group>";
+		};
+		8DECEE982A937E520064A166 /* ChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEA32A948C370064A166 /* Tests */,
+				8DECEE9E2A9380460064A166 /* AzureChatTests.swift */,
+			);
+			path = ChatTests;
+			sourceTree = "<group>";
+		};
+		8DECEE992A937E5A0064A166 /* ACSGraphApiTests */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEA02A9380560064A166 /* AzureGraphApiTests.swift */,
+			);
+			path = ACSGraphApiTests;
+			sourceTree = "<group>";
+		};
+		8DECEEA32A948C370064A166 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEA42A948C370064A166 /* Mocking */,
+				8DECEEB72A948C370064A166 /* ChatCompositeOptions */,
+				8DECEEBA2A948C370064A166 /* Manager */,
+				8DECEEBF2A948C370064A166 /* Service */,
+				8DECEEC32A948C370064A166 /* Redux */,
+				8DECEED22A948C370064A166 /* Presentation */,
+			);
+			name = Tests;
+			path = SDK/AzureCommunicationUIChat/Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		8DECEEA42A948C370064A166 /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEA52A948C370064A166 /* ViewModels */,
+				8DECEEA82A948C370064A166 /* LoggerMocking.swift */,
+				8DECEEAC2A948C370064A166 /* ChatSDKWrapperMocking.swift */,
+				8DECEEAD2A948C370064A166 /* ChatServiceMocking.swift */,
+				8DECEEAE2A948C370064A166 /* LocalizationProviderMocking.swift */,
+				8DECEEAF2A948C370064A166 /* Redux */,
+				8DECEEB62A948C370064A166 /* MessageRepositoryManagerMocking.swift */,
+			);
+			path = Mocking;
+			sourceTree = "<group>";
+		};
+		8DECEEA52A948C370064A166 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEA62A948C370064A166 /* ChatViewModelMocking.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8DECEEAF2A948C370064A166 /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEB02A948C370064A166 /* ReducerMocking.swift */,
+				8DECEEB12A948C370064A166 /* ChatServiceEventHandlerMocking.swift */,
+				8DECEEB22A948C370064A166 /* ChatActionHandlerMocking.swift */,
+				8DECEEB32A948C370064A166 /* MiddlewareMocking.swift */,
+				8DECEEB42A948C370064A166 /* RepositoryHandlerMocking.swift */,
+				8DECEEB52A948C370064A166 /* StoreFactoryMocking.swift */,
+			);
+			path = Redux;
+			sourceTree = "<group>";
+		};
+		8DECEEB72A948C370064A166 /* ChatCompositeOptions */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEB82A948C370064A166 /* DiagnosticConfigTests.swift */,
+			);
+			path = ChatCompositeOptions;
+			sourceTree = "<group>";
+		};
+		8DECEEBA2A948C370064A166 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEBB2A948C370064A166 /* MessageRepositoryManagerTests.swift */,
+				8DECEEBD2A948C370064A166 /* ErrorManagerTests.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		8DECEEBF2A948C370064A166 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEC02A948C370064A166 /* ChatServiceTests.swift */,
+				8DECEEC12A948C370064A166 /* ChatSDKEventsHandlerTests.swift */,
+				8DECEEC22A948C370064A166 /* NavigationRouterTests.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8DECEEC32A948C370064A166 /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEC42A948C370064A166 /* Middleware */,
+				8DECEECA2A948C370064A166 /* Reducer */,
+			);
+			path = Redux;
+			sourceTree = "<group>";
+		};
+		8DECEEC42A948C370064A166 /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEEC52A948C370064A166 /* ChatServiceEventHandlerTests.swift */,
+				8DECEEC62A948C370064A166 /* RepositoryMiddlewareHandlerTests.swift */,
+				8DECEEC72A948C370064A166 /* ChatMiddlewareTests.swift */,
+				8DECEEC82A948C370064A166 /* ChatActionHandlerTests.swift */,
+				8DECEEC92A948C370064A166 /* RepositoryMiddlewareTests.swift */,
+			);
+			path = Middleware;
+			sourceTree = "<group>";
+		};
+		8DECEECA2A948C370064A166 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEECB2A948C370064A166 /* ChatReducerTests.swift */,
+				8DECEECC2A948C370064A166 /* LifeCycleReducerTests.swift */,
+				8DECEECD2A948C370064A166 /* ParticipantsReducerTests.swift */,
+				8DECEECE2A948C370064A166 /* AppStateReducerTests.swift */,
+				8DECEECF2A948C370064A166 /* NavigationReducerTests.swift */,
+				8DECEED02A948C370064A166 /* ErrorReducerTests.swift */,
+				8DECEED12A948C370064A166 /* RepositoryReducerTests.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
+		8DECEED22A948C370064A166 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEED32A948C370064A166 /* Chat */,
+				8DECEED62A948C370064A166 /* Provider */,
+				8DECEED82A948C370064A166 /* Factories */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8DECEED32A948C370064A166 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEED42A948C370064A166 /* ChatViewModelTests.swift */,
+				8DECEED52A948C370064A166 /* MessageViewModelTests.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		8DECEED62A948C370064A166 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEED72A948C370064A166 /* LocalizationProviderTests.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		8DECEED82A948C370064A166 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				8DECEED92A948C370064A166 /* CompositeViewModelFactoryTests.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		8DF021BC2A8F442800CDB5C6 /* FluentUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +608,7 @@
 				8DF021BC2A8F442800CDB5C6 /* FluentUI */,
 				8DFBD34729757A39006B0700 /* AppSettings.xcconfig */,
 				8DFBD2CC29756DD6006B0700 /* CitiApps */,
+				8DECEE8E2A937E000064A166 /* CitiAppsTests */,
 				8DFBD2CB29756DD6006B0700 /* Products */,
 				8DFBD30429757296006B0700 /* Frameworks */,
 			);
@@ -335,6 +618,7 @@
 			isa = PBXGroup;
 			children = (
 				8DFBD2CA29756DD6006B0700 /* CitiApps.app */,
+				8DECEE8D2A937E000064A166 /* CitiAppsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -389,6 +673,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8DECEE8C2A937E000064A166 /* CitiAppsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DECEE932A937E010064A166 /* Build configuration list for PBXNativeTarget "CitiAppsTests" */;
+			buildPhases = (
+				8DECEE892A937E000064A166 /* Sources */,
+				8DECEE8A2A937E000064A166 /* Frameworks */,
+				8DECEE8B2A937E000064A166 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8DECEE922A937E000064A166 /* PBXTargetDependency */,
+			);
+			name = CitiAppsTests;
+			productName = CitiAppsTests;
+			productReference = 8DECEE8D2A937E000064A166 /* CitiAppsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8DFBD2C929756DD6006B0700 /* CitiApps */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DFBD2DE29756DD8006B0700 /* Build configuration list for PBXNativeTarget "CitiApps" */;
@@ -416,9 +718,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					8DECEE8C2A937E000064A166 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 8DFBD2C929756DD6006B0700;
+					};
 					8DFBD2C929756DD6006B0700 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -440,11 +746,19 @@
 			projectRoot = "";
 			targets = (
 				8DFBD2C929756DD6006B0700 /* CitiApps */,
+				8DECEE8C2A937E000064A166 /* CitiAppsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8DECEE8B2A937E000064A166 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DFBD2C829756DD6006B0700 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -458,6 +772,53 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8DECEE892A937E000064A166 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DECEE9D2A937EAF0064A166 /* AzureCallingTests.swift in Sources */,
+				8DECEEF02A948C380064A166 /* ChatServiceTests.swift in Sources */,
+				8DECEEF82A948C380064A166 /* ChatReducerTests.swift in Sources */,
+				8DECEEEC2A948C370064A166 /* MessageRepositoryManagerTests.swift in Sources */,
+				8DECEEEE2A948C380064A166 /* ErrorManagerTests.swift in Sources */,
+				8DECEEFB2A948C380064A166 /* AppStateReducerTests.swift in Sources */,
+				8DECEEFE2A948C380064A166 /* RepositoryReducerTests.swift in Sources */,
+				8DECEEA12A9380560064A166 /* AzureGraphApiTests.swift in Sources */,
+				8DECEEE92A948C370064A166 /* MessageRepositoryManagerMocking.swift in Sources */,
+				8DECEEE32A948C370064A166 /* ReducerMocking.swift in Sources */,
+				8DECEEE22A948C370064A166 /* LocalizationProviderMocking.swift in Sources */,
+				8DECEEF62A948C380064A166 /* ChatActionHandlerTests.swift in Sources */,
+				8DECEE9F2A9380460064A166 /* AzureChatTests.swift in Sources */,
+				8DECEEFC2A948C380064A166 /* NavigationReducerTests.swift in Sources */,
+				8DECEEF12A948C380064A166 /* ChatSDKEventsHandlerTests.swift in Sources */,
+				8DECEEFD2A948C380064A166 /* ErrorReducerTests.swift in Sources */,
+				8DECEEFF2A948C380064A166 /* ChatViewModelTests.swift in Sources */,
+				8DECEF002A948C380064A166 /* MessageViewModelTests.swift in Sources */,
+				8DECEEF32A948C380064A166 /* ChatServiceEventHandlerTests.swift in Sources */,
+				8DECEEE72A948C370064A166 /* RepositoryHandlerMocking.swift in Sources */,
+				8DECEF022A948C380064A166 /* CompositeViewModelFactoryTests.swift in Sources */,
+				8DECEEF52A948C380064A166 /* ChatMiddlewareTests.swift in Sources */,
+				8DECEEDA2A948C370064A166 /* ChatViewModelMocking.swift in Sources */,
+				8DECEEF42A948C380064A166 /* RepositoryMiddlewareHandlerTests.swift in Sources */,
+				8DECEEEA2A948C370064A166 /* DiagnosticConfigTests.swift in Sources */,
+				8DECEEF72A948C380064A166 /* RepositoryMiddlewareTests.swift in Sources */,
+				8DECEF012A948C380064A166 /* LocalizationProviderTests.swift in Sources */,
+				8DECEEE62A948C370064A166 /* MiddlewareMocking.swift in Sources */,
+				8DECEEF92A948C380064A166 /* LifeCycleReducerTests.swift in Sources */,
+				8DECEF042A9499130064A166 /* MockData.swift in Sources */,
+				8DECEEF22A948C380064A166 /* NavigationRouterTests.swift in Sources */,
+				8DECEEE42A948C370064A166 /* ChatServiceEventHandlerMocking.swift in Sources */,
+				8DECEE902A937E000064A166 /* CitiAppsTests.swift in Sources */,
+				8DECEEE12A948C370064A166 /* ChatServiceMocking.swift in Sources */,
+				8DECEEFA2A948C380064A166 /* ParticipantsReducerTests.swift in Sources */,
+				8DECEEE02A948C370064A166 /* ChatSDKWrapperMocking.swift in Sources */,
+				8DECEEE52A948C370064A166 /* ChatActionHandlerMocking.swift in Sources */,
+				8DECEEE82A948C370064A166 /* StoreFactoryMocking.swift in Sources */,
+				8DECEEDC2A948C370064A166 /* LoggerMocking.swift in Sources */,
+				8DECEE9B2A937E9A0064A166 /* DeeplinkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DFBD2C629756DD6006B0700 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -505,6 +866,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8DECEE922A937E000064A166 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DFBD2C929756DD6006B0700 /* CitiApps */;
+			targetProxy = 8DECEE912A937E000064A166 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8D4B4F5E29FBF5B100B77B60 /* Beta */ = {
@@ -616,6 +985,63 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Beta;
+		};
+		8DECEE942A937E010064A166 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R6345GPK28;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citiacsdemo.CitiAppsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CitiApps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CitiApps";
+			};
+			name = Debug;
+		};
+		8DECEE952A937E010064A166 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R6345GPK28;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citiacsdemo.CitiAppsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CitiApps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CitiApps";
+			};
+			name = Release;
+		};
+		8DECEE962A937E010064A166 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R6345GPK28;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maveric.citiacsdemo.CitiAppsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CitiApps.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CitiApps";
 			};
 			name = Beta;
 		};
@@ -851,6 +1277,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8DECEE932A937E010064A166 /* Build configuration list for PBXNativeTarget "CitiAppsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DECEE942A937E010064A166 /* Debug */,
+				8DECEE952A937E010064A166 /* Release */,
+				8DECEE962A937E010064A166 /* Beta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8DFBD2C529756DD6006B0700 /* Build configuration list for PBXProject "CitiApps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -28,6 +28,17 @@
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DECEE8C2A937E000064A166"
+               BuildableName = "CitiAppsTests.xctest"
+               BlueprintName = "CitiAppsTests"
+               ReferencedContainer = "container:CitiApps.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
