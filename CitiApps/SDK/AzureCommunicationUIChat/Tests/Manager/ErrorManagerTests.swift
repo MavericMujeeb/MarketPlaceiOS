@@ -5,7 +5,7 @@
 
 import Foundation
 import XCTest
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class ErrorManagerTests: XCTestCase {
     var mockStoreFactory: StoreFactoryMocking!

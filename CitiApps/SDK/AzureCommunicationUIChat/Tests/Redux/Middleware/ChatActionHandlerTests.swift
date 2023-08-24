@@ -8,7 +8,7 @@ import Foundation
 import AzureCommunicationCommon
 import XCTest
 import Combine
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class ChatActionHandlerTests: XCTestCase {
 

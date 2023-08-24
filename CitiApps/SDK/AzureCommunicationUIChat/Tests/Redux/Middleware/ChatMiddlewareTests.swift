@@ -3,7 +3,7 @@
 //  Licensed under the MIT License.
 //
 
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 import AzureCommunicationCommon
 import AzureCore
 import Combine

@@ -4,7 +4,7 @@
 //
 
 import Foundation
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class ChatActionHandlerMocking: ChatActionHandling {
 

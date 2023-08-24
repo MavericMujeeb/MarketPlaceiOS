@@ -4,7 +4,7 @@
 //
 
 import Foundation
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class ChatServiceEventHandlerMocking: ChatServiceEventHandling {
     func subscription(dispatch: @escaping ActionDispatch) {

@@ -2,7 +2,7 @@
 //  Copyright (c) Microsoft Corporation. All rights reserved.
 //  Licensed under the MIT License.
 //
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 import AzureCommunicationCommon
 import AzureCore
 import XCTest

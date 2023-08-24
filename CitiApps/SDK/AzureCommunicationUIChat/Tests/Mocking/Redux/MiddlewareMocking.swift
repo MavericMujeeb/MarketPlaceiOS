@@ -4,7 +4,7 @@
 //
 
 import Foundation
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 extension Middleware where State == ChatAppState, Action == AzureCommunicationUIChat.Action {
     static func mock<State>(

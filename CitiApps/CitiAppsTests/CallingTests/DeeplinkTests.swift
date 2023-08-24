@@ -9,19 +9,63 @@ import XCTest
 
 final class DeeplinkTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown()  {
+        super.tearDown()
     }
 
-    func testDeepLinkMeetingUrl() throws {
-        //validate deeplink meeting url
-        //1. check if the url contains teamsMeetingUrl
-        //2. check if the teams meeting url has valid threadid
-        //3. check if the url has the valid azure host url
+    func testScheduledMeetingDeeplinkUrl() {
+        let deepLinkUrl = MockData.deeplinkMeetingUrl
+        let urlComponents = URLComponents(string: deepLinkUrl)
+        
+        let host = urlComponents?.host
+        let queryItems = urlComponents?.queryItems
+        let meetingLink = queryItems?.first(where: { $0.name == "meetingURL" })?.value
+
+        XCTAssert(host != nil, "Host is nil")
+        XCTAssert(meetingLink != nil, "Teams meeting link not found")
+    }
+    
+    func getThreadId(from meetingLink: String) -> String? {
+        let decodedLink = meetingLink.htmlDecoded
+        
+        if let range = decodedLink.range(of: "meetup-join/") {
+            let thread = decodedLink[range.upperBound...]
+            if let endRange = thread.range(of: "/")?.lowerBound {
+                var threadId = String(thread.prefix(upTo: endRange))
+                threadId = threadId.replacingOccurrences(of: "%3a", with: ":").replacingOccurrences(of: "%3A", with: ":").replacingOccurrences(of: "%40", with: "@")
+                return threadId
+            }
+        }
+        return nil
+    }
+    
+    
+    func testScheduledMeetingThreadId () {
+        let deepLinkUrl = MockData.deeplinkMeetingUrl
+        let urlComponents = URLComponents(string: deepLinkUrl)
+        
+        let queryItems = urlComponents?.queryItems
+        let meetingLink = queryItems?.first(where: { $0.name == "meetingURL" })?.value
+        
+        let threaId = getThreadId(from: meetingLink!)
+        XCTAssert(threaId != nil, "Thread id not found in meeting link")
     }
 
 }
+
+
+extension String {
+    var htmlDecoded: String {
+        let decoded = try? NSAttributedString(data: Data(utf8), options: [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ], documentAttributes: nil).string
+
+        return decoded ?? self
+    }
+}
+

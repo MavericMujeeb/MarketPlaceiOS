@@ -8,7 +8,7 @@ import Combine
 import AzureCommunicationCommon
 import AzureCore
 
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class ChatSDKWrapperMocking: ChatSDKWrapperProtocol {
     var error: NSError?

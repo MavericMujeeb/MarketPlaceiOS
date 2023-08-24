@@ -3,7 +3,7 @@
 //  Licensed under the MIT License.
 //
 
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class LocalizationProviderMocking: BaseLocalizationProvider, LocalizationProviderProtocol {
     var isGetLocalizedStringCalled: Bool = false

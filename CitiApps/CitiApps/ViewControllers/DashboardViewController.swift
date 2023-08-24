@@ -45,7 +45,7 @@ class DashboardViewController : UIViewController {
         notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         if(handleExternalLinks == true){
-            let teamsCallingViewController = TeamsCallingViewController()
+            let teamsCallingViewController = TeamsCallingController()
             teamsCallingViewController.teamsLink = self.meetingLink
             teamsCallingViewController.startCall()
         }

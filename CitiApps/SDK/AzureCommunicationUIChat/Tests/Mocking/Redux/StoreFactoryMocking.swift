@@ -4,7 +4,7 @@
 //
 
 import Foundation
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class StoreFactoryMocking {
     var store: Store<ChatAppState, Action>!

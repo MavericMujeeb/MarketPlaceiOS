@@ -5,7 +5,7 @@
 
 import Foundation
 import Combine
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class ChatServiceMocking: ChatServiceProtocol {
     var error: Error?

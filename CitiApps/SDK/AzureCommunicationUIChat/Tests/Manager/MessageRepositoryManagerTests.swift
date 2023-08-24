@@ -6,7 +6,7 @@
 import AzureCommunicationCommon
 import AzureCore
 import XCTest
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class MessageRepositoryManagerTests: XCTestCase {
     var eventsHandler: ChatAdapter.Events!

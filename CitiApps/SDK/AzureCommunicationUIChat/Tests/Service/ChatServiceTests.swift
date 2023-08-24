@@ -6,7 +6,7 @@
 import Foundation
 import XCTest
 import Combine
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class ChatServiceTests: XCTestCase {
 

@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import AzureCommunicationCalling
 
 final class AzureCallingTests: XCTestCase {
 
@@ -18,55 +19,55 @@ final class AzureCallingTests: XCTestCase {
     }
 
     func testCreateCallClient () {
-        
+        var callClient = CallClient()
     }
     
-    func testCreateCallAgentWithCommunicationToken () {
-        
-    }
-    
-    func testCreateCallAgentWithOptions () {
-        
-    }
-    
-    func testCreateCallAgentForScheduleMeetingOptions () {
-        
-    }
-    
-    func testCreateCallAgentForAhocCallWithOptions () {
-        
-    }
-    
-    func testDisposeCallAgent () {
-        
-    }
-    
-    func testEndCall () {
-        
-    }
-    
-    func testMuteCall () {
-        
-    }
-    
-    func testUnmuteCall () {
-        
-    }
-    
-    func testTurnOnVideo () {
-        
-    }
-    
-    func testTurnOffVideo () {
-        
-    }
-    
-    func testScreenShareAction () {
-        
-    }
-    
-    func testStopScreenShareAction () {
-        
-    }
+//    func testCreateCallAgentWithCommunicationToken () {
+//
+//    }
+//
+//    func testCreateCallAgentWithOptions () {
+//
+//    }
+//
+//    func testCreateCallAgentForScheduleMeetingOptions () {
+//
+//    }
+//
+//    func testCreateCallAgentForAhocCallWithOptions () {
+//
+//    }
+//
+//    func testDisposeCallAgent () {
+//
+//    }
+//
+//    func testEndCall () {
+//
+//    }
+//
+//    func testMuteCall () {
+//
+//    }
+//
+//    func testUnmuteCall () {
+//
+//    }
+//
+//    func testTurnOnVideo () {
+//
+//    }
+//
+//    func testTurnOffVideo () {
+//
+//    }
+//
+//    func testScreenShareAction () {
+//
+//    }
+//
+//    func testStopScreenShareAction () {
+//
+//    }
 
 }

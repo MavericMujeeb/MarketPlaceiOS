@@ -102,7 +102,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
         let mettingLink = args.value(forKey: "meeting_id") as! String
-        let teamsCallingViewController = TeamsCallingViewController()
+        let teamsCallingViewController = TeamsCallingController()
         teamsCallingViewController.teamsLink = mettingLink
         storageUserDefaults.set("", forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startCall()
@@ -111,7 +111,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @objc func handleNotification(_ notification : NSNotification){
         let info = notification.userInfo
         let isVideoCall = info!["isVideo"] as! Bool
-        let teamsVC = TeamsCallingViewController()
+        let teamsVC = TeamsCallingController()
         teamsVC.startAudioVideoCall(isVideoCall: isVideoCall)
     }
     
@@ -137,7 +137,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func startAudioCall (result: FlutterResult, args: NSDictionary) {
         let bankerEmailId = args.value(forKey: "user_name") as! String
-        let teamsCallingViewController = TeamsCallingViewController()
+        let teamsCallingViewController = TeamsCallingController()
         storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: false)
     }
@@ -159,7 +159,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func startVideoCall (result: FlutterResult, args: NSDictionary) {
         let bankerEmailId = args.value(forKey: "user_name") as! String
-        let teamsCallingViewController = TeamsCallingViewController()
+        let teamsCallingViewController = TeamsCallingController()
         storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
         teamsCallingViewController.startAudioVideoCall(isVideoCall: true)
     }

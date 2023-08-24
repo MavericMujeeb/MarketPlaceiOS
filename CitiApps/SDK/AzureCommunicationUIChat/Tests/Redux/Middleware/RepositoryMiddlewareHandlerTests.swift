@@ -8,7 +8,7 @@ import AzureCore
 import Combine
 import Foundation
 import XCTest
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class RepositoryMiddlewareHandlerTests: XCTestCase {
 

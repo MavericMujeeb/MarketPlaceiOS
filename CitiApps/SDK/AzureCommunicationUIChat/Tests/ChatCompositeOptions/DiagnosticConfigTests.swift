@@ -6,7 +6,7 @@
 import Foundation
 import XCTest
 import AzureCommunicationCommon
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class DiagnosticConfigTests: XCTestCase {
 

@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 import XCTest
-@testable import AzureCommunicationUIChat
+import AzureCommunicationUIChat
 
 class LocalizationProviderTests: XCTestCase {
     private var logger: LoggerMocking!
