@@ -11,6 +11,8 @@
 		8D0954C02A83643800DC6D33 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0954BF2A83643800DC6D33 /* WindowsAzureMessaging.framework */; };
 		8D0954C32A836A6300DC6D33 /* IncomingCallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0954C22A836A6300DC6D33 /* IncomingCallHandler.swift */; };
 		8D0A6077298BE4A0002EBBC4 /* UserInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A6076298BE498002EBBC4 /* UserInfoData.swift */; };
+		8D16222C2A97674C00B9A60A /* ChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D16222B2A97674C00B9A60A /* ChatTests.swift */; };
+		8D16222F2A97677000B9A60A /* GraphApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D16222E2A97677000B9A60A /* GraphApiTests.swift */; };
 		8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2FD7E0299680D10097B59D /* CircleLoader.swift */; };
 		8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4100BF2A694752001473F5 /* ContainerHostingController.swift */; };
 		8D4B4F5329FBC41F00B77B60 /* CallKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B4F5229FBC41F00B77B60 /* CallKitHelper.swift */; };
@@ -20,6 +22,10 @@
 		8D55540A2A86412F002D6D3B /* ACSTeamsCallingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5554092A86412F002D6D3B /* ACSTeamsCallingController.swift */; };
 		8D5554112A866F8A002D6D3B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5554102A866F89002D6D3B /* StorageManager.swift */; };
 		8D5BCDD729B8A97C0009A8B6 /* AcsUserIdToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */; };
+		8D5E97422A9F322800A4955E /* CallingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E97402A9F322800A4955E /* CallingServiceTests.swift */; };
+		8D5E97432A9F322800A4955E /* CallingSDKWrapperMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E97412A9F322800A4955E /* CallingSDKWrapperMocking.swift */; };
+		8D5E97452A9F347700A4955E /* LoggerMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E97442A9F347700A4955E /* LoggerMocking.swift */; };
+		8D5E97472A9F429500A4955E /* CallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5E97462A9F429500A4955E /* CallTests.swift */; };
 		8D7015FA2981303900FDEBFC /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; };
 		8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFBD30B29757340006B0700 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D99CA2C29A3949300700C78 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99CA2B29A3949200700C78 /* ChatController.swift */; };
@@ -54,8 +60,9 @@
 		8DCFCBAF2A58311E00F1D293 /* ScreenSharingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBAE2A58311E00F1D293 /* ScreenSharingController.swift */; };
 		8DE0D519297FB44E00201043 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE0D518297FB44E00201043 /* AppSettings.swift */; };
 		8DE653902A8E079900EEF3BE /* CitiAppsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6538F2A8E079900EEF3BE /* CitiAppsTests.swift */; };
-		8DE653992A8E0B0100EEF3BE /* ScheduledMeetingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE653982A8E0B0100EEF3BE /* ScheduledMeetingTests.swift */; };
+		8DE653992A8E0B0100EEF3BE /* CitiAppsContactCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE653982A8E0B0100EEF3BE /* CitiAppsContactCenterTests.swift */; };
 		8DE6539B2A8E0B3F00EEF3BE /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE6539A2A8E0B3F00EEF3BE /* MockData.swift */; };
+		8DF1EE6E2AA0AA4600691047 /* FlutterEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF1EE6D2AA0AA4600691047 /* FlutterEngineTests.swift */; };
 		8DFBD2CE29756DD6006B0700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */; };
 		8DFBD2D229756DD6006B0700 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D129756DD6006B0700 /* ViewController.swift */; };
 		8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DFBD2D629756DD8006B0700 /* Assets.xcassets */; };
@@ -209,6 +216,8 @@
 		8D0954C22A836A6300DC6D33 /* IncomingCallHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallHandler.swift; sourceTree = "<group>"; };
 		8D0A5FF1298A5A1C002EBBC4 /* AzureCommunicationUIChat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCommunicationUIChat.xcodeproj; path = ../SDK/AzureCommunicationUIChat/AzureCommunicationUIChat.xcodeproj; sourceTree = "<group>"; };
 		8D0A6076298BE498002EBBC4 /* UserInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoData.swift; sourceTree = "<group>"; };
+		8D16222B2A97674C00B9A60A /* ChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTests.swift; sourceTree = "<group>"; };
+		8D16222E2A97677000B9A60A /* GraphApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphApiTests.swift; sourceTree = "<group>"; };
 		8D2FD7E0299680D10097B59D /* CircleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleLoader.swift; sourceTree = "<group>"; };
 		8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCommunicationChat.xcodeproj; path = ../SDK/AzureCommunicationChat/AzureCommunicationChat.xcodeproj; sourceTree = "<group>"; };
 		8D3AE9A8298819A1009DD389 /* AzureCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCore.xcodeproj; path = ../SDK/AzureCore/AzureCore.xcodeproj; sourceTree = "<group>"; };
@@ -220,6 +229,10 @@
 		8D5554102A866F89002D6D3B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		8D5554152A8CA65F002D6D3B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8D5BCDD629B8A97C0009A8B6 /* AcsUserIdToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcsUserIdToken.swift; sourceTree = "<group>"; };
+		8D5E97402A9F322800A4955E /* CallingServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallingServiceTests.swift; sourceTree = "<group>"; };
+		8D5E97412A9F322800A4955E /* CallingSDKWrapperMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallingSDKWrapperMocking.swift; sourceTree = "<group>"; };
+		8D5E97442A9F347700A4955E /* LoggerMocking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoggerMocking.swift; path = "SDK/communication-ui-library-ios-AzureCommunicationUICalling_1.1.0/AzureCommunicationUI/sdk/AzureCommunicationUICalling/Tests/Mocking/LoggerMocking.swift"; sourceTree = SOURCE_ROOT; };
+		8D5E97462A9F429500A4955E /* CallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallTests.swift; sourceTree = "<group>"; };
 		8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = "../../../../../../../Downloads/WindowsAzureMessaging-SDK-Apple/iOS/WindowsAzureMessaging.framework"; sourceTree = "<group>"; };
 		8D99CA2B29A3949200700C78 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		8D99CA2D29A63BE900700C78 /* CitiConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiConstants.swift; sourceTree = "<group>"; };
@@ -244,8 +257,9 @@
 		8DE6538D2A8E079900EEF3BE /* CitiAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE6538F2A8E079900EEF3BE /* CitiAppsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiAppsTests.swift; sourceTree = "<group>"; };
 		8DE653972A8E07EF00EEF3BE /* CitiApps.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CitiApps.xctestplan; sourceTree = "<group>"; };
-		8DE653982A8E0B0100EEF3BE /* ScheduledMeetingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledMeetingTests.swift; sourceTree = "<group>"; };
+		8DE653982A8E0B0100EEF3BE /* CitiAppsContactCenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiAppsContactCenterTests.swift; sourceTree = "<group>"; };
 		8DE6539A2A8E0B3F00EEF3BE /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		8DF1EE6D2AA0AA4600691047 /* FlutterEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngineTests.swift; sourceTree = "<group>"; };
 		8DFBD2CA29756DD6006B0700 /* CitiApps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiApps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFBD2CD29756DD6006B0700 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DFBD2D129756DD6006B0700 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -451,6 +465,33 @@
 			path = helpers;
 			sourceTree = "<group>";
 		};
+		8D1622232A9766BB00B9A60A /* Calling */ = {
+			isa = PBXGroup;
+			children = (
+				8D5E97442A9F347700A4955E /* LoggerMocking.swift */,
+				8D5E97412A9F322800A4955E /* CallingSDKWrapperMocking.swift */,
+				8D5E97402A9F322800A4955E /* CallingServiceTests.swift */,
+				8D5E97462A9F429500A4955E /* CallTests.swift */,
+			);
+			path = Calling;
+			sourceTree = "<group>";
+		};
+		8D1622242A9766C000B9A60A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				8D16222B2A97674C00B9A60A /* ChatTests.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		8D16222D2A97675900B9A60A /* GraphApiTests */ = {
+			isa = PBXGroup;
+			children = (
+				8D16222E2A97677000B9A60A /* GraphApiTests.swift */,
+			);
+			path = GraphApiTests;
+			sourceTree = "<group>";
+		};
 		8D4B4F4D29FBBF8D00B77B60 /* AzureIncomingCalling */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,12 +674,24 @@
 		8DE6538E2A8E079900EEF3BE /* CitiAppsTests */ = {
 			isa = PBXGroup;
 			children = (
+				8DF1EE6C2AA0AA3100691047 /* FlutterEngine */,
+				8D16222D2A97675900B9A60A /* GraphApiTests */,
+				8D1622242A9766C000B9A60A /* Chat */,
+				8D1622232A9766BB00B9A60A /* Calling */,
 				8DE6538F2A8E079900EEF3BE /* CitiAppsTests.swift */,
 				8DE653972A8E07EF00EEF3BE /* CitiApps.xctestplan */,
-				8DE653982A8E0B0100EEF3BE /* ScheduledMeetingTests.swift */,
+				8DE653982A8E0B0100EEF3BE /* CitiAppsContactCenterTests.swift */,
 				8DE6539A2A8E0B3F00EEF3BE /* MockData.swift */,
 			);
 			path = CitiAppsTests;
+			sourceTree = "<group>";
+		};
+		8DF1EE6C2AA0AA3100691047 /* FlutterEngine */ = {
+			isa = PBXGroup;
+			children = (
+				8DF1EE6D2AA0AA4600691047 /* FlutterEngineTests.swift */,
+			);
+			path = FlutterEngine;
 			sourceTree = "<group>";
 		};
 		8DFBD2C129756DD6006B0700 = {
@@ -938,7 +991,14 @@
 			files = (
 				8DE653902A8E079900EEF3BE /* CitiAppsTests.swift in Sources */,
 				8DE6539B2A8E0B3F00EEF3BE /* MockData.swift in Sources */,
-				8DE653992A8E0B0100EEF3BE /* ScheduledMeetingTests.swift in Sources */,
+				8DF1EE6E2AA0AA4600691047 /* FlutterEngineTests.swift in Sources */,
+				8D5E97432A9F322800A4955E /* CallingSDKWrapperMocking.swift in Sources */,
+				8D5E97472A9F429500A4955E /* CallTests.swift in Sources */,
+				8DE653992A8E0B0100EEF3BE /* CitiAppsContactCenterTests.swift in Sources */,
+				8D16222F2A97677000B9A60A /* GraphApiTests.swift in Sources */,
+				8D5E97422A9F322800A4955E /* CallingServiceTests.swift in Sources */,
+				8D16222C2A97674C00B9A60A /* ChatTests.swift in Sources */,
+				8D5E97452A9F347700A4955E /* LoggerMocking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1087,7 +1147,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1313,7 +1373,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1364,7 +1424,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
