@@ -58,12 +58,6 @@ final class CallingContext {
 
     @MainActor
     func startCallComposite(_ joinConfig: JoinCallConfig) async {
-        //token
-        //create call
-        //launch
-        
-        print("startCallComposite -- send global call agent to re-use")
-        
         let joinIdStr = joinConfig.joinId?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let uuid = UUID(uuidString: joinIdStr) ?? UUID()
         let displayName = joinConfig.displayName
@@ -73,8 +67,7 @@ final class CallingContext {
             
             let callCompositeOptions = CallCompositeOptions(name: self.displayName, userId: self.userId, token: callChatToken, isAudio: joinConfig.isAudioCall, isVideo: joinConfig.isVideoCall, isIncomingCall: false)
             self.callComposite = CallComposite(withOptions: callCompositeOptions)
-
-            
+                    
             switch joinConfig.callType {
             case .groupCall:
                 self.callComposite?.launch(

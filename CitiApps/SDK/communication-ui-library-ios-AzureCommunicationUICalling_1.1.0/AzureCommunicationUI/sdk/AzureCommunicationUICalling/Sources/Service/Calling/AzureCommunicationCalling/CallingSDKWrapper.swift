@@ -145,8 +145,6 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
     
     func autoDismissCall() async throws{
         self.callAgent?.dispose()
-        print(self.callAgent?.calls.count)
-
     }
 
     func getRemoteParticipant<ParticipantType, StreamType>(_ identifier: String)
@@ -202,12 +200,9 @@ class CallingSDKWrapper: NSObject, CallingSDKWrapperProtocol, CLLocationManagerD
             return
         }
         do {
-            print("call.stopVideo")
             try await call.stopVideo(stream: videoStream)
-            print("Local video stopped successfully")
             logger.debug("Local video stopped successfully")
         } catch {
-            print("Local video stopped successfully -- error")
             logger.error( "Local video failed to stop. \(error)")
             throw error
         }
@@ -461,7 +456,7 @@ extension CallingSDKWrapper {
     }
 
     private func setupCallAgent() async throws {
-        
+        print("setup call agent")
         guard callAgent == nil else {
             logger.debug("Reusing call agent")
             return

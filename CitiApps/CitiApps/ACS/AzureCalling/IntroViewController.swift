@@ -13,7 +13,6 @@ class PIPACSViewController : UIViewController, PIPUsable{
         view.backgroundColor = .blue
         view.layer.borderColor = UIColor.red.cgColor
         view.layer.borderWidth = 1.0
-        print("View did load")
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -70,12 +69,18 @@ class TeamsCallingViewController {
     
     private let busyOverlay = BusyOverlay(frame: .zero)
     
-    func startCall() {
+    
+    func initTokenService () {
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         
         self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: "https://acstokenfuncapp.azurewebsites.net/api/acschatcallingfunction/", getAuthTokenFunction: { () -> String? in
+            assert(appDelegate.authHandler.authToken == nil, "Auth token is empty")
             return appDelegate.authHandler.authToken
         })
+    }
+    
+    func startCall() {
+        self.initTokenService()
         Task{
             do{
                 await self.joinCall()
@@ -142,7 +147,6 @@ class TeamsCallingViewController {
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
        
         self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: fullUrl, getAuthTokenFunction: { () -> String? in
-           
             return appDelegate.authHandler.authToken
         })
         Task{
@@ -154,7 +158,7 @@ class TeamsCallingViewController {
     }
     
     func startAudioCall(acsId:String,isVideoCall : Bool = false) async {
-        print("\(#function):\(isVideoCall)")
+        
         let isAudioCall = isVideoCall ? false : true
         let displayName =  users[loggedInUser]?["name"]  ?? ""
         let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall, isAudioCall: isAudioCall, isVideoCall: isVideoCall)

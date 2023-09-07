@@ -1509,7 +1509,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 53FC90F925673627008A06FD /* FluentUILib.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Debug;
 		};
@@ -1517,7 +1517,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 53FC90F925673627008A06FD /* FluentUILib.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
@@ -1526,7 +1526,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 53FC90F925673627008A06FD /* FluentUILib.xcconfig */;
 			buildSettings = {
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Dogfood;
 		};
@@ -1554,6 +1554,7 @@
 			buildSettings = {
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Release;
 		};

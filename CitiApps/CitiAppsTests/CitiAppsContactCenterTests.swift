@@ -8,7 +8,7 @@
 import XCTest
 @testable import CitiApps
 
-final class ScheduledMeetingTests: XCTestCase {
+final class CitiAppsContactCenterTests: XCTestCase {
     
     var acsCommunicationToken:String?
     var acsUserDetailsAnDToken:String?
@@ -17,8 +17,8 @@ final class ScheduledMeetingTests: XCTestCase {
         NetworkManager.shared.getACSCommunicationToken { data, error in
             //code goes here
         }
-        NetworkManager.shared.getACSUserDetails()
-        NetworkManager.shared.getAzureCommunicationToken()
+//        NetworkManager.shared.getACSUserDetails()
+//        NetworkManager.shared.getAzureCommunicationToken()
     }
 
     override func tearDownWithError() throws {

@@ -102,6 +102,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func joinTeamsMeeting(result: FlutterResult, args: NSDictionary) {
         let mettingLink = args.value(forKey: "meeting_id") as! String
+        //ASSERT MEETING LINK FORMAT
         let teamsCallingViewController = TeamsCallingViewController()
         teamsCallingViewController.teamsLink = mettingLink
         storageUserDefaults.set("", forKey: StorageKeys.bankerEmailId)
