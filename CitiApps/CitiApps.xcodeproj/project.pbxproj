@@ -7,30 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D0074F92AA9ABDF00600E11 /* libFluentUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074F82AA9A9D400600E11 /* libFluentUI.a */; };
-		8D00750E2AA9AC3F00600E11 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075032AA9AC3600600E11 /* WindowsAzureMessaging.framework */; };
 		8D0075102AA9AC4100600E11 /* Trouter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075022AA9AC3600600E11 /* Trouter.xcframework */; };
 		8D0075112AA9AC4100600E11 /* Trouter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075022AA9AC3600600E11 /* Trouter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D0075122AA9AC4600600E11 /* PIPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074FE2AA9AC3500600E11 /* PIPKit.framework */; };
-		8D0075132AA9AC4600600E11 /* PIPKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074FE2AA9AC3500600E11 /* PIPKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D0075142AA9AC4800600E11 /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075052AA9AC3700600E11 /* MSAL.xcframework */; };
 		8D0075152AA9AC4800600E11 /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075052AA9AC3700600E11 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D0075162AA9AC4A00600E11 /* AzureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075012AA9AC3500600E11 /* AzureCore.framework */; };
-		8D0075172AA9AC4B00600E11 /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075012AA9AC3500600E11 /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D0075182AA9AC4C00600E11 /* AzureCommunicationUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075002AA9AC3500600E11 /* AzureCommunicationUIChat.framework */; };
-		8D0075192AA9AC4C00600E11 /* AzureCommunicationUIChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075002AA9AC3500600E11 /* AzureCommunicationUIChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D00751A2AA9AC4F00600E11 /* AzureCommunicationUICalling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074FF2AA9AC3500600E11 /* AzureCommunicationUICalling.framework */; };
-		8D00751B2AA9AC4F00600E11 /* AzureCommunicationUICalling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074FF2AA9AC3500600E11 /* AzureCommunicationUICalling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D00751C2AA9AC5100600E11 /* AzureCommunicationCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075042AA9AC3600600E11 /* AzureCommunicationCommon.framework */; };
-		8D00751D2AA9AC5100600E11 /* AzureCommunicationCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075042AA9AC3600600E11 /* AzureCommunicationCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D00751E2AA9AC5300600E11 /* AzureCommunicationChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074FC2AA9AC2B00600E11 /* AzureCommunicationChat.framework */; };
-		8D00751F2AA9AC5300600E11 /* AzureCommunicationChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074FC2AA9AC2B00600E11 /* AzureCommunicationChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8D0075202AA9AC5500600E11 /* AzureCommunicationCalling.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074FA2AA9AC2500600E11 /* AzureCommunicationCalling.xcframework */; };
-		8D0075212AA9AC5500600E11 /* AzureCommunicationCalling.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0074FA2AA9AC2500600E11 /* AzureCommunicationCalling.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D0075262AA9AD3E00600E11 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075222AA9AD3800600E11 /* Flutter.xcframework */; };
 		8D0075272AA9AD3F00600E11 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075222AA9AD3800600E11 /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D0075282AA9AD4100600E11 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075232AA9AD3800600E11 /* App.xcframework */; };
 		8D0075292AA9AD4100600E11 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075232AA9AD3800600E11 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D00755D2AA9D7DB00600E11 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D00755C2AA9D7DB00600E11 /* WindowsAzureMessaging.framework */; };
+		8D0075732AA9FC2A00600E11 /* AzureCommunicationCalling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075502AA9D73500600E11 /* AzureCommunicationCalling.framework */; };
+		8D0075742AA9FC2A00600E11 /* AzureCommunicationCalling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075502AA9D73500600E11 /* AzureCommunicationCalling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D0075752AA9FC2B00600E11 /* AzureCommunicationChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075522AA9D76A00600E11 /* AzureCommunicationChat.framework */; };
+		8D0075762AA9FC2C00600E11 /* AzureCommunicationChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075522AA9D76A00600E11 /* AzureCommunicationChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D0075772AA9FC2E00600E11 /* AzureCommunicationCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075542AA9D78300600E11 /* AzureCommunicationCommon.framework */; };
+		8D0075782AA9FC2E00600E11 /* AzureCommunicationCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075542AA9D78300600E11 /* AzureCommunicationCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D0075792AA9FC3000600E11 /* AzureCommunicationUICalling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075562AA9D79A00600E11 /* AzureCommunicationUICalling.framework */; };
+		8D00757A2AA9FC3000600E11 /* AzureCommunicationUICalling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075562AA9D79A00600E11 /* AzureCommunicationUICalling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D00757B2AA9FC3200600E11 /* AzureCommunicationUIChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075582AA9D7AF00600E11 /* AzureCommunicationUIChat.framework */; };
+		8D00757C2AA9FC3200600E11 /* AzureCommunicationUIChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0075582AA9D7AF00600E11 /* AzureCommunicationUIChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D00757D2AA9FC3400600E11 /* AzureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D00755A2AA9D7B900600E11 /* AzureCore.framework */; };
+		8D00757E2AA9FC3400600E11 /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D00755A2AA9D7B900600E11 /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D0075812AA9FE4600600E11 /* PIPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D00757F2AA9FE1700600E11 /* PIPKit.framework */; };
+		8D0075822AA9FE4700600E11 /* PIPKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D00757F2AA9FE1700600E11 /* PIPKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D00758D2AA9FEB100600E11 /* FluentUIResources-ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8D00758C2AA9FEB100600E11 /* FluentUIResources-ios.bundle */; };
 		8D09549A2A83625B00DC6D33 /* IncomingCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0954992A83625B00DC6D33 /* IncomingCallController.swift */; };
 		8D0954C32A836A6300DC6D33 /* IncomingCallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0954C22A836A6300DC6D33 /* IncomingCallHandler.swift */; };
 		8D0A6077298BE4A0002EBBC4 /* UserInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0A6076298BE498002EBBC4 /* UserInfoData.swift */; };
@@ -75,16 +75,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8D0074F52AA9A9D400600E11 /* PBXContainerItemProxy */ = {
+		8D0075882AA9FE8500600E11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8D0074F02AA9A9D400600E11 /* FluentUI.xcodeproj */;
+			containerPortal = 8D0075832AA9FE8500600E11 /* FluentUI.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A5DA88FC226FAA01000A8EA8;
 			remoteInfo = FluentUIResources;
 		};
-		8D0074F72AA9A9D400600E11 /* PBXContainerItemProxy */ = {
+		8D00758A2AA9FE8500600E11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8D0074F02AA9A9D400600E11 /* FluentUI.xcodeproj */;
+			containerPortal = 8D0075832AA9FE8500600E11 /* FluentUI.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8FD01166228A820600D25925;
 			remoteInfo = FluentUILib;
@@ -100,15 +100,15 @@
 			files = (
 				8D0075272AA9AD3F00600E11 /* Flutter.xcframework in Embed Frameworks */,
 				8D0075152AA9AC4800600E11 /* MSAL.xcframework in Embed Frameworks */,
+				8D0075822AA9FE4700600E11 /* PIPKit.framework in Embed Frameworks */,
+				8D00757C2AA9FC3200600E11 /* AzureCommunicationUIChat.framework in Embed Frameworks */,
 				8D0075112AA9AC4100600E11 /* Trouter.xcframework in Embed Frameworks */,
+				8D0075742AA9FC2A00600E11 /* AzureCommunicationCalling.framework in Embed Frameworks */,
+				8D0075762AA9FC2C00600E11 /* AzureCommunicationChat.framework in Embed Frameworks */,
+				8D0075782AA9FC2E00600E11 /* AzureCommunicationCommon.framework in Embed Frameworks */,
+				8D00757E2AA9FC3400600E11 /* AzureCore.framework in Embed Frameworks */,
+				8D00757A2AA9FC3000600E11 /* AzureCommunicationUICalling.framework in Embed Frameworks */,
 				8D0075292AA9AD4100600E11 /* App.xcframework in Embed Frameworks */,
-				8D00751F2AA9AC5300600E11 /* AzureCommunicationChat.framework in Embed Frameworks */,
-				8D00751B2AA9AC4F00600E11 /* AzureCommunicationUICalling.framework in Embed Frameworks */,
-				8D0075132AA9AC4600600E11 /* PIPKit.framework in Embed Frameworks */,
-				8D0075212AA9AC5500600E11 /* AzureCommunicationCalling.xcframework in Embed Frameworks */,
-				8D0075172AA9AC4B00600E11 /* AzureCore.framework in Embed Frameworks */,
-				8D00751D2AA9AC5100600E11 /* AzureCommunicationCommon.framework in Embed Frameworks */,
-				8D0075192AA9AC4C00600E11 /* AzureCommunicationUIChat.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,19 +116,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8D0074F02AA9A9D400600E11 /* FluentUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FluentUI.xcodeproj; path = "SDK/fluentui-apple-0.3.9_main_0.3/ios/FluentUI.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		8D0074FA2AA9AC2500600E11 /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = AzureFramework/AzureCommunicationCalling.xcframework; sourceTree = "<group>"; };
-		8D0074FC2AA9AC2B00600E11 /* AzureCommunicationChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationChat.framework; path = AzureFramework/AzureCommunicationChat.framework; sourceTree = "<group>"; };
-		8D0074FE2AA9AC3500600E11 /* PIPKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PIPKit.framework; path = AzureFramework/PIPKit.framework; sourceTree = "<group>"; };
-		8D0074FF2AA9AC3500600E11 /* AzureCommunicationUICalling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationUICalling.framework; path = AzureFramework/AzureCommunicationUICalling.framework; sourceTree = "<group>"; };
-		8D0075002AA9AC3500600E11 /* AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationUIChat.framework; path = AzureFramework/AzureCommunicationUIChat.framework; sourceTree = "<group>"; };
-		8D0075012AA9AC3500600E11 /* AzureCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCore.framework; path = AzureFramework/AzureCore.framework; sourceTree = "<group>"; };
 		8D0075022AA9AC3600600E11 /* Trouter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Trouter.xcframework; path = AzureFramework/Trouter.xcframework; sourceTree = "<group>"; };
-		8D0075032AA9AC3600600E11 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = AzureFramework/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
-		8D0075042AA9AC3600600E11 /* AzureCommunicationCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationCommon.framework; path = AzureFramework/AzureCommunicationCommon.framework; sourceTree = "<group>"; };
 		8D0075052AA9AC3700600E11 /* MSAL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MSAL.xcframework; path = AzureFramework/MSAL.xcframework; sourceTree = "<group>"; };
 		8D0075222AA9AD3800600E11 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Flutter.xcframework; sourceTree = "<group>"; };
 		8D0075232AA9AD3800600E11 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/App.xcframework; sourceTree = "<group>"; };
+		8D0075502AA9D73500600E11 /* AzureCommunicationCalling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationCalling.framework; path = "AzureFramework/AzureCommunicationCalling.xcframework/ios-arm64/AzureCommunicationCalling.framework"; sourceTree = "<group>"; };
+		8D0075522AA9D76A00600E11 /* AzureCommunicationChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationChat.framework; path = AzureFramework/AzureCommunicationChat.framework; sourceTree = "<group>"; };
+		8D0075542AA9D78300600E11 /* AzureCommunicationCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationCommon.framework; path = AzureFramework/AzureCommunicationCommon.framework; sourceTree = "<group>"; };
+		8D0075562AA9D79A00600E11 /* AzureCommunicationUICalling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationUICalling.framework; path = AzureFramework/AzureCommunicationUICalling.framework; sourceTree = "<group>"; };
+		8D0075582AA9D7AF00600E11 /* AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationUIChat.framework; path = AzureFramework/AzureCommunicationUIChat.framework; sourceTree = "<group>"; };
+		8D00755A2AA9D7B900600E11 /* AzureCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCore.framework; path = AzureFramework/AzureCore.framework; sourceTree = "<group>"; };
+		8D00755C2AA9D7DB00600E11 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WindowsAzureMessaging.framework; path = AzureFramework/WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		8D00757F2AA9FE1700600E11 /* PIPKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PIPKit.framework; path = AzureFramework/PIPKit.framework; sourceTree = "<group>"; };
+		8D0075832AA9FE8500600E11 /* FluentUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FluentUI.xcodeproj; path = "SDK/fluentui-apple-0.3.9_main_0.3/ios/FluentUI.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		8D00758C2AA9FEB100600E11 /* FluentUIResources-ios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "FluentUIResources-ios.bundle"; path = "../../../../../../../Library/Developer/Xcode/DerivedData/CitiApps-hkjgicsmiuanktakneknpzgcufib/Build/Products/Release-iphoneos/FluentUIResources-ios.bundle"; sourceTree = "<group>"; };
 		8D0954992A83625B00DC6D33 /* IncomingCallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingCallController.swift; sourceTree = "<group>"; };
 		8D0954C22A836A6300DC6D33 /* IncomingCallHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallHandler.swift; sourceTree = "<group>"; };
 		8D0A6076298BE498002EBBC4 /* UserInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoData.swift; sourceTree = "<group>"; };
@@ -183,28 +184,35 @@
 			files = (
 				8D0075282AA9AD4100600E11 /* App.xcframework in Frameworks */,
 				8D0075142AA9AC4800600E11 /* MSAL.xcframework in Frameworks */,
-				8D0075202AA9AC5500600E11 /* AzureCommunicationCalling.xcframework in Frameworks */,
-				8D0075182AA9AC4C00600E11 /* AzureCommunicationUIChat.framework in Frameworks */,
-				8D0074F92AA9ABDF00600E11 /* libFluentUI.a in Frameworks */,
-				8D0075122AA9AC4600600E11 /* PIPKit.framework in Frameworks */,
-				8D00751E2AA9AC5300600E11 /* AzureCommunicationChat.framework in Frameworks */,
-				8D0075162AA9AC4A00600E11 /* AzureCore.framework in Frameworks */,
-				8D00750E2AA9AC3F00600E11 /* WindowsAzureMessaging.framework in Frameworks */,
-				8D00751C2AA9AC5100600E11 /* AzureCommunicationCommon.framework in Frameworks */,
+				8D0075792AA9FC3000600E11 /* AzureCommunicationUICalling.framework in Frameworks */,
+				8D0075772AA9FC2E00600E11 /* AzureCommunicationCommon.framework in Frameworks */,
+				8D00757B2AA9FC3200600E11 /* AzureCommunicationUIChat.framework in Frameworks */,
 				8D0075102AA9AC4100600E11 /* Trouter.xcframework in Frameworks */,
 				8D0075262AA9AD3E00600E11 /* Flutter.xcframework in Frameworks */,
-				8D00751A2AA9AC4F00600E11 /* AzureCommunicationUICalling.framework in Frameworks */,
+				8D0075812AA9FE4600600E11 /* PIPKit.framework in Frameworks */,
+				8D00757D2AA9FC3400600E11 /* AzureCore.framework in Frameworks */,
+				8D00755D2AA9D7DB00600E11 /* WindowsAzureMessaging.framework in Frameworks */,
+				8D0075732AA9FC2A00600E11 /* AzureCommunicationCalling.framework in Frameworks */,
+				8D0075752AA9FC2B00600E11 /* AzureCommunicationChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8D0074F12AA9A9D400600E11 /* Products */ = {
+		8D0075612AA9E52000600E11 /* FluentUI */ = {
 			isa = PBXGroup;
 			children = (
-				8D0074F62AA9A9D400600E11 /* FluentUIResources-ios.bundle */,
-				8D0074F82AA9A9D400600E11 /* libFluentUI.a */,
+				8D0075832AA9FE8500600E11 /* FluentUI.xcodeproj */,
+			);
+			path = FluentUI;
+			sourceTree = SOURCE_ROOT;
+		};
+		8D0075842AA9FE8500600E11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D0075892AA9FE8500600E11 /* FluentUIResources-ios.bundle */,
+				8D00758B2AA9FE8500600E11 /* libFluentUI.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -335,18 +343,10 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		8DF021BC2A8F442800CDB5C6 /* FluentUI */ = {
-			isa = PBXGroup;
-			children = (
-				8D0074F02AA9A9D400600E11 /* FluentUI.xcodeproj */,
-			);
-			path = FluentUI;
-			sourceTree = "<group>";
-		};
 		8DFBD2C129756DD6006B0700 = {
 			isa = PBXGroup;
 			children = (
-				8DF021BC2A8F442800CDB5C6 /* FluentUI */,
+				8D00758C2AA9FEB100600E11 /* FluentUIResources-ios.bundle */,
 				8DFBD34729757A39006B0700 /* AppSettings.xcconfig */,
 				8DFBD2CC29756DD6006B0700 /* CitiApps */,
 				8DFBD2CB29756DD6006B0700 /* Products */,
@@ -365,6 +365,7 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
+				8D0075612AA9E52000600E11 /* FluentUI */,
 				8D09549B2A83628200DC6D33 /* Models */,
 				8DCFCBAD2A57FDEF00F1D293 /* ViewControllers */,
 				8DCFCB9D2A57F9B400F1D293 /* Utils */,
@@ -382,18 +383,18 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D00755C2AA9D7DB00600E11 /* WindowsAzureMessaging.framework */,
+				8D00755A2AA9D7B900600E11 /* AzureCore.framework */,
+				8D0075582AA9D7AF00600E11 /* AzureCommunicationUIChat.framework */,
+				8D0075562AA9D79A00600E11 /* AzureCommunicationUICalling.framework */,
+				8D0075542AA9D78300600E11 /* AzureCommunicationCommon.framework */,
+				8D0075522AA9D76A00600E11 /* AzureCommunicationChat.framework */,
+				8D0075502AA9D73500600E11 /* AzureCommunicationCalling.framework */,
+				8D00757F2AA9FE1700600E11 /* PIPKit.framework */,
 				8D0075232AA9AD3800600E11 /* App.xcframework */,
 				8D0075222AA9AD3800600E11 /* Flutter.xcframework */,
-				8D0075042AA9AC3600600E11 /* AzureCommunicationCommon.framework */,
-				8D0074FF2AA9AC3500600E11 /* AzureCommunicationUICalling.framework */,
-				8D0075002AA9AC3500600E11 /* AzureCommunicationUIChat.framework */,
-				8D0075012AA9AC3500600E11 /* AzureCore.framework */,
 				8D0075052AA9AC3700600E11 /* MSAL.xcframework */,
-				8D0074FE2AA9AC3500600E11 /* PIPKit.framework */,
 				8D0075022AA9AC3600600E11 /* Trouter.xcframework */,
-				8D0075032AA9AC3600600E11 /* WindowsAzureMessaging.framework */,
-				8D0074FC2AA9AC2B00600E11 /* AzureCommunicationChat.framework */,
-				8D0074FA2AA9AC2500600E11 /* AzureCommunicationCalling.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -462,8 +463,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 8D0074F12AA9A9D400600E11 /* Products */;
-					ProjectRef = 8D0074F02AA9A9D400600E11 /* FluentUI.xcodeproj */;
+					ProductGroup = 8D0075842AA9FE8500600E11 /* Products */;
+					ProjectRef = 8D0075832AA9FE8500600E11 /* FluentUI.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -474,18 +475,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		8D0074F62AA9A9D400600E11 /* FluentUIResources-ios.bundle */ = {
+		8D0075892AA9FE8500600E11 /* FluentUIResources-ios.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "FluentUIResources-ios.bundle";
-			remoteRef = 8D0074F52AA9A9D400600E11 /* PBXContainerItemProxy */;
+			remoteRef = 8D0075882AA9FE8500600E11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8D0074F82AA9A9D400600E11 /* libFluentUI.a */ = {
+		8D00758B2AA9FE8500600E11 /* libFluentUI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libFluentUI.a;
-			remoteRef = 8D0074F72AA9A9D400600E11 /* PBXContainerItemProxy */;
+			remoteRef = 8D00758A2AA9FE8500600E11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -497,6 +498,7 @@
 			files = (
 				8DA82E982977FFD000A79D3B /* Main.storyboard in Resources */,
 				8DFBD2D729756DD8006B0700 /* Assets.xcassets in Resources */,
+				8D00758D2AA9FEB100600E11 /* FluentUIResources-ios.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +627,7 @@
 					"$(PROJECT_DIR)/SDK",
 					"$(PROJECT_DIR)/AzureSDK",
 					"$(PROJECT_DIR)/AzureFramework",
+					"$(PROJECT_DIR)/AzureFramework/AzureCommunicationCalling.xcframework/ios-arm64",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CitiApps/Info.plist;
@@ -799,6 +802,7 @@
 					"$(PROJECT_DIR)/SDK",
 					"$(PROJECT_DIR)/AzureSDK",
 					"$(PROJECT_DIR)/AzureFramework",
+					"$(PROJECT_DIR)/AzureFramework/AzureCommunicationCalling.xcframework/ios-arm64",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CitiApps/Info.plist;
@@ -854,6 +858,7 @@
 					"$(PROJECT_DIR)/SDK",
 					"$(PROJECT_DIR)/AzureSDK",
 					"$(PROJECT_DIR)/AzureFramework",
+					"$(PROJECT_DIR)/AzureFramework/AzureCommunicationCalling.xcframework/ios-arm64",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CitiApps/Info.plist;
