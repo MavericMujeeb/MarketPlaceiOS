@@ -72,7 +72,9 @@ class LoginViewController : UIViewController {
         let userStr = String(data: data, encoding: .utf8)
         flutterMethodChannel(passArgs: userStr);
         
+        //On login - Register for incoming call push notifications
         self.registerIncomingCallHandler()
+        //On login - register for chat push notification
         self.registerChatClient()
 
         
@@ -92,7 +94,7 @@ class LoginViewController : UIViewController {
     
     func registerChatClient() {
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
-        let chatController = ChatController(rootViewController: rootVC)
+        let chatController = AzureChatController(rootViewController: rootVC)
         chatController.initChatClient()
     }
     

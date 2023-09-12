@@ -334,7 +334,7 @@ struct IncomingCallView: View {
         }
         let rootVc = UIApplication.shared.keyWindow?.rootViewController
         
-        let chatController = ChatController(chatAdapter: nil, rootViewController: rootVc)
+        let chatController = AzureChatController(chatAdapter: nil, rootViewController: rootVc)
         chatController.bankerEmailId = ACSResources.bankerUserEmail
         chatController.isForCall = false
         

@@ -85,7 +85,7 @@ class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, MSNotificationHub
                 var bankerEmailId = storageUserDefaults.string(forKey: StorageKeys.bankerEmailId) ?? ACSResources.bankerUserEmail
                 var customerUserName = storageUserDefaults.string(forKey: StorageKeys.loginUserName) ?? ACSResources.customerUserName
                 
-                let chatController = ChatController(chatAdapter: nil, rootViewController: rootVC)
+                let chatController = AzureChatController(chatAdapter: nil, rootViewController: rootVC)
                 chatController.bankerEmailId = bankerEmailId
                 chatController.custUserName = customerUserName
                 chatController.isForCall = false

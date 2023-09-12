@@ -67,7 +67,6 @@ class TokenService {
     }
 
     func getCommunicationToken(completionHandler: @escaping (String?, Error?) -> Void) {
-        print("getCommunicationToken")
         guard let url = URL(string: communicationTokenFetchUrl),
               url.host != nil else {
             assertionFailure(

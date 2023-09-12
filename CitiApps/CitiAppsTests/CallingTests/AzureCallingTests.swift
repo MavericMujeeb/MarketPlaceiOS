@@ -7,67 +7,55 @@
 
 import XCTest
 import AzureCommunicationCalling
+@testable import CitiApps
 
 final class AzureCallingTests: XCTestCase {
+    
+    var azureCallController : AzureCallController = AzureCallController()
+    var incomingCallingController : ACSIncomingCallController = ACSIncomingCallController()
+    
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        super.tearDown()
     }
 
-    func testCreateCallClient () {
-        var callClient = CallClient()
+    func testScheduledMeetingJoinCallUsingTeamsMeetingLink () {
+        azureCallController.initTokenService(url: ACSResources.acs_chat_participantdetails_api)
+        azureCallController.tokenService.getCommunicationToken { tokenString, error in
+            XCTAssertTrue(tokenString?.isEmpty , "Communincation Token is empty")
+        }
+        
+        Task{
+            await azureCallController.joinCall()
+            XCTAssertTrue(azureCallController.callingContext.displayName.isEmpty , "Teams meeting callingContext displayName is not set")
+            XCTAssertTrue(azureCallController.callingContext.callComposite == nil , "Teams meeting callComposite is empty")
+            XCTAssertTrue(azureCallController.callingContext.joinId == nil , "Teams meeting link is empty")
+            XCTAssertTrue(azureCallController.callingContext.userId == nil , "Logged in user id is empty")
+        }
     }
     
-//    func testCreateCallAgentWithCommunicationToken () {
-//
-//    }
-//
-//    func testCreateCallAgentWithOptions () {
-//
-//    }
-//
-//    func testCreateCallAgentForScheduleMeetingOptions () {
-//
-//    }
-//
-//    func testCreateCallAgentForAhocCallWithOptions () {
-//
-//    }
-//
-//    func testDisposeCallAgent () {
-//
-//    }
-//
-//    func testEndCall () {
-//
-//    }
-//
-//    func testMuteCall () {
-//
-//    }
-//
-//    func testUnmuteCall () {
-//
-//    }
-//
-//    func testTurnOnVideo () {
-//
-//    }
-//
-//    func testTurnOffVideo () {
-//
-//    }
-//
-//    func testScreenShareAction () {
-//
-//    }
-//
-//    func testStopScreenShareAction () {
-//
-//    }
-
+    func testAdhocOutgoingAudioCallUsingClientAcsId () {
+        azureCallController.fetchACSDetails { participantDetails, error in
+            if(error == nil){
+            }
+            Task {
+                await azureCallController.startAudioVideoCall(isVideoCall:false)
+            }
+        }
+        
+    }
+    
+    
+    func testAdhocOutgoingVideoCallUsingClientAcsId () {
+        
+    }
+    
+  
+    func testIncomingCallPushNotificationRegistration() {
+        
+    }
 }

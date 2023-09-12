@@ -45,9 +45,12 @@ class DashboardViewController : UIViewController {
         notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         if(handleExternalLinks == true){
-            let teamsCallingViewController = TeamsCallingController()
+            let teamsCallingViewController = AzureCallController()
             teamsCallingViewController.teamsLink = self.meetingLink
-            teamsCallingViewController.startCall()
+            
+            Task{
+                await teamsCallingViewController.joinTeamsCall()
+            }
         }
         
         if(isFromNotificationTray) {
@@ -59,7 +62,7 @@ class DashboardViewController : UIViewController {
             var bankerEmailId = storageUserDefaults.string(forKey: StorageKeys.bankerEmailId) ?? ACSResources.bankerUserEmail
             var customerUserName = storageUserDefaults.string(forKey: StorageKeys.loginUserName) ?? ACSResources.customerUserName
             
-            let chatController = ChatController(chatAdapter: nil, rootViewController: self)
+            let chatController = AzureChatController(chatAdapter: nil, rootViewController: self)
             chatController.bankerEmailId = bankerEmailId
             chatController.custUserName = customerUserName
             chatController.isForCall = false

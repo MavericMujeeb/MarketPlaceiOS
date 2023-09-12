@@ -16,11 +16,7 @@ class NetworkManager {
     var custUserName:String! = ""
     
     
-    func getCommunicationToken () {
-        
-    }
-
-    func getAcsUserDetails(completion: @escaping (ParticipantDetails?, Error?)->Void) {
+    func getAcsParticipantDetails(completion: @escaping (ParticipantDetails?, Error?)->Void) {
         
         let storageUserDefaults = UserDefaults.standard
         
@@ -58,6 +54,26 @@ class NetworkManager {
                     completion(nil, error)
                 }
                 
+            }
+        }
+        task.resume()
+    }
+    
+    func getACSUserDetails (url:String, completion: @escaping (AcsUserIdToken?, Error?)->Void) {
+        guard let fullUrl = try? URL(string: url) else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: fullUrl){
+            data, response, error in
+            if let data = data, let string = String(data: data, encoding: .utf8){
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    let responseModel = try jsonDecoder.decode(AcsUserIdToken.self, from: data)
+                    completion(responseModel, nil)
+                } catch {
+                    completion(nil, error)
+                }
             }
         }
         task.resume()
