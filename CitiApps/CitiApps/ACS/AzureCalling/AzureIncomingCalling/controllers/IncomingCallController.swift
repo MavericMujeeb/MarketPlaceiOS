@@ -45,61 +45,27 @@ class ACSIncomingCallController {
     
     private func fetchACSParticipantDetails() {
         self.bankerEmailId = self.bankerEmailId ?? ACSResources.bankerUserEmail
-        let reqBody = "{" +
-        "\"originatorId\":\"\(self.bankerEmailId!)\"," +
-        "\"participantName\":\"\(self.custUserName!)\"" +
-        "}"
-
-        let fullUrl: String = ACSResources.acs_chat_participantdetails_api
+        storageUserDefaults.set(self.bankerEmailId, forKey: StorageKeys.bankerEmailId)
         
-        guard let url = try? URL(string: fullUrl) else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST" //set http method as POST
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = reqBody.data(using: .utf8)!
-        
-        let task = URLSession.shared.dataTask(with: request){
-            data, response, error in
-            
-
-            if let data = data, let string = String(data: data, encoding: .utf8){
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    let responseModel = try jsonDecoder.decode(ParticipantDetails.self, from: data)
-                    self.bankerAcsId = (responseModel.originator?.acsId)!
-                    self.custAcsId = (responseModel.participantList?[0].acsId)!
-                    self.bankerUserName = responseModel.originator?.participantName
-                    self.getCustomerCommunicationToken()
-                    
-                } catch {
-                    print(error)
-                }
-                print(string)
+        NetworkManager.shared.getAcsParticipantDetails { response, error in
+            if(error == nil){
+                self.bankerAcsId = (response.originator?.acsId)!
+                self.custAcsId = (response.participantList?[0].acsId)!
+                self.bankerUserName = response.originator?.participantName
+                self.getCustomerCommunicationToken()
             }
         }
-        task.resume()
     }
     
     private func getCustomerCommunicationToken () {
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
-        let task = URLSession.shared.dataTask(with: URL(string: fullUrl)!){
-            data, response, error in
-            if let data = data{
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    let res = try JSONDecoder().decode(AcsUserIdToken.self, from: data)
-                    self.acsToken = res.customerUserToken
-                    self.storageUserDefaults.set(self.acsToken, forKey: StorageKeys.acsToken)
-                    self.registerIncomingCallPushNotifications()
-                } catch {
-                    print(error)
-                }
+        NetworkManager.shared.getACSUserDetails(url: fullUrl) { response, error in
+            if(error == nil){
+                self.acsToken = response.customerUserToken
+                self.storageUserDefaults.set(self.acsToken, forKey: StorageKeys.acsToken)
+                self.registerIncomingCallPushNotifications()
             }
         }
-        task.resume()
     }
     
     func registerIncomingCallPushNotifications() {

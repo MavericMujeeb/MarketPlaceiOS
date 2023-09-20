@@ -7,8 +7,7 @@
 
 import Foundation
 
-
 class MockData {
     static var deeplinkMeetingUrl = ""
-    
+    static var teamsMeetingUrl = ""
 }

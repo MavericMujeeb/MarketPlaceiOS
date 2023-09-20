@@ -30,7 +30,7 @@ class NetworkManager {
         
         let fullUrl: String = ACSResources.acs_chat_participantdetails_api
         
-        guard let url = try? URL(string: fullUrl) else {
+        guard let url = URL(string: fullUrl) else {
             return
         }
         
@@ -42,7 +42,7 @@ class NetworkManager {
         
         let task = URLSession.shared.dataTask(with: request){
             data, response, error in
-            if let data = data, let string = String(data: data, encoding: .utf8){
+            if let data = data {
                 do {
                     let jsonDecoder = JSONDecoder()
                     let responseModel = try jsonDecoder.decode(ParticipantDetails.self, from: data)
@@ -53,20 +53,19 @@ class NetworkManager {
                     //completion Handler error responnse
                     completion(nil, error)
                 }
-                
             }
         }
         task.resume()
     }
     
     func getACSUserDetails (url:String, completion: @escaping (AcsUserIdToken?, Error?)->Void) {
-        guard let fullUrl = try? URL(string: url) else {
+        guard let fullUrl = URL(string: url) else {
             return
         }
         
         let task = URLSession.shared.dataTask(with: fullUrl){
             data, response, error in
-            if let data = data, let string = String(data: data, encoding: .utf8){
+            if let data = data {
                 do {
                     let jsonDecoder = JSONDecoder()
                     let responseModel = try jsonDecoder.decode(AcsUserIdToken.self, from: data)

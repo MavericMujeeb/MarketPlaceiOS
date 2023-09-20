@@ -14,7 +14,6 @@ var loggedInUser : String!
 var loginDate : NSDate!
 var userid : String!
 
-
 import UIKit
 import FluentUI
 import Flutter
@@ -76,7 +75,6 @@ class LoginViewController : UIViewController {
         self.registerIncomingCallHandler()
         //On login - register for chat push notification
         self.registerChatClient()
-
         
         if(handleExternalLinks == true) {
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
@@ -121,7 +119,13 @@ class LoginViewController : UIViewController {
         }
     }
     
-    func customizeNavBar(){
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        customizeNavBar()
+        customizeTextFields()
+    }
+    
+    private func customizeNavBar () {
         let logoImageView = UIImageView.init()
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.contentMode =  UIView.ContentMode.scaleAspectFit
@@ -134,11 +138,10 @@ class LoginViewController : UIViewController {
         logoImageView.widthAnchor.constraint(equalToConstant: width).isActive = true;
         logoImageView.heightAnchor.constraint(equalToConstant: height).isActive = true;
         
-  
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = logoBarButtonItem;
     }
     
-    func customizeTextFields(){
+    private func customizeTextFields(){
         username.delegate = self
         password.delegate = self
         
@@ -148,13 +151,6 @@ class LoginViewController : UIViewController {
         password.isSecureTextEntry = true
         
         username.text = "veronicastephens838@gmail.com"
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad();
-        customizeNavBar()
-        customizeTextFields()
-        
     }
     
     func flutterMethodChannel (passArgs: String?) {

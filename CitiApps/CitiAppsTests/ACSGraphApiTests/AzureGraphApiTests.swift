@@ -31,7 +31,11 @@ final class AzureGraphApiTests: XCTestCase {
     }
     
     func testACSUserDetailsApi () {
-        
+        NetworkManager.shared.getACSUserDetails(url: "") { response, error in
+            if(error == nil){
+                print("acs user details")
+            }
+        }
     }
     
 }

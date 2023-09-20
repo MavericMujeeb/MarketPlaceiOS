@@ -33,11 +33,82 @@ class AzureChatController  {
         self.rootViewController = rootViewController
     }
     
+    private func fetchAcsDetailsAndToken (completion: @escaping (Bool?, Error?)->Void) {
+        NetworkManager.shared.getAcsParticipantDetails { response, error in
+            if(error == nil){
+                CircleLoader.sharedInstance.hide()
+                
+                self.bankerUserName = response?.originator?.participantName
+                self.bankerAcsId = response?.originator?.acsId
+                self.custUserName = response?.participantList?[0].participantName
+                self.custAcsId = response?.participantList?[0].acsId
+                self.threadId = response?.originator?.threadId
+                
+                let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
+               
+                guard let url = try? URL(string: fullUrl) else {
+                    return
+                }
+                
+                NetworkManager.shared.getACSUserDetails(url: fullUrl) { response, error in
+                    CircleLoader.sharedInstance.hide()
+                    if(error == nil){
+                        self.custUserToken = response?.customerUserToken
+                        self.bankerUserToken = response?.bankerUserToken
+                        completion(true, nil)
+                    }
+                }
+            }
+            else{
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func startChatComposite(completion: @escaping (Bool?)->Void) {
+        fetchAcsDetailsAndToken { result, error in
+            if(result == true){
+                self.initChatClient(completion: completion)
+            }
+        }
+    }
+    
+    func initChatClient(completion: @escaping (Bool?)->Void) {
+        do{
+            if(chatClient == nil){
+                registerChatClient()
+            }
+            
+            let request = CreateChatThreadRequest(
+                topic: "30-min meeting",
+                participants: [
+                    ChatParticipant(
+                        id: CommunicationUserIdentifier(self.bankerAcsId),
+                        displayName: self.bankerUserName
+                    ),
+                ]
+            )
+            
+            chatClient?.create(thread: request) { result, _ in
+                switch result {
+                case let .success(result):
+                    self.startChatComposite()
+                    completion(true)
+                case .failure:
+                    completion(false)
+                }
+            }
+        }
+        catch {
+            completion(false)
+        }
+    }
+    
     func prepareChatComposite() {
         self.fetchAcsParticipantDetails()
     }
 
-    func initChatClient(){
+    private func initChatClient(){
         CircleLoader.sharedInstance.show()
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
        
@@ -47,7 +118,8 @@ class AzureChatController  {
         
         NetworkManager.shared.getACSUserDetails(url: fullUrl) { acsUserResponse, error in
             CircleLoader.sharedInstance.hide()
-            if(error == nil){
+            
+            if(error == nil) {
                 self.custUserToken = acsUserResponse?.customerUserToken
                 self.bankerUserToken = acsUserResponse?.bankerUserToken
                 self.registerChatClient()
@@ -162,8 +234,6 @@ class AzureChatController  {
         }
     }
     
-    
-    
     func fetchAcsParticipantDetails() {
         CircleLoader.sharedInstance.show()
         
@@ -173,7 +243,7 @@ class AzureChatController  {
             self.bankerAcsId = response?.originator?.acsId
             self.custUserName = response?.participantList?[0].participantName
             self.custAcsId = response?.participantList?[0].acsId
-            self.threadId = response?.participantList?[0].threadId
+            self.threadId = response?.originator?.threadId
             
             self.fetchAcsUserToken()
 

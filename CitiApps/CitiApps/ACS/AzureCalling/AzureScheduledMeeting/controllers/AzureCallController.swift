@@ -28,14 +28,12 @@ class AzureCallController {
      * Function to init token service for Scheduled meeting call / adhoc audio video call
      * Pass the required url as param
      */
-    func initTokenService (url:String) {
+    private func initTokenService (url:String) {
         self.tokenService = TokenService(tokenACS:"", communicationTokenFetchUrl: url, getAuthTokenFunction: { () -> String? in
             let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
             return appDelegate.authHandler.authToken
         })
     }
-    
-    
     
     
     func joinTeamsCall() async {
@@ -72,7 +70,7 @@ class AzureCallController {
     }
     
     
-    func fetchACSDetails (completion: @escaping (ParticipantDetails?, Error?)->Void) {
+    private func fetchACSDetails (completion: @escaping (ParticipantDetails?, Error?)->Void) {
         let storageUserDefaults = UserDefaults.standard
         self.bankerEmailId = storageUserDefaults.string(forKey: "bankerEmailId")
         self.custUserName = storageUserDefaults.string(forKey: "loginUserName")
@@ -97,8 +95,7 @@ class AzureCallController {
     /*
      * Function to configure ACS details to start Adhoc audio/video call
      */
-    
-    func startAdhocACSCall(isVideoCall : Bool) {
+    private func startAdhocACSCall(isVideoCall : Bool) {
         CircleLoader.sharedInstance.show()
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
         initTokenService(url: fullUrl)
@@ -113,7 +110,7 @@ class AzureCallController {
     /*
      * Function to start Adhoc audio/video call
      */
-    func startAudioVideoCall(acsId:String,isVideoCall : Bool = false) async {
+    private func startAudioVideoCall(acsId:String, isVideoCall : Bool = false) async {
         let isAudioCall = isVideoCall ? false : true
         let displayName =  users[loggedInUser]?["name"]  ?? ""
         let callConfig = JoinCallConfig(joinId: acsId, displayName: displayName, callType: .voiceCall, isAudioCall: isAudioCall, isVideoCall: isVideoCall)

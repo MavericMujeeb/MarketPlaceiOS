@@ -42,7 +42,8 @@ struct IncomingCallView: View {
     @State var incomingCall: IncomingCall?
     @State var sendingVideo:Bool = false
     @State var errorMessage:String = "Unknown"
-    @State var remoteVideoStreamData:[Int32:RemoteVideoStreamData] = [:]
+    @State var remoteVideoStreamData:[Int32:Remo
+                                      teVideoStreamData] = [:]
     @State var previewRenderer:VideoStreamRenderer? = nil
     @State var previewView:RendererView? = nil
     @State var remoteRenderer:VideoStreamRenderer? = nil
