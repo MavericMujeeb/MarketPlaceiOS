@@ -27,7 +27,6 @@
 		8DCFCBA02A57FAF800F1D293 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCB9F2A57FAF800F1D293 /* DashboardViewController.swift */; };
 		8DCFCBA62A57FB4400F1D293 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA12A57FB4300F1D293 /* SearchViewController.swift */; };
 		8DCFCBA72A57FB4400F1D293 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA22A57FB4300F1D293 /* ProfileViewController.swift */; };
-		8DCFCBA82A57FB4400F1D293 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA32A57FB4300F1D293 /* LoginViewModel.swift */; };
 		8DCFCBAA2A57FB4400F1D293 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA52A57FB4400F1D293 /* HomeViewController.swift */; };
 		8DCFCBAC2A57FB6500F1D293 /* DashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBAB2A57FB6500F1D293 /* DashViewController.swift */; };
 		8DCFCBAF2A58311E00F1D293 /* ScreenSharingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBAE2A58311E00F1D293 /* ScreenSharingController.swift */; };
@@ -55,8 +54,6 @@
 		8DF021B72A8F43CB00CDB5C6 /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021A52A8F43B700CDB5C6 /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DF021B82A8F43CF00CDB5C6 /* MSAL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021A12A8F43B700CDB5C6 /* MSAL.xcframework */; };
 		8DF021B92A8F43CF00CDB5C6 /* MSAL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021A12A8F43B700CDB5C6 /* MSAL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8DF021BA2A8F43D200CDB5C6 /* PIPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021A42A8F43B700CDB5C6 /* PIPKit.framework */; };
-		8DF021BB2A8F43D200CDB5C6 /* PIPKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021A42A8F43B700CDB5C6 /* PIPKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DF021C92A8F500E00CDB5C6 /* Trouter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021C72A8F500700CDB5C6 /* Trouter.xcframework */; };
 		8DF021CA2A8F500E00CDB5C6 /* Trouter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021C72A8F500700CDB5C6 /* Trouter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DF021E42A8F75FD00CDB5C6 /* AzureCommunicationChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF021E02A8F75F000CDB5C6 /* AzureCommunicationChat.framework */; };
@@ -85,6 +82,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8DE3A8142AB1C0BD00263D3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DE3A8032AB19D6000263D3F /* PIPKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CEE9972F2782A5CC002FA127;
+			remoteInfo = PIPKit;
+		};
+		8DE3A8162AB1C0BD00263D3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DE3A8032AB19D6000263D3F /* PIPKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CEE997462782A62B002FA127;
+			remoteInfo = Example;
+		};
 		8DE3AF9B2AB045BE00C9D7D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DE3AF962AB045BE00C9D7D2 /* FluentUI.xcodeproj */;
@@ -118,7 +129,6 @@
 				8DF021B12A8F43C600CDB5C6 /* AzureCommunicationCommon.framework in Embed Frameworks */,
 				8DB11EAC2A839FC100E111CE /* Flutter.xcframework in Embed Frameworks */,
 				8DF021B72A8F43CB00CDB5C6 /* AzureCore.framework in Embed Frameworks */,
-				8DF021BB2A8F43D200CDB5C6 /* PIPKit.framework in Embed Frameworks */,
 				8DF021E52A8F75FD00CDB5C6 /* AzureCommunicationChat.framework in Embed Frameworks */,
 				8DF021B32A8F43C700CDB5C6 /* AzureCommunicationUICalling.framework in Embed Frameworks */,
 				8DF021B92A8F43CF00CDB5C6 /* MSAL.xcframework in Embed Frameworks */,
@@ -151,12 +161,12 @@
 		8DCFCB9F2A57FAF800F1D293 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		8DCFCBA12A57FB4300F1D293 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8DCFCBA22A57FB4300F1D293 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		8DCFCBA32A57FB4300F1D293 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8DCFCBA52A57FB4400F1D293 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8DCFCBAB2A57FB6500F1D293 /* DashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashViewController.swift; sourceTree = "<group>"; };
 		8DCFCBAE2A58311E00F1D293 /* ScreenSharingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSharingController.swift; sourceTree = "<group>"; };
 		8DE0D518297FB44E00201043 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		8DE0D53029804FA200201043 /* CitiApps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CitiApps.entitlements; sourceTree = "<group>"; };
+		8DE3A8032AB19D6000263D3F /* PIPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PIPKit.xcodeproj; path = "../../SDK/PIPKit-master/PIPKit.xcodeproj"; sourceTree = "<group>"; };
 		8DE3AF962AB045BE00C9D7D2 /* FluentUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FluentUI.xcodeproj; path = "SDK/fluentui-apple-0.3.9_main_0.3/ios/FluentUI.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		8DECEE872A935A6C0064A166 /* FluentUIResources-ios.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "FluentUIResources-ios.bundle"; path = "SDK/FluentUIResources-ios.bundle"; sourceTree = SOURCE_ROOT; };
 		8DECEE8D2A937E000064A166 /* CitiAppsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiAppsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,7 +184,6 @@
 		8DF021A12A8F43B700CDB5C6 /* MSAL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MSAL.xcframework; path = AzureFramework/MSAL.xcframework; sourceTree = "<group>"; };
 		8DF021A22A8F43B700CDB5C6 /* AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationUIChat.framework; path = AzureFramework/AzureCommunicationUIChat.framework; sourceTree = "<group>"; };
 		8DF021A32A8F43B700CDB5C6 /* AzureCommunicationCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationCommon.framework; path = AzureFramework/AzureCommunicationCommon.framework; sourceTree = "<group>"; };
-		8DF021A42A8F43B700CDB5C6 /* PIPKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PIPKit.framework; path = AzureFramework/PIPKit.framework; sourceTree = "<group>"; };
 		8DF021A52A8F43B700CDB5C6 /* AzureCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCore.framework; path = AzureFramework/AzureCore.framework; sourceTree = "<group>"; };
 		8DF021C72A8F500700CDB5C6 /* Trouter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Trouter.xcframework; path = AzureFramework/Trouter.xcframework; sourceTree = "<group>"; };
 		8DF021E02A8F75F000CDB5C6 /* AzureCommunicationChat.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AzureCommunicationChat.framework; path = AzureFramework/AzureCommunicationChat.framework; sourceTree = "<group>"; };
@@ -226,7 +235,6 @@
 				8DF021E42A8F75FD00CDB5C6 /* AzureCommunicationChat.framework in Frameworks */,
 				8DF021AE2A8F43C400CDB5C6 /* AzureCommunicationCalling.xcframework in Frameworks */,
 				8DF021B62A8F43CB00CDB5C6 /* AzureCore.framework in Frameworks */,
-				8DF021BA2A8F43D200CDB5C6 /* PIPKit.framework in Frameworks */,
 				8DF021A62A8F43B700CDB5C6 /* WindowsAzureMessaging.framework in Frameworks */,
 				8DF021B42A8F43C900CDB5C6 /* AzureCommunicationUIChat.framework in Frameworks */,
 			);
@@ -241,13 +249,6 @@
 				8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */,
 			);
 			path = views;
-			sourceTree = "<group>";
-		};
-		8D0954952A8219F100DC6D33 /* models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 		8D0954962A8219FE00DC6D33 /* controllers */ = {
@@ -289,13 +290,6 @@
 				8DFBD33B297578F5006B0700 /* IconTextField.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		8D09549B2A83628200DC6D33 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		8D09549C2A83629800DC6D33 /* AzureChat */ = {
@@ -347,7 +341,6 @@
 			children = (
 				8D0954C12A836A2000DC6D33 /* helpers */,
 				8D0954962A8219FE00DC6D33 /* controllers */,
-				8D0954952A8219F100DC6D33 /* models */,
 				8D0954942A8217DA00DC6D33 /* views */,
 			);
 			path = AzureIncomingCalling;
@@ -378,12 +371,37 @@
 				8DFBD2D129756DD6006B0700 /* ViewController.swift */,
 				8DCFCBAB2A57FB6500F1D293 /* DashViewController.swift */,
 				8DCFCBA52A57FB4400F1D293 /* HomeViewController.swift */,
-				8DCFCBA32A57FB4300F1D293 /* LoginViewModel.swift */,
 				8DCFCBA22A57FB4300F1D293 /* ProfileViewController.swift */,
 				8DCFCBA12A57FB4300F1D293 /* SearchViewController.swift */,
 				8DCFCB9F2A57FAF800F1D293 /* DashboardViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8DE3A80E2AB1C09800263D3F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				8DE3A80F2AB1C0B300263D3F /* PIPKit */,
+				8DF021BC2A8F442800CDB5C6 /* FluentUI */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		8DE3A80F2AB1C0B300263D3F /* PIPKit */ = {
+			isa = PBXGroup;
+			children = (
+				8DE3A8032AB19D6000263D3F /* PIPKit.xcodeproj */,
+			);
+			path = PIPKit;
+			sourceTree = "<group>";
+		};
+		8DE3A8102AB1C0BD00263D3F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DE3A8152AB1C0BD00263D3F /* PIPKit.framework */,
+				8DE3A8172AB1C0BD00263D3F /* Example.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		8DE3AF972AB045BE00C9D7D2 /* Products */ = {
@@ -453,9 +471,9 @@
 		8DFBD2C129756DD6006B0700 = {
 			isa = PBXGroup;
 			children = (
-				8DF021BC2A8F442800CDB5C6 /* FluentUI */,
-				8DFBD34729757A39006B0700 /* AppSettings.xcconfig */,
 				8DFBD2CC29756DD6006B0700 /* CitiApps */,
+				8DE3A80E2AB1C09800263D3F /* Packages */,
+				8DFBD34729757A39006B0700 /* AppSettings.xcconfig */,
 				8DECEE8E2A937E000064A166 /* CitiAppsTests */,
 				8DFBD2CB29756DD6006B0700 /* Products */,
 				8DFBD30429757296006B0700 /* Frameworks */,
@@ -474,7 +492,6 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
-				8D09549B2A83628200DC6D33 /* Models */,
 				8DCFCBAD2A57FDEF00F1D293 /* ViewControllers */,
 				8DCFCB9D2A57F9B400F1D293 /* Utils */,
 				8DFBD3532976A9E2006B0700 /* ACS */,
@@ -499,7 +516,6 @@
 				8DF021A22A8F43B700CDB5C6 /* AzureCommunicationUIChat.framework */,
 				8DF021A52A8F43B700CDB5C6 /* AzureCore.framework */,
 				8DF021A12A8F43B700CDB5C6 /* MSAL.xcframework */,
-				8DF021A42A8F43B700CDB5C6 /* PIPKit.framework */,
 				8DF0219E2A8F43B700CDB5C6 /* WindowsAzureMessaging.framework */,
 				8DB11EA72A839F9D00E111CE /* App.xcframework */,
 				8DB11EA82A839F9D00E111CE /* Flutter.xcframework */,
@@ -597,6 +613,10 @@
 					ProductGroup = 8DE3AF972AB045BE00C9D7D2 /* Products */;
 					ProjectRef = 8DE3AF962AB045BE00C9D7D2 /* FluentUI.xcodeproj */;
 				},
+				{
+					ProductGroup = 8DE3A8102AB1C0BD00263D3F /* Products */;
+					ProjectRef = 8DE3A8032AB19D6000263D3F /* PIPKit.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -607,6 +627,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		8DE3A8152AB1C0BD00263D3F /* PIPKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PIPKit.framework;
+			remoteRef = 8DE3A8142AB1C0BD00263D3F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8DE3A8172AB1C0BD00263D3F /* Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Example.app;
+			remoteRef = 8DE3A8162AB1C0BD00263D3F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		8DE3AF9C2AB045BE00C9D7D2 /* FluentUIResources-ios.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -679,7 +713,6 @@
 				8DC727832A52EC8F00D247A7 /* IncomingCallView.swift in Sources */,
 				8DCFCBA62A57FB4400F1D293 /* SearchViewController.swift in Sources */,
 				8D09549A2A83625B00DC6D33 /* IncomingCallController.swift in Sources */,
-				8DCFCBA82A57FB4400F1D293 /* LoginViewModel.swift in Sources */,
 				8DECEF1D2A94DDD50064A166 /* NetworkManager.swift in Sources */,
 				8DFBD3282975788B006B0700 /* TokenService.swift in Sources */,
 				8D99CA2E29A63BE900700C78 /* CitiConstants.swift in Sources */,
