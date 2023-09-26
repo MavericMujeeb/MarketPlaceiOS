@@ -23,7 +23,6 @@ class AzureCallController {
     var custUserToken:String! = ""
     var custUserName:String! = ""
     
-    
     /*
      * Function to init token service for Scheduled meeting call / adhoc audio video call
      * Pass the required url as param
@@ -55,7 +54,9 @@ class AzureCallController {
         fetchACSDetails { acsDetails, error in
             
             CircleLoader.sharedInstance.hide()
+            
             if(error == nil){
+                
                 self.bankerUserName = acsDetails?.originator?.participantName
                 self.bankerAcsId = acsDetails?.originator?.acsId
                 self.custUserName = acsDetails?.participantList?[0].participantName
@@ -99,8 +100,9 @@ class AzureCallController {
         CircleLoader.sharedInstance.show()
         let fullUrl: String = "https://acstokenfuncapp.azurewebsites.net/api/acsuserdetailsfunction?bankerAcsId="+self.bankerAcsId+"&customerAcsId="+self.custAcsId
         initTokenService(url: fullUrl)
-        Task{
-            do{
+        
+        Task  {
+            do {
                 await self.startAudioVideoCall(acsId: self.bankerAcsId, isVideoCall: isVideoCall)
                 CircleLoader.sharedInstance.hide()
             }

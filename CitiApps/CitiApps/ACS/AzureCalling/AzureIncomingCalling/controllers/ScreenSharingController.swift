@@ -176,7 +176,6 @@ final class RawOutgoingVideoSender: NSObject {
         options.videoFormats = [videoFormat]
         options.delegate = self
 
-
         self.rawOutgoingStream = ScreenShareRawOutgoingVideoStream(videoStreamOptions: options)
     }
 

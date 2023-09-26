@@ -464,8 +464,7 @@ struct IncomingCallView: View {
         .background(Color("toolbar-color"))
     }
     
-    public func handlePushNotification(_ pushPayload: PKPushPayload?)
-    {
+    public func handlePushNotification(_ pushPayload: PKPushPayload?) {
         guard let pushPayload = pushPayload else {
             print("Got empty payload")
             return
