@@ -127,12 +127,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     private func startChat (result: FlutterResult, args: NSDictionary) {
-        let bankerEmailId = args.value(forKey: "user_name") as! String
-        let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
-        chatController.bankerEmailId = bankerEmailId
-        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
-        chatController.isForCall = false
-        chatController.prepareChatComposite()
+//        let bankerEmailId = args.value(forKey: "user_name") as! String
+//        let chatController = ChatController(chatAdapter: nil, rootViewController: self.window?.rootViewController)
+//        chatController.bankerEmailId = bankerEmailId
+//        storageUserDefaults.set(bankerEmailId, forKey: StorageKeys.bankerEmailId)
+//        chatController.isForCall = false
+//        chatController.startTeamsChat()
+        
+        let adhocChatController = AdhocChatController()
+        adhocChatController.initAdhocChat()
     }
 
     private func startAudioCall (result: FlutterResult, args: NSDictionary) {

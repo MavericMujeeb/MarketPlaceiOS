@@ -128,6 +128,7 @@ class ChatViewController : UIViewController{
             
             let chatCompositeViewController = ChatCompositeViewController(
                 with: chatAdapter,showCallButtons: false)
+            
             chatCompositeViewController.onCloseChatCompositeViewcompletion = {
                 self.dismiss(animated: false)
             }
@@ -211,7 +212,6 @@ class ChatViewController : UIViewController{
     }
     
     @objc func onBackBtnPressed (){
-        print("onBackBtnPressed")
         self.dismiss(animated: true, completion: nil)
         Task { @MainActor in
             self.chatAdapter?.disconnect(completionHandler: { [weak self] result in

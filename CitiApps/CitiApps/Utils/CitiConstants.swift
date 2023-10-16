@@ -40,5 +40,8 @@ struct ACSResources {
     
     static let acs_notificationHub_endpoint:String = "Endpoint=sb://ACSCitiPushServiceNew.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=hPhXI6h3xPKb0MhtNq60mM9hsXVtC1Ia8ty6R4V4Dc8="
     static let acs_notificationHub_namespace:String = "ACSCitiPushServiceNew"
+    
+    static let teams_scheduled_meeting_url:String = "https://teams.microsoft.com/l/meetup-join/19%3ameeting_MTQzYjA3MGQtZWZlNC00YWMzLTliYmYtNjFkMmVkNjUyNTZm%40thread.v2/0?context=%7b%22Tid%22%3a%221987bc45-e629-47d3-9326-b5300dd15e34%22%2c%22Oid%22%3a%22d9cacc00-b6a4-4f06-b5b9-40eeb446df24%22%7d"
+    
 }
 

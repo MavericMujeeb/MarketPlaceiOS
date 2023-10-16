@@ -106,7 +106,6 @@ class ACSIncomingCallController {
         AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
             if granted {
                 AVCaptureDevice.requestAccess(for: .video) { (videoGranted) in
-                    
                     var userCredential: CommunicationTokenCredential
                     do {
                         userCredential = try CommunicationTokenCredential(token: self.acsToken!)
