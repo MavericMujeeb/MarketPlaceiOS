@@ -36,10 +36,12 @@
 		8DB11E7C2A83901900E111CE /* AzureCommunicationUIChat.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0954A22A83630700DC6D33 /* AzureCommunicationUIChat.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB11E7D2A83904300E111CE /* AzureCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0954BB2A83630800DC6D33 /* AzureCore.framework */; };
 		8DB11E7E2A83904300E111CE /* AzureCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0954BB2A83630800DC6D33 /* AzureCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8DB11EA92A839FBA00E111CE /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB11EA72A839F9D00E111CE /* App.xcframework */; };
-		8DB11EAA2A839FBA00E111CE /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB11EA72A839F9D00E111CE /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8DB11EAB2A839FC100E111CE /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB11EA82A839F9D00E111CE /* Flutter.xcframework */; };
-		8DB11EAC2A839FC100E111CE /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB11EA82A839F9D00E111CE /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DB6F1F52ACFE7EA00B28176 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB6F1F22ACFE7DC00B28176 /* Flutter.xcframework */; };
+		8DB6F1F62ACFE7EA00B28176 /* Flutter.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB6F1F22ACFE7DC00B28176 /* Flutter.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DB6F1F72ACFE7EC00B28176 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB6F1F12ACFE7CD00B28176 /* App.xcframework */; };
+		8DB6F1F82ACFE7EC00B28176 /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB6F1F12ACFE7CD00B28176 /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DB6F1FB2AD7C7B500B28176 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6F1FA2AD7C7B500B28176 /* ChatView.swift */; };
+		8DB6F1FE2AD7D44700B28176 /* AdhocChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB6F1FD2AD7D44700B28176 /* AdhocChatController.swift */; };
 		8DC727832A52EC8F00D247A7 /* IncomingCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */; };
 		8DCFCBA02A57FAF800F1D293 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCB9F2A57FAF800F1D293 /* DashboardViewController.swift */; };
 		8DCFCBA62A57FB4400F1D293 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFCBA12A57FB4300F1D293 /* SearchViewController.swift */; };
@@ -87,20 +89,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 8D8BDCF12984263B00C19C87;
 			remoteInfo = AzureCommunicationChat;
-		};
-		8D0954AA2A83630800DC6D33 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8D3AE91E29877498009DD389;
-			remoteInfo = AzureCommunicationChatTests;
-		};
-		8D0954AC2A83630800DC6D33 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8D3AE91F29877498009DD389;
-			remoteInfo = AzureCommunicationChatUnitTests;
 		};
 		8D0954B22A83630800DC6D33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -165,6 +153,20 @@
 			remoteGlobalIDString = A8659FC52602A22000C807DE;
 			remoteInfo = AzureCommunicationUICalling;
 		};
+		8DB6F1E32ACFE77F00B28176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DB6F1DE2ACFE77F00B28176;
+			remoteInfo = AzureCommunicationChatTests;
+		};
+		8DB6F1E52ACFE77F00B28176 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D3AE98C2988197E009DD389 /* AzureCommunicationChat.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DB6F1DF2ACFE77F00B28176;
+			remoteInfo = AzureCommunicationChatUnitTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -174,14 +176,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8DB11EAC2A839FC100E111CE /* Flutter.xcframework in Embed Frameworks */,
 				8D7015FB2981303900FDEBFC /* MSAL.xcframework in Embed Frameworks */,
 				8DB11E7C2A83901900E111CE /* AzureCommunicationUIChat.framework in Embed Frameworks */,
-				8DB11EAA2A839FBA00E111CE /* App.xcframework in Embed Frameworks */,
 				8DB11E7A2A838FFC00E111CE /* AzureCommunicationChat.framework in Embed Frameworks */,
 				8DB11E782A838E9500E111CE /* AzureCommunicationUICalling.framework in Embed Frameworks */,
 				8DB11E422A838B1000E111CE /* AzureCommunicationCommon.framework in Embed Frameworks */,
 				8DB11E4D2A838BDA00E111CE /* PIPKit.framework in Embed Frameworks */,
+				8DB6F1F62ACFE7EA00B28176 /* Flutter.xcframework in Embed Frameworks */,
+				8DB6F1F82ACFE7EC00B28176 /* App.xcframework in Embed Frameworks */,
 				8DB11E7E2A83904300E111CE /* AzureCore.framework in Embed Frameworks */,
 				8D4B4F5D29FBDB8C00B77B60 /* AzureCommunicationCalling.xcframework in Embed Frameworks */,
 			);
@@ -212,8 +214,10 @@
 		8DB11E432A838BC700E111CE /* PIPKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PIPKit.xcodeproj; path = "SDK/PIPKit-master/PIPKit.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		8DB11E4E2A838C3200E111CE /* FluentUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FluentUI.xcodeproj; path = "SDK/fluentui-apple-0.3.9_main_0.3/ios/FluentUI.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		8DB11E602A838D1D00E111CE /* AzureCommunicationUICalling.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AzureCommunicationUICalling.xcodeproj; path = "SDK/communication-ui-library-ios-AzureCommunicationUICalling_1.1.0/AzureCommunicationUI/sdk/AzureCommunicationUICalling/AzureCommunicationUICalling.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		8DB11EA72A839F9D00E111CE /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = Flutter/App.xcframework; sourceTree = "<group>"; };
-		8DB11EA82A839F9D00E111CE /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = Flutter/Flutter.xcframework; sourceTree = "<group>"; };
+		8DB6F1F12ACFE7CD00B28176 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = App.xcframework; sourceTree = "<group>"; };
+		8DB6F1F22ACFE7DC00B28176 /* Flutter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Flutter.xcframework; sourceTree = "<group>"; };
+		8DB6F1FA2AD7C7B500B28176 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		8DB6F1FD2AD7D44700B28176 /* AdhocChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdhocChatController.swift; sourceTree = "<group>"; };
 		8DC727822A52EC8F00D247A7 /* IncomingCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallView.swift; sourceTree = "<group>"; };
 		8DCFCB9F2A57FAF800F1D293 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		8DCFCBA12A57FB4300F1D293 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DB6F1F72ACFE7EC00B28176 /* App.xcframework in Frameworks */,
 				8D0954C02A83643800DC6D33 /* WindowsAzureMessaging.framework in Frameworks */,
 				8DB11E772A838E9500E111CE /* AzureCommunicationUICalling.framework in Frameworks */,
 				8DB11E792A838FFC00E111CE /* AzureCommunicationChat.framework in Frameworks */,
@@ -267,9 +272,8 @@
 				8DB11E7D2A83904300E111CE /* AzureCore.framework in Frameworks */,
 				8DB11E412A838B1000E111CE /* AzureCommunicationCommon.framework in Frameworks */,
 				8DB11E572A838C3F00E111CE /* libFluentUI.a in Frameworks */,
-				8DB11EAB2A839FC100E111CE /* Flutter.xcframework in Frameworks */,
 				8DF021FC2A8F789900CDB5C6 /* Trouter in Frameworks */,
-				8DB11EA92A839FBA00E111CE /* App.xcframework in Frameworks */,
+				8DB6F1F52ACFE7EA00B28176 /* Flutter.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,16 +335,11 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		8D09549B2A83628200DC6D33 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		8D09549C2A83629800DC6D33 /* AzureChat */ = {
 			isa = PBXGroup;
 			children = (
+				8DB6F1FC2AD7D43300B28176 /* controllers */,
+				8DB6F1F92AD7C78900B28176 /* views */,
 				8D99CA2B29A3949200700C78 /* ChatController.swift */,
 			);
 			path = AzureChat;
@@ -372,8 +371,8 @@
 			isa = PBXGroup;
 			children = (
 				8D0954A92A83630800DC6D33 /* AzureCommunicationChat.framework */,
-				8D0954AB2A83630800DC6D33 /* AzureCommunicationChatTests.xctest */,
-				8D0954AD2A83630800DC6D33 /* AzureCommunicationChatUnitTests.xctest */,
+				8DB6F1E42ACFE77F00B28176 /* AzureCommunicationChatTests.xctest */,
+				8DB6F1E62ACFE77F00B28176 /* AzureCommunicationChatUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -463,6 +462,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8DB6F1F92AD7C78900B28176 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				8DB6F1FA2AD7C7B500B28176 /* ChatView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		8DB6F1FC2AD7D43300B28176 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DB6F1FD2AD7D44700B28176 /* AdhocChatController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
 		8DCFCB9D2A57F9B400F1D293 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,7 +535,6 @@
 		8DFBD2CC29756DD6006B0700 /* CitiApps */ = {
 			isa = PBXGroup;
 			children = (
-				8D09549B2A83628200DC6D33 /* Models */,
 				8DCFCBAD2A57FDEF00F1D293 /* ViewControllers */,
 				8DCFCB9D2A57F9B400F1D293 /* Utils */,
 				8DFBD3532976A9E2006B0700 /* ACS */,
@@ -537,8 +551,8 @@
 		8DFBD30429757296006B0700 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8DB11EA72A839F9D00E111CE /* App.xcframework */,
-				8DB11EA82A839F9D00E111CE /* Flutter.xcframework */,
+				8DB6F1F12ACFE7CD00B28176 /* App.xcframework */,
+				8DB6F1F22ACFE7DC00B28176 /* Flutter.xcframework */,
 				8D75228E2A091656001FDB1C /* WindowsAzureMessaging.framework */,
 			);
 			name = Frameworks;
@@ -660,20 +674,6 @@
 			remoteRef = 8D0954A82A83630800DC6D33 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8D0954AB2A83630800DC6D33 /* AzureCommunicationChatTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AzureCommunicationChatTests.xctest;
-			remoteRef = 8D0954AA2A83630800DC6D33 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8D0954AD2A83630800DC6D33 /* AzureCommunicationChatUnitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AzureCommunicationChatUnitTests.xctest;
-			remoteRef = 8D0954AC2A83630800DC6D33 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		8D0954B32A83630800DC6D33 /* AzureCommunicationCommon.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -737,6 +737,20 @@
 			remoteRef = 8DB11E642A838D1D00E111CE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8DB6F1E42ACFE77F00B28176 /* AzureCommunicationChatTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AzureCommunicationChatTests.xctest;
+			remoteRef = 8DB6F1E32ACFE77F00B28176 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8DB6F1E62ACFE77F00B28176 /* AzureCommunicationChatUnitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AzureCommunicationChatUnitTests.xctest;
+			remoteRef = 8DB6F1E52ACFE77F00B28176 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -768,6 +782,7 @@
 				8DFBD336297578E0006B0700 /* JoinCallViewController.swift in Sources */,
 				8DFBD334297578DA006B0700 /* InviteViewController.swift in Sources */,
 				8DFBD34429757924006B0700 /* PaddingContainer.swift in Sources */,
+				8DB6F1FB2AD7C7B500B28176 /* ChatView.swift in Sources */,
 				8DFBD332297578D3006B0700 /* IntroViewController.swift in Sources */,
 				8DC727832A52EC8F00D247A7 /* IncomingCallView.swift in Sources */,
 				8DCFCBA62A57FB4400F1D293 /* SearchViewController.swift in Sources */,
@@ -783,6 +798,7 @@
 				8DFBD32C297578B9006B0700 /* JoinCallConfig.swift in Sources */,
 				8D2FD7E1299680D10097B59D /* CircleLoader.swift in Sources */,
 				8D4100C02A694752001473F5 /* ContainerHostingController.swift in Sources */,
+				8DB6F1FE2AD7D44700B28176 /* AdhocChatController.swift in Sources */,
 				8DCFCBA72A57FB4400F1D293 /* ProfileViewController.swift in Sources */,
 				8DFBD330297578C8006B0700 /* LinkMetadataManager.swift in Sources */,
 				8DFBD34029757918006B0700 /* FluentUiExtensions.swift in Sources */,
@@ -899,6 +915,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = CitiAdhocACS;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1064,6 +1083,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = CitiAdhocACS;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1112,6 +1134,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = CitiAdhocACS;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
