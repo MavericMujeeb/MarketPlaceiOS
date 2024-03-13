@@ -190,6 +190,27 @@ extension CallingSDKEventsHandler: CallDelegate, IncomingCallDelegate,
         }
         
         let currentStatus = call.state.toCallingStatus()
+        
+        if(currentStatus == .connected || currentStatus == .ringing) {
+            CallLogs.callStartTime = Date().timeIntervalSince1970
+        }
+        
+        if(currentStatus == .disconnected && (previousCallingStatus == .connected || previousCallingStatus == .ringing)) {
+            CallLogs.callEndTime = Date().timeIntervalSince1970
+            let storageUserDefaults = UserDefaults.standard
+            let bankerAcsId = storageUserDefaults.string(forKey: "bankerAcsId")!
+            let bankerUserName = storageUserDefaults.string(forKey: "bankerUserName")!
+            let bankerUserEmail = storageUserDefaults.string(forKey: "bankerUserEmail")!
+            let customerAcsId = storageUserDefaults.string(forKey: "customerAcsId")!
+            let customerUserName = storageUserDefaults.string(forKey: "customerUserName")!
+            let customerUserEmail = storageUserDefaults.string(forKey: "customerUserEmail")!
+            let callType:String = previousCallingStatus == .connected ? "incoming" : "missed"
+            let startTime:String = CallLogs.callStartTime.removeDecimalValue
+            let endTime:String = previousCallingStatus == .connected ? CallLogs.callEndTime.removeDecimalValue : "0"
+            
+            CallLogs.logCallsHistory(callername: bankerUserName, calleremail: bankerUserEmail, calleracsid: bankerAcsId, calleename: customerUserName, calleeemail: customerUserEmail, calleeacsid: customerAcsId, callType: callType, startTime: startTime, endTime: endTime)
+        }
+        
         let internalError = call.callEndReason.toCompositeInternalError(wasCallConnected())
 
         if internalError != nil {

@@ -31,7 +31,8 @@ struct ACSResources {
     static var bankerUserEmail:String = "chantal@acsteamsciti.onmicrosoft.com"
     static var customerAcsId:String = "8:acs:ea7ee9db-4146-4c6c-8ffd-8bff35bdd986_0000001a-33b0-777b-b5bb-a43a0d005750"
     static var customerUserName:String = "Veronica Stephens"
-    static var customerUserEmail:String = "veronicastephens838@gmail.com"
+    //static var customerUserEmail:String = "veronicastephens838@gmail.com"
+    static var customerUserEmail:String = "veronicastephens@acsteamsciti.onmicrosoft.com"
     static var threadId:String = "19:1528f625680a4d9989b5becc04f01798@thread.v2"
     
     static let acs_token_fetch_api:String = "https://acstokenfuncapp.azurewebsites.net/api/acschatcallingfunction/"

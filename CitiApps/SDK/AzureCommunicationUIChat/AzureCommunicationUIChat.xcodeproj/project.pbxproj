@@ -112,6 +112,7 @@
 		8DB32177299121E10098B5F2 /* FluentUIResources-ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8DB32176299121E00098B5F2 /* FluentUIResources-ios.bundle */; };
 		A88000ED29070F790076B0E2 /* HtmlMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88000EC29070F790076B0E2 /* HtmlMessageView.swift */; };
 		A8BB978028F770FE008142DB /* SystemMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BB977F28F770FE008142DB /* SystemMessageView.swift */; };
+		AEA55D762B741DEA00DDB63A /* Trouter in Frameworks */ = {isa = PBXBuildFile; productRef = AEA55D752B741DEA00DDB63A /* Trouter */; };
 		AEF3B41329C10E64005C6AD2 /* MultipartFormDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3B41229C10E64005C6AD2 /* MultipartFormDataRequest.swift */; };
 		BD1A6A3C28ECDEAE005E0B70 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A6A3B28ECDEAE005E0B70 /* MessageListView.swift */; };
 		BD1A6A3E28ECDFAB005E0B70 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A6A3D28ECDFAB005E0B70 /* MessageListViewModel.swift */; };
@@ -303,6 +304,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEA55D762B741DEA00DDB63A /* Trouter in Frameworks */,
 				8D0A5F5A29883858002EBBC4 /* AzureCommunicationChat.framework in Frameworks */,
 				8D0A5FC029896A4A002EBBC4 /* libFluentUI.a in Frameworks */,
 			);
@@ -984,6 +986,9 @@
 			dependencies = (
 			);
 			name = AzureCommunicationUIChat;
+			packageProductDependencies = (
+				AEA55D752B741DEA00DDB63A /* Trouter */,
+			);
 			productName = AzureCommunicationUIChat;
 			productReference = 50CB81C228C26E0C00680566 /* AzureCommunicationUIChat.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1013,6 +1018,9 @@
 				Base,
 			);
 			mainGroup = 50CB81B828C26E0B00680566;
+			packageReferences = (
+				AEA55D742B741DEA00DDB63A /* XCRemoteSwiftPackageReference "trouter-client-ios" */,
+			);
 			productRefGroup = 50CB81C328C26E0C00680566 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1291,6 +1299,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1330,6 +1339,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1384,6 +1394,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AEA55D742B741DEA00DDB63A /* XCRemoteSwiftPackageReference "trouter-client-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/trouter-client-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AEA55D752B741DEA00DDB63A /* Trouter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AEA55D742B741DEA00DDB63A /* XCRemoteSwiftPackageReference "trouter-client-ios" */;
+			productName = Trouter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50CB81B928C26E0B00680566 /* Project object */;
 }

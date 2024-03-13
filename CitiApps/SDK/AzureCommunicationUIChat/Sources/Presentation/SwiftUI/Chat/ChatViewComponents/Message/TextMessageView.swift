@@ -134,7 +134,7 @@ struct TextMessageView: View {
             .onTapGesture {
                 self.showDocView.toggle()
             }
-            .sheet(isPresented: self.$showDocView) {
+            .sheet(isPresented: self.$showDocView, onDismiss: self.onSheetDismissed) {
                 VStack(alignment: .leading, spacing: 20) {
                     Spacer()
                     HStack(spacing: 20) {
@@ -216,6 +216,11 @@ struct TextMessageView: View {
     
     private func onBackClicked() {
         self.showDocView.toggle()
+    }
+    
+    private func onSheetDismissed() {
+        print("onSheetDismissed called")
+        //self.showDocView.toggle()
     }
 }
 

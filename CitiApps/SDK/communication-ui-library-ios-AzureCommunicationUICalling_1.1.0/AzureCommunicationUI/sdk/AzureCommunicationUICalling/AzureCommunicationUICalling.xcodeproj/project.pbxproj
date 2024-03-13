@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -384,7 +384,7 @@
 		88F6EE1B2735F8E8001AD3E9 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 		8D7522AA2A13A9E5001FDB1C /* CallKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
 		8D9C69A729DDBD4300234447 /* CallObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallObserver.swift; sourceTree = "<group>"; };
-		8DB11E662A838D8900E111CE /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = ../../../../../AzureSDK/AzureCommunicationCalling.xcframework; sourceTree = "<group>"; };
+		8DB11E662A838D8900E111CE /* AzureCommunicationCalling.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:UBF8T346G9:Microsoft Corporation"; lastKnownFileType = wrapper.xcframework; name = AzureCommunicationCalling.xcframework; path = ../../../../../AzureSDK/AzureCommunicationCalling.xcframework; sourceTree = "<group>"; };
 		8DB11E692A838DA500E111CE /* AzureCommunicationCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB11E6C2A838DB900E111CE /* AzureCommunicationCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB11E6F2A838DC400E111CE /* AzureCommunicationUIChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AzureCommunicationUIChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
