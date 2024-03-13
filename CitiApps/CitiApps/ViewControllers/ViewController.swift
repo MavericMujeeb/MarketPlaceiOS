@@ -72,6 +72,9 @@ class LoginViewController : UIViewController {
         let userStr = String(data: data, encoding: .utf8)
         flutterMethodChannel(passArgs: userStr);
         
+        //set acs hardcode values for call logs histroy api calling
+        setACSValues()
+        
         self.registerIncomingCallHandler()
         self.registerChatClient()
 
