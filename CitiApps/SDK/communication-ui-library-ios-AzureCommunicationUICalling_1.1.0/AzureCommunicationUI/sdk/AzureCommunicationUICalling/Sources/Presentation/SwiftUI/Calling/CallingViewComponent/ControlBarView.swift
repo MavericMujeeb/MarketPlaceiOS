@@ -35,8 +35,6 @@ struct Participant: Codable {
 class ChatViewController : UIViewController{
     
     var chatAdapter: ChatAdapter?
-    //    var threadId:String!
-    
     var commServEndPointURL:String! = "https://acscomunicationservice.communication.azure.com/"
     var threadId:String! = ""
     var bankerAcsId:String! = ""
@@ -176,7 +174,7 @@ class ChatViewController : UIViewController{
         "\"participantName\":\"\(self.custUserName!)\"" +
         "}"
         
-        let fullUrl: String = "https://acsinfo.azurewebsites.net/api/participantDetails"
+        let fullUrl: String = "https://acsinfonodb.azurewebsites.net/api/participantDetails"
         
         guard let url = try? URL(string: fullUrl) else {
             return
@@ -211,19 +209,6 @@ class ChatViewController : UIViewController{
         }
         task.resume()
     }
-    //    override func viewWillLayoutSubviews() {
-    //      let width = self.view.frame.width
-    //      let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 44))
-    //      self.view.addSubview(navigationBar);
-    //      let navigationItem = UINavigationItem(title: "Chat")
-    //        let closeItem = UIBarButtonItem(
-    //            barButtonSystemItem: .close,
-    //            target: self,
-    //            action: #selector(self.onBackBtnPressed(_ :))
-    //        )
-    //      navigationItem.leftBarButtonItem = closeItem
-    //      navigationBar.setItems([navigationItem], animated: false)
-    //    }
     
     @objc func onBackBtnPressed (){
         print("onBackBtnPressed")

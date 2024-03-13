@@ -10,8 +10,8 @@ import FluentUI
 import PIPKit
 import AzureCommunicationCalling
 
-var g_callAgent: CallAgent?
 public let callEndNotification = Notification.Name("acs_call_end")
+
 
 /// The main class representing the entry point for the Call Composite.
 public class CallComposite {
@@ -46,6 +46,7 @@ public class CallComposite {
         callCompositeOptions = options
     }
     
+
     deinit {
         logger?.debug("Composite deallocated")
     }
@@ -62,6 +63,7 @@ public class CallComposite {
                                                  isAudioCall: callCompositeOptions?.isAudioCall,
                                                  isVideoCall: callCompositeOptions?.isVideoCall
         )
+
         
         let localizationProvider = dependencyContainer.resolve() as LocalizationProviderProtocol
         setupColorTheming()
@@ -73,6 +75,7 @@ public class CallComposite {
                                                                     isRightToLeft: localizationProvider.isRightToLeft,
                                                                     meetingLink: callConfiguration.meetingLink!, isAudioCall: (callCompositeOptions?.isAudioCall)!, isVideoCall: (callCompositeOptions?.isVideoCall)!)
         
+
         setupManagers(with: dependencyContainer)
         PIPKit.show(with: toolkitHostingController)
     }
@@ -82,11 +85,10 @@ public class CallComposite {
     /// - Parameter localOptions: LocalOptions used to set the user participants information for the call.
     ///                            This is data is not sent up to ACS.
     public func launch(remoteOptions: RemoteOptions,
-                       localOptions: LocalOptions? = nil, callAgent: CallAgent?) {
+                       localOptions: LocalOptions? = nil) {
         let callConfiguration = CallConfiguration(locator: remoteOptions.locator,
                                                   credential: remoteOptions.credential,
                                                   displayName: remoteOptions.displayName)
-        g_callAgent = callAgent
         launch(callConfiguration, localOptions: localOptions)
     }
 
@@ -131,6 +133,7 @@ public class CallComposite {
                                               viewFactory: CompositeViewFactoryProtocol,
                                               isRightToLeft: Bool,
                                               meetingLink: String, isAudioCall:Bool, isVideoCall:Bool) -> ContainerUIHostingController {
+        
         
         
         let rootView = ContainerView(router: router,

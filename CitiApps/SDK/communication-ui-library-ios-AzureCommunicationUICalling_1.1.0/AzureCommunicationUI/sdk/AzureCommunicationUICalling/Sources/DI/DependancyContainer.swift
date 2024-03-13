@@ -57,7 +57,7 @@ final class DependencyContainer {
                                            networkManager: resolve(),
                                            localizationProvider: resolve(),
                                            accessibilityProvider: resolve(),
-                                           localOptions: localOptions, isAudioCall: isAudioCall!, isVideoCall: isVideoCall!) as CompositeViewModelFactoryProtocol)
+                                           localOptions: localOptions, isAudioCall: isAudioCall!, isVideoCall: isVideoCall!, isIncomingCall: true) as CompositeViewModelFactoryProtocol)
         register(CompositeViewFactory(logger: resolve(),
                                       avatarManager: resolve(),
                                       videoViewManager: resolve(),

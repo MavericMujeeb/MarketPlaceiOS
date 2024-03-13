@@ -5,6 +5,7 @@
 
 import Foundation
 import AzureCommunicationCommon
+import AzureCommunicationCalling
 
 /// CallComposite Locator for locating call destination
 public enum JoinLocator {

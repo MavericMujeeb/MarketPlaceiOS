@@ -33,6 +33,7 @@ class DashboardViewController : UIViewController {
     
     var handleExternalLinks: Bool!
     var meetingLink : String!
+    var isFromNotificationTray: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,22 @@ class DashboardViewController : UIViewController {
             let teamsCallingViewController = TeamsCallingViewController()
             teamsCallingViewController.teamsLink = self.meetingLink
             teamsCallingViewController.startCall()
+        }
+        
+        if(isFromNotificationTray) {
+            isFromNotificationTray = false
+            CitiConstants.isFromNotification = false
+            let rootVC = UIApplication.shared.keyWindow?.rootViewController
+            
+            let storageUserDefaults = UserDefaults.standard
+            var bankerEmailId = storageUserDefaults.string(forKey: StorageKeys.bankerEmailId) ?? ACSResources.bankerUserEmail
+            var customerUserName = storageUserDefaults.string(forKey: StorageKeys.loginUserName) ?? ACSResources.customerUserName
+            
+            let chatController = ChatController(chatAdapter: nil, rootViewController: self)
+            chatController.bankerEmailId = bankerEmailId
+            chatController.custUserName = customerUserName
+            chatController.isForCall = false
+            chatController.prepareChatComposite()
         }
     }
     
@@ -113,8 +130,9 @@ class DashboardViewController : UIViewController {
         serviceViewController.title = "Services"
         
         //Loading Market place tab from Flutter Module
-        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine        
-        let flutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
+        let flutterViewController = (UIApplication.shared.delegate as! AppDelegate).controller as FlutterViewController
+//        let flutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
 
         flutterViewController.title = "Contact"
         flutterViewController.tabBarController?.hidesBottomBarWhenPushed = true

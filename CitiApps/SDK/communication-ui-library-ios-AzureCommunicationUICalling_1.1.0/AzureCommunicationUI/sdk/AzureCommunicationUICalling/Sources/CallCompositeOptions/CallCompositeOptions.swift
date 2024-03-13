@@ -8,7 +8,12 @@ import UIKit
 
 public var loggedInUserName=""
 public var loggedInUserId=""
+public var loggedClientACSId=""
 public var communincationTokenString:String!
+
+var users = [
+    "6959db5c-bf24-427e-94ee-42c208ec5878": ["name":"Richard Jones","userid":"6959db5c-bf24-427e-94ee-42c208ec5878"],
+]
 
 /// User-configurable options for creating CallComposite.
 public struct CallCompositeOptions {
@@ -19,6 +24,7 @@ public struct CallCompositeOptions {
 
     private(set) var isAudioCall: Bool?
     private(set) var isVideoCall: Bool?
+    private(set) var isIncomingCall: Bool?
 
 
     /// Creates an instance of CallCompositeOptions with related options.
@@ -27,7 +33,7 @@ public struct CallCompositeOptions {
     /// - Parameter localization: LocalizationOptions for specifying
     ///  localization customization. Default value is `nil`.
     public init(theme: ThemeOptions? = nil,
-                localization: LocalizationOptions? = nil, name:String!, userId:String!, token:String!, isAudio:Bool!, isVideo:Bool!) {
+                localization: LocalizationOptions? = nil, name:String!, userId:String!, token:String!, isAudio:Bool!, isVideo:Bool!, isIncomingCall:Bool!) {
         self.themeOptions = theme
         self.localizationOptions = localization
         self.displayName = name

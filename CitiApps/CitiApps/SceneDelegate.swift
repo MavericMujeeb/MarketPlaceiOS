@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let storageUserDefaults = UserDefaults.standard
+//    private var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         self.window?.overrideUserInterfaceStyle = .light
@@ -33,6 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             name: CitiConstants.method_channel_name,
             binaryMessenger: appDelegate.controller.binaryMessenger
         )
+//        self.registerIncomingCallHandler()
         
         acsChannel.setMethodCallHandler({
           [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
@@ -71,7 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     meetingFinalLink = splitJoinUrl?[0]
 
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+                    let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! LoginViewController
                     vc.handleExternalLinks = true
                     vc.meetingLink = meetingFinalLink
 
@@ -93,7 +95,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func registerIncomingCallHandler () {
-        let incomingCallController = ACSIncomingCallConntroller()
+        let incomingCallController = ACSIncomingCallController()
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         incomingCallController.resigterIncomingCallClient(appPubs: appDelegate.appPubs)
     }
@@ -177,7 +179,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             meetingFinalLink = splitJoinUrl?[0]
 
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! ViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "Main") as! LoginViewController
             vc.handleExternalLinks = true
             vc.meetingLink = meetingFinalLink
 

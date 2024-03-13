@@ -1,14 +1,16 @@
 {
-  "pins" : [
-    {
-      "identity" : "trouter-client-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/microsoft/trouter-client-ios",
-      "state" : {
-        "revision" : "7f67490122352813f187599b0362a95d59ebb65f",
-        "version" : "0.1.0"
+  "object": {
+    "pins": [
+      {
+        "package": "Trouter",
+        "repositoryURL": "https://github.com/microsoft/trouter-client-ios",
+        "state": {
+          "branch": null,
+          "revision": "7f67490122352813f187599b0362a95d59ebb65f",
+          "version": "0.1.0"
+        }
       }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }

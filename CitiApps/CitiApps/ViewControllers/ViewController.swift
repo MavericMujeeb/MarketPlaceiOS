@@ -6,7 +6,7 @@
 //
 
 var users = [
-    "janetjohnsonfamily83@gmail.com": ["name":"Janet Johnson","email":"janetjohnsonfamily83@gmail.com","userid":"a2194b29-07bb-48bb-8607-6151334cf904"],
+    "veronicastephens838@gmail.com": ["name":"Veronica Stephens","email":"veronicastephens838@gmail.com","userid":"fc123292-abe0-4629-982e-1cfe16759cbb"],
     "johnwilliamsfamily9@gmail.com": ["name":"Johnson williams","email":"johnwilliamsfamily9@gmail.com","userid":"8294e32a-d846-440d-b875-87b171b80787"],
 ]
 
@@ -23,67 +23,7 @@ import AzureCommunicationCalling
 import AVFoundation
 import SwiftUI
 
-struct IncomingCallController: UIViewControllerRepresentable {
-    
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-        
-    }
-    
-    var view: ContentView
-    init(view:ContentView) {
-        self.view = view
-    }
-    
-    func makeUIViewController(context: Context) -> UINavigationController{
-            
-        let childView = UIHostingController(rootView: view)
-        let controller =     UINavigationController(rootViewController:childView)
-        let appearance = UINavigationBarAppearance()
-        let searchController = UISearchController()
-        
-        
-        searchController.searchBar.barStyle = .black
-        
-        appearance.backgroundColor = UIColor(Color(.red))
-        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
-        
-        controller.navigationBar.topItem?.compactAppearance = appearance
-        controller.navigationBar.topItem?.scrollEdgeAppearance = appearance
-        controller.navigationBar.topItem?.standardAppearance = appearance
-        
-
-        controller.navigationBar.topItem?.title = "navigation bar"
-        controller.navigationBar.prefersLargeTitles = true
-        
-        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Rechercher...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        searchController.searchBar.setValue("Annuler", forKey: "cancelButtonText")
-        
-        
-        searchController.searchBar.showsBookmarkButton = true
-        searchController.searchBar.searchTextField.leftView?.tintColor = .white
-        
-        let sfConfiguration = UIImage.SymbolConfiguration(pointSize: 30)
-        let barCodeIcon = UIImage(systemName: "barcode.viewfinder")?.withTintColor(.white, renderingMode: .alwaysOriginal).withConfiguration(sfConfiguration)
-    
-
-        searchController.searchBar.setImage(barCodeIcon, for: .bookmark, state:.normal)
-        searchController.obscuresBackgroundDuringPresentation = false
-  
-
-        let attributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(attributes, for: .normal)
-       
-        controller.navigationBar.topItem?.hidesSearchBarWhenScrolling = false
-        controller.navigationBar.topItem?.searchController = searchController
-        
-        return controller
-    }
-    
-}
-
-class ViewController : UIViewController {
+class LoginViewController : UIViewController {
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -99,20 +39,7 @@ class ViewController : UIViewController {
     var meetingLink : String!
     let storageUserDefaults = UserDefaults.standard
 
-    //Added for testing purpose
-//    func showIncomingCallView(){
-//        let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-//
-//        let incomingContentView = ContentView(appPubs: appDelegate.appPubs)
-//        var incomingHostingController = UIHostingController(rootView: incomingContentView)
-//        present(incomingHostingController, animated: true, completion: nil)
-//    }
-    
     @IBAction func onLoginAction(_ sender: Any) {
-        //Added for testing purpose
-//        showIncomingCallView()
-//        return
-        
         if(self.username.text == "" || self.password.text == "") {
             return
         }
@@ -146,24 +73,34 @@ class ViewController : UIViewController {
         flutterMethodChannel(passArgs: userStr);
         
         self.registerIncomingCallHandler()
+        self.registerChatClient()
+
         
-        if(handleExternalLinks == true){
+        if(handleExternalLinks == true) {
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
             dashViewController.handleExternalLinks = true
             dashViewController.meetingLink = self.meetingLink
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
-        else{
+        else {
             let dashViewController = DashboardViewController(nibName: nil, bundle: nil)
+            dashViewController.isFromNotificationTray = CitiConstants.isFromNotification
             self.navigationController?.pushViewController(dashViewController, animated: false)
         }
     }
     
     
+    func registerChatClient() {
+        let rootVC = UIApplication.shared.keyWindow?.rootViewController
+        let chatController = ChatController(rootViewController: rootVC)
+        chatController.initChatClient()
+    }
+    
+
     func registerIncomingCallHandler () {
         storageUserDefaults.set(true, forKey: "isCallKitInSDKEnabled")
         
-        let incomingCallController = ACSIncomingCallConntroller()
+        let incomingCallController = ACSIncomingCallController()
         let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
         incomingCallController.resigterIncomingCallClient(appPubs: appDelegate.appPubs)
     }
@@ -181,7 +118,6 @@ class ViewController : UIViewController {
             meetingLink=""
         }
     }
-    
     
     func customizeNavBar(){
         let logoImageView = UIImageView.init()
@@ -209,7 +145,7 @@ class ViewController : UIViewController {
 
         password.isSecureTextEntry = true
         
-        username.text = "janetjohnsonfamily83@gmail.com"
+        username.text = "veronicastephens838@gmail.com"
     }
     
     override func viewDidLoad() {
@@ -220,10 +156,8 @@ class ViewController : UIViewController {
     }
     
     func flutterMethodChannel (passArgs: String?) {
-        let flutterEngine = (UIApplication.shared.delegate as! AppDelegate).flutterEngine
-        let controller : FlutterViewController = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+        let controller : FlutterViewController = (UIApplication.shared.delegate as! AppDelegate).controller
 
-        
         let acsChannel = FlutterMethodChannel(
             name: CitiConstants.method_channel_name,
             binaryMessenger: controller.binaryMessenger
@@ -231,9 +165,19 @@ class ViewController : UIViewController {
         
         acsChannel.invokeMethod("loginUserDetails", arguments: passArgs)
     }
+    
+    func setACSValues() {
+        UserDefaults.standard.set(ACSResources.bankerAcsId, forKey: StorageKeys.bankerAcsId)
+        UserDefaults.standard.set(ACSResources.bankerUserName, forKey: StorageKeys.bankerUserName)
+        UserDefaults.standard.set(ACSResources.bankerUserEmail, forKey: StorageKeys.bankerUserEmail)
+        UserDefaults.standard.set(ACSResources.customerAcsId, forKey: StorageKeys.customerAcsId)
+        UserDefaults.standard.set(ACSResources.customerUserName, forKey: StorageKeys.customerUserName)
+        UserDefaults.standard.set(ACSResources.customerUserEmail, forKey: StorageKeys.customerUserEmail)
+        UserDefaults.standard.set(ACSResources.threadId, forKey: StorageKeys.threadId)
+    }
 }
 
-extension ViewController : UITextFieldDelegate{}
+extension LoginViewController : UITextFieldDelegate{}
 
 extension UITextField {
     
@@ -261,24 +205,23 @@ extension UITextField {
     }
     
     func togglePasswordVisibility() {
-            isSecureTextEntry = !isSecureTextEntry
+        isSecureTextEntry = !isSecureTextEntry
+        if let existingText = text, isSecureTextEntry {
+            /* When toggling to secure text, all text will be purged if the user
+             continues typing unless we intervene. This is prevented by first
+             deleting the existing text and then recovering the original text. */
+            deleteBackward()
 
-            if let existingText = text, isSecureTextEntry {
-                /* When toggling to secure text, all text will be purged if the user
-                 continues typing unless we intervene. This is prevented by first
-                 deleting the existing text and then recovering the original text. */
-                deleteBackward()
-
-                if let textRange = textRange(from: beginningOfDocument, to: endOfDocument) {
-                    replace(textRange, withText: existingText)
-                }
-            }
-
-            /* Reset the selected text range since the cursor can end up in the wrong
-             position after a toggle because the text might vary in width */
-            if let existingSelectedTextRange = selectedTextRange {
-                selectedTextRange = nil
-                selectedTextRange = existingSelectedTextRange
+            if let textRange = textRange(from: beginningOfDocument, to: endOfDocument) {
+                replace(textRange, withText: existingText)
             }
         }
+
+        /* Reset the selected text range since the cursor can end up in the wrong
+         position after a toggle because the text might vary in width */
+        if let existingSelectedTextRange = selectedTextRange {
+            selectedTextRange = nil
+            selectedTextRange = existingSelectedTextRange
+        }
+    }
 }

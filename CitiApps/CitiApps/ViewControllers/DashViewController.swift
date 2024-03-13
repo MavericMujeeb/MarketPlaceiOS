@@ -9,6 +9,4 @@ import Foundation
 import UIKit
 
 
-class DashViewController : UIViewController {
-    
-}
+class DashViewController : UIViewController {}

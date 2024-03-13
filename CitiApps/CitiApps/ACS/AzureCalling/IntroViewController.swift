@@ -97,7 +97,7 @@ class TeamsCallingViewController {
         "\"participantName\":\"\(self.custUserName!)\"" +
         "}"
         
-        let fullUrl: String = "https://acsinfo.azurewebsites.net/api/participantDetails"
+        let fullUrl: String = ACSResources.acs_chat_participantdetails_api
         
         guard let url = try? URL(string: fullUrl) else {
             return
